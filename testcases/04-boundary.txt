@@ -24,7 +24,7 @@ phần "--- expected" (kết quả mong đợi). Các bộ đếm của từng �
 9 2 4 5 3 7 6 1 8
 3 1 6 2 8 4 9 7 5
 
-=== boundary-002 · Lời giải của đề "Rất dễ" nhập lại làm đề: 0 ô trống
+=== boundary-002 · Lời giải của đề "Dễ nhất" nhập lại làm đề: 0 ô trống
 --- input
 5 8 1 6 7 2 4 3 9
 7 9 2 8 4 3 6 5 1

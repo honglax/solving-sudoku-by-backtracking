@@ -57,7 +57,7 @@ test.describe('speed measurement', () => {
     await page.goto('/compare')
     const puzzleSelect = page.getByLabel('Đề để đo')
     await puzzleSelect.selectOption({ label: 'Chống quay lui (64 ô trống)' })
-    await expect(page.getByText('mỗi cách điền lần lượt mất vài giây')).toBeVisible()
+    await expect(page.getByText('Mỗi cách điền lần lượt sẽ chạy từ 6 giây trở lên')).toBeVisible()
     await page.getByRole('button', { name: 'Đo', exact: true }).click()
     await expect(puzzleSelect).toBeDisabled()
     await page.getByRole('button', { name: 'Dừng' }).click()

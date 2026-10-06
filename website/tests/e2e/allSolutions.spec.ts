@@ -8,7 +8,7 @@ test('Tìm hết counts every solution of the multiple-solution puzzle', async (
 
   const status = page.locator('.all-solutions-page__status')
   await expect(status).toHaveText(
-    'Đã thử hết mọi khả năng sau 43.317 lần thử: đề này có 18 lời giải. Một đề Sudoku đúng chuẩn chỉ được có một.',
+    'Đã thử hết mọi khả năng sau 43.317 lần thử: đề này có 18 lời giải. Đề Sudoku đúng chuẩn chỉ có một.',
     { timeout: 30_000 },
   )
   await expect(page.locator('.solution-thumbnail')).toHaveCount(18)

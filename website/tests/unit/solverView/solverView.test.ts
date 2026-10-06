@@ -85,7 +85,7 @@ describe('frame 04: try 814 rejects 2 at (4, 7)', () => {
     expect(highlightForEvent(progress.lastPseudocodeEvent)).toEqual({ lineNumber: 3, checkResult: 'rejected' })
     const message = buildStatusMessage({ puzzle: vuaPuzzle, puzzleStatus, progress, phase: 'running' })
     expect(message.tone).toBe('rejected')
-    expect(messageText(message)).toBe('Ô (4, 7) - thử số 2: bị loại vì 2 đã có ở hàng 4.')
+    expect(messageText(message)).toBe('Ô (4, 7) - thử số 2: hàng 4 đã có số 2, bỏ.')
     expect(emphasizedText(message)).toEqual(['Ô (4, 7)'])
   })
 })
@@ -108,7 +108,7 @@ describe('frame 05: right after try 803, digit 8 removed from (4, 1)', () => {
     expect(highlightForEvent(progress.lastPseudocodeEvent)).toEqual({ lineNumber: 10, checkResult: null })
     const message = buildStatusMessage({ puzzle: vuaPuzzle, puzzleStatus, progress, phase: 'running' })
     expect(message.tone).toBe('restored')
-    expect(messageText(message)).toBe('Quay lui: trả lại ô (4, 1) bằng cách xóa số 8. Tiếp theo sẽ thử số 9 ở chính ô này.')
+    expect(messageText(message)).toBe('Quay lui: trả lại ô (4, 1), xóa số 8. Ô này thử tiếp số 9.')
     expect(emphasizedText(message)).toEqual(['ô (4, 1)'])
   })
 })
@@ -157,7 +157,7 @@ describe('frame 07: invalid puzzle', () => {
     const message = buildStatusMessage({ puzzle: invalidPuzzle, puzzleStatus, progress: null, phase: 'notStarted' })
     expect(message.tone).toBe('error')
     expect(messageText(message)).toBe(
-      'Đề không hợp lệ: số 7 xuất hiện 2 lần ở hàng 4 (cột 1 và cột 4). Bạn hãy sửa lại rồi bấm Kiểm tra đề.',
+      'Đề không hợp lệ: số 7 xuất hiện 2 lần ở hàng 4 (cột 1 và cột 4). Sửa lại rồi bấm Kiểm tra đề.',
     )
     expect(emphasizedText(message)).toEqual(['hàng 4 (cột 1 và cột 4)'])
   })
@@ -172,7 +172,7 @@ describe('frame 07: invalid puzzle', () => {
       phase: 'notStarted',
     })
     expect(messageText(columnMessage)).toBe(
-      'Đề không hợp lệ: số 5 xuất hiện 2 lần ở cột 1 (hàng 1 và hàng 5). Bạn hãy sửa lại rồi bấm Kiểm tra đề.',
+      'Đề không hợp lệ: số 5 xuất hiện 2 lần ở cột 1 (hàng 1 và hàng 5). Sửa lại rồi bấm Kiểm tra đề.',
     )
 
     const boxPuzzle = [...vuaPuzzle]
@@ -180,7 +180,7 @@ describe('frame 07: invalid puzzle', () => {
     const boxStatus = analyzePuzzle(boxPuzzle)
     const boxMessage = buildStatusMessage({ puzzle: boxPuzzle, puzzleStatus: boxStatus, progress: null, phase: 'notStarted' })
     expect(messageText(boxMessage)).toBe(
-      'Đề không hợp lệ: số 6 xuất hiện 2 lần ở khối (hàng 4-6, cột 1-3): ô (5, 3) và ô (6, 1). Bạn hãy sửa lại rồi bấm Kiểm tra đề.',
+      'Đề không hợp lệ: số 6 xuất hiện 2 lần ở khối (hàng 4-6, cột 1-3): ô (5, 3) và ô (6, 1). Sửa lại rồi bấm Kiểm tra đề.',
     )
   })
 })
@@ -197,7 +197,7 @@ describe('frame 08: no solution', () => {
     const message = buildStatusMessage({ puzzle: noSolutionPuzzle, puzzleStatus, progress, phase: 'running' })
     expect(message.tone).toBe('rejected')
     expect(messageText(message)).toBe(
-      'Đề này không có lời giải. Ở ô (1, 1), cả 9 số đều bị loại: số 1 đã có ở cột 1, các số từ 2 đến 9 đã có ở hàng 1.',
+      'Đề này không có lời giải. Ở ô (1, 1), cả 9 số đều trùng: số 1 đã có ở cột 1, các số từ 2 đến 9 đã có ở hàng 1.',
     )
   })
 })
@@ -211,7 +211,7 @@ describe('restore after digit 9', () => {
       progress,
       phase: 'running',
     })
-    expect(messageText(message)).toMatch(/^Quay lui: trả lại ô \(\d, \d\) bằng cách xóa số 9\. Ô này đã thử hết các số từ 1 đến 9, nên phải lùi về ô trống trước đó\.$/)
+    expect(messageText(message)).toMatch(/^Quay lui: trả lại ô \(\d, \d\), xóa số 9\. Ô này đã thử hết từ 1 đến 9, nên lùi về ô trống trước đó\.$/)
   })
 })
 
@@ -241,7 +241,7 @@ describe('paste errors', () => {
 
   it('frame 01: invalid character on line 3', () => {
     expect(messageText(parseErrorMessage({ kind: 'invalidCharacterInLine', lineNumber: 3, character: '0' }))).toBe(
-      'Dòng 3 có ký tự không hợp lệ: "0". Mỗi ô chỉ được là một số từ 1 đến 9, hoặc X nếu là ô trống.',
+      'Dòng 3 có ký tự không hợp lệ: "0". Mỗi ô chỉ nhận một số từ 1 đến 9, hoặc X cho ô trống.',
     )
   })
 
@@ -266,7 +266,7 @@ describe('the puzzles added on 4/10', () => {
     const progress = runUntil(puzzle, () => false)
     const message = buildStatusMessage({ puzzle, puzzleStatus: analyzePuzzle(puzzle), progress, phase: 'running' })
     expect(progress.lastEvent?.kind).toBe('noSolution')
-    expect(messageText(message)).toBe('Đề này không có lời giải. Sau 981 lần thử, thuật toán đã xét hết mọi cách điền mà không có cách nào hợp lệ.')
+    expect(messageText(message)).toBe('Đề này không có lời giải. Thuật toán thử 981 lần, xét hết mọi cách điền, không cách nào hợp lệ.')
   })
 
   it('"Nhiều lời giải" stops at the first solution it finds', () => {
@@ -308,7 +308,7 @@ describe('changes from the end-user feedback', () => {
     })
     expect(message.tone).toBe('restored')
     expect(emphasizedText(message)).toEqual(['Lần quay lui đầu tiên!'])
-    expect(messageText(message)).toMatch(/^Lần quay lui đầu tiên! Ô \(\d, \d\) vừa bị trả lại số \d, vì với số này không điền tiếp được các ô phía sau\. Bạn đoán bước tiếp theo là gì\? Bấm Từng bước để xem\.$/)
+    expect(messageText(message)).toMatch(/^Lần quay lui đầu tiên! Thuật toán vừa xóa số \d ở ô \(\d, \d\): giữ số này thì các ô phía sau hết đường điền\. Bạn đoán bước tiếp theo là gì\? Bấm Từng bước để xem\.$/)
   })
 
   it('every coloured cell explains its colour on hover', () => {

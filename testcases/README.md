@@ -25,7 +25,7 @@ testcases/
 **Mỗi nhóm là một file `.txt`.** Mỗi đề trong file là một khối:
 
 ```
-=== small-001 · Đề mẫu "Rất dễ": 1 ô trống
+=== small-001 · Đề mẫu "Dễ nhất": 1 ô trống
 --- input
 5 8 1 6 7 2 4 3 9
 ...
@@ -57,7 +57,7 @@ testcases/
 
 | Nhóm | Nội dung | Số đề |
 |---|---|---|
-| Nhỏ | 1-5 ô trống, người học tự kiểm bằng tay được; gồm đề mẫu "Rất dễ", "Dễ" | 40 |
+| Nhỏ | 1-5 ô trống, người học tự kiểm bằng tay được; gồm đề mẫu "Dễ nhất", "Dễ" | 40 |
 | Thông thường | 149 đề sinh ngẫu nhiên 20-50 ô trống, mỗi đề có **đúng một lời giải**; cộng đề mẫu "Vừa" (40 ô trống, 4 lời giải) | 150 |
 | Lớn / khó | 51-56 ô trống có lời giải duy nhất; 58-70 ô trống nhiều lời giải; các đề nổi tiếng: Wikipedia, Arto Inkala, AI Escargot, Easter Monster, đề 17 số của Gordon Royle, đề chống quay lui | 45 |
 | Biên | 0 ô trống, 81 ô trống, 80 ô trống, 1 ô trống ở ô đầu / ô cuối, trống trọn một hàng / cột / khối / đường chéo / 3 hàng, ô trống duy nhất có đáp án 1 hoặc 9 | 13 |

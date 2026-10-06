@@ -84,7 +84,7 @@ test('the anti-backtracking link opens the solver with that puzzle loaded', asyn
 
 test('the home grid animates real solver steps', async ({ page }) => {
   await page.goto('/')
-  const grid = page.getByRole('img', { name: /Lưới Sudoku đang chạy thử/ })
+  const grid = page.getByRole('img', { name: /Lưới Sudoku đang chạy/ })
   const firstFrame = await grid.innerText()
   await expect.poll(async () => grid.innerText(), { timeout: 5000 }).not.toBe(firstFrame)
 })
@@ -94,7 +94,7 @@ test.describe('with reduced motion', () => {
 
   test('the home grid stays still', async ({ page }) => {
     await page.goto('/')
-    const grid = page.getByRole('img', { name: /Lưới Sudoku đang chạy thử/ })
+    const grid = page.getByRole('img', { name: /Lưới Sudoku đang chạy/ })
     const firstFrame = await grid.innerText()
     await page.waitForTimeout(1500)
     expect(await grid.innerText()).toBe(firstFrame)

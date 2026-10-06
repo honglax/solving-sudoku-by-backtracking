@@ -20,7 +20,7 @@ test.describe('history table', () => {
   test('reviewing the try-803 row shows frame 05, and the controls walk through history', async ({ page }) => {
     await page.getByRole('button', { name: 'Xem lại lần thử 803: Trả lại' }).click()
     expect(await readCounters(page)).toEqual(['803', '93', '81'])
-    await expect(statusMessage(page)).toHaveText('Quay lui: trả lại ô (4, 1) bằng cách xóa số 8. Tiếp theo sẽ thử số 9 ở chính ô này.')
+    await expect(statusMessage(page)).toHaveText('Quay lui: trả lại ô (4, 1), xóa số 8. Ô này thử tiếp số 9.')
     await expect(page.getByText('Đang xem lại lần thử 803')).toBeVisible()
     await expect(page.locator('tr[aria-current="step"]')).toBeInViewport()
 
@@ -38,6 +38,6 @@ test.describe('history table', () => {
 
   test('choosing another puzzle clears the history', async ({ page }) => {
     await selectSamplePuzzle(page, 5)
-    await expect(page.getByText('Chưa có bước nào được ghi lại. Bấm Từng bước hoặc Tự động để bắt đầu.')).toBeVisible()
+    await expect(page.getByText('Chưa có bước nào. Bấm Từng bước hoặc Tự động để bắt đầu.')).toBeVisible()
   })
 })

@@ -333,3 +333,30 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Lỗi tìm ra khi chụp màn hình: menu 6 mục bị ép xuống 2 dòng ở 820 px. Đo thì 6 mục vừa một dòng từ 880 px; chuyển sang menu thu gọn dưới 900 px, chữ menu không xuống dòng. Thêm test cho cả hai.
 - Tách thanh tốc độ thành component dùng chung (`SpeedSlider`) cho cuộc đua và trang mới.
 - Kết quả: 714 test đơn vị + 59 test end-to-end đạt.
+
+**Bộ quy tắc văn phong (skill `vietnamese-writing`) và viết lại chữ trên website**
+> Nguyên tắc dành cho bạn khi làm việc với câu chữ, hãy lưu vào system (…)
+
+> (dán thêm 2 bộ quy tắc: nhịp câu, bộ lọc từ, mạch lạc, tông giọng)
+
+> Review thêm skill này cho writing skill nhé (… cấu trúc 3S, giọng anh khóa trên …)
+
+> Yeah, về mã giả thì bất khả xâm phạm, tôi đồng ý
+
+> Sao bạn không lưu vào như 1 SKILL?
+
+> Một vài mẫu cho bạn tham khảo nè (bài "Bí mật đằng sau cỗ máy giải Sudoku")
+
+> Ok, hãy điều chỉnh lại văn phong của toàn bộ website cho phù hợp với bộ writing skill chúng ta mới thống nhất, sau đó commit
+
+- Gộp 3 bộ quy tắc thành skill dự án `.claude/skills/vietnamese-writing/` (ngoài repo `final-project`). Claude chỉ ra chỗ xung đột (3S với kim tự tháp ngược; "không đưa code" với mã giả cô chấm; giọng content creator với report) và đề xuất chia theo nơi dùng: website dùng đủ bộ, report chỉ dùng luật câu và bộ lọc từ, câu trả lời theo kim tự tháp ngược. Mình đồng ý, thêm: **mã giả bất khả xâm phạm**.
+- Bài mẫu mình đưa được lưu kèm chú thích. Claude chỉ ra 2 lỗi thuật toán trong bài ("điền bừa", "thử hết tất cả trường hợp") và các số bịa ("hàng triệu phép tính mỗi giây"), rồi viết lại bằng số đo thật.
+- Viết lại khoảng 50 câu trên website theo skill: bỏ "Tóm lại", "Nói cách khác", "rất", thể bị động; câu ngắn dài xen nhau; mỗi nhận xét về độ khó có con số. Ví dụ:
+  - Tiêu đề trang chủ: "Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa."; đoạn dẫn dùng hình ảnh dãy cửa và chùm chìa khóa.
+  - Câu bị loại: "Ô (4, 7) - thử số 2: hàng 4 đã có số 2, bỏ." (trước: "… bị loại vì 2 đã có ở hàng 4").
+  - Trang Thuật toán: kết luận độ phức tạp có số Inkala thật; đoạn đề chống quay lui trỏ sang cuộc đua ở trang So sánh (407.156 lần thử nếu điền ô dễ nhất trước). Ba câu này lấy số từ dữ liệu đề mẫu, không gõ tay.
+  - Lưới trống: "Cứ cho máy tìm 1 triệu lời giải mỗi giây thì cũng mất khoảng 211 triệu năm."
+  - Đề "Rất dễ" đổi tên thành "Dễ nhất" (đổi đồng bộ ở bản Python, file đáp án, bộ testcase).
+- Giữ nguyên: 12 dòng mã giả, cột "Mã giả" của bảng đối chiếu, nhãn trạng thái ngắn ("Bị loại", "Chấp nhận được", "Ghi nhận", "Trả lại"), nhãn "Input" / "Output".
+- Chụp màn hình phát hiện tiêu đề trang chủ xuống 3 dòng, chữ "một." đứng lẻ, và đoạn dẫn đổi hình ảnh giữa chừng (ổ khóa → cánh cửa); đã sửa cả hai.
+- Cập nhật đáp án trong 9 test đơn vị và 6 test end-to-end so từng ký tự câu thông báo. Kết quả: 714 test đơn vị, 59 test end-to-end, 292 testcase đều đạt.

@@ -473,7 +473,7 @@ def grid_with_givens(givens):
 
 
 def add_small_cases(collector, rng):
-    collector.add('small', format_grid(sample_grid('Rất dễ'), 'nineLines'), 'nineLines', 'Đề mẫu "Rất dễ": 1 ô trống')
+    collector.add('small', format_grid(sample_grid('Dễ nhất'), 'nineLines'), 'nineLines', 'Đề mẫu "Dễ nhất": 1 ô trống')
     collector.add('small', format_grid(sample_grid('Dễ'), 'nineLines'), 'nineLines', 'Đề mẫu "Dễ": 5 ô trống')
     case_index = 0
     while collector.counter_by_group['small'] < SMALL_CASE_COUNT:
@@ -534,8 +534,8 @@ def add_large_cases(collector, rng):
 def add_boundary_cases(collector, rng):
     full_grid = random_solution_grid(rng)
     collector.add('boundary', format_grid(full_grid, 'nineLines'), 'nineLines', 'Lưới đã điền đủ, hợp lệ: 0 ô trống')
-    collector.add('boundary', format_grid(string_to_grid(SAMPLE_COUNTS[grid_to_string(sample_grid('Rất dễ'))]['solution']), 'nineLines'),
-                  'nineLines', 'Lời giải của đề "Rất dễ" nhập lại làm đề: 0 ô trống')
+    collector.add('boundary', format_grid(string_to_grid(SAMPLE_COUNTS[grid_to_string(sample_grid('Dễ nhất'))]['solution']), 'nineLines'),
+                  'nineLines', 'Lời giải của đề "Dễ nhất" nhập lại làm đề: 0 ô trống')
     collector.add('boundary', format_grid(sample_grid('Lưới trống'), 'nineLines'), 'nineLines', 'Lưới trống: 81 ô trống')
     collector.add('boundary', format_grid(grid_with_givens({(5, 5): 5}), 'nineLines'), 'nineLines',
                   'Chỉ một số cho sẵn ở ô giữa: 80 ô trống')

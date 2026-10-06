@@ -20,7 +20,7 @@ test.describe('the solver reaches every state drawn in the design', () => {
 
     await stepUntilCounterReads(page, 'Trả lại', '81')
     expect(await readCounters(page)).toEqual(['803', '93', '81'])
-    await expect(statusMessage(page)).toHaveText('Quay lui: trả lại ô (4, 1) bằng cách xóa số 8. Tiếp theo sẽ thử số 9 ở chính ô này.')
+    await expect(statusMessage(page)).toHaveText('Quay lui: trả lại ô (4, 1), xóa số 8. Ô này thử tiếp số 9.')
     await expect(page.locator('.pseudocode__line--running')).toHaveText('            Trả lại trạng thái cũ của bài toán;')
 
     await page.getByRole('button', { name: 'Từng bước' }).click()
@@ -30,7 +30,7 @@ test.describe('the solver reaches every state drawn in the design', () => {
 
     await stepUntilCounterReads(page, 'Lần thử', '814')
     expect(await readCounters(page)).toEqual(['814', '96', '81'])
-    await expect(statusMessage(page)).toHaveText('Ô (4, 7) - thử số 2: bị loại vì 2 đã có ở hàng 4.')
+    await expect(statusMessage(page)).toHaveText('Ô (4, 7) - thử số 2: hàng 4 đã có số 2, bỏ.')
     await expect(page.locator('.sudoku-cell--rejected')).toHaveText('2')
     await expect(page.locator('.sudoku-cell--conflict')).toHaveText('2')
     await expect(page.locator('.check-tag--rejected')).toHaveText('sai')
@@ -48,7 +48,7 @@ test.describe('the solver reaches every state drawn in the design', () => {
     await openSolver(page)
     await cellInput(page, 4, 1).fill('7')
     await expect(statusMessage(page)).toHaveText(
-      'Đề không hợp lệ: số 7 xuất hiện 2 lần ở hàng 4 (cột 1 và cột 4). Bạn hãy sửa lại rồi bấm Kiểm tra đề.',
+      'Đề không hợp lệ: số 7 xuất hiện 2 lần ở hàng 4 (cột 1 và cột 4). Sửa lại rồi bấm Kiểm tra đề.',
     )
     await expect(page.locator('.sudoku-cell--inputError')).toHaveCount(2)
     for (const buttonName of ['Từng bước', 'Tự động', 'Giải ngay']) {
@@ -61,7 +61,7 @@ test.describe('the solver reaches every state drawn in the design', () => {
     await selectSamplePuzzle(page, 7)
     await page.getByRole('button', { name: 'Giải ngay' }).click()
     await expect(statusMessage(page)).toHaveText(
-      'Đề này không có lời giải. Ở ô (1, 1), cả 9 số đều bị loại: số 1 đã có ở cột 1, các số từ 2 đến 9 đã có ở hàng 1.',
+      'Đề này không có lời giải. Ở ô (1, 1), cả 9 số đều trùng: số 1 đã có ở cột 1, các số từ 2 đến 9 đã có ở hàng 1.',
     )
     expect(await readCounters(page)).toEqual(['9', '0', '0'])
   })

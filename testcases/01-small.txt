@@ -2,7 +2,7 @@ Nhóm Nhỏ: 1-5 ô trống (40 đề)
 Mỗi đề gồm: dòng "=== mã · mô tả", phần "--- input" (nội dung đề, giữ nguyên từng ký tự),
 phần "--- expected" (kết quả mong đợi). Các bộ đếm của từng đề nằm trong manifest.csv.
 
-=== small-001 · Đề mẫu "Rất dễ": 1 ô trống
+=== small-001 · Đề mẫu "Dễ nhất": 1 ô trống
 --- input
 5 8 1 6 7 2 4 3 9
 7 9 2 8 4 3 6 5 1

@@ -1,5 +1,5 @@
 id,group,file,inputFormat,blankCount,expectedKind,solutionCount,tryCount,recordCount,restoreCount,rowRejectCount,columnRejectCount,boxRejectCount,isSlow,description
-small-001,small,01-small.txt,nineLines,1,solved,1,1,1,0,0,0,0,no,"Đề mẫu ""Rất dễ"": 1 ô trống"
+small-001,small,01-small.txt,nineLines,1,solved,1,1,1,0,0,0,0,no,"Đề mẫu ""Dễ nhất"": 1 ô trống"
 small-002,small,01-small.txt,nineLines,5,solved,1,27,5,0,22,0,0,no,"Đề mẫu ""Dễ"": 5 ô trống"
 small-003,small,01-small.txt,nineLines,1,solved,1,8,1,0,7,0,0,no,Sinh ngẫu nhiên: 1 ô trống
 small-004,small,01-small.txt,nineLines,2,solved,1,4,2,0,2,0,0,no,Sinh ngẫu nhiên: 2 ô trống
@@ -235,7 +235,7 @@ large-043,large,03-large.txt,nineLines,66,solved,1000+,4377,515,449,2909,811,142
 large-044,large,03-large.txt,nineLines,68,solved,1000+,2443,300,232,1827,246,70,no,"Sinh ngẫu nhiên, nhiều lời giải: 68 ô trống"
 large-045,large,03-large.txt,nineLines,70,solved,1000+,587,96,26,340,135,16,no,"Sinh ngẫu nhiên, nhiều lời giải: 70 ô trống"
 boundary-001,boundary,04-boundary.txt,nineLines,0,complete,1,0,0,0,0,0,0,no,"Lưới đã điền đủ, hợp lệ: 0 ô trống"
-boundary-002,boundary,04-boundary.txt,nineLines,0,complete,1,0,0,0,0,0,0,no,"Lời giải của đề ""Rất dễ"" nhập lại làm đề: 0 ô trống"
+boundary-002,boundary,04-boundary.txt,nineLines,0,complete,1,0,0,0,0,0,0,no,"Lời giải của đề ""Dễ nhất"" nhập lại làm đề: 0 ô trống"
 boundary-003,boundary,04-boundary.txt,nineLines,81,solved,1000+,3195,391,310,2225,315,264,no,Lưới trống: 81 ô trống
 boundary-004,boundary,04-boundary.txt,nineLines,80,solved,1000+,2902,358,278,2046,248,250,no,Chỉ một số cho sẵn ở ô giữa: 80 ô trống
 boundary-005,boundary,04-boundary.txt,nineLines,1,solved,1,6,1,0,5,0,0,no,"1 ô trống ở ô đầu tiên (1, 1)"
