@@ -40,7 +40,9 @@ export default function ComparisonPage() {
 
         <section className="comparison-page__section" aria-labelledby="comparison-checks">
           <h2 id="comparison-checks">{COMPARISON.sections.checks}</h2>
-          <p className="comparison-page__paragraph">{COMPARISON.checks.intro}</p>
+          <p className="comparison-page__paragraph">
+            {formatMessage(COMPARISON.checks.intro, { inkalaTryCount: TAKEAWAY_VALUES.inkalaRowMajorTryCount })}
+          </p>
           <div className="comparison-page__checks">
             {CHECK_STRATEGIES.map(checkStrategy => (
               <div key={checkStrategy} className="card comparison-check">

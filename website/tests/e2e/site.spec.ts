@@ -18,6 +18,20 @@ test('every page has its own title, and unknown paths show the 404 page', async 
   await expect(page.getByRole('heading', { name: 'Không tìm thấy trang' })).toBeVisible()
 })
 
+const UNFILLED_PLACEHOLDER_PATTERN = /\{\w+\}/
+const RAW_MARKUP_PATTERN = /<\/?(strong|nowrap)>/
+
+test('no page shows an unfilled {placeholder} or raw markup from the locale file', async ({ page }) => {
+  for (const sitePage of PAGES) {
+    await page.goto(sitePage.path)
+    await page.waitForLoadState('networkidle')
+    await expect(page).toHaveTitle(sitePage.title)
+    const bodyText = await page.locator('body').innerText()
+    expect(bodyText, sitePage.path).not.toMatch(UNFILLED_PLACEHOLDER_PATTERN)
+    expect(bodyText, sitePage.path).not.toMatch(RAW_MARKUP_PATTERN)
+  }
+})
+
 for (const viewport of [{ width: 1366, height: 680 }, { width: 1712, height: 1225 }, { width: 390, height: 844 }]) {
   test(`the header stays in the same place on every page at ${viewport.width} px`, async ({ page }) => {
     await page.setViewportSize(viewport)

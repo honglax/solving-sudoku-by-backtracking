@@ -63,6 +63,12 @@ const ARTO_INKALA_PUZZLE = findSamplePuzzle(ARTO_INKALA_PUZZLE_ID)
 const ANTI_BACKTRACKING_GRID_VIEW = buildPuzzleOnlyGridView(ANTI_BACKTRACKING_PUZZLE.puzzle)
 const COMPARED_PUZZLES: SamplePuzzle[] = [ARTO_INKALA_PUZZLE, ANTI_BACKTRACKING_PUZZLE]
 const SLOWDOWN_FACTOR = Math.round(ANTI_BACKTRACKING_PUZZLE.measured.tryCount / ARTO_INKALA_PUZZLE.measured.tryCount)
+const COMPLEXITY_CONCLUSION_VALUES = {
+  inkalaTryCount: formatCount(ARTO_INKALA_PUZZLE.measured.tryCount),
+}
+const ANTI_BACKTRACKING_CONCLUSION_VALUES = {
+  fewestCandidatesTryCount: formatCount(ANTI_BACKTRACKING_PUZZLE.measuredWithFewestCandidatesFirst.tryCount),
+}
 const ANTI_BACKTRACKING_REASON_VALUES = {
   wrongFirstCellTryCount: formatCount(WRONG_FIRST_CELL_TRY_COUNT),
   wrongFirstCellPercent: ALGORITHM.wrongFirstCellPercent,
@@ -170,7 +176,9 @@ export default function AlgorithmPage() {
             <h2>{ALGORITHM.sections.complexity}</h2>
             <p className="algorithm-article__paragraph">{ALGORITHM.complexityIntro}</p>
             <pre className="algorithm-article__derivation">{ALGORITHM.complexityDerivation.join('\n')}</pre>
-            <p className="algorithm-article__paragraph">{ALGORITHM.complexityConclusion}</p>
+            <p className="algorithm-article__paragraph">
+              {formatMessage(ALGORITHM.complexityConclusion, COMPLEXITY_CONCLUSION_VALUES)}
+            </p>
           </section>
 
           <section id="measurements">
@@ -201,7 +209,9 @@ export default function AlgorithmPage() {
                 {formatMessage(ALGORITHM.antiBacktrackingComparisonCaption, { slowdownFactor: formatCount(SLOWDOWN_FACTOR) })}
               </figcaption>
             </figure>
-            <p className="algorithm-article__paragraph">{ALGORITHM.antiBacktrackingConclusion}</p>
+            <p className="algorithm-article__paragraph">
+              {formatMessage(ALGORITHM.antiBacktrackingConclusion, ANTI_BACKTRACKING_CONCLUSION_VALUES)}
+            </p>
             <div className="algorithm-article__try-it">
               <Link className="button button--secondary" to={solverLinkForPuzzle(ANTI_BACKTRACKING_PUZZLE.puzzle)}>
                 {ALGORITHM.antiBacktrackingTryButton}
