@@ -265,3 +265,31 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Claude hỏi lại "mở rộng" theo hướng nào: chỉ đổi góc nhìn, thêm trang bài học quay lui, hay thêm bài toán khác. Mình chọn **đổi góc nhìn, vẫn Sudoku**, và **làm thêm MRV** (chọn ô ít khả năng nhất trước) sau A, B.
 - `plan.md` viết lại theo góc nhìn website dạy học: định dạng đề, đề mẫu, bộ testcase, report, video không còn dựa vào Lab01/Wecode. Lab01 chỉ còn trong phần lý do chọn đề của report, vì cô yêu cầu nêu lý do thật.
 - Đổi tên `checks/lab01_counts.py` thành `checks/reference_solver.py` (bản Python tham chiếu).
+
+**Commit đầu tiên và bộ testcase**
+> Okay
+
+- Commit đầu tiên của `final-project/` (177 file).
+- Claude viết `testcases/tools/generate_testcases.py` sinh 294 đề, 6 nhóm (Nhỏ 40, Thông thường 150, Lớn / khó 45, Biên 13, Đặc biệt 21, Không hợp lệ 25), seed cố định.
+  - Đáp án lấy từ 2 chương trình Python độc lập với website: bản tham chiếu mô hình 1 (lời giải đầu, bộ đếm) và một bộ đếm lời giải dùng MRV + bitmask. Hai bên lệch nhau thì script dừng.
+  - Đề 17 số lấy lại chuỗi từ transcript buổi 4/10 (đề đầu trong danh sách của Gordon Royle). Bản Python đo ra 239.312.393 / 26.590.293 / 26.590.229, khớp lần đo bằng JavaScript hôm 4/10.
+- `testcases/tools/testcaseRunner.ts` + `runTestcases.ts` chạy từng đề bằng đúng `website/src/solver`, so kết quả, bộ đếm và độ phủ 20 nhánh xử lý. Lệnh `yarn testcases`; `yarn test` cũng chạy cả bộ.
+
+**Sự cố khi làm**
+- Lần chạy đầu treo hơn 10 phút. Claude đo từng nhóm: vòng sinh đề "đúng 2 lời giải" lặp mãi. Lý do: mọi lưới "ngẫu nhiên" đều sinh từ một lưới mẫu rồi hoán vị hàng / cột / đổi tên số. Cả họ lưới đó không bao giờ có hình chữ nhật 4 ô đổi chỗ được, và cũng có nghĩa bộ đề kém đa dạng hơn tưởng. Đổi sang sinh lưới đầy bằng quay lui với thứ tự số xáo trộn.
+- Mọi đề đạt ngay lần đầu, nên Claude kiểm lại chính bộ test bằng cách cố tình làm sai bộ giải (4 lỗi). Lần đầu chỉ 2/4 lỗi bị bắt:
+  - "kiểm tra cột trước hàng" lọt qua, vì đáp án không ghi lý do bị loại → thêm 3 cột số lần bị loại theo hàng / cột / khối;
+  - "bỏ qua khối" làm bộ giải chạy mãi trên đề trùng khối → mỗi đề có giới hạn số lần thử bằng đáp án.
+  - Sau khi vá: cả 4 lỗi đều bị bắt (229, 5, 1, 262 đề sai).
+- Trong lúc thử, một lệnh chạy nền tiếp tục sửa code sai sau khi đã bị dừng; Claude dừng hẳn shell đó và khôi phục code từ git trước khi làm tiếp.
+
+> Wow, there are too much files .in and .out
+
+- 294 đề × 2 file = 588 file. Mình chọn gom **mỗi nhóm một file `.txt`**: mỗi đề là một khối `=== mã · mô tả` / `--- input` / `--- expected`, phần input giữ nguyên từng ký tự (kể cả CRLF, tab). Thêm `.gitattributes` để git không đổi ký tự xuống dòng của các file này.
+- Kết quả: 292 đề nhanh đạt hết (khoảng 9 giây), đủ 20 nhánh; `yarn test` 365 test đạt; lint và build sạch.
+
+> Why it takes so long?
+
+- Chạy cả 2 đề chậm bằng bộ giải của website: cả 294 đề đạt, mất 18 phút 45 giây. Đề chống quay lui 13 phút 54 giây (622.577.597 lần thử, khoảng 747 nghìn lần/giây), đề 17 số 4 phút 42 giây (239.312.393 lần thử, khoảng 848 nghìn lần/giây).
+- Chậm vì bộ giải của website là generator phát sự kiện ở từng bước để minh họa; mỗi sự kiện đi ngược qua tới 64 tầng `yield*`. Bản Python đệ quy thường còn nhanh hơn (khoảng 1,5 triệu lần/giây), bản JavaScript đệ quy thường giải đề chống quay lui trong khoảng 3 giây (đo 4/10).
+- Giữ nguyên: bộ test phải chạy đúng bộ giải người xem thấy trên web. 2 đề này đánh dấu chậm, không chạy mặc định. Đây là số liệu cho mục Đánh giá (cái giá của việc minh họa từng bước).

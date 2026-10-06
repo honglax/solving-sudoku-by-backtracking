@@ -52,7 +52,7 @@ describe('sample puzzles', () => {
 
 const FULL_RUN_TRY_LIMIT = 10_000_000
 
-describe('solveByBacktracking matches Lab01 counts', () => {
+describe('solveByBacktracking matches the Python reference counts', () => {
   const puzzlesQuickEnoughToSolveFully = expectedCounts.puzzles.filter(expected => expected.tryCount <= FULL_RUN_TRY_LIMIT)
   for (const expected of puzzlesQuickEnoughToSolveFully) {
     it(`Đề ${expected.id} - ${expected.name}: ${expected.tryCount} / ${expected.recordCount} / ${expected.restoreCount}`, () => {

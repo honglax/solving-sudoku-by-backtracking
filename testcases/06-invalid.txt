@@ -1,0 +1,320 @@
+Nhóm Không hợp lệ (25 đề)
+Mỗi đề gồm: dòng "=== mã · mô tả", phần "--- input" (nội dung đề, giữ nguyên từng ký tự),
+phần "--- expected" (kết quả mong đợi). Các bộ đếm của từng đề nằm trong manifest.csv.
+
+=== invalid-001 · Trùng số 7 ở hàng 4 (khác cột, khác khối)
+--- input
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+7 X X X X X X X 7
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+--- expected
+INVALID
+duplicate 7 in row 4
+
+=== invalid-002 · Trùng số 5 ở cột 3 (khác hàng, khác khối)
+--- input
+X X 5 X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X 5 X X X X X X
+--- expected
+INVALID
+duplicate 5 in column 3
+
+=== invalid-003 · Trùng số 2 ở khối 1 (khác hàng, khác cột)
+--- input
+2 X X X X X X X X
+X X X X X X X X X
+X X 2 X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+--- expected
+INVALID
+duplicate 2 in box 1
+
+=== invalid-004 · Trùng số 4 cùng lúc ở hàng 2 và khối 1
+--- input
+X X X X X X X X X
+4 4 X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+--- expected
+INVALID
+duplicate 4 in box 1
+duplicate 4 in row 2
+
+=== invalid-005 · Số 9 xuất hiện 3 lần ở hàng 1
+--- input
+9 X X X 9 X X X 9
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+--- expected
+INVALID
+duplicate 9 in row 1
+
+=== invalid-006 · Hai chỗ trùng: số 1 ở hàng 1 và số 3 ở cột 5
+--- input
+1 1 X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X 3 X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X 3 X X X X
+--- expected
+INVALID
+duplicate 1 in box 1
+duplicate 1 in row 1
+duplicate 3 in column 5
+
+=== invalid-007 · Đề "Vừa" điền thêm một số trùng với ô (1, 1)
+--- input
+5 3 4 6 5 X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+duplicate 5 in box 2
+duplicate 5 in row 1
+
+=== invalid-008 · Như trên, định dạng chuỗi 81 ký tự
+--- input
+53465.912....9534.19...2.6....761.2...6..37...1.9248....1....842..41.635.4.2.617.
+--- expected
+INVALID
+duplicate 5 in box 2
+duplicate 5 in row 1
+
+=== invalid-009 · Số 0 thay cho ô trống ở dòng 2
+--- input
+5 3 4 6 X X 9 1 2
+0 X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+line 2: invalid character "0"
+
+=== invalid-010 · Chữ cái "a" ở dòng 3
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X a X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+line 3: invalid character "a"
+
+=== invalid-011 · Chữ "x" thường thay cho "X" ở dòng 4
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+x X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+line 4: invalid character "x"
+
+=== invalid-012 · Số 10 ở dòng 5
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X 10 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+line 5: invalid character "10"
+
+=== invalid-013 · Dấu chấm (ký hiệu của định dạng chuỗi) trong định dạng 9 dòng
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+. 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+line 6: invalid character "."
+
+=== invalid-014 · Dấu "-" ở dòng 7
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X - X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+line 7: invalid character "-"
+
+=== invalid-015 · Thiếu một dòng: chỉ có 8 dòng
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+--- expected
+INVALID
+wrong line count: 8
+
+=== invalid-016 · Thừa một dòng: 10 dòng
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+5 3 4 6 X X 9 1 2
+--- expected
+INVALID
+wrong line count: 10
+
+=== invalid-017 · Dòng 3 chỉ có 8 ô
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+line 3: wrong cell count: 8
+
+=== invalid-018 · Dòng 8 có 10 ô
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5 1
+X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+line 8: wrong cell count: 10
+
+=== invalid-019 · Cả 81 ô viết trên một dòng có dấu cách
+--- input
+5 3 4 6 X X 9 1 2 X X X X 9 5 3 4 X 1 9 X X X 2 X 6 X X X X 7 6 1 X 2 X X X 6 X X 3 7 X X X 1 X 9 2 4 8 X X X X 1 X X X X 8 4 2 X X 4 1 X 6 3 5 X 4 X 2 X 6 1 7 X
+--- expected
+INVALID
+wrong line count: 1
+
+=== invalid-020 · Chuỗi chỉ có 80 ký tự
+--- input
+5346..912....9534.19...2.6....761.2...6..37...1.9248....1....842..41.635.4.2.617
+--- expected
+INVALID
+wrong string length: 80
+
+=== invalid-021 · Chuỗi có 82 ký tự
+--- input
+5346..912....9534.19...2.6....761.2...6..37...1.9248....1....842..41.635.4.2.617.5
+--- expected
+INVALID
+wrong string length: 82
+
+=== invalid-022 · Chuỗi dùng số 0 cho ô trống (quy ước ở một số trang khác)
+--- input
+534600912000095340190002060000761020006003700010924800001000084200410635040206170
+--- expected
+INVALID
+position 5: invalid character "0"
+
+=== invalid-023 · Chữ "x" trong chuỗi 81 ký tự
+--- input
+5346..912x...9534.19...2.6....761.2...6..37...1.9248....1....842..41.635.4.2.617.
+--- expected
+INVALID
+position 10: invalid character "x"
+
+=== invalid-024 · File rỗng
+--- input
+--- expected
+INVALID
+wrong string length: 0
+
+=== invalid-025 · File chỉ có dấu cách và dòng trống
+--- input
+
+   
+
+--- expected
+INVALID
+wrong string length: 0

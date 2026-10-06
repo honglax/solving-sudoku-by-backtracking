@@ -1,0 +1,295 @@
+id,group,file,inputFormat,blankCount,expectedKind,solutionCount,tryCount,recordCount,restoreCount,rowRejectCount,columnRejectCount,boxRejectCount,isSlow,description
+small-001,small,01-small.txt,nineLines,1,solved,1,1,1,0,0,0,0,no,"Đề mẫu ""Rất dễ"": 1 ô trống"
+small-002,small,01-small.txt,nineLines,5,solved,1,27,5,0,22,0,0,no,"Đề mẫu ""Dễ"": 5 ô trống"
+small-003,small,01-small.txt,nineLines,1,solved,1,8,1,0,7,0,0,no,Sinh ngẫu nhiên: 1 ô trống
+small-004,small,01-small.txt,nineLines,2,solved,1,4,2,0,2,0,0,no,Sinh ngẫu nhiên: 2 ô trống
+small-005,small,01-small.txt,nineLines,3,solved,1,21,3,0,18,0,0,no,Sinh ngẫu nhiên: 3 ô trống
+small-006,small,01-small.txt,nineLines,4,solved,1,19,4,0,15,0,0,no,Sinh ngẫu nhiên: 4 ô trống
+small-007,small,01-small.txt,nineLines,5,solved,1,28,5,0,23,0,0,no,Sinh ngẫu nhiên: 5 ô trống
+small-008,small,01-small.txt,nineLines,1,solved,1,7,1,0,6,0,0,no,Sinh ngẫu nhiên: 1 ô trống
+small-009,small,01-small.txt,nineLines,2,solved,1,8,2,0,6,0,0,no,Sinh ngẫu nhiên: 2 ô trống
+small-010,small,01-small.txt,nineLines,3,solved,1,22,3,0,19,0,0,no,Sinh ngẫu nhiên: 3 ô trống
+small-011,small,01-small.txt,nineLines,4,solved,1,26,4,0,21,1,0,no,Sinh ngẫu nhiên: 4 ô trống
+small-012,small,01-small.txt,nineLines,5,solved,1,28,5,0,23,0,0,no,Sinh ngẫu nhiên: 5 ô trống
+small-013,small,01-small.txt,nineLines,1,solved,1,2,1,0,1,0,0,no,Sinh ngẫu nhiên: 1 ô trống
+small-014,small,01-small.txt,nineLines,2,solved,1,7,2,0,5,0,0,no,Sinh ngẫu nhiên: 2 ô trống
+small-015,small,01-small.txt,nineLines,3,solved,1,16,3,0,13,0,0,no,Sinh ngẫu nhiên: 3 ô trống
+small-016,small,01-small.txt,nineLines,4,solved,1,23,4,0,19,0,0,no,Sinh ngẫu nhiên: 4 ô trống
+small-017,small,01-small.txt,nineLines,5,solved,1,24,5,0,19,0,0,no,Sinh ngẫu nhiên: 5 ô trống
+small-018,small,01-small.txt,nineLines,1,solved,1,4,1,0,3,0,0,no,Sinh ngẫu nhiên: 1 ô trống
+small-019,small,01-small.txt,nineLines,2,solved,1,8,2,0,6,0,0,no,Sinh ngẫu nhiên: 2 ô trống
+small-020,small,01-small.txt,nineLines,3,solved,1,13,3,0,10,0,0,no,Sinh ngẫu nhiên: 3 ô trống
+small-021,small,01-small.txt,nineLines,4,solved,1,25,4,0,21,0,0,no,Sinh ngẫu nhiên: 4 ô trống
+small-022,small,01-small.txt,nineLines,5,solved,1,26,5,0,21,0,0,no,Sinh ngẫu nhiên: 5 ô trống
+small-023,small,01-small.txt,nineLines,1,solved,1,4,1,0,3,0,0,no,Sinh ngẫu nhiên: 1 ô trống
+small-024,small,01-small.txt,nineLines,2,solved,1,16,2,0,14,0,0,no,Sinh ngẫu nhiên: 2 ô trống
+small-025,small,01-small.txt,nineLines,3,solved,1,16,3,0,13,0,0,no,Sinh ngẫu nhiên: 3 ô trống
+small-026,small,01-small.txt,nineLines,4,solved,1,18,4,0,14,0,0,no,Sinh ngẫu nhiên: 4 ô trống
+small-027,small,01-small.txt,nineLines,5,solved,1,26,5,0,20,1,0,no,Sinh ngẫu nhiên: 5 ô trống
+small-028,small,01-small.txt,nineLines,1,solved,1,7,1,0,6,0,0,no,Sinh ngẫu nhiên: 1 ô trống
+small-029,small,01-small.txt,nineLines,2,solved,1,7,2,0,5,0,0,no,Sinh ngẫu nhiên: 2 ô trống
+small-030,small,01-small.txt,nineLines,3,solved,1,22,3,0,19,0,0,no,Sinh ngẫu nhiên: 3 ô trống
+small-031,small,01-small.txt,nineLines,4,solved,1,17,4,0,12,1,0,no,Sinh ngẫu nhiên: 4 ô trống
+small-032,small,01-small.txt,nineLines,5,solved,1,31,5,0,26,0,0,no,Sinh ngẫu nhiên: 5 ô trống
+small-033,small,01-small.txt,nineLines,1,solved,1,2,1,0,1,0,0,no,Sinh ngẫu nhiên: 1 ô trống
+small-034,small,01-small.txt,nineLines,2,solved,1,18,2,0,16,0,0,no,Sinh ngẫu nhiên: 2 ô trống
+small-035,small,01-small.txt,nineLines,3,solved,1,17,3,0,13,1,0,no,Sinh ngẫu nhiên: 3 ô trống
+small-036,small,01-small.txt,nineLines,4,solved,1,20,4,0,16,0,0,no,Sinh ngẫu nhiên: 4 ô trống
+small-037,small,01-small.txt,nineLines,5,solved,1,24,5,0,17,2,0,no,Sinh ngẫu nhiên: 5 ô trống
+small-038,small,01-small.txt,nineLines,1,solved,1,5,1,0,4,0,0,no,Sinh ngẫu nhiên: 1 ô trống
+small-039,small,01-small.txt,nineLines,2,solved,1,6,2,0,4,0,0,no,Sinh ngẫu nhiên: 2 ô trống
+small-040,small,01-small.txt,nineLines,3,solved,1,15,3,0,12,0,0,no,Sinh ngẫu nhiên: 3 ô trống
+normal-001,normal,02-normal.txt,nineLines,40,solved,4,1909,227,187,1266,372,44,no,"Đề mẫu ""Vừa"": 40 ô trống"
+normal-002,normal,02-normal.txt,nineLines,20,solved,1,103,20,0,77,6,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 20 ô trống"
+normal-003,normal,02-normal.txt,nineLines,21,solved,1,121,22,1,86,12,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 21 ô trống"
+normal-004,normal,02-normal.txt,nineLines,22,solved,1,153,25,3,106,21,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 22 ô trống"
+normal-005,normal,02-normal.txt,nineLines,23,solved,1,127,24,1,94,7,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 23 ô trống"
+normal-006,normal,02-normal.txt,nineLines,24,solved,1,168,30,6,117,20,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 24 ô trống"
+normal-007,normal,02-normal.txt,nineLines,25,solved,1,173,31,6,120,20,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 25 ô trống"
+normal-008,normal,02-normal.txt,nineLines,26,solved,1,190,31,5,134,21,4,no,"Sinh ngẫu nhiên, lời giải duy nhất: 26 ô trống"
+normal-009,normal,02-normal.txt,nineLines,27,solved,1,180,33,6,124,18,5,no,"Sinh ngẫu nhiên, lời giải duy nhất: 27 ô trống"
+normal-010,normal,02-normal.txt,nineLines,28,solved,1,170,31,3,112,27,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 28 ô trống"
+normal-011,normal,02-normal.txt,nineLines,29,solved,1,292,45,16,196,49,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 29 ô trống"
+normal-012,normal,02-normal.txt,nineLines,30,solved,1,161,30,0,111,17,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 30 ô trống"
+normal-013,normal,02-normal.txt,nineLines,31,solved,1,244,39,8,172,28,5,no,"Sinh ngẫu nhiên, lời giải duy nhất: 31 ô trống"
+normal-014,normal,02-normal.txt,nineLines,32,solved,1,247,40,8,175,29,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 32 ô trống"
+normal-015,normal,02-normal.txt,nineLines,33,solved,1,405,57,24,284,55,9,no,"Sinh ngẫu nhiên, lời giải duy nhất: 33 ô trống"
+normal-016,normal,02-normal.txt,nineLines,34,solved,1,1093,136,102,737,216,4,no,"Sinh ngẫu nhiên, lời giải duy nhất: 34 ô trống"
+normal-017,normal,02-normal.txt,nineLines,35,solved,1,531,74,39,370,77,10,no,"Sinh ngẫu nhiên, lời giải duy nhất: 35 ô trống"
+normal-018,normal,02-normal.txt,nineLines,36,solved,1,463,68,32,323,66,6,no,"Sinh ngẫu nhiên, lời giải duy nhất: 36 ô trống"
+normal-019,normal,02-normal.txt,nineLines,37,solved,1,214,41,4,142,28,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 37 ô trống"
+normal-020,normal,02-normal.txt,nineLines,38,solved,1,586,82,44,416,70,18,no,"Sinh ngẫu nhiên, lời giải duy nhất: 38 ô trống"
+normal-021,normal,02-normal.txt,nineLines,39,solved,1,694,96,57,453,126,19,no,"Sinh ngẫu nhiên, lời giải duy nhất: 39 ô trống"
+normal-022,normal,02-normal.txt,nineLines,40,solved,1,2071,247,207,1429,362,33,no,"Sinh ngẫu nhiên, lời giải duy nhất: 40 ô trống"
+normal-023,normal,02-normal.txt,nineLines,41,solved,1,538,79,38,361,85,13,no,"Sinh ngẫu nhiên, lời giải duy nhất: 41 ô trống"
+normal-024,normal,02-normal.txt,nineLines,42,solved,1,1338,166,124,906,239,27,no,"Sinh ngẫu nhiên, lời giải duy nhất: 42 ô trống"
+normal-025,normal,02-normal.txt,nineLines,43,solved,1,1240,158,115,874,189,19,no,"Sinh ngẫu nhiên, lời giải duy nhất: 43 ô trống"
+normal-026,normal,02-normal.txt,nineLines,44,solved,1,523,77,33,340,83,23,no,"Sinh ngẫu nhiên, lời giải duy nhất: 44 ô trống"
+normal-027,normal,02-normal.txt,nineLines,45,solved,1,536,78,33,368,79,11,no,"Sinh ngẫu nhiên, lời giải duy nhất: 45 ô trống"
+normal-028,normal,02-normal.txt,nineLines,46,solved,1,16941,1904,1858,11396,3141,500,no,"Sinh ngẫu nhiên, lời giải duy nhất: 46 ô trống"
+normal-029,normal,02-normal.txt,nineLines,47,solved,1,743,101,54,484,130,28,no,"Sinh ngẫu nhiên, lời giải duy nhất: 47 ô trống"
+normal-030,normal,02-normal.txt,nineLines,48,solved,1,2577,310,262,1775,356,136,no,"Sinh ngẫu nhiên, lời giải duy nhất: 48 ô trống"
+normal-031,normal,02-normal.txt,nineLines,49,solved,1,5199,598,549,3304,1090,207,no,"Sinh ngẫu nhiên, lời giải duy nhất: 49 ô trống"
+normal-032,normal,02-normal.txt,nineLines,50,solved,1,2805,333,283,2002,389,81,no,"Sinh ngẫu nhiên, lời giải duy nhất: 50 ô trống"
+normal-033,normal,02-normal.txt,nineLines,20,solved,1,91,21,1,61,7,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 20 ô trống"
+normal-034,normal,02-normal.txt,nineLines,21,solved,1,118,24,3,85,9,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 21 ô trống"
+normal-035,normal,02-normal.txt,nineLines,22,solved,1,188,30,8,144,14,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 22 ô trống"
+normal-036,normal,02-normal.txt,nineLines,23,solved,1,113,24,1,78,10,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 23 ô trống"
+normal-037,normal,02-normal.txt,nineLines,24,solved,1,122,24,0,87,10,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 24 ô trống"
+normal-038,normal,02-normal.txt,nineLines,25,solved,1,137,26,1,101,10,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 25 ô trống"
+normal-039,normal,02-normal.txt,nineLines,26,solved,1,159,31,5,108,20,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 26 ô trống"
+normal-040,normal,02-normal.txt,nineLines,27,solved,1,153,29,2,106,17,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 27 ô trống"
+normal-041,normal,02-normal.txt,nineLines,28,solved,1,149,28,0,111,9,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 28 ô trống"
+normal-042,normal,02-normal.txt,nineLines,29,solved,1,155,31,2,101,20,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 29 ô trống"
+normal-043,normal,02-normal.txt,nineLines,30,solved,1,170,32,2,110,25,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 30 ô trống"
+normal-044,normal,02-normal.txt,nineLines,31,solved,1,157,32,1,105,19,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 31 ô trống"
+normal-045,normal,02-normal.txt,nineLines,32,solved,1,193,36,4,127,29,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 32 ô trống"
+normal-046,normal,02-normal.txt,nineLines,33,solved,1,164,34,1,107,20,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 33 ô trống"
+normal-047,normal,02-normal.txt,nineLines,34,solved,1,218,38,4,151,27,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 34 ô trống"
+normal-048,normal,02-normal.txt,nineLines,35,solved,1,288,49,14,193,38,8,no,"Sinh ngẫu nhiên, lời giải duy nhất: 35 ô trống"
+normal-049,normal,02-normal.txt,nineLines,36,solved,1,660,89,53,461,102,8,no,"Sinh ngẫu nhiên, lời giải duy nhất: 36 ô trống"
+normal-050,normal,02-normal.txt,nineLines,37,solved,1,670,90,53,481,92,7,no,"Sinh ngẫu nhiên, lời giải duy nhất: 37 ô trống"
+normal-051,normal,02-normal.txt,nineLines,38,solved,1,227,41,3,148,31,7,no,"Sinh ngẫu nhiên, lời giải duy nhất: 38 ô trống"
+normal-052,normal,02-normal.txt,nineLines,39,solved,1,1282,160,121,938,171,13,no,"Sinh ngẫu nhiên, lời giải duy nhất: 39 ô trống"
+normal-053,normal,02-normal.txt,nineLines,40,solved,1,368,58,18,264,38,8,no,"Sinh ngẫu nhiên, lời giải duy nhất: 40 ô trống"
+normal-054,normal,02-normal.txt,nineLines,41,solved,1,361,58,17,228,60,15,no,"Sinh ngẫu nhiên, lời giải duy nhất: 41 ô trống"
+normal-055,normal,02-normal.txt,nineLines,42,solved,1,1301,162,120,936,172,31,no,"Sinh ngẫu nhiên, lời giải duy nhất: 42 ô trống"
+normal-056,normal,02-normal.txt,nineLines,43,solved,1,3164,372,329,2199,485,108,no,"Sinh ngẫu nhiên, lời giải duy nhất: 43 ô trống"
+normal-057,normal,02-normal.txt,nineLines,44,solved,1,556,82,38,377,89,8,no,"Sinh ngẫu nhiên, lời giải duy nhất: 44 ô trống"
+normal-058,normal,02-normal.txt,nineLines,45,solved,1,4678,539,494,2838,948,353,no,"Sinh ngẫu nhiên, lời giải duy nhất: 45 ô trống"
+normal-059,normal,02-normal.txt,nineLines,46,solved,1,4933,568,522,3377,832,156,no,"Sinh ngẫu nhiên, lời giải duy nhất: 46 ô trống"
+normal-060,normal,02-normal.txt,nineLines,47,solved,1,1494,188,141,977,254,75,no,"Sinh ngẫu nhiên, lời giải duy nhất: 47 ô trống"
+normal-061,normal,02-normal.txt,nineLines,48,solved,1,1477,184,136,862,320,111,no,"Sinh ngẫu nhiên, lời giải duy nhất: 48 ô trống"
+normal-062,normal,02-normal.txt,nineLines,49,solved,1,825,112,63,566,106,41,no,"Sinh ngẫu nhiên, lời giải duy nhất: 49 ô trống"
+normal-063,normal,02-normal.txt,nineLines,50,solved,1,5094,589,539,3522,866,117,no,"Sinh ngẫu nhiên, lời giải duy nhất: 50 ô trống"
+normal-064,normal,02-normal.txt,nineLines,20,solved,1,183,30,10,136,15,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 20 ô trống"
+normal-065,normal,02-normal.txt,nineLines,21,solved,1,107,21,0,75,10,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 21 ô trống"
+normal-066,normal,02-normal.txt,nineLines,22,solved,1,122,23,1,90,9,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 22 ô trống"
+normal-067,normal,02-normal.txt,nineLines,23,solved,1,115,26,3,77,9,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 23 ô trống"
+normal-068,normal,02-normal.txt,nineLines,24,solved,1,107,24,0,75,8,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 24 ô trống"
+normal-069,normal,02-normal.txt,nineLines,25,solved,1,166,30,5,117,19,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 25 ô trống"
+normal-070,normal,02-normal.txt,nineLines,26,solved,1,168,29,3,112,24,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 26 ô trống"
+normal-071,normal,02-normal.txt,nineLines,27,solved,1,147,27,0,102,18,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 27 ô trống"
+normal-072,normal,02-normal.txt,nineLines,28,solved,1,209,34,6,144,31,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 28 ô trống"
+normal-073,normal,02-normal.txt,nineLines,29,solved,1,174,33,4,120,19,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 29 ô trống"
+normal-074,normal,02-normal.txt,nineLines,30,solved,1,155,30,0,102,20,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 30 ô trống"
+normal-075,normal,02-normal.txt,nineLines,31,solved,1,409,57,26,305,45,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 31 ô trống"
+normal-076,normal,02-normal.txt,nineLines,32,solved,1,190,35,3,131,22,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 32 ô trống"
+normal-077,normal,02-normal.txt,nineLines,33,solved,1,397,60,27,267,59,11,no,"Sinh ngẫu nhiên, lời giải duy nhất: 33 ô trống"
+normal-078,normal,02-normal.txt,nineLines,34,solved,1,513,73,39,335,91,14,no,"Sinh ngẫu nhiên, lời giải duy nhất: 34 ô trống"
+normal-079,normal,02-normal.txt,nineLines,35,solved,1,383,59,24,260,59,5,no,"Sinh ngẫu nhiên, lời giải duy nhất: 35 ô trống"
+normal-080,normal,02-normal.txt,nineLines,36,solved,1,618,86,50,434,82,16,no,"Sinh ngẫu nhiên, lời giải duy nhất: 36 ô trống"
+normal-081,normal,02-normal.txt,nineLines,37,solved,1,3507,407,370,2388,611,101,no,"Sinh ngẫu nhiên, lời giải duy nhất: 37 ô trống"
+normal-082,normal,02-normal.txt,nineLines,38,solved,1,308,51,13,200,53,4,no,"Sinh ngẫu nhiên, lời giải duy nhất: 38 ô trống"
+normal-083,normal,02-normal.txt,nineLines,39,solved,1,265,47,8,174,36,8,no,"Sinh ngẫu nhiên, lời giải duy nhất: 39 ô trống"
+normal-084,normal,02-normal.txt,nineLines,40,solved,1,515,76,36,359,73,7,no,"Sinh ngẫu nhiên, lời giải duy nhất: 40 ô trống"
+normal-085,normal,02-normal.txt,nineLines,41,solved,1,1446,179,138,1014,223,30,no,"Sinh ngẫu nhiên, lời giải duy nhất: 41 ô trống"
+normal-086,normal,02-normal.txt,nineLines,42,solved,1,539,79,37,348,96,16,no,"Sinh ngẫu nhiên, lời giải duy nhất: 42 ô trống"
+normal-087,normal,02-normal.txt,nineLines,43,solved,1,746,100,57,523,116,7,no,"Sinh ngẫu nhiên, lời giải duy nhất: 43 ô trống"
+normal-088,normal,02-normal.txt,nineLines,44,solved,1,2510,300,256,1588,577,45,no,"Sinh ngẫu nhiên, lời giải duy nhất: 44 ô trống"
+normal-089,normal,02-normal.txt,nineLines,45,solved,1,2876,340,295,1966,506,64,no,"Sinh ngẫu nhiên, lời giải duy nhất: 45 ô trống"
+normal-090,normal,02-normal.txt,nineLines,46,solved,1,7902,899,853,5224,1644,135,no,"Sinh ngẫu nhiên, lời giải duy nhất: 46 ô trống"
+normal-091,normal,02-normal.txt,nineLines,47,solved,1,3878,451,404,2554,779,94,no,"Sinh ngẫu nhiên, lời giải duy nhất: 47 ô trống"
+normal-092,normal,02-normal.txt,nineLines,48,solved,1,2380,284,236,1612,390,94,no,"Sinh ngẫu nhiên, lời giải duy nhất: 48 ô trống"
+normal-093,normal,02-normal.txt,nineLines,49,solved,1,4380,508,459,2815,889,168,no,"Sinh ngẫu nhiên, lời giải duy nhất: 49 ô trống"
+normal-094,normal,02-normal.txt,nineLines,50,solved,1,4741,549,499,3478,600,114,no,"Sinh ngẫu nhiên, lời giải duy nhất: 50 ô trống"
+normal-095,normal,02-normal.txt,nineLines,20,solved,1,95,20,0,63,12,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 20 ô trống"
+normal-096,normal,02-normal.txt,nineLines,21,solved,1,109,21,0,74,13,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 21 ô trống"
+normal-097,normal,02-normal.txt,nineLines,22,solved,1,120,22,0,83,15,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 22 ô trống"
+normal-098,normal,02-normal.txt,nineLines,23,solved,1,134,25,2,85,23,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 23 ô trống"
+normal-099,normal,02-normal.txt,nineLines,24,solved,1,123,25,1,82,16,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 24 ô trống"
+normal-100,normal,02-normal.txt,nineLines,25,solved,1,137,28,3,86,23,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 25 ô trống"
+normal-101,normal,02-normal.txt,nineLines,26,solved,1,159,29,3,109,21,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 26 ô trống"
+normal-102,normal,02-normal.txt,nineLines,27,solved,1,157,29,2,114,12,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 27 ô trống"
+normal-103,normal,02-normal.txt,nineLines,28,solved,1,145,28,0,101,16,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 28 ô trống"
+normal-104,normal,02-normal.txt,nineLines,29,solved,1,170,31,2,116,20,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 29 ô trống"
+normal-105,normal,02-normal.txt,nineLines,30,solved,1,388,56,26,256,70,6,no,"Sinh ngẫu nhiên, lời giải duy nhất: 30 ô trống"
+normal-106,normal,02-normal.txt,nineLines,31,solved,1,153,31,0,97,23,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 31 ô trống"
+normal-107,normal,02-normal.txt,nineLines,32,solved,1,549,77,45,377,92,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 32 ô trống"
+normal-108,normal,02-normal.txt,nineLines,33,solved,1,561,76,43,403,74,8,no,"Sinh ngẫu nhiên, lời giải duy nhất: 33 ô trống"
+normal-109,normal,02-normal.txt,nineLines,34,solved,1,323,51,17,209,61,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 34 ô trống"
+normal-110,normal,02-normal.txt,nineLines,35,solved,1,317,50,15,216,48,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 35 ô trống"
+normal-111,normal,02-normal.txt,nineLines,36,solved,1,236,41,5,149,41,5,no,"Sinh ngẫu nhiên, lời giải duy nhất: 36 ô trống"
+normal-112,normal,02-normal.txt,nineLines,37,solved,1,202,38,1,133,25,6,no,"Sinh ngẫu nhiên, lời giải duy nhất: 37 ô trống"
+normal-113,normal,02-normal.txt,nineLines,38,solved,1,342,57,19,224,52,9,no,"Sinh ngẫu nhiên, lời giải duy nhất: 38 ô trống"
+normal-114,normal,02-normal.txt,nineLines,39,solved,1,635,90,51,416,106,23,no,"Sinh ngẫu nhiên, lời giải duy nhất: 39 ô trống"
+normal-115,normal,02-normal.txt,nineLines,40,solved,1,925,120,80,642,140,23,no,"Sinh ngẫu nhiên, lời giải duy nhất: 40 ô trống"
+normal-116,normal,02-normal.txt,nineLines,41,solved,1,1486,184,143,999,265,38,no,"Sinh ngẫu nhiên, lời giải duy nhất: 41 ô trống"
+normal-117,normal,02-normal.txt,nineLines,42,solved,1,749,102,60,515,123,9,no,"Sinh ngẫu nhiên, lời giải duy nhất: 42 ô trống"
+normal-118,normal,02-normal.txt,nineLines,43,solved,1,329,55,12,207,56,11,no,"Sinh ngẫu nhiên, lời giải duy nhất: 43 ô trống"
+normal-119,normal,02-normal.txt,nineLines,44,solved,1,13238,1490,1446,9169,2125,454,no,"Sinh ngẫu nhiên, lời giải duy nhất: 44 ô trống"
+normal-120,normal,02-normal.txt,nineLines,45,solved,1,43531,4856,4811,28063,8242,2370,no,"Sinh ngẫu nhiên, lời giải duy nhất: 45 ô trống"
+normal-121,normal,02-normal.txt,nineLines,46,solved,1,2236,268,222,1416,437,115,no,"Sinh ngẫu nhiên, lời giải duy nhất: 46 ô trống"
+normal-122,normal,02-normal.txt,nineLines,47,solved,1,5422,624,577,3655,851,292,no,"Sinh ngẫu nhiên, lời giải duy nhất: 47 ô trống"
+normal-123,normal,02-normal.txt,nineLines,48,solved,1,24343,2726,2678,16344,4668,605,no,"Sinh ngẫu nhiên, lời giải duy nhất: 48 ô trống"
+normal-124,normal,02-normal.txt,nineLines,49,solved,1,2979,354,305,2039,450,136,no,"Sinh ngẫu nhiên, lời giải duy nhất: 49 ô trống"
+normal-125,normal,02-normal.txt,nineLines,50,solved,1,32334,3613,3563,21857,6140,724,no,"Sinh ngẫu nhiên, lời giải duy nhất: 50 ô trống"
+normal-126,normal,02-normal.txt,nineLines,20,solved,1,128,22,2,88,16,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 20 ô trống"
+normal-127,normal,02-normal.txt,nineLines,21,solved,1,158,26,5,111,16,5,no,"Sinh ngẫu nhiên, lời giải duy nhất: 21 ô trống"
+normal-128,normal,02-normal.txt,nineLines,22,solved,1,111,22,0,81,8,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 22 ô trống"
+normal-129,normal,02-normal.txt,nineLines,23,solved,1,150,28,5,105,16,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 23 ô trống"
+normal-130,normal,02-normal.txt,nineLines,24,solved,1,139,26,2,97,16,0,no,"Sinh ngẫu nhiên, lời giải duy nhất: 24 ô trống"
+normal-131,normal,02-normal.txt,nineLines,25,solved,1,130,26,1,88,14,2,no,"Sinh ngẫu nhiên, lời giải duy nhất: 25 ô trống"
+normal-132,normal,02-normal.txt,nineLines,26,solved,1,142,26,0,96,17,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 26 ô trống"
+normal-133,normal,02-normal.txt,nineLines,27,solved,1,256,40,13,165,47,4,no,"Sinh ngẫu nhiên, lời giải duy nhất: 27 ô trống"
+normal-134,normal,02-normal.txt,nineLines,28,solved,1,183,32,4,130,18,3,no,"Sinh ngẫu nhiên, lời giải duy nhất: 28 ô trống"
+normal-135,normal,02-normal.txt,nineLines,29,solved,1,165,31,2,108,25,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 29 ô trống"
+normal-136,normal,02-normal.txt,nineLines,30,solved,1,174,33,3,121,19,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 30 ô trống"
+normal-137,normal,02-normal.txt,nineLines,31,solved,1,289,48,17,202,32,7,no,"Sinh ngẫu nhiên, lời giải duy nhất: 31 ô trống"
+normal-138,normal,02-normal.txt,nineLines,32,solved,1,289,45,13,214,26,4,no,"Sinh ngẫu nhiên, lời giải duy nhất: 32 ô trống"
+normal-139,normal,02-normal.txt,nineLines,33,solved,1,198,35,2,143,19,1,no,"Sinh ngẫu nhiên, lời giải duy nhất: 33 ô trống"
+normal-140,normal,02-normal.txt,nineLines,34,solved,1,289,47,13,185,53,4,no,"Sinh ngẫu nhiên, lời giải duy nhất: 34 ô trống"
+normal-141,normal,02-normal.txt,nineLines,35,solved,1,249,42,7,164,36,7,no,"Sinh ngẫu nhiên, lời giải duy nhất: 35 ô trống"
+normal-142,normal,02-normal.txt,nineLines,36,solved,1,346,53,17,241,46,6,no,"Sinh ngẫu nhiên, lời giải duy nhất: 36 ô trống"
+normal-143,normal,02-normal.txt,nineLines,37,solved,1,327,52,15,218,45,12,no,"Sinh ngẫu nhiên, lời giải duy nhất: 37 ô trống"
+normal-144,normal,02-normal.txt,nineLines,38,solved,1,1342,166,128,900,256,20,no,"Sinh ngẫu nhiên, lời giải duy nhất: 38 ô trống"
+normal-145,normal,02-normal.txt,nineLines,39,solved,1,847,111,72,582,123,31,no,"Sinh ngẫu nhiên, lời giải duy nhất: 39 ô trống"
+normal-146,normal,02-normal.txt,nineLines,40,solved,1,291,49,9,186,45,11,no,"Sinh ngẫu nhiên, lời giải duy nhất: 40 ô trống"
+normal-147,normal,02-normal.txt,nineLines,41,solved,1,355,57,16,232,61,5,no,"Sinh ngẫu nhiên, lời giải duy nhất: 41 ô trống"
+normal-148,normal,02-normal.txt,nineLines,42,solved,1,267,47,5,184,32,4,no,"Sinh ngẫu nhiên, lời giải duy nhất: 42 ô trống"
+normal-149,normal,02-normal.txt,nineLines,43,solved,1,254,48,5,169,30,7,no,"Sinh ngẫu nhiên, lời giải duy nhất: 43 ô trống"
+normal-150,normal,02-normal.txt,nineLines,44,solved,1,2837,335,291,1904,548,50,no,"Sinh ngẫu nhiên, lời giải duy nhất: 44 ô trống"
+large-001,large,03-large.txt,nineLines,51,solved,1,37652,4208,4157,26125,5918,1401,no,"Đề minh họa trên Wikipedia ""Sudoku"": 51 ô trống"
+large-002,large,03-large.txt,nineLines,60,solved,1,445778,49558,49498,286450,101207,8563,no,"Đề của Arto Inkala (2012), được báo chí gọi là ""khó nhất thế giới"""
+large-003,large,03-large.txt,nineLines,58,solved,1,80491,8969,8911,52779,16127,2616,no,Đề AI Escargot của Arto Inkala (2006)
+large-004,large,03-large.txt,nineLines,60,solved,1,2357880,262014,261954,1432371,547271,116224,no,"Đề Easter Monster (2007), nổi tiếng khó với người giải"
+large-005,large,03-large.txt,nineLines,64,solved,1,622577597,69175316,69175252,,,,yes,Đề chống quay lui: dòng đầu của lời giải là 9 8 7 6 5 4 3 2 1
+large-006,large,03-large.txt,nineLines,64,solved,1,239312393,26590293,26590229,140983374,59737815,12000911,yes,"Đề 17 số cho sẵn, đề đầu tiên trong danh sách của Gordon Royle"
+large-007,large,03-large.txt,nineLines,51,solved,1,34999,3910,3859,23281,6107,1701,no,"Sinh ngẫu nhiên, lời giải duy nhất: 51 ô trống"
+large-008,large,03-large.txt,nineLines,52,solved,1,441962,49130,49078,294418,74104,24310,no,"Sinh ngẫu nhiên, lời giải duy nhất: 52 ô trống"
+large-009,large,03-large.txt,nineLines,53,solved,1,23983,2688,2635,16943,4089,263,no,"Sinh ngẫu nhiên, lời giải duy nhất: 53 ô trống"
+large-010,large,03-large.txt,nineLines,54,solved,1,39967,4465,4411,28398,5639,1465,no,"Sinh ngẫu nhiên, lời giải duy nhất: 54 ô trống"
+large-011,large,03-large.txt,nineLines,55,solved,1,770682,85657,85602,464264,185269,35492,no,"Sinh ngẫu nhiên, lời giải duy nhất: 55 ô trống"
+large-012,large,03-large.txt,nineLines,56,solved,1,142584,15871,15815,91308,29542,5863,no,"Sinh ngẫu nhiên, lời giải duy nhất: 56 ô trống"
+large-013,large,03-large.txt,nineLines,51,solved,1,40185,4488,4437,24832,8805,2060,no,"Sinh ngẫu nhiên, lời giải duy nhất: 51 ô trống"
+large-014,large,03-large.txt,nineLines,52,solved,1,31875,3564,3512,17884,8078,2349,no,"Sinh ngẫu nhiên, lời giải duy nhất: 52 ô trống"
+large-015,large,03-large.txt,nineLines,53,solved,1,3664,431,378,2518,506,209,no,"Sinh ngẫu nhiên, lời giải duy nhất: 53 ô trống"
+large-016,large,03-large.txt,nineLines,54,solved,1,102650,11431,11377,59885,24420,6914,no,"Sinh ngẫu nhiên, lời giải duy nhất: 54 ô trống"
+large-017,large,03-large.txt,nineLines,55,solved,1,64310,7169,7114,44470,10454,2217,no,"Sinh ngẫu nhiên, lời giải duy nhất: 55 ô trống"
+large-018,large,03-large.txt,nineLines,56,solved,1,221076,24590,24534,156746,31134,8606,no,"Sinh ngẫu nhiên, lời giải duy nhất: 56 ô trống"
+large-019,large,03-large.txt,nineLines,51,solved,1,1009,135,84,648,196,30,no,"Sinh ngẫu nhiên, lời giải duy nhất: 51 ô trống"
+large-020,large,03-large.txt,nineLines,52,solved,1,130468,14519,14467,84317,28129,3503,no,"Sinh ngẫu nhiên, lời giải duy nhất: 52 ô trống"
+large-021,large,03-large.txt,nineLines,53,solved,1,517039,57474,57421,363525,80129,15911,no,"Sinh ngẫu nhiên, lời giải duy nhất: 53 ô trống"
+large-022,large,03-large.txt,nineLines,54,solved,1,5820,671,617,3963,1056,130,no,"Sinh ngẫu nhiên, lời giải duy nhất: 54 ô trống"
+large-023,large,03-large.txt,nineLines,55,solved,1,10205,1158,1103,6598,1894,555,no,"Sinh ngẫu nhiên, lời giải duy nhất: 55 ô trống"
+large-024,large,03-large.txt,nineLines,56,solved,1,283663,31543,31487,195896,45151,11073,no,"Sinh ngẫu nhiên, lời giải duy nhất: 56 ô trống"
+large-025,large,03-large.txt,nineLines,51,solved,1,6375,731,680,4314,1086,244,no,"Sinh ngẫu nhiên, lời giải duy nhất: 51 ô trống"
+large-026,large,03-large.txt,nineLines,52,solved,1,4558,529,477,3030,686,313,no,"Sinh ngẫu nhiên, lời giải duy nhất: 52 ô trống"
+large-027,large,03-large.txt,nineLines,53,solved,1,2847,340,287,1869,441,197,no,"Sinh ngẫu nhiên, lời giải duy nhất: 53 ô trống"
+large-028,large,03-large.txt,nineLines,54,solved,1,221040,24586,24532,149173,39283,7998,no,"Sinh ngẫu nhiên, lời giải duy nhất: 54 ô trống"
+large-029,large,03-large.txt,nineLines,55,solved,1,7314,838,783,4323,1628,525,no,"Sinh ngẫu nhiên, lời giải duy nhất: 55 ô trống"
+large-030,large,03-large.txt,nineLines,56,solved,1,148839,16560,16504,95273,31580,5426,no,"Sinh ngẫu nhiên, lời giải duy nhất: 56 ô trống"
+large-031,large,03-large.txt,nineLines,51,solved,1,51536,5749,5698,34520,9587,1680,no,"Sinh ngẫu nhiên, lời giải duy nhất: 51 ô trống"
+large-032,large,03-large.txt,nineLines,58,solved,1000+,20512,2308,2250,12813,4196,1195,no,"Sinh ngẫu nhiên, nhiều lời giải: 58 ô trống"
+large-033,large,03-large.txt,nineLines,60,solved,1000+,197639,21985,21925,136697,34208,4749,no,"Sinh ngẫu nhiên, nhiều lời giải: 60 ô trống"
+large-034,large,03-large.txt,nineLines,62,solved,1000+,26290,2949,2887,16666,5840,835,no,"Sinh ngẫu nhiên, nhiều lời giải: 62 ô trống"
+large-035,large,03-large.txt,nineLines,64,solved,1000+,10261,1170,1106,6419,2150,522,no,"Sinh ngẫu nhiên, nhiều lời giải: 64 ô trống"
+large-036,large,03-large.txt,nineLines,66,solved,1000+,2279,283,217,1474,470,52,no,"Sinh ngẫu nhiên, nhiều lời giải: 66 ô trống"
+large-037,large,03-large.txt,nineLines,68,solved,1000+,292280,32506,32438,169847,66603,23324,no,"Sinh ngẫu nhiên, nhiều lời giải: 68 ô trống"
+large-038,large,03-large.txt,nineLines,70,solved,1000+,24100,2708,2638,15258,4482,1652,no,"Sinh ngẫu nhiên, nhiều lời giải: 70 ô trống"
+large-039,large,03-large.txt,nineLines,58,solved,1000+,1215,160,102,763,272,20,no,"Sinh ngẫu nhiên, nhiều lời giải: 58 ô trống"
+large-040,large,03-large.txt,nineLines,60,solved,1000+,10005,1138,1078,5441,2754,672,no,"Sinh ngẫu nhiên, nhiều lời giải: 60 ô trống"
+large-041,large,03-large.txt,nineLines,62,solved,1000+,5060,591,529,3410,735,324,no,"Sinh ngẫu nhiên, nhiều lời giải: 62 ô trống"
+large-042,large,03-large.txt,nineLines,64,solved,1000+,2444,301,237,1450,646,47,no,"Sinh ngẫu nhiên, nhiều lời giải: 64 ô trống"
+large-043,large,03-large.txt,nineLines,66,solved,1000+,4377,515,449,2909,811,142,no,"Sinh ngẫu nhiên, nhiều lời giải: 66 ô trống"
+large-044,large,03-large.txt,nineLines,68,solved,1000+,2443,300,232,1827,246,70,no,"Sinh ngẫu nhiên, nhiều lời giải: 68 ô trống"
+large-045,large,03-large.txt,nineLines,70,solved,1000+,587,96,26,340,135,16,no,"Sinh ngẫu nhiên, nhiều lời giải: 70 ô trống"
+boundary-001,boundary,04-boundary.txt,nineLines,0,complete,1,0,0,0,0,0,0,no,"Lưới đã điền đủ, hợp lệ: 0 ô trống"
+boundary-002,boundary,04-boundary.txt,nineLines,0,complete,1,0,0,0,0,0,0,no,"Lời giải của đề ""Rất dễ"" nhập lại làm đề: 0 ô trống"
+boundary-003,boundary,04-boundary.txt,nineLines,81,solved,1000+,3195,391,310,2225,315,264,no,Lưới trống: 81 ô trống
+boundary-004,boundary,04-boundary.txt,nineLines,80,solved,1000+,2902,358,278,2046,248,250,no,Chỉ một số cho sẵn ở ô giữa: 80 ô trống
+boundary-005,boundary,04-boundary.txt,nineLines,1,solved,1,6,1,0,5,0,0,no,"1 ô trống ở ô đầu tiên (1, 1)"
+boundary-006,boundary,04-boundary.txt,nineLines,1,solved,1,9,1,0,8,0,0,no,"1 ô trống ở ô cuối cùng (9, 9)"
+boundary-007,boundary,04-boundary.txt,nineLines,9,solved,1,45,9,0,27,9,0,no,Trống trọn hàng 1
+boundary-008,boundary,04-boundary.txt,nineLines,9,solved,1,45,9,0,36,0,0,no,Trống trọn cột 9
+boundary-009,boundary,04-boundary.txt,nineLines,9,solved,1,45,9,0,34,2,0,no,Trống trọn khối giữa
+boundary-010,boundary,04-boundary.txt,nineLines,9,solved,1,54,9,0,45,0,0,no,Trống đường chéo chính
+boundary-011,boundary,04-boundary.txt,nineLines,27,solved,276,414,58,31,218,138,0,no,Trống trọn 3 hàng đầu (27 ô)
+boundary-012,boundary,04-boundary.txt,nineLines,1,solved,1,9,1,0,8,0,0,no,Ô trống duy nhất có đáp án là 9: phải thử đủ 9 số
+boundary-013,boundary,04-boundary.txt,nineLines,1,solved,1,1,1,0,0,0,0,no,Ô trống duy nhất có đáp án là 1: thử 1 lần là xong
+special-001,special,05-special.txt,nineLines,44,solved,18,827,109,65,535,167,16,no,"Đề mẫu ""Nhiều lời giải"""
+special-002,special,05-special.txt,nineLines,72,noSolution,0,9,0,0,8,1,0,no,"Đề mẫu ""Vô nghiệm ngay ô đầu"": ô (1, 1) không còn số nào hợp lệ"
+special-003,special,05-special.txt,nineLines,39,noSolution,0,981,108,108,721,100,52,no,"Đề mẫu ""Vô nghiệm, phải tìm mới biết"""
+special-004,special,05-special.txt,nineLines,4,solved,2,10,4,0,5,1,0,no,Đúng 2 lời giải: 4 ô trống tạo thành hình chữ nhật đổi chỗ được
+special-005,special,05-special.txt,nineLines,4,solved,2,22,4,0,17,1,0,no,Đúng 2 lời giải: 4 ô trống tạo thành hình chữ nhật đổi chỗ được
+special-006,special,05-special.txt,nineLines,4,solved,2,26,4,0,21,1,0,no,Đúng 2 lời giải: 4 ô trống tạo thành hình chữ nhật đổi chỗ được
+special-007,special,05-special.txt,nineLines,4,solved,2,28,4,0,23,1,0,no,Đúng 2 lời giải: 4 ô trống tạo thành hình chữ nhật đổi chỗ được
+special-008,special,05-special.txt,nineLines,45,noSolution,0,7794,865,865,5572,1041,316,no,Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+special-009,special,05-special.txt,nineLines,45,noSolution,0,5436,603,603,3820,881,132,no,Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+special-010,special,05-special.txt,nineLines,45,noSolution,0,1161,128,128,715,261,57,no,Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+special-011,special,05-special.txt,nineLines,45,noSolution,0,45,4,4,31,9,1,no,Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+special-012,special,05-special.txt,nineLines,45,noSolution,0,342,37,37,228,48,29,no,Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+special-013,special,05-special.txt,nineLines,45,noSolution,0,2610,289,289,1705,521,95,no,Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+special-014,special,05-special.txt,singleString,40,solved,4,1909,227,187,1266,372,44,no,"Định dạng chuỗi 81 ký tự, dấu chấm là ô trống: đề ""Vừa"""
+special-015,special,05-special.txt,singleString,44,solved,18,827,109,65,535,167,16,no,"Định dạng chuỗi 81 ký tự: đề ""Nhiều lời giải"""
+special-016,special,05-special.txt,singleString,39,noSolution,0,981,108,108,721,100,52,no,Định dạng chuỗi 81 ký tự: đề vô nghiệm
+special-017,special,05-special.txt,compactLines,51,solved,1,37652,4208,4157,26125,5918,1401,no,"9 dòng viết liền, không dấu cách: đề Wikipedia"
+special-018,special,05-special.txt,compactLines,5,solved,1,27,5,0,22,0,0,no,"9 dòng viết liền, không dấu cách: đề ""Dễ"""
+special-019,special,05-special.txt,nineLines,40,solved,4,1909,227,187,1266,372,44,no,"Có dòng trống xen giữa và ở đầu, cuối file"
+special-020,special,05-special.txt,nineLines,40,solved,4,1909,227,187,1266,372,44,no,Xuống dòng kiểu Windows (CRLF)
+special-021,special,05-special.txt,nineLines,40,solved,4,1909,227,187,1266,372,44,no,"Nhiều dấu cách và tab giữa các số, thụt đầu dòng"
+invalid-001,invalid,06-invalid.txt,nineLines,79,invalid,,,,,,,,no,"Trùng số 7 ở hàng 4 (khác cột, khác khối)"
+invalid-002,invalid,06-invalid.txt,nineLines,79,invalid,,,,,,,,no,"Trùng số 5 ở cột 3 (khác hàng, khác khối)"
+invalid-003,invalid,06-invalid.txt,nineLines,79,invalid,,,,,,,,no,"Trùng số 2 ở khối 1 (khác hàng, khác cột)"
+invalid-004,invalid,06-invalid.txt,nineLines,79,invalid,,,,,,,,no,Trùng số 4 cùng lúc ở hàng 2 và khối 1
+invalid-005,invalid,06-invalid.txt,nineLines,78,invalid,,,,,,,,no,Số 9 xuất hiện 3 lần ở hàng 1
+invalid-006,invalid,06-invalid.txt,nineLines,77,invalid,,,,,,,,no,Hai chỗ trùng: số 1 ở hàng 1 và số 3 ở cột 5
+invalid-007,invalid,06-invalid.txt,nineLines,39,invalid,,,,,,,,no,"Đề ""Vừa"" điền thêm một số trùng với ô (1, 1)"
+invalid-008,invalid,06-invalid.txt,singleString,39,invalid,,,,,,,,no,"Như trên, định dạng chuỗi 81 ký tự"
+invalid-009,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,Số 0 thay cho ô trống ở dòng 2
+invalid-010,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,"Chữ cái ""a"" ở dòng 3"
+invalid-011,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,"Chữ ""x"" thường thay cho ""X"" ở dòng 4"
+invalid-012,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,Số 10 ở dòng 5
+invalid-013,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,Dấu chấm (ký hiệu của định dạng chuỗi) trong định dạng 9 dòng
+invalid-014,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,"Dấu ""-"" ở dòng 7"
+invalid-015,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,Thiếu một dòng: chỉ có 8 dòng
+invalid-016,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,Thừa một dòng: 10 dòng
+invalid-017,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,Dòng 3 chỉ có 8 ô
+invalid-018,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,Dòng 8 có 10 ô
+invalid-019,invalid,06-invalid.txt,nineLines,,invalid,,,,,,,,no,Cả 81 ô viết trên một dòng có dấu cách
+invalid-020,invalid,06-invalid.txt,singleString,,invalid,,,,,,,,no,Chuỗi chỉ có 80 ký tự
+invalid-021,invalid,06-invalid.txt,singleString,,invalid,,,,,,,,no,Chuỗi có 82 ký tự
+invalid-022,invalid,06-invalid.txt,singleString,,invalid,,,,,,,,no,Chuỗi dùng số 0 cho ô trống (quy ước ở một số trang khác)
+invalid-023,invalid,06-invalid.txt,singleString,,invalid,,,,,,,,no,"Chữ ""x"" trong chuỗi 81 ký tự"
+invalid-024,invalid,06-invalid.txt,empty,,invalid,,,,,,,,no,File rỗng
+invalid-025,invalid,06-invalid.txt,empty,,invalid,,,,,,,,no,File chỉ có dấu cách và dòng trống

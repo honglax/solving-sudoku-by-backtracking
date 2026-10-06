@@ -421,6 +421,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"Sudoku - Backtracking@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "Sudoku - Backtracking@workspace:."
+  dependencies:
+    "@fontsource/be-vietnam-pro": "npm:^5.3.0"
+    "@fontsource/jetbrains-mono": "npm:^5.3.0"
+    "@playwright/test": "npm:^1.63.0"
+    "@types/node": "npm:^24.13.3"
+    "@types/react": "npm:^19.2.18"
+    "@types/react-dom": "npm:^19.2.7"
+    "@vitejs/plugin-react": "npm:^6.1.1"
+    lucide-react: "npm:^1.50.0"
+    oxlint: "npm:^1.81.0"
+    react: "npm:^19.2.8"
+    react-dom: "npm:^19.2.8"
+    react-router: "npm:^8.4.0"
+    typescript: "npm:~6.0.2"
+    vite: "npm:^8.3.0"
+    vitest: "npm:^5.0.3"
+  languageName: unknown
+  linkType: soft
+
 "abbrev@npm:^5.0.0":
   version: 5.0.0
   resolution: "abbrev@npm:5.0.0"
@@ -1195,28 +1217,6 @@ __metadata:
   checksum: 10c0/eaafd4f1fac2c52f4609d8af8de20668a2140883cd19f79d991fd0a85f2774d099ba6973c0ef65b6a5aa320f6fd62ff7f9a60b1e9d5bc7e4b89dc914e65003d2
   languageName: node
   linkType: hard
-
-"website@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "website@workspace:."
-  dependencies:
-    "@fontsource/be-vietnam-pro": "npm:^5.3.0"
-    "@fontsource/jetbrains-mono": "npm:^5.3.0"
-    "@playwright/test": "npm:^1.63.0"
-    "@types/node": "npm:^24.13.3"
-    "@types/react": "npm:^19.2.18"
-    "@types/react-dom": "npm:^19.2.7"
-    "@vitejs/plugin-react": "npm:^6.1.1"
-    lucide-react: "npm:^1.50.0"
-    oxlint: "npm:^1.81.0"
-    react: "npm:^19.2.8"
-    react-dom: "npm:^19.2.8"
-    react-router: "npm:^8.4.0"
-    typescript: "npm:~6.0.2"
-    vite: "npm:^8.3.0"
-    vitest: "npm:^5.0.3"
-  languageName: unknown
-  linkType: soft
 
 "which@npm:^7.0.0":
   version: 7.0.0

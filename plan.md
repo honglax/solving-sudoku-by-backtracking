@@ -175,7 +175,7 @@ Thứ tự làm: **A → B → C → D**. Trễ lịch thì cắt từ D trở l
 **Thêm để nối demo với report và testcase**
 - **Đề minh họa** cho chương 5 của report: tự tạo, khoảng 50-80 lần thử, có 1-2 lần quay lui. Thêm vào danh sách đề mẫu với tên chung, không nhắc tới report.
 - Script xuất **toàn bộ** các bước của đề minh họa (bảng Lịch sử trên web chỉ giữ 100 bước), cùng một bộ giải với website. Report dùng bảng này cùng ảnh chụp demo ở các bước then chốt, nên hai bên khớp nhau.
-- Hộp "Dán đề" thêm nút **mở file `.in`**, để mở thẳng một testcase trong demo.
+- Hộp "Dán đề" thêm nút **mở file testcase**: chọn một file nhóm rồi chọn đề trong file, để mở thẳng một testcase trong demo.
 
 ---
 
@@ -366,38 +366,28 @@ Prompt gửi Claude Design nằm ở `design/claude-design-prompt.md`. Trong đ�
 | Đang Tự động mà bấm Đặt lại | dừng hẳn, lưới về trạng thái đề ban đầu |
 | Đề 5 bấm Giải ngay | ra kết quả, bộ đếm 445.778 / 49.558 / 49.498 |
 
-### 7.2 Bộ testcase nộp (thư mục 3, thêm 6/10)
+### 7.2 Bộ testcase nộp (thư mục 3, làm ngày 6/10)
 
-```
-testcases/
-  README.md          cách tạo, cách chạy, ý nghĩa từng nhóm
-  manifest.csv       mỗi đề một dòng: mã, nhóm, kích thước, số ô trống, kết quả mong đợi,
-                     lần thử / ghi nhận / trả lại, số lời giải
-  01-small/  02-normal/  03-large/  04-boundary/  05-special/  06-invalid/  07-other-sizes/
-    <mã>.in  <mã>.out
-  tools/             script sinh đề, sinh đáp án, chạy cả bộ
-  results/           kết quả lần chạy gần nhất: đạt / không đạt, thời gian
-```
+Chi tiết đầy đủ ở `testcases/README.md`. Tóm tắt:
 
-- **Định dạng:** `.in` là 9 dòng, số cách nhau dấu cách, `X` là ô trống (đúng định dạng hộp "Dán đề", nên mở thẳng được trong demo). `.out` là lưới lời giải đầu tiên theo đúng định dạng đó, hoặc một dòng báo đề không hợp lệ (kèm lý do) / vô nghiệm.
-- **Đáp án lấy từ bản Python tham chiếu** (`checks/reference_solver.py`), một cài đặt độc lập với bản TypeScript. Thêm một hàm kiểm tra lời giải riêng: 27 nhóm là hoán vị, số đề cho giữ nguyên. Đề nhiều lời giải thì so lời giải đầu tiên, vì hai bản cùng thứ tự xét nên phải trùng nhau.
+- **294 đề, 6 nhóm, mỗi nhóm một file `.txt`** (`01-small.txt` … `06-invalid.txt`), cộng `manifest.csv`. Ban đầu mỗi đề 2 file `.in` / `.out` (588 file); bạn thấy quá nhiều nên gom lại theo nhóm (12.31).
+- Mỗi đề là một khối `=== mã · mô tả` / `--- input` / `--- expected`. Phần input giữ nguyên từng ký tự (dòng trống, tab, CRLF), dùng đúng định dạng hộp "Dán đề".
 
-| Nhóm | Nội dung | Dự kiến |
+| Nhóm | Nội dung | Số đề |
 |---|---|---|
-| Nhỏ | 1-5 ô trống, người học tự kiểm bằng tay được | ~40 |
-| Thông thường | 20-50 ô trống, sinh ngẫu nhiên | ~150 |
-| Lớn / khó | 50-64 ô trống sinh ngẫu nhiên; các đề nổi tiếng: Wikipedia, Inkala, AI Escargot, Easter Monster, đề 17 số, đề chống quay lui | ~45 |
-| Biên | 0 ô trống, 81 ô trống, 1 ô trống ở ô đầu / ô cuối, ô trống dồn vào 1 hàng / 1 cột / 1 khối | ~15 |
-| Đặc biệt | nhiều lời giải, vô nghiệm ngay ô đầu, vô nghiệm phải tìm mới biết, có quay lui sau số 9 | ~20 |
-| Không hợp lệ | trùng hàng / cột / khối, ký tự lạ, số 0, thiếu / thừa ô, thiếu / thừa dòng | ~25 |
-| Kích thước khác (nếu làm D) | 4×4, 16×16 | ~20 |
+| Nhỏ | 1-5 ô trống | 40 |
+| Thông thường | 20-50 ô trống, lời giải duy nhất | 150 |
+| Lớn / khó | 51-56 ô trống lời giải duy nhất; 58-70 ô trống nhiều lời giải; Wikipedia, Inkala, AI Escargot, Easter Monster, đề 17 số (Royle), đề chống quay lui | 45 |
+| Biên | 0 / 80 / 81 ô trống, 1 ô ở đầu / cuối, trống trọn hàng / cột / khối / đường chéo / 3 hàng, ô duy nhất có đáp án 1 hoặc 9 | 13 |
+| Đặc biệt | nhiều lời giải, đúng 2 lời giải, vô nghiệm ngay / phải tìm mới biết, 3 định dạng đề, dòng trống, CRLF, tab | 21 |
+| Không hợp lệ | trùng hàng / cột / khối, ký tự lạ, thiếu / thừa dòng / ô, chuỗi sai độ dài, file rỗng | 25 |
+| Kích thước khác (nếu làm D) | 4×4, 16×16 | chưa làm |
 
-Tổng khoảng 300 đề.
-
-- **Sinh ngẫu nhiên có seed cố định**, chạy lại ra đúng bộ đề cũ. Bắt đầu từ một lưới đầy hợp lệ, biến đổi mà vẫn giữ hợp lệ (đổi tên các số, hoán vị hàng trong một băng, cột trong một cột lớn, hoán vị băng, chuyển vị), rồi xóa ngẫu nhiên m ô. Chọn m theo khoảng của từng nhóm.
-- **Bao phủ:** mỗi nhánh xử lý của chương trình phải có ít nhất một đề chạm tới: đề sai (từng loại), đề đã đầy, có lời giải, vô nghiệm sớm / muộn, nhiều lời giải, bị loại vì hàng / cột / khối, quay lui sau số 9. Script chạy cả bộ đếm sự kiện để kiểm tra nhánh nào cũng có đề chạm tới.
-- **Chạy:** script Node (Node 24 chạy thẳng `.ts`) gọi đúng `website/src/solver`: đọc `.in` bằng `puzzleParser`, kiểm tra bằng `puzzleValidator`, giải, so với `.out` và 3 con số, rồi in bảng theo nhóm (đạt / không đạt, thời gian trung vị và lớn nhất). Vitest có thêm một test chạy cả bộ, nên `yarn test` luôn gồm bộ testcase. Đề chống quay lui (khoảng 15 phút) chỉ chạy khi bật cờ riêng.
-- Cũng chạy 3 cách tổ chức dữ liệu (A) và 2 thứ tự xét ô (C) trên cả bộ, ra bảng so sánh cho mục Đánh giá của report.
+- **Sinh đề** (`testcases/tools/generate_testcases.py`, seed cố định): lưới đầy sinh bằng quay lui với thứ tự số xáo trộn. Bản đầu dùng một lưới mẫu rồi hoán vị hàng / cột / đổi tên số; cách đó thực chất chỉ ra một họ lưới, và không bao giờ có hình chữ nhật đổi chỗ được, nên đã bỏ. Đề sinh ngẫu nhiên cần hơn 1 triệu lần thử thì bỏ, sinh đề khác.
+- **Đáp án từ 2 chương trình Python độc lập với website:** bản tham chiếu mô hình 1 (lời giải đầu, 3 bộ đếm, số lần bị loại theo hàng / cột / khối) và một bộ đếm lời giải dùng MRV + bitmask. Hai bên không khớp thì script dừng.
+- **Chạy** (`yarn testcases` trong `website/`): gọi đúng `website/src/solver`, so kết quả, bộ đếm và độ phủ 20 nhánh xử lý; ghi `testcases/results/results.csv`. `yarn test` cũng chạy cả bộ (trừ 2 đề chậm). Mỗi đề có giới hạn số lần thử bằng đáp án, nên bộ giải bị lỗi không chạy mãi.
+- **Đã kiểm tra chính bộ test** bằng cách cố tình làm sai bộ giải (xem README). Lần đầu, lỗi "kiểm tra cột trước hàng" lọt qua vì đáp án chưa ghi lý do bị loại, và lỗi "bỏ qua khối" làm bộ giải chạy mãi trên đề trùng khối; đã thêm 3 cột số lần bị loại và giới hạn số lần thử.
+- Còn làm: chạy 3 cách tổ chức dữ liệu (A) và 2 thứ tự xét ô (C) trên cả bộ, ra bảng so sánh cho mục Đánh giá của report.
 
 ---
 
@@ -409,7 +399,7 @@ Cô yêu cầu video có: chạy thử hệ thống, nhập dữ liệu và gi�
 |---|---|
 | 1 | Mở link Netlify, đi qua Trang chủ, Thuật toán, Giới thiệu |
 | 2 | Trình giải: giới thiệu từng thành phần: lưới và chú thích màu (rê chuột lên ô), mã giả, bảng S, tab Lịch sử, bộ đếm, câu thông báo, thanh tốc độ, nút Sáng / Tối |
-| 3 | Nhập dữ liệu 4 cách: chọn đề mẫu, gõ vào lưới, dán đề, mở file `.in` từ bộ testcase; Kiểm tra đề |
+| 3 | Nhập dữ liệu 4 cách: chọn đề mẫu, gõ vào lưới, dán đề, mở một đề từ file testcase; Kiểm tra đề |
 | 4 | Đề minh họa chạy **Từng bước** và **Lùi một bước**: bị loại kèm lý do, ghi nhận, quay lui; khớp bảng trong report |
 | 5 | Đề 3 chạy **Tự động**, dừng ở lần quay lui đầu, "Tới lần quay lui kế"; xem lại bằng bảng Lịch sử |
 | 6 | Đề Inkala bấm **Giải ngay**: 445.778 lần thử, so với cận 9⁶⁰ |
@@ -467,7 +457,7 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 |---|---|---|
 | T3 6/10 | Cập nhật plan theo yêu cầu mới; commit đầu tiên (khi bạn đồng ý) | Plan khớp `requirements.md` |
 | T4 7/10 - T5 8/10 | Bộ testcase (7.2): sinh đề, đáp án Python, script chạy, test Vitest; đề minh họa | Cả bộ chạy đạt, mọi nhánh đều có đề chạm tới |
-| T6 9/10 - T7 10/10 | Phần mở rộng A (trang So sánh), B (Tìm mọi lời giải), C (MRV); nút mở file `.in` | Test khớp 3 cách; khớp bản Python đếm lời giải và bản Python MRV |
+| T6 9/10 - T7 10/10 | Phần mở rộng A (trang So sánh), B (Tìm mọi lời giải), C (MRV); nút mở file testcase | Test khớp 3 cách; khớp bản Python đếm lời giải và bản Python MRV |
 | CN 11/10 | **Deploy bản thử lên Netlify**; đo trước D | Link chạy được trên laptop và điện thoại |
 | T2 12/10 - T3 13/10 | Phần mở rộng D (4×4, 16×16), cắt nếu trễ; chạy bảng kiểm tra mục 7, sửa lỗi | Mọi tình huống đúng trên bản đã deploy |
 | T4 14/10 - T5 15/10 | Report: Ch.6 trước, rồi Ch.1-5, Ch.7-8 | PDF compile không cảnh báo |
@@ -529,3 +519,4 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 | 12.28 | Thêm MRV (C) làm cách giải để so sánh, làm sau A, B | **Đã chốt** (6/10) |
 | 12.29 | Đề minh họa cho Ch.5 tự tạo (50-80 lần thử, có quay lui), thêm vào danh sách đề mẫu; script xuất toàn bộ các bước | **Đã chốt** (6/10) |
 | 12.30 | Mọi phần (plan, testcase, report, video) viết như dự án website dạy học về quay lui, không xoay quanh bài tập cũ; Lab01/Wecode chỉ còn trong phần lý do chọn đề của report. `checks/lab01_counts.py` đổi tên thành `checks/reference_solver.py` | **Đã chốt** (6/10) |
+| 12.31 | Bộ testcase gom mỗi nhóm một file `.txt` (6 file + `manifest.csv`) thay vì 2 file mỗi đề | **Đã chốt** (6/10) |

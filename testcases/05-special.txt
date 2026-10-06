@@ -1,0 +1,381 @@
+Nhóm Đặc biệt: nhiều lời giải, vô nghiệm, các cách viết đề (21 đề)
+Mỗi đề gồm: dòng "=== mã · mô tả", phần "--- input" (nội dung đề, giữ nguyên từng ký tự),
+phần "--- expected" (kết quả mong đợi). Các bộ đếm của từng đề nằm trong manifest.csv.
+
+=== special-001 · Đề mẫu "Nhiều lời giải"
+--- input
+5 3 X 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 X 8 X X
+X X 1 X X X X 8 4
+X X X 4 1 X X 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+5 3 4 6 7 8 9 1 2
+2 6 7 1 9 5 3 4 8
+1 9 8 3 4 2 5 6 7
+8 5 9 7 6 1 4 2 3
+4 2 6 8 5 3 7 9 1
+7 1 3 9 2 4 8 5 6
+6 7 1 5 3 9 2 8 4
+9 8 2 4 1 7 6 3 5
+3 4 5 2 8 6 1 7 9
+
+=== special-002 · Đề mẫu "Vô nghiệm ngay ô đầu": ô (1, 1) không còn số nào hợp lệ
+--- input
+X 2 3 4 5 6 7 8 9
+1 X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+--- expected
+NO SOLUTION
+
+=== special-003 · Đề mẫu "Vô nghiệm, phải tìm mới biết"
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X 3 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+NO SOLUTION
+
+=== special-004 · Đúng 2 lời giải: 4 ô trống tạo thành hình chữ nhật đổi chỗ được
+--- input
+X 6 5 9 X 8 2 7 3
+8 9 2 3 6 7 4 5 1
+X 7 3 5 X 2 8 6 9
+2 4 7 6 5 3 9 1 8
+5 3 9 1 8 4 7 2 6
+6 8 1 7 2 9 5 3 4
+9 1 8 2 3 5 6 4 7
+3 5 4 8 7 6 1 9 2
+7 2 6 4 9 1 3 8 5
+--- expected
+1 6 5 9 4 8 2 7 3
+8 9 2 3 6 7 4 5 1
+4 7 3 5 1 2 8 6 9
+2 4 7 6 5 3 9 1 8
+5 3 9 1 8 4 7 2 6
+6 8 1 7 2 9 5 3 4
+9 1 8 2 3 5 6 4 7
+3 5 4 8 7 6 1 9 2
+7 2 6 4 9 1 3 8 5
+
+=== special-005 · Đúng 2 lời giải: 4 ô trống tạo thành hình chữ nhật đổi chỗ được
+--- input
+4 7 5 6 3 2 1 8 9
+1 8 9 5 4 7 3 6 2
+6 2 3 9 1 8 5 7 4
+2 3 6 X 9 5 X 1 8
+8 9 1 X 2 6 X 3 5
+5 4 7 3 8 1 2 9 6
+7 5 2 8 6 3 9 4 1
+3 6 4 1 5 9 8 2 7
+9 1 8 2 7 4 6 5 3
+--- expected
+4 7 5 6 3 2 1 8 9
+1 8 9 5 4 7 3 6 2
+6 2 3 9 1 8 5 7 4
+2 3 6 4 9 5 7 1 8
+8 9 1 7 2 6 4 3 5
+5 4 7 3 8 1 2 9 6
+7 5 2 8 6 3 9 4 1
+3 6 4 1 5 9 8 2 7
+9 1 8 2 7 4 6 5 3
+
+=== special-006 · Đúng 2 lời giải: 4 ô trống tạo thành hình chữ nhật đổi chỗ được
+--- input
+3 X 8 4 9 2 X 5 1
+9 X 1 3 8 5 X 4 2
+2 5 4 7 1 6 9 3 8
+5 4 6 9 3 1 2 8 7
+7 2 3 6 5 8 1 9 4
+1 8 9 2 7 4 5 6 3
+4 3 2 5 6 7 8 1 9
+8 9 5 1 2 3 4 7 6
+6 1 7 8 4 9 3 2 5
+--- expected
+3 6 8 4 9 2 7 5 1
+9 7 1 3 8 5 6 4 2
+2 5 4 7 1 6 9 3 8
+5 4 6 9 3 1 2 8 7
+7 2 3 6 5 8 1 9 4
+1 8 9 2 7 4 5 6 3
+4 3 2 5 6 7 8 1 9
+8 9 5 1 2 3 4 7 6
+6 1 7 8 4 9 3 2 5
+
+=== special-007 · Đúng 2 lời giải: 4 ô trống tạo thành hình chữ nhật đổi chỗ được
+--- input
+8 X 2 4 1 X 7 3 6
+3 1 7 2 6 8 4 9 5
+4 X 6 3 7 X 2 1 8
+7 3 9 6 8 4 5 2 1
+1 6 8 5 9 2 3 4 7
+5 2 4 7 3 1 6 8 9
+6 8 5 9 4 3 1 7 2
+2 4 1 8 5 7 9 6 3
+9 7 3 1 2 6 8 5 4
+--- expected
+8 5 2 4 1 9 7 3 6
+3 1 7 2 6 8 4 9 5
+4 9 6 3 7 5 2 1 8
+7 3 9 6 8 4 5 2 1
+1 6 8 5 9 2 3 4 7
+5 2 4 7 3 1 6 8 9
+6 8 5 9 4 3 1 7 2
+2 4 1 8 5 7 9 6 3
+9 7 3 1 2 6 8 5 4
+
+=== special-008 · Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+--- input
+5 X X X X X 8 3 X
+X X X 9 X X X 2 X
+X 7 2 X X X X X X
+7 9 X X 2 X X 6 8
+6 2 X 8 9 X X X 1
+1 8 X 5 X 4 2 X 7
+2 X X 7 X X 9 1 X
+4 6 X 2 1 X X X 5
+X X 9 X 8 X 6 7 X
+--- expected
+NO SOLUTION
+
+=== special-009 · Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+--- input
+6 X 3 9 2 4 1 X 5
+5 1 7 X 6 X X 9 X
+X X X X 5 1 3 X 8
+X X 9 X X 5 X X 7
+8 X 2 X X X 6 X 3
+X X X X 3 2 8 4 X
+2 X 8 X X X 9 X X
+X 9 X X X X X 3 1
+X X 1 X X X 7 X 6
+--- expected
+NO SOLUTION
+
+=== special-010 · Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+--- input
+X X X 4 X 6 X X X
+X 5 1 X X X X X 9
+X X X 2 1 5 8 X 3
+X 1 7 X 6 X X 8 X
+9 3 X X 8 2 7 X 4
+X X X 7 3 X 1 X X
+X X 9 3 5 X 4 X 7
+X 7 6 9 X X 3 X X
+4 X 3 X 2 X X 9 X
+--- expected
+NO SOLUTION
+
+=== special-011 · Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+--- input
+4 6 X 7 X X 5 1 X
+2 X 1 X 4 6 X 8 X
+X 5 X X X X X X X
+5 X X X X 3 X X X
+8 7 3 4 2 9 6 5 1
+1 9 X X 6 8 X 7 X
+7 3 X X X X X 2 8
+X 2 X 8 3 1 X X X
+X X 8 X X X X X X
+--- expected
+NO SOLUTION
+
+=== special-012 · Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+--- input
+X 8 4 2 1 3 X X 7
+X X 1 X X 4 X X 9
+3 7 X X 8 X X 2 X
+X 3 X X 4 7 9 5 X
+4 X 6 X X 1 7 X 3
+X X 8 X X X X 4 2
+X X X 6 X 8 X X X
+8 X 3 X 7 X X X X
+X 1 5 X 9 2 3 X X
+--- expected
+NO SOLUTION
+
+=== special-013 · Vô nghiệm dù không có số trùng: đổi một số cho sẵn của đề có lời giải duy nhất
+--- input
+X 1 7 4 X X 3 5 9
+X 8 3 X X X X 7 X
+X X 9 X 7 1 X X 8
+5 2 X X 3 8 7 6 X
+9 X X 2 X X X X X
+7 3 X X X X X X X
+1 X X 6 X 5 X X 2
+X 4 X 8 X 2 X X 7
+8 X 2 X X X 4 9 5
+--- expected
+NO SOLUTION
+
+=== special-014 · Định dạng chuỗi 81 ký tự, dấu chấm là ô trống: đề "Vừa"
+--- input
+5346..912....9534.19...2.6....761.2...6..37...1.9248....1....842..41.635.4.2.617.
+--- expected
+5 3 4 6 7 8 9 1 2
+6 7 2 1 9 5 3 4 8
+1 9 8 3 4 2 5 6 7
+8 5 9 7 6 1 4 2 3
+4 2 6 8 5 3 7 9 1
+7 1 3 9 2 4 8 5 6
+9 6 1 5 3 7 2 8 4
+2 8 7 4 1 9 6 3 5
+3 4 5 2 8 6 1 7 9
+
+=== special-015 · Định dạng chuỗi 81 ký tự: đề "Nhiều lời giải"
+--- input
+53.6..912....9534.19...2.6....761.2...6..37...1.92.8....1....84...41..35.4.2.617.
+--- expected
+5 3 4 6 7 8 9 1 2
+2 6 7 1 9 5 3 4 8
+1 9 8 3 4 2 5 6 7
+8 5 9 7 6 1 4 2 3
+4 2 6 8 5 3 7 9 1
+7 1 3 9 2 4 8 5 6
+6 7 1 5 3 9 2 8 4
+9 8 2 4 1 7 6 3 5
+3 4 5 2 8 6 1 7 9
+
+=== special-016 · Định dạng chuỗi 81 ký tự: đề vô nghiệm
+--- input
+5346..912....9534.19..32.6....761.2...6..37...1.9248....1....842..41.635.4.2.617.
+--- expected
+NO SOLUTION
+
+=== special-017 · 9 dòng viết liền, không dấu cách: đề Wikipedia
+--- input
+53XX7XXXX
+6XX195XXX
+X98XXXX6X
+8XXX6XXX3
+4XX8X3XX1
+7XXX2XXX6
+X6XXXX28X
+XXX419XX5
+XXXX8XX79
+--- expected
+5 3 4 6 7 8 9 1 2
+6 7 2 1 9 5 3 4 8
+1 9 8 3 4 2 5 6 7
+8 5 9 7 6 1 4 2 3
+4 2 6 8 5 3 7 9 1
+7 1 3 9 2 4 8 5 6
+9 6 1 5 3 7 2 8 4
+2 8 7 4 1 9 6 3 5
+3 4 5 2 8 6 1 7 9
+
+=== special-018 · 9 dòng viết liền, không dấu cách: đề "Dễ"
+--- input
+X81672439
+792843651
+364591782
+4389572X6
+2561X4973
+179326845
+845219367
+913768X24
+62743519X
+--- expected
+5 8 1 6 7 2 4 3 9
+7 9 2 8 4 3 6 5 1
+3 6 4 5 9 1 7 8 2
+4 3 8 9 5 7 2 1 6
+2 5 6 1 8 4 9 7 3
+1 7 9 3 2 6 8 4 5
+8 4 5 2 1 9 3 6 7
+9 1 3 7 6 8 5 2 4
+6 2 7 4 3 5 1 9 8
+
+=== special-019 · Có dòng trống xen giữa và ở đầu, cuối file
+--- input
+
+
+5 3 4 6 X X 9 1 2
+
+X X X X 9 5 3 4 X
+
+1 9 X X X 2 X 6 X
+
+X X X 7 6 1 X 2 X
+
+X X 6 X X 3 7 X X
+
+X 1 X 9 2 4 8 X X
+
+X X 1 X X X X 8 4
+
+2 X X 4 1 X 6 3 5
+
+X 4 X 2 X 6 1 7 X
+
+
+--- expected
+5 3 4 6 7 8 9 1 2
+6 7 2 1 9 5 3 4 8
+1 9 8 3 4 2 5 6 7
+8 5 9 7 6 1 4 2 3
+4 2 6 8 5 3 7 9 1
+7 1 3 9 2 4 8 5 6
+9 6 1 5 3 7 2 8 4
+2 8 7 4 1 9 6 3 5
+3 4 5 2 8 6 1 7 9
+
+=== special-020 · Xuống dòng kiểu Windows (CRLF)
+--- input
+5 3 4 6 X X 9 1 2
+X X X X 9 5 3 4 X
+1 9 X X X 2 X 6 X
+X X X 7 6 1 X 2 X
+X X 6 X X 3 7 X X
+X 1 X 9 2 4 8 X X
+X X 1 X X X X 8 4
+2 X X 4 1 X 6 3 5
+X 4 X 2 X 6 1 7 X
+--- expected
+5 3 4 6 7 8 9 1 2
+6 7 2 1 9 5 3 4 8
+1 9 8 3 4 2 5 6 7
+8 5 9 7 6 1 4 2 3
+4 2 6 8 5 3 7 9 1
+7 1 3 9 2 4 8 5 6
+9 6 1 5 3 7 2 8 4
+2 8 7 4 1 9 6 3 5
+3 4 5 2 8 6 1 7 9
+
+=== special-021 · Nhiều dấu cách và tab giữa các số, thụt đầu dòng
+--- input
+   5 	  3 	  4 	  6 	  X 	  X 	  9 	  1 	  2  
+   X 	  X 	  X 	  X 	  9 	  5 	  3 	  4 	  X  
+   1 	  9 	  X 	  X 	  X 	  2 	  X 	  6 	  X  
+   X 	  X 	  X 	  7 	  6 	  1 	  X 	  2 	  X  
+   X 	  X 	  6 	  X 	  X 	  3 	  7 	  X 	  X  
+   X 	  1 	  X 	  9 	  2 	  4 	  8 	  X 	  X  
+   X 	  X 	  1 	  X 	  X 	  X 	  X 	  8 	  4  
+   2 	  X 	  X 	  4 	  1 	  X 	  6 	  3 	  5  
+   X 	  4 	  X 	  2 	  X 	  6 	  1 	  7 	  X  
+--- expected
+5 3 4 6 7 8 9 1 2
+6 7 2 1 9 5 3 4 8
+1 9 8 3 4 2 5 6 7
+8 5 9 7 6 1 4 2 3
+4 2 6 8 5 3 7 9 1
+7 1 3 9 2 4 8 5 6
+9 6 1 5 3 7 2 8 4
+2 8 7 4 1 9 6 3 5
+3 4 5 2 8 6 1 7 9
