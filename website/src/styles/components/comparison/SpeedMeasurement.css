@@ -1,0 +1,67 @@
+.speed-measurement {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.speed-measurement__intro {
+  max-width: 68ch;
+  font-size: var(--font-size-article);
+  line-height: var(--line-height-article);
+}
+
+.speed-measurement__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: 560px;
+}
+
+.speed-measurement__label {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-weight: 600;
+}
+
+.speed-measurement__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.speed-measurement__row .button {
+  flex: none;
+  min-width: 88px;
+}
+
+.speed-measurement__status {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.speed-measurement__note,
+.speed-measurement__caption {
+  max-width: 68ch;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.speed-measurement__details summary {
+  width: fit-content;
+  padding: var(--space-8) 0;
+  color: var(--color-primary-strong);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.speed-measurement__table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+}
+
+.speed-measurement__method-cell {
+  min-width: 13rem;
+}

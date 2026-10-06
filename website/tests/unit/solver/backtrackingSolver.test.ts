@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { puzzleName } from '../../../src/i18n/messages.ts'
 import expectedCounts from '../../../../checks/expected_counts.json'
+import expectedFewestCandidates from '../../../../checks/expected_fewest_candidates.json'
 import { solveByBacktracking } from '../../../src/solver/backtrackingSolver.ts'
 import { gridToString, parsePuzzle } from '../../../src/solver/puzzleParser.ts'
 import { findDuplicateDigits } from '../../../src/solver/puzzleValidator.ts'
@@ -168,4 +169,26 @@ describe('solveByBacktracking on a complete grid', () => {
     expect(progress.tryCount).toBe(0)
     expect(progress.lastEvent?.kind).toBe('solutionFound')
   })
+})
+
+describe('solveByBacktracking with the fewest-candidates order matches the Python reference', () => {
+  for (const expected of expectedFewestCandidates.puzzles) {
+    const sample = findSamplePuzzle(expected.id)
+    it(`puzzle ${expected.id}: ${expected.tryCount} / ${expected.recordCount} / ${expected.restoreCount}`, () => {
+      const puzzle = parseOrFail(sample.puzzle)
+      const progress = createSolverProgress(puzzle)
+      for (const event of solveByBacktracking(puzzle, 'fewestCandidates')) {
+        applySolverEvent(progress, event)
+      }
+
+      expect(progress.tryCount).toBe(expected.tryCount)
+      expect(progress.recordCount).toBe(expected.recordCount)
+      expect(progress.restoreCount).toBe(expected.restoreCount)
+      if (expected.solution === null) {
+        expect(progress.lastEvent?.kind).toBe('noSolution')
+      } else {
+        expect(gridToString(progress.grid)).toBe(expected.solution)
+      }
+    })
+  }
 })

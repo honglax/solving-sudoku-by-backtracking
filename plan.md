@@ -141,6 +141,8 @@ Thứ tự làm: **A → B → C → D**. Trễ lịch thì cắt từ D trở l
 
 **A. So sánh 3 cách tổ chức dữ liệu cho bước "chấp nhận được"** (trang mới "So sánh")
 
+> **Đã làm 6/10** (trang `/compare`, mục menu "So sánh"): bảng + 2 biểu đồ thanh ngang (số lần thử, thời gian) cho 6 cách = 2 thứ tự xét ô × 3 cách kiểm tra, đo trong Web Worker, mỗi cách chạy lặp tới khi đủ 300 ms rồi lấy trung bình. Code ở `src/comparison/`. Số đo trên Chrome, đề Inkala: quét lưới 9,7 ms, 3 mảng đánh dấu 3,8-4,1 ms, bitmask 3,9-4 ms; MRV 90.665 lần thử nhưng 21-86 ms.
+
 | Cách | Dữ liệu dùng thêm | Kiểm tra số j cho một ô | Ghi nhận / trả lại |
 |---|---|---|---|
 | Quét lưới | không có, chỉ lưới 9×9 | đọc 27 ô (hàng, cột, khối) | ghi 1 ô |
@@ -166,6 +168,8 @@ Thứ tự làm: **A → B → C → D**. Trễ lịch thì cắt từ D trở l
 - Trước khi làm, đo xem đề 16×16 nào giải được trong thời gian hợp lý với thứ tự xét ô tuần tự.
 
 **C. Chọn ô ít khả năng nhất trước (MRV)**, đã chốt 6/10
+
+> **Đã làm 6/10.** Bộ giải từng bước (`solveByBacktracking(puzzle, 'fewestCandidates')`) chạy được MRV, khớp bản Python `checks/reference_fewest_candidates.py` cả 12 đề. Trang So sánh mở đầu bằng **cuộc đua 2 lưới**: cùng đề, cùng tốc độ, bên trái điền lần lượt, bên phải điền ô dễ nhất trước; mỗi ô trống hiện số khả năng còn lại. Chưa đưa MRV vào trang Giải Sudoku.
 - Vẫn khung mô hình 1, chỉ đổi cách chọn ô cho Sᵢ: thay vì ô trống kế tiếp theo hàng rồi cột, chọn ô trống còn ít số hợp lệ nhất. Sᵢ lúc này là "ô được chọn ở bước i", nên bảng S phải hiện thêm ô nào ứng với Sᵢ.
 - Bài học cho người xem: cùng một thuật toán, thứ tự xét quyết định kích thước cây tìm kiếm. Trang So sánh đặt số lần thử của hai thứ tự cạnh nhau trên cùng đề; trình giải có thể chạy từng bước bằng MRV.
 - Cận xấu nhất vẫn O(9ⁿ); cái giá là mỗi bước phải tìm ô ít khả năng nhất (quét các ô trống còn lại). Report phân tích cả phần này.

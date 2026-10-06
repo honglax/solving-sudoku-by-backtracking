@@ -11,6 +11,7 @@
       "home": "Trang chủ",
       "solver": "Giải Sudoku",
       "algorithm": "Thuật toán",
+      "comparison": "So sánh",
       "about": "Giới thiệu"
     },
     "menuButton": "Menu",
@@ -143,6 +144,112 @@
     "antiBacktrackingTryNote": "Nếu bấm Giải ngay, máy sẽ phải chạy hơn 10 phút mới xong. Bạn có thể bấm Dừng bất cứ lúc nào.",
     "wrongFirstCellPercent": "86,7%"
   },
+  "comparison": {
+    "documentTitle": "So sánh",
+    "title": "So sánh các cách giải",
+    "intro": "Trình giải luôn làm cùng một việc: chọn một ô trống, thử lần lượt từng số, số nào phạm luật thì bỏ, đi vào ngõ cụt thì lùi lại. Nhưng có hai chỗ ta được tự chọn cách làm: điền ô nào trước, và kiểm tra một số có điền được không bằng cách nào. Trang này cho bạn xem mỗi lựa chọn ảnh hưởng thế nào.",
+    "sections": {
+      "race": "Cuộc đua: điền ô nào trước?",
+      "checks": "Kiểm tra một số có điền được không",
+      "measure": "Đo tốc độ trên máy của bạn",
+      "takeaways": "Tóm lại"
+    },
+    "race": {
+      "intro": "Hai lưới dưới đây giải cùng một đề, cùng tốc độ: mỗi giây thử cùng một số lần. Chỉ khác một điều: lưới bên trái điền lần lượt từ ô đầu tiên, lưới bên phải luôn chọn ô dễ nhất, tức ô còn ít số điền được nhất.",
+      "legend": "Số nhỏ ở góc mỗi ô trống cho biết ô đó còn bao nhiêu số điền được. Ô nền xanh nhạt chỉ còn đúng một số.",
+      "puzzleSelectLabel": "Đề",
+      "lanes": {
+        "rowMajor": {
+          "title": "Điền lần lượt",
+          "subtitle": "Từ trái sang phải, từ trên xuống dưới"
+        },
+        "fewestCandidates": {
+          "title": "Điền ô dễ nhất trước",
+          "subtitle": "Ô còn ít số điền được nhất đi trước"
+        }
+      },
+      "tryCount": "Lần thử",
+      "restoreCount": "Lần quay lui",
+      "laneStatus": {
+        "notStarted": "Chưa chạy",
+        "running": "Đang giải…",
+        "solved": "Xong sau {tryCount} lần thử",
+        "noSolution": "Vô nghiệm, biết được sau {tryCount} lần thử"
+      },
+      "runButton": "Chạy",
+      "pauseButton": "Tạm dừng",
+      "stepButton": "Từng bước",
+      "resetButton": "Đặt lại",
+      "summary": {
+        "fewerTries": "Điền ô dễ nhất trước chỉ cần {fewestTryCount} lần thử, còn điền lần lượt cần {rowMajorTryCount} lần: ít hơn khoảng {ratio} lần.",
+        "sameTries": "Với đề này, hai cách cần cùng số lần thử: {rowMajorTryCount}.",
+        "moreTries": "Lần này điền ô dễ nhất trước lại cần nhiều lần thử hơn: {fewestTryCount} so với {rowMajorTryCount}."
+      }
+    },
+    "checks": {
+      "intro": "Mỗi lần thử một số cho một ô, máy phải trả lời câu hỏi: số này đã có trong cùng hàng, cùng cột hay cùng khối chưa? Có ba cách trả lời.",
+      "strategies": {
+        "gridScan": {
+          "name": "Nhìn lại lưới",
+          "description": "Không ghi nhớ gì. Mỗi lần hỏi lại nhìn cả hàng, cả cột và cả khối của ô, nhiều nhất 27 ô. Giống như bạn giải bằng mắt: lần nào cũng dò lại từ đầu."
+        },
+        "usageFlags": {
+          "name": "Sổ ghi chép",
+          "description": "Ghi sẵn vào sổ: hàng nào, cột nào, khối nào đã có những số nào. Mỗi lần hỏi chỉ cần tra 3 dòng trong sổ. Điền hay xóa một số thì sửa lại sổ. Trình giải đang dùng cách này (trong code gọi là 3 mảng đánh dấu)."
+        },
+        "bitmask": {
+          "name": "Dãy công tắc",
+          "description": "Giống sổ ghi chép, nhưng mỗi dòng gọn lại thành một dãy 9 công tắc bật/tắt, công tắc thứ j bật nghĩa là số j đã có. Máy gộp 3 dãy lại rồi xem công tắc thứ j trong một phép tính (trong code gọi là bitmask)."
+        }
+      }
+    },
+    "cellOrders": {
+      "rowMajor": "Điền lần lượt",
+      "fewestCandidates": "Điền ô dễ nhất trước"
+    },
+    "methodName": "{order} · {check}",
+    "measure": {
+      "intro": "Bấm Đo để chạy cả 6 cách kết hợp (2 cách chọn ô × 3 cách kiểm tra) trên một đề, ngay trên máy của bạn. Mỗi cách được chạy lặp lại nhiều lần để lấy thời gian trung bình.",
+      "puzzleSelectLabel": "Đề để đo",
+      "startButton": "Đo",
+      "restartButton": "Đo lại",
+      "stopButton": "Dừng",
+      "status": {
+        "idle": "Chưa đo.",
+        "measuring": "Đang đo: {method} ({measuredCount}/{totalCount})…",
+        "finished": "Đã đo xong {totalCount} cách.",
+        "stopped": "Đã dừng. Cách nào chưa đo thì để trống."
+      },
+      "slowPuzzleNote": "Đề này cần {tryCount} lần thử nếu điền lần lượt, nên mỗi cách điền lần lượt mất vài giây tới hơn mười giây.",
+      "tryChart": {
+        "title": "Số lần thử",
+        "note": "Chỉ phụ thuộc vào việc điền ô nào trước: 3 cách kiểm tra luôn cho cùng một con số."
+      },
+      "timeChart": {
+        "title": "Thời gian mỗi lần giải",
+        "note": "Thanh càng ngắn càng nhanh. Đo trên máy của bạn, nên mỗi lần đo có thể chênh nhau một chút."
+      },
+      "tableToggle": "Xem bảng số liệu đầy đủ",
+      "columns": {
+        "method": "Cách giải",
+        "tryCount": "Lần thử",
+        "recordCount": "Lần điền số",
+        "restoreCount": "Lần quay lui",
+        "checkReadCount": "Lần nhìn khi kiểm tra",
+        "cellChoiceReadCount": "Lần nhìn để chọn ô",
+        "millisecondsPerRun": "Thời gian / lần giải",
+        "runCount": "Số lần chạy"
+      },
+      "tableCaption": "\"Lần nhìn\": mỗi lần đọc một ô của lưới, một ô trong sổ ghi chép, hoặc một dãy công tắc tính là 1 lần.",
+      "notMeasured": "-"
+    },
+    "takeaways": [
+      "Điền ô nào trước làm thay đổi hẳn số lần thử. Với đề Easter Monster, điền ô dễ nhất trước chỉ cần {easterMonsterFewestTryCount} lần thử, thay vì {easterMonsterRowMajorTryCount}.",
+      "Cách kiểm tra không làm thay đổi số lần thử, chỉ làm mỗi lần thử nhanh hay chậm hơn. Sổ ghi chép nhanh hơn nhìn lại lưới, vì mỗi lần chỉ tra 3 dòng thay vì dò tới 27 ô.",
+      "Ít lần thử hơn chưa chắc đã nhanh hơn. Muốn biết ô nào dễ nhất, trước mỗi bước phải đếm lại số khả năng của mọi ô trống. Hãy đo đề Arto Inkala: số lần thử giảm từ {inkalaRowMajorTryCount} xuống {inkalaFewestTryCount}, nhưng thời gian lại có thể lâu hơn.",
+      "Không cách nào thoát được trường hợp xấu nhất: với đề được soạn đủ khó, cả 6 cách vẫn có thể phải thử tới 9ⁿ lần, như đã tính ở trang Thuật toán."
+    ]
+  },
   "about": {
     "documentTitle": "Giới thiệu",
     "title": "Giới thiệu",
@@ -197,7 +304,8 @@
     "box": "khối (hàng {firstRow}-{lastRow}, cột {firstColumn}-{lastColumn})",
     "cell": "({row}, {column})",
     "listSeparator": ", ",
-    "listLastSeparator": " và "
+    "listLastSeparator": " và ",
+    "milliseconds": "{value} ms"
   },
   "solver": {
     "documentTitle": "Giải Sudoku",
@@ -360,6 +468,7 @@
       "solved": "Đã giải",
       "inputError": "Số bị trùng",
       "withConflict": "{state} · ô gây mâu thuẫn"
-    }
+    },
+    "candidateCountLabel": "Còn {count} số hợp lệ"
   }
 }

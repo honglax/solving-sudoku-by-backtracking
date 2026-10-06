@@ -1,0 +1,148 @@
+.solver-race {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.solver-race__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-12) var(--space-24);
+}
+
+.solver-race__puzzle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1 1 280px;
+  max-width: 360px;
+}
+
+.solver-race__label {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-weight: 600;
+}
+
+.solver-race__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.solver-race__speed {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  height: 36px;
+}
+
+.solver-race__speed-slider {
+  width: 160px;
+  accent-color: var(--color-primary);
+}
+
+.solver-race__speed-value {
+  min-width: 9rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.solver-race__legend {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.solver-race__lanes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: var(--space-16);
+}
+
+.race-lane {
+  --size-cell: min(44px, calc((100vw - 2 * var(--gutter-mobile) - 2 * var(--space-16) - 4px) / 9));
+  --font-size-cell: clamp(18px, calc(var(--size-cell) * 0.55), 24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-16);
+}
+
+.race-lane__header {
+  align-self: stretch;
+}
+
+.race-lane__title {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: 600;
+}
+
+.race-lane__subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.race-lane__counters {
+  display: flex;
+  align-self: stretch;
+  gap: var(--space-24);
+}
+
+.race-lane__counters dt {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.race-lane__counters dd {
+  margin: 0;
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.race-lane__status {
+  align-self: stretch;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.race-lane__status[data-finished='true'] {
+  color: var(--color-state-solved-digit);
+  font-weight: 600;
+}
+
+.solver-race__summary {
+  padding: var(--space-12) var(--space-16);
+  background: var(--color-primary-soft);
+  border-radius: var(--radius-card);
+  color: var(--color-text);
+  font-size: var(--font-size-article);
+  line-height: var(--line-height-article);
+}
+
+@media (max-width: 600px) {
+  .race-lane {
+    padding: var(--space-16) var(--space-8);
+  }
+
+  .race-lane__header,
+  .race-lane__counters,
+  .race-lane__status {
+    padding: 0 var(--space-8);
+  }
+
+  .solver-race__speed-slider {
+    flex: 1;
+    width: auto;
+  }
+}

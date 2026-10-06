@@ -138,6 +138,24 @@
   text-decoration: line-through;
 }
 
+.sudoku-cell__candidate-count {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ghost);
+  line-height: var(--font-size-ghost);
+  font-weight: 600;
+}
+
+.sudoku-cell[data-candidate-count='1'] {
+  background: var(--color-primary-soft);
+}
+
+.sudoku-cell[data-candidate-count='0'] .sudoku-cell__candidate-count {
+  color: var(--color-state-rejected-digit);
+}
+
 .sudoku-cell--solved {
   background: var(--color-state-solved-bg);
   color: var(--color-state-solved-digit);

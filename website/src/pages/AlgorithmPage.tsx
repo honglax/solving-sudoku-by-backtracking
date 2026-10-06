@@ -17,6 +17,7 @@ import { solverLinkForPuzzle } from '../sitePages.ts'
 import { formatCount } from '../solverView/formatting.ts'
 import { buildGridView } from '../solverView/gridView.ts'
 import { countPuzzleTextBlanks } from '../solverView/puzzleLabels.ts'
+import '../styles/components/DataTable.css'
 import '../styles/pages/AlgorithmPage.css'
 
 const ALGORITHM = messages.algorithm

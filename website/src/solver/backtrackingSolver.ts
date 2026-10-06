@@ -17,11 +17,16 @@ import {
 
 const UNUSED_SLOT: CellPosition = { row: 0, column: 0 }
 
+export type CellOrder = 'rowMajor' | 'fewestCandidates'
+
 function createUsageTable(): boolean[][] {
   return Array.from({ length: SIZE + 1 }, () => new Array<boolean>(LAST_DIGIT + 1).fill(false))
 }
 
-export function* solveByBacktracking(puzzle: Grid): Generator<SolverEvent, void, undefined> {
+export function* solveByBacktracking(
+  puzzle: Grid,
+  cellOrder: CellOrder = 'rowMajor',
+): Generator<SolverEvent, void, undefined> {
   const grid = [...puzzle]
   const rowUsed = createUsageTable()
   const columnUsed = createUsageTable()
@@ -64,6 +69,40 @@ export function* solveByBacktracking(puzzle: Grid): Generator<SolverEvent, void,
     return holdingCell
   }
 
+  function countAcceptableDigits(cell: CellPosition): number {
+    let acceptableCount = 0
+    for (let digit = FIRST_DIGIT; digit <= LAST_DIGIT; digit++) {
+      if (findConflictingUnit(cell, digit) === null) {
+        acceptableCount++
+      }
+    }
+    return acceptableCount
+  }
+
+  function findEmptyCellWithFewestCandidates(): CellPosition {
+    let bestCell = UNUSED_SLOT
+    let bestCandidateCount = LAST_DIGIT + 1
+    for (let i = 1; i <= n; i++) {
+      const cell = emptyCells[i]
+      if (digitAt(grid, cell) !== EMPTY) {
+        continue
+      }
+      const candidateCount = countAcceptableDigits(cell)
+      if (candidateCount < bestCandidateCount) {
+        bestCell = cell
+        bestCandidateCount = candidateCount
+      }
+    }
+    return bestCell
+  }
+
+  function chooseCell(i: number): CellPosition {
+    if (cellOrder === 'rowMajor') {
+      return emptyCells[i]
+    }
+    return findEmptyCellWithFewestCandidates()
+  }
+
   function recordState(cell: CellPosition, j: number) {
     grid[cellIndex(cell)] = j
     rowUsed[cell.row][j] = true
@@ -79,7 +118,7 @@ export function* solveByBacktracking(puzzle: Grid): Generator<SolverEvent, void,
   }
 
   function* tryStep(i: number): Generator<SolverEvent, boolean, undefined> {
-    const cell = emptyCells[i]
+    const cell = chooseCell(i)
     for (let j = FIRST_DIGIT; j <= LAST_DIGIT; j++) {
       const conflictingUnit = findConflictingUnit(cell, j)
       const isAcceptable = conflictingUnit === null

@@ -293,3 +293,30 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Chạy cả 2 đề chậm bằng bộ giải của website: cả 294 đề đạt, mất 18 phút 45 giây. Đề chống quay lui 13 phút 54 giây (622.577.597 lần thử, khoảng 747 nghìn lần/giây), đề 17 số 4 phút 42 giây (239.312.393 lần thử, khoảng 848 nghìn lần/giây).
 - Chậm vì bộ giải của website là generator phát sự kiện ở từng bước để minh họa; mỗi sự kiện đi ngược qua tới 64 tầng `yield*`. Bản Python đệ quy thường còn nhanh hơn (khoảng 1,5 triệu lần/giây), bản JavaScript đệ quy thường giải đề chống quay lui trong khoảng 3 giây (đo 4/10).
 - Giữ nguyên: bộ test phải chạy đúng bộ giải người xem thấy trên web. 2 đề này đánh dấu chậm, không chạy mặc định. Đây là số liệu cho mục Đánh giá (cái giá của việc minh họa từng bước).
+
+**Trang "So sánh" (phần mở rộng A, và phần so sánh của C)**
+> Ok, let's continue
+
+> Bạn có thể thêm tab mới hoặc trang mới để đáp ứng các yêu cầu của cô nhé
+
+- Claude viết phần thuật toán trước, đo rồi mới làm giao diện:
+  - `src/comparison/usageTrackers.ts`: 3 cách kiểm tra "chấp nhận được" (quét lưới, 3 mảng đánh dấu, bitmask), mỗi cách đếm số lần đọc bộ nhớ.
+  - `src/comparison/comparisonSolver.ts`: khung mô hình 1 viết một lần, đổi được cách kiểm tra và thứ tự chọn ô (tuần tự / ít khả năng nhất trước). Đệ quy thường, không generator, để thời gian đo không bị cái giá của generator che mất.
+- Số đo đầu tiên (Node): 3 cách kiểm tra cho đúng cùng số lần thử trên cả 12 đề (khớp bảng đo). Quét lưới chậm khoảng 2 lần, bitmask nhanh hơn 3 mảng đánh dấu 10-15%. MRV giảm số lần thử rất mạnh (đề chống quay lui: 622.577.597 → 407.156, 6,7 giây → 0,09 giây), nhưng trên đề Inkala lại chậm hơn bản thường (21,5 ms so với 5,2 ms) vì mỗi bước phải đếm lại khả năng của mọi ô. Đây là một điểm đáng đưa vào report: ít lần thử hơn chưa chắc nhanh hơn.
+- `checks/reference_fewest_candidates.py`: bản Python MRV độc lập (cùng luật hòa: lấy ô đầu tiên theo hàng rồi cột). Khớp bản TypeScript cả 12 đề.
+- Trang `/compare` ("So sánh" trên menu): giải thích 2 chỗ khác nhau, chọn đề rồi bấm Đo, 2 biểu đồ thanh ngang (số lần thử, thời gian; tách 2 biểu đồ vì khác thang đo), bảng đầy đủ, mục "Điều rút ra". Đo trong Web Worker nên trang không treo; bấm Dừng được. Các con số trong phần chữ đọc từ dữ liệu đề mẫu đã có test, không gõ tay.
+- Lỗi tìm ra khi xem ảnh chụp: thanh biểu đồ quá ngắn vì 2 biểu đồ đặt cạnh nhau → xếp dọc; cột "Cách giải" trên điện thoại bị ép xuống dòng từng từ → đặt độ rộng tối thiểu, bảng cuộn ngang. Lúc đầu thanh dài nhất bị giới hạn độ rộng nên các thanh sai tỉ lệ → đổi sang chừa chỗ bằng padding.
+- Chuyển kiểu `.select-field` và `.data-table` ra chỗ dùng chung để trang mới dùng lại.
+- Kết quả: 440 test đơn vị + 49 test end-to-end đạt; menu 5 mục vẫn vừa thanh trên cùng từ 820 px trở lên, dưới đó vào menu thu gọn.
+
+**Làm lại trang So sánh cho người bình thường đọc hiểu**
+> Do we have any visualize for Comparing page? As a normal user, I don't understand any word of this page?
+
+- Mình chụp màn hình gửi kèm: trang chỉ có 2 biểu đồ trống ("-") cho tới khi bấm Đo, chữ toàn thuật ngữ (bitmask, MRV, "đọc bộ nhớ").
+- Claude đề xuất 3 phần minh họa (cuộc đua 2 lưới; một lần kiểm tra theo 3 cách; kết quả nói bằng câu). Mình chọn **cuộc đua 2 lưới**.
+- Đã làm:
+  - Bộ giải từng bước nhận thêm thứ tự "ô dễ nhất trước", có test khớp bản Python MRV cả 12 đề.
+  - Lưới hiện số khả năng còn lại ở góc mỗi ô trống; ô chỉ còn một số tô xanh nhạt. Chỉ lưới trong cuộc đua mới hiện, lưới của trình giải không đổi.
+  - `src/playback/raceEngine.ts`: một vòng lặp chạy cả hai lưới, cùng số lần thử mỗi giây, nên cuộc đua công bằng. Có Chạy / Tạm dừng / Từng bước / Đặt lại / tốc độ; xong thì hiện câu tóm tắt ("… ít hơn khoảng 8 lần").
+  - Viết lại toàn bộ chữ của trang bằng lời thường: "Nhìn lại lưới", "Sổ ghi chép", "Dãy công tắc" thay cho quét lưới / 3 mảng đánh dấu / bitmask (tên kỹ thuật để trong ngoặc); "Điền lần lượt" / "Điền ô dễ nhất trước". Biểu đồ chỉ hiện khi đã đo; bảng số liệu thu vào mục "Xem bảng số liệu đầy đủ".
+- Kết quả: 452 test đơn vị + 52 test end-to-end đạt.

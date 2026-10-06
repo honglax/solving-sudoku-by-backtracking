@@ -1,6 +1,7 @@
 import { memo, useCallback, useRef, type KeyboardEvent } from 'react'
 import { formatMessage, messages } from '../../i18n/messages.ts'
 import { BOX_SIZE, CELL_COUNT, cellPositionAt, EMPTY, SIZE } from '../../solver/sudokuRules.ts'
+import type { CandidateCount } from '../../solverView/candidateCounts.ts'
 import { describeCellState, type CellView } from '../../solverView/gridView.ts'
 import { describeCell } from '../../solverView/formatting.ts'
 import '../../styles/components/solver/SudokuGrid.css'
@@ -21,9 +22,10 @@ type SudokuGridProps = {
   cellViews: CellView[]
   showLineNumbers: boolean
   onTypeDigit: (index: number, digit: number) => void
+  candidateCounts?: CandidateCount[]
 }
 
-export function SudokuGrid({ cellViews, showLineNumbers, onTypeDigit }: SudokuGridProps) {
+export function SudokuGrid({ cellViews, showLineNumbers, onTypeDigit, candidateCounts }: SudokuGridProps) {
   const inputRefs = useRef<(HTMLInputElement | null)[]>(new Array(CELL_COUNT).fill(null))
 
   const registerInput = useCallback((index: number, input: HTMLInputElement | null) => {
@@ -74,6 +76,7 @@ export function SudokuGrid({ cellViews, showLineNumbers, onTypeDigit }: SudokuGr
             hasConflictRing={cellView.hasConflictRing}
             isEditable={cellView.isEditable}
             stateLabel={describeCellState(cellView)}
+            candidateCount={candidateCounts?.[index] ?? null}
             registerInput={registerInput}
             onTypeDigit={onTypeDigit}
             onMoveFocus={moveFocus}
@@ -87,6 +90,7 @@ export function SudokuGrid({ cellViews, showLineNumbers, onTypeDigit }: SudokuGr
 type SudokuCellProps = CellView & {
   index: number
   stateLabel: string | undefined
+  candidateCount: CandidateCount
   registerInput: (index: number, input: HTMLInputElement | null) => void
   onTypeDigit: (index: number, digit: number) => void
   onMoveFocus: (fromIndex: number, direction: ArrowDirection) => void
@@ -121,6 +125,7 @@ const SudokuCell = memo(function SudokuCell({
   hasConflictRing,
   isEditable,
   stateLabel,
+  candidateCount,
   registerInput,
   onTypeDigit,
   onMoveFocus,
@@ -129,10 +134,23 @@ const SudokuCell = memo(function SudokuCell({
   const digitText = digit === EMPTY ? '' : String(digit)
 
   if (!isEditable) {
+    const showsCandidateCount = candidateCount !== null && digit === EMPTY
+    const candidateLabel = showsCandidateCount
+      ? formatMessage(messages.solver.candidateCountLabel, { count: candidateCount })
+      : undefined
     return (
-      <div className={className} title={stateLabel}>
+      <div
+        className={className}
+        title={stateLabel ?? candidateLabel}
+        data-candidate-count={showsCandidateCount ? candidateCount : undefined}
+      >
         <span className="sudoku-cell__digit">{digitText}</span>
         {ghostDigit !== EMPTY && <span className="sudoku-cell__ghost">{ghostDigit}</span>}
+        {showsCandidateCount && (
+          <span className="sudoku-cell__candidate-count" aria-hidden="true">
+            {candidateCount}
+          </span>
+        )}
       </div>
     )
   }

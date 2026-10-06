@@ -2,9 +2,15 @@ import { formatMessage, LOCALE, messages } from '../i18n/messages.ts'
 import { BOX_SIZE, type CellPosition, type Unit } from '../solver/sudokuRules.ts'
 
 const NUMBER_FORMAT = new Intl.NumberFormat(LOCALE)
+const SIGNIFICANT_DIGITS_FOR_DURATIONS = 3
+const DURATION_FORMAT = new Intl.NumberFormat(LOCALE, { maximumSignificantDigits: SIGNIFICANT_DIGITS_FOR_DURATIONS })
 
 export function formatCount(count: number): string {
   return NUMBER_FORMAT.format(count)
+}
+
+export function formatMilliseconds(milliseconds: number): string {
+  return formatMessage(messages.units.milliseconds, { value: DURATION_FORMAT.format(milliseconds) })
 }
 
 export function describeCell(cell: CellPosition): string {

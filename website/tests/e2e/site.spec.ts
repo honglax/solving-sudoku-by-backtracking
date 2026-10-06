@@ -4,6 +4,7 @@ const PAGES = [
   { path: '/', title: 'Sudoku · Quay lui' },
   { path: '/solver', title: 'Giải Sudoku · Sudoku · Quay lui' },
   { path: '/algorithm', title: 'Thuật toán · Sudoku · Quay lui' },
+  { path: '/compare', title: 'So sánh · Sudoku · Quay lui' },
   { path: '/about', title: 'Giới thiệu · Sudoku · Quay lui' },
   { path: '/khong-co-trang-nay', title: 'Không tìm thấy trang · Sudoku · Quay lui' },
 ]
