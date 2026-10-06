@@ -35,6 +35,8 @@ export function buildSolutionVectorView(blankCount: number, progress: SolverProg
     case 'recordState':
     case 'descend':
     case 'solutionFound':
+    case 'solutionListed':
+    case 'searchExhausted':
       break
   }
   return slotViews

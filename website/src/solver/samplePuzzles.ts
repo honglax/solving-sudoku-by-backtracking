@@ -4,6 +4,10 @@ export type MeasuredCounts = {
   restoreCount: number
 }
 
+export type MeasuredFullSearch = MeasuredCounts & {
+  solutionCount: number
+}
+
 export type PuzzleSource = { kind: 'sample'; sampleId: number } | { kind: 'custom' }
 
 export type SamplePuzzle = {
@@ -11,6 +15,7 @@ export type SamplePuzzle = {
   puzzle: string
   measured: MeasuredCounts
   measuredWithFewestCandidatesFirst: MeasuredCounts
+  measuredFullSearch: MeasuredFullSearch | null
   isListed: boolean
 }
 
@@ -21,6 +26,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 1, recordCount: 1, restoreCount: 0 },
     measuredWithFewestCandidatesFirst: { tryCount: 1, recordCount: 1, restoreCount: 0 },
+    measuredFullSearch: { solutionCount: 1, tryCount: 9, recordCount: 1, restoreCount: 1 },
   },
   {
     id: 2,
@@ -28,6 +34,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 27, recordCount: 5, restoreCount: 0 },
     measuredWithFewestCandidatesFirst: { tryCount: 27, recordCount: 5, restoreCount: 0 },
+    measuredFullSearch: { solutionCount: 1, tryCount: 45, recordCount: 5, restoreCount: 5 },
   },
   {
     id: 3,
@@ -35,6 +42,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 1909, recordCount: 227, restoreCount: 187 },
     measuredWithFewestCandidatesFirst: { tryCount: 226, recordCount: 40, restoreCount: 0 },
+    measuredFullSearch: { solutionCount: 4, tryCount: 11673, recordCount: 1300, restoreCount: 1300 },
   },
   {
     id: 4,
@@ -42,6 +50,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 37652, recordCount: 4208, restoreCount: 4157 },
     measuredWithFewestCandidatesFirst: { tryCount: 239, recordCount: 51, restoreCount: 0 },
+    measuredFullSearch: { solutionCount: 1, tryCount: 41679, recordCount: 4631, restoreCount: 4631 },
   },
   {
     id: 5,
@@ -49,6 +58,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 445778, recordCount: 49558, restoreCount: 49498 },
     measuredWithFewestCandidatesFirst: { tryCount: 90665, recordCount: 10101, restoreCount: 10041 },
+    measuredFullSearch: { solutionCount: 1, tryCount: 18619020, recordCount: 2068780, restoreCount: 2068780 },
   },
   {
     id: 6,
@@ -56,6 +66,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 3195, recordCount: 391, restoreCount: 310 },
     measuredWithFewestCandidatesFirst: { tryCount: 405, recordCount: 81, restoreCount: 0 },
+    measuredFullSearch: null,
   },
   {
     id: 7,
@@ -63,6 +74,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 9, recordCount: 0, restoreCount: 0 },
     measuredWithFewestCandidatesFirst: { tryCount: 9, recordCount: 0, restoreCount: 0 },
+    measuredFullSearch: { solutionCount: 0, tryCount: 9, recordCount: 0, restoreCount: 0 },
   },
   {
     id: 8,
@@ -70,6 +82,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 827, recordCount: 109, restoreCount: 65 },
     measuredWithFewestCandidatesFirst: { tryCount: 242, recordCount: 44, restoreCount: 0 },
+    measuredFullSearch: { solutionCount: 18, tryCount: 43317, recordCount: 4830, restoreCount: 4830 },
   },
   {
     id: 9,
@@ -77,6 +90,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 981, recordCount: 108, restoreCount: 108 },
     measuredWithFewestCandidatesFirst: { tryCount: 27, recordCount: 2, restoreCount: 2 },
+    measuredFullSearch: { solutionCount: 0, tryCount: 981, recordCount: 108, restoreCount: 108 },
   },
   {
     id: 10,
@@ -84,6 +98,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 80491, recordCount: 8969, restoreCount: 8911 },
     measuredWithFewestCandidatesFirst: { tryCount: 1723, recordCount: 217, restoreCount: 159 },
+    measuredFullSearch: { solutionCount: 1, tryCount: 169956, recordCount: 18884, restoreCount: 18884 },
   },
   {
     id: 11,
@@ -91,6 +106,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: true,
     measured: { tryCount: 2357880, recordCount: 262014, restoreCount: 261954 },
     measuredWithFewestCandidatesFirst: { tryCount: 42081, recordCount: 4703, restoreCount: 4643 },
+    measuredFullSearch: { solutionCount: 1, tryCount: 6410259, recordCount: 712251, restoreCount: 712251 },
   },
   {
     id: 12,
@@ -98,6 +114,7 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     isListed: false,
     measured: { tryCount: 622577597, recordCount: 69175316, restoreCount: 69175252 },
     measuredWithFewestCandidatesFirst: { tryCount: 407156, recordCount: 45267, restoreCount: 45203 },
+    measuredFullSearch: null,
   },
 ]
 

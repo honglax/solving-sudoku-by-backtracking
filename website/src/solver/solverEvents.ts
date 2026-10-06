@@ -44,6 +44,16 @@ export type NoSolutionEvent = {
   kind: 'noSolution'
 }
 
+export type SolutionListedEvent = {
+  kind: 'solutionListed'
+  solutionNumber: number
+}
+
+export type SearchExhaustedEvent = {
+  kind: 'searchExhausted'
+  solutionCount: number
+}
+
 export type SolverEvent =
   | AcceptCandidateEvent
   | RejectCandidateEvent
@@ -52,3 +62,5 @@ export type SolverEvent =
   | RestoreStateEvent
   | SolutionFoundEvent
   | NoSolutionEvent
+  | SolutionListedEvent
+  | SearchExhaustedEvent

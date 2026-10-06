@@ -51,6 +51,7 @@ export function describeHistoryEvent(event: SolverEvent): HistoryRowView {
         reasonText: ROWS.restored.reason,
       }
     case 'solutionFound':
+    case 'solutionListed':
       return {
         tone: 'solved',
         cellText: HISTORY.notApplicable,
@@ -59,6 +60,7 @@ export function describeHistoryEvent(event: SolverEvent): HistoryRowView {
         reasonText: ROWS.solved.reason,
       }
     case 'noSolution':
+    case 'searchExhausted':
       return {
         tone: 'rejected',
         cellText: HISTORY.notApplicable,

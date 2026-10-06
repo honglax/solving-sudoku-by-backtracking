@@ -9,6 +9,7 @@ export type SolverProgress = {
   tryCount: number
   recordCount: number
   restoreCount: number
+  solutionCount: number
   lastEvent: SolverEvent | null
   lastPseudocodeEvent: SolverEvent | null
   lastMessageEvent: SolverEvent | null
@@ -25,6 +26,7 @@ export function createSolverProgress(puzzle: Grid): SolverProgress {
     tryCount: 0,
     recordCount: 0,
     restoreCount: 0,
+    solutionCount: 0,
     lastEvent: null,
     lastPseudocodeEvent: null,
     lastMessageEvent: null,
@@ -60,9 +62,19 @@ export function applySolverEvent(progress: SolverProgress, event: SolverEvent): 
       progress.lastPseudocodeEvent = event
       break
     case 'solutionFound':
+      progress.solutionCount += 1
       progress.isFinished = true
       progress.lastMessageEvent = event
       progress.lastPseudocodeEvent = event
+      break
+    case 'solutionListed':
+      progress.solutionCount += 1
+      progress.lastMessageEvent = event
+      progress.lastPseudocodeEvent = event
+      break
+    case 'searchExhausted':
+      progress.isFinished = true
+      progress.lastMessageEvent = event
       break
     case 'noSolution':
       progress.isFinished = true

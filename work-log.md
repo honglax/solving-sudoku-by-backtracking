@@ -320,3 +320,16 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
   - `src/playback/raceEngine.ts`: một vòng lặp chạy cả hai lưới, cùng số lần thử mỗi giây, nên cuộc đua công bằng. Có Chạy / Tạm dừng / Từng bước / Đặt lại / tốc độ; xong thì hiện câu tóm tắt ("… ít hơn khoảng 8 lần").
   - Viết lại toàn bộ chữ của trang bằng lời thường: "Nhìn lại lưới", "Sổ ghi chép", "Dãy công tắc" thay cho quét lưới / 3 mảng đánh dấu / bitmask (tên kỹ thuật để trong ngoặc); "Điền lần lượt" / "Điền ô dễ nhất trước". Biểu đồ chỉ hiện khi đã đo; bảng số liệu thu vào mục "Xem bảng số liệu đầy đủ".
 - Kết quả: 452 test đơn vị + 52 test end-to-end đạt.
+
+**Trang "Mọi lời giải" (phần mở rộng B)**
+> Ok rồi
+
+- Commit trang So sánh. Claude hỏi đặt chế độ "Tìm mọi lời giải" trong trang Giải Sudoku hay trang riêng; mình chọn **trang riêng**.
+- Bộ giải từng bước có thêm tùy chọn tìm hết, phát 2 sự kiện mới ("đã liệt kê một lời giải", "đã thử hết"). Trang Giải Sudoku không phát 2 sự kiện này nên không đổi; các chỗ xử lý sự kiện (lịch sử, câu thông báo, mã giả, lưới) được bổ sung cho đủ.
+- `checks/reference_all_solutions.py`: bản Python tìm hết, kế thừa bản tham chiếu, chỉ đổi phần "Xuất lời giải" để đếm rồi đi tiếp.
+- **Phát hiện khi chạy:** đề mẫu "Vừa" (đề mặc định của trình giải) có **4 lời giải**, không phải 1; "Nhiều lời giải" có 18. Bộ đếm độc lập (MRV + bitmask) trong bộ testcase cũng ra 4 và 18. Đã sửa README testcase và `plan.md` chỗ ghi nhóm Thông thường "đều có một lời giải".
+- Kiểm chéo: chế độ tìm hết đếm lại số lời giải của 251 đề trong bộ testcase; 239 đề tìm hết được trong 300 nghìn lần thử, cả 239 khớp bộ đếm độc lập.
+- Trang `/all-solutions`: chọn đề, Chạy (dừng ở mỗi lời giải, câu thông báo nói rõ "thuật toán chưa dừng: nó trả lại ô vừa điền rồi thử tiếp"), Từng bước, Tìm hết / Dừng, tốc độ; bộ đếm lời giải / lần thử / lần quay lui; mã giả sáng từng dòng; bộ sưu tập lời giải (lưới thu nhỏ, tô ô khác lời giải 1); mục "Biết chắc chỉ có một lời giải thì tốn bao nhiêu?" (Inkala: 445.778 lần thử để tìm lời giải đầu, 18.619.020 lần để đi hết, gấp 42 lần); lưới trống có 6.670.903.752.021.072.936.960 lời giải nên không đếm hết được.
+- Lỗi tìm ra khi chụp màn hình: menu 6 mục bị ép xuống 2 dòng ở 820 px. Đo thì 6 mục vừa một dòng từ 880 px; chuyển sang menu thu gọn dưới 900 px, chữ menu không xuống dòng. Thêm test cho cả hai.
+- Tách thanh tốc độ thành component dùng chung (`SpeedSlider`) cho cuộc đua và trang mới.
+- Kết quả: 714 test đơn vị + 59 test end-to-end đạt.

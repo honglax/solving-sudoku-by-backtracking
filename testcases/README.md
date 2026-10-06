@@ -58,7 +58,7 @@ testcases/
 | Nhóm | Nội dung | Số đề |
 |---|---|---|
 | Nhỏ | 1-5 ô trống, người học tự kiểm bằng tay được; gồm đề mẫu "Rất dễ", "Dễ" | 40 |
-| Thông thường | 20-50 ô trống, mỗi đề có **đúng một lời giải**; gồm đề mẫu "Vừa" | 150 |
+| Thông thường | 149 đề sinh ngẫu nhiên 20-50 ô trống, mỗi đề có **đúng một lời giải**; cộng đề mẫu "Vừa" (40 ô trống, 4 lời giải) | 150 |
 | Lớn / khó | 51-56 ô trống có lời giải duy nhất; 58-70 ô trống nhiều lời giải; các đề nổi tiếng: Wikipedia, Arto Inkala, AI Escargot, Easter Monster, đề 17 số của Gordon Royle, đề chống quay lui | 45 |
 | Biên | 0 ô trống, 81 ô trống, 80 ô trống, 1 ô trống ở ô đầu / ô cuối, trống trọn một hàng / cột / khối / đường chéo / 3 hàng, ô trống duy nhất có đáp án 1 hoặc 9 | 13 |
 | Đặc biệt | nhiều lời giải, đúng 2 lời giải, vô nghiệm ngay ô đầu, vô nghiệm phải tìm mới biết; cùng một đề viết theo 3 định dạng; dòng trống xen giữa, xuống dòng kiểu Windows, nhiều dấu cách và tab | 21 |

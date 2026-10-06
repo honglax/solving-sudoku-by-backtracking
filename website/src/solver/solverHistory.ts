@@ -124,9 +124,13 @@ export class SolverHistory {
         progress.solutionVector[event.index] = event.digit
         progress.restoreCount -= 1
         break
-      case 'descend':
       case 'solutionFound':
+      case 'solutionListed':
+        progress.solutionCount -= 1
+        break
+      case 'descend':
       case 'noSolution':
+      case 'searchExhausted':
         break
     }
     progress.currentIndex = entry.currentIndexBefore

@@ -5,6 +5,7 @@ const PAGES = [
   { path: '/solver', title: 'Giải Sudoku · Sudoku · Quay lui' },
   { path: '/algorithm', title: 'Thuật toán · Sudoku · Quay lui' },
   { path: '/compare', title: 'So sánh · Sudoku · Quay lui' },
+  { path: '/all-solutions', title: 'Mọi lời giải · Sudoku · Quay lui' },
   { path: '/about', title: 'Giới thiệu · Sudoku · Quay lui' },
   { path: '/khong-co-trang-nay', title: 'Không tìm thấy trang · Sudoku · Quay lui' },
 ]
@@ -29,6 +30,25 @@ for (const viewport of [{ width: 1366, height: 680 }, { width: 1712, height: 122
     expect(new Set(wordmarkPositions).size).toBe(1)
   })
 }
+
+for (const width of [900, 1366]) {
+  test(`at ${width} px every navigation link stays on one line`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 800 })
+    await page.goto('/')
+    const linkHeights = await page
+      .getByRole('navigation', { name: 'Điều hướng chính' })
+      .getByRole('link')
+      .evaluateAll(links => links.map(link => Math.round(link.getBoundingClientRect().height)))
+    expect(new Set(linkHeights).size).toBe(1)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBe(0)
+  })
+}
+
+test('below 900 px the navigation moves into the menu', async ({ page }) => {
+  await page.setViewportSize({ width: 899, height: 800 })
+  await page.goto('/')
+  await expect(page.getByRole('button', { name: 'Menu' })).toBeVisible()
+})
 
 test('the chosen theme is remembered after a reload', async ({ page }) => {
   await page.goto('/')

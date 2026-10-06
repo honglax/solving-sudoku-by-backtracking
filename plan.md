@@ -155,6 +155,8 @@ Thứ tự làm: **A → B → C → D**. Trễ lịch thì cắt từ D trở l
 - Test: cả 3 cách cho cùng lời giải và cùng 3 con số với generator, trên mọi đề của bộ testcase.
 
 **B. Chế độ "Tìm mọi lời giải"**, đúng nguyên văn mô hình 1 trên slide
+
+> **Đã làm 6/10, thành trang riêng `/all-solutions` ("Mọi lời giải" trên menu)** theo lựa chọn của bạn, trang Giải Sudoku giữ nguyên. Bộ giải có tùy chọn `findsAllSolutions` (2 sự kiện mới `solutionListed`, `searchExhausted`); Chạy dừng ở mỗi lời giải, Tìm hết chạy một mạch; mã giả sáng đúng dòng "Xuất lời giải" rồi "Trả lại trạng thái cũ"; bộ sưu tập tối đa 100 lời giải, tô ô khác lời giải 1. Bản Python `checks/reference_all_solutions.py`. Phát hiện: đề mẫu "Vừa" có 4 lời giải, "Nhiều lời giải" có 18; với Inkala, đi hết cây cần 18.619.020 lần thử, gấp 42 lần tìm lời giải đầu.
 - Trên slide, sau "Xuất lời giải" thuật toán vẫn chạy tiếp: trả lại trạng thái cũ, thử j kế tiếp. Vậy chế độ này không phải thuật toán mới, mà là mô hình 1 đầy đủ; dừng ở lời giải đầu tiên mới là biến thể (đủ khi chỉ cần một lời giải).
 - Công tắc trên trình giải: "Dừng ở lời giải đầu tiên" (mặc định) / "Tìm mọi lời giải".
 - Bộ đếm thêm "Số lời giải". Lời giải tìm được hiện trong một danh sách, bấm vào để xem.
@@ -380,7 +382,7 @@ Chi tiết đầy đủ ở `testcases/README.md`. Tóm tắt:
 | Nhóm | Nội dung | Số đề |
 |---|---|---|
 | Nhỏ | 1-5 ô trống | 40 |
-| Thông thường | 20-50 ô trống, lời giải duy nhất | 150 |
+| Thông thường | 20-50 ô trống, lời giải duy nhất (riêng đề mẫu "Vừa" có 4 lời giải) | 150 |
 | Lớn / khó | 51-56 ô trống lời giải duy nhất; 58-70 ô trống nhiều lời giải; Wikipedia, Inkala, AI Escargot, Easter Monster, đề 17 số (Royle), đề chống quay lui | 45 |
 | Biên | 0 / 80 / 81 ô trống, 1 ô ở đầu / cuối, trống trọn hàng / cột / khối / đường chéo / 3 hàng, ô duy nhất có đáp án 1 hoặc 9 | 13 |
 | Đặc biệt | nhiều lời giải, đúng 2 lời giải, vô nghiệm ngay / phải tìm mới biết, 3 định dạng đề, dòng trống, CRLF, tab | 21 |

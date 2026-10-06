@@ -81,12 +81,21 @@ export function buildStatusMessage({ puzzle, puzzleStatus, progress, phase }: St
     case 'restoreState':
       return restoreMessage(event.cell, event.digit)
     case 'solutionFound':
+    case 'solutionListed':
       return buildMessage('solved', MESSAGES.solved, {
         tryCount: formatCount(progress.tryCount),
         restoreCount: formatCount(progress.restoreCount),
       })
     case 'noSolution':
       return noSolutionMessage(puzzle, progress)
+    case 'searchExhausted':
+      if (event.solutionCount === 0) {
+        return noSolutionMessage(puzzle, progress)
+      }
+      return buildMessage('solved', MESSAGES.solved, {
+        tryCount: formatCount(progress.tryCount),
+        restoreCount: formatCount(progress.restoreCount),
+      })
     case 'recordState':
     case 'descend':
       return puzzleStatusMessage(puzzleStatus)

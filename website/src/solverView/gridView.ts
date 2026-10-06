@@ -60,7 +60,7 @@ function buildIdleGridView(puzzle: Grid, lockedGivens: Grid, puzzleStatus: Puzzl
 }
 
 function buildRunningGridView(puzzle: Grid, progress: SolverProgress): CellView[] {
-  const isSolved = progress.lastEvent?.kind === 'solutionFound'
+  const isSolved = progress.lastEvent?.kind === 'solutionFound' || progress.lastEvent?.kind === 'solutionListed'
   const cellViews: CellView[] = []
   for (let index = 0; index < CELL_COUNT; index++) {
     if (puzzle[index] !== EMPTY) {
@@ -106,6 +106,8 @@ function buildRunningGridView(puzzle: Grid, progress: SolverProgress): CellView[
     case 'recordState':
     case 'descend':
     case 'solutionFound':
+    case 'solutionListed':
+    case 'searchExhausted':
       break
   }
   return cellViews

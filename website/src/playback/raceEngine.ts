@@ -43,7 +43,7 @@ export class RaceEngine {
     this.cancelAnimation()
     this.lanes = this.cellOrders.map(cellOrder => ({
       cellOrder,
-      generator: solveByBacktracking(puzzle, cellOrder),
+      generator: solveByBacktracking(puzzle, { cellOrder }),
       progress: createSolverProgress(puzzle),
     }))
     this.publishLanes()

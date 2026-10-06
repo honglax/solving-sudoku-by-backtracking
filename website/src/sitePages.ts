@@ -6,6 +6,7 @@ export const HOME_PATH = '/'
 export const SOLVER_PATH = '/solver'
 export const ALGORITHM_PATH = '/algorithm'
 export const COMPARISON_PATH = '/compare'
+export const ALL_SOLUTIONS_PATH = '/all-solutions'
 export const ABOUT_PATH = '/about'
 
 export type SitePage = {
@@ -18,6 +19,7 @@ export const SITE_PAGES: SitePage[] = [
   { path: SOLVER_PATH, navigationLabel: messages.site.navigation.solver },
   { path: ALGORITHM_PATH, navigationLabel: messages.site.navigation.algorithm },
   { path: COMPARISON_PATH, navigationLabel: messages.site.navigation.comparison },
+  { path: ALL_SOLUTIONS_PATH, navigationLabel: messages.site.navigation.allSolutions },
   { path: ABOUT_PATH, navigationLabel: messages.site.navigation.about },
 ]
 

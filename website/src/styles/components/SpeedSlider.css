@@ -1,0 +1,32 @@
+.speed-slider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  height: 36px;
+}
+
+.speed-slider__label {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-weight: 600;
+}
+
+.speed-slider__input {
+  width: 160px;
+  accent-color: var(--color-primary);
+}
+
+.speed-slider__value {
+  min-width: 9rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+  .speed-slider__input {
+    flex: 1;
+    width: auto;
+  }
+}

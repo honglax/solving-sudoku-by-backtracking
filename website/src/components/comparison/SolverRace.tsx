@@ -11,18 +11,12 @@ import { countCandidatesOfEmptyCells } from '../../solverView/candidateCounts.ts
 import { formatCount } from '../../solverView/formatting.ts'
 import { buildGridView } from '../../solverView/gridView.ts'
 import { samplePuzzleLabel } from '../../solverView/puzzleLabels.ts'
-import {
-  SPEED_SLIDER_MAXIMUM,
-  SPEED_SLIDER_MINIMUM,
-  sliderPositionToSpeed,
-  speedToSliderPosition,
-} from '../../solverView/speed.ts'
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '../iconSizes.ts'
+import { SpeedSlider } from '../SpeedSlider.tsx'
 import { SudokuGrid } from '../solver/SudokuGrid.tsx'
 import '../../styles/components/comparison/SolverRace.css'
 
 const RACE = messages.comparison.race
-const SPEED = messages.solver.controls
 const DEFAULT_RACE_PUZZLE_ID = 3
 
 function parseSamplePuzzleById(puzzleId: number): Grid {
@@ -119,13 +113,11 @@ function RaceLaneView({ lane, puzzle, raceMode }: RaceLaneViewProps) {
 
 export function SolverRace() {
   const puzzleSelectId = useId()
-  const speedSliderId = useId()
   const [puzzleId, setPuzzleId] = useState(DEFAULT_RACE_PUZZLE_ID)
   const puzzle = useMemo(() => parseSamplePuzzleById(puzzleId), [puzzleId])
   const { lanes, mode, triesPerSecond, run, pause, step, reset, changeSpeed } = useSolverRace(puzzle)
   const isRunning = mode === 'running'
   const isFinished = mode === 'finished'
-  const speedLabel = formatMessage(SPEED.speedValue, { speed: formatCount(triesPerSecond) })
   const summary = isFinished ? raceSummary(lanes) : null
 
   return (
@@ -172,24 +164,7 @@ export function SolverRace() {
             {RACE.resetButton}
           </button>
         </div>
-        <div className="solver-race__speed">
-          <label className="solver-race__label" htmlFor={speedSliderId}>
-            {SPEED.speedLabel}
-          </label>
-          <input
-            id={speedSliderId}
-            className="solver-race__speed-slider"
-            type="range"
-            min={SPEED_SLIDER_MINIMUM}
-            max={SPEED_SLIDER_MAXIMUM}
-            value={speedToSliderPosition(triesPerSecond)}
-            aria-valuetext={speedLabel}
-            onChange={event => changeSpeed(sliderPositionToSpeed(Number(event.target.value)))}
-          />
-          <output className="solver-race__speed-value" htmlFor={speedSliderId}>
-            {speedLabel}
-          </output>
-        </div>
+        <SpeedSlider triesPerSecond={triesPerSecond} onChangeSpeed={changeSpeed} />
       </div>
 
       <p className="solver-race__legend">{RACE.legend}</p>

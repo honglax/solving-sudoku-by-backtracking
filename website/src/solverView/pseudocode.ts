@@ -30,10 +30,12 @@ export function highlightForEvent(event: SolverEvent | null): PseudocodeHighligh
     case 'descend':
       return { lineNumber: RECURSIVE_CALL_LINE, checkResult: null }
     case 'solutionFound':
+    case 'solutionListed':
       return { lineNumber: WRITE_SOLUTION_LINE, checkResult: null }
     case 'restoreState':
       return { lineNumber: RESTORE_STATE_LINE, checkResult: null }
     case 'noSolution':
+    case 'searchExhausted':
       return null
   }
 }

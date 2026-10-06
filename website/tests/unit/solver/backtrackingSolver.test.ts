@@ -177,7 +177,7 @@ describe('solveByBacktracking with the fewest-candidates order matches the Pytho
     it(`puzzle ${expected.id}: ${expected.tryCount} / ${expected.recordCount} / ${expected.restoreCount}`, () => {
       const puzzle = parseOrFail(sample.puzzle)
       const progress = createSolverProgress(puzzle)
-      for (const event of solveByBacktracking(puzzle, 'fewestCandidates')) {
+      for (const event of solveByBacktracking(puzzle, { cellOrder: 'fewestCandidates' })) {
         applySolverEvent(progress, event)
       }
 

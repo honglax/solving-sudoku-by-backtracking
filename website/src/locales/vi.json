@@ -12,6 +12,7 @@
       "solver": "Giải Sudoku",
       "algorithm": "Thuật toán",
       "comparison": "So sánh",
+      "allSolutions": "Mọi lời giải",
       "about": "Giới thiệu"
     },
     "menuButton": "Menu",
@@ -249,6 +250,45 @@
       "Ít lần thử hơn chưa chắc đã nhanh hơn. Muốn biết ô nào dễ nhất, trước mỗi bước phải đếm lại số khả năng của mọi ô trống. Hãy đo đề Arto Inkala: số lần thử giảm từ {inkalaRowMajorTryCount} xuống {inkalaFewestTryCount}, nhưng thời gian lại có thể lâu hơn.",
       "Không cách nào thoát được trường hợp xấu nhất: với đề được soạn đủ khó, cả 6 cách vẫn có thể phải thử tới 9ⁿ lần, như đã tính ở trang Thuật toán."
     ]
+  },
+  "allSolutions": {
+    "documentTitle": "Mọi lời giải",
+    "title": "Tìm mọi lời giải",
+    "intro": "Trình giải dừng ngay khi tìm được lời giải đầu tiên. Nhưng mã giả quay lui gốc thì không dừng: sau khi xuất một lời giải, nó trả lại ô vừa điền rồi thử tiếp, cho tới khi đã thử hết mọi khả năng. Nhờ vậy ta đếm được đề có bao nhiêu lời giải. Một đề Sudoku đúng chuẩn chỉ được có đúng một.",
+    "puzzleSelectLabel": "Đề",
+    "runButton": "Chạy",
+    "pauseButton": "Tạm dừng",
+    "stepButton": "Từng bước",
+    "searchAllButton": "Tìm hết",
+    "stopButton": "Dừng",
+    "resetButton": "Đặt lại",
+    "counters": {
+      "tryCount": "Lần thử",
+      "restoreCount": "Lần quay lui",
+      "solutionCount": "Lời giải đã tìm"
+    },
+    "status": {
+      "notStarted": "Bấm Chạy để xem từng bước, hoặc Tìm hết để đếm ngay.",
+      "searching": "Đang tìm… đã thấy {solutionCount} lời giải sau {tryCount} lần thử.",
+      "pausedAtSolution": "Tìm thấy lời giải thứ {solutionNumber} sau {tryCount} lần thử. Thuật toán chưa dừng: nó sẽ trả lại ô vừa điền rồi thử tiếp. Bấm Chạy để tìm tiếp.",
+      "paused": "Đã tạm dừng: đã thấy {solutionCount} lời giải sau {tryCount} lần thử.",
+      "finishedNone": "Đã thử hết mọi khả năng sau {tryCount} lần thử: đề này không có lời giải nào.",
+      "finishedOne": "Đã thử hết mọi khả năng sau {tryCount} lần thử: đề này có đúng một lời giải, đúng chuẩn của một đề Sudoku.",
+      "finishedMany": "Đã thử hết mọi khả năng sau {tryCount} lần thử: đề này có {solutionCount} lời giải. Một đề Sudoku đúng chuẩn chỉ được có một."
+    },
+    "emptyGridNote": "Lưới trống có tới 6.670.903.752.021.072.936.960 lời giải (Felgenhauer và Jarvis tính ra năm 2005). Không máy nào đếm hết được bằng cách này, nên hãy bấm Dừng khi đã xem đủ.",
+    "gallery": {
+      "title": "Các lời giải đã tìm",
+      "empty": "Chưa tìm thấy lời giải nào.",
+      "itemLabel": "Lời giải {number}",
+      "firstItemNote": "lời giải đầu tiên",
+      "differenceNote": "khác lời giải 1 ở {count} ô",
+      "legend": "Ô có nền màu là ô khác với lời giải 1.",
+      "limitNote": "Chỉ giữ {limit} lời giải đầu tiên để xem; bộ đếm vẫn đếm đủ."
+    },
+    "costTitle": "Biết chắc chỉ có một lời giải thì tốn bao nhiêu?",
+    "costText": "Muốn tìm một lời giải thì có thể dừng sớm. Còn muốn chắc chắn không còn lời giải nào khác, thuật toán phải đi hết mọi nhánh. Với đề Arto Inkala, tìm lời giải đầu tiên mất {firstTryCount} lần thử, còn đi hết để biết chắc chỉ có một lời giải mất {fullTryCount} lần thử, gấp khoảng {ratio} lần.",
+    "middlePuzzleNote": "Ngay cả đề mẫu \"Vừa\" cũng có {solutionCount} lời giải: thử chọn đề đó để xem chúng khác nhau ở đâu."
   },
   "about": {
     "documentTitle": "Giới thiệu",

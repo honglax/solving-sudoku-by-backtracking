@@ -18,7 +18,7 @@ test.describe('the race between filling in order and filling the easiest cell fi
 
   test('running to the end shows the measured try counts and a summary', async ({ page }) => {
     await page.goto('/compare')
-    await page.locator('.solver-race__speed-slider').fill(FASTEST_SPEED_SLIDER_POSITION)
+    await page.locator('.solver-race .speed-slider__input').fill(FASTEST_SPEED_SLIDER_POSITION)
     await page.getByRole('button', { name: 'Chạy' }).click()
 
     await expect(page.locator('.solver-race__summary')).toHaveText(

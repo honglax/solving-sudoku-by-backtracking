@@ -19,13 +19,18 @@ const UNUSED_SLOT: CellPosition = { row: 0, column: 0 }
 
 export type CellOrder = 'rowMajor' | 'fewestCandidates'
 
+export type SolverOptions = {
+  cellOrder?: CellOrder
+  findsAllSolutions?: boolean
+}
+
 function createUsageTable(): boolean[][] {
   return Array.from({ length: SIZE + 1 }, () => new Array<boolean>(LAST_DIGIT + 1).fill(false))
 }
 
 export function* solveByBacktracking(
   puzzle: Grid,
-  cellOrder: CellOrder = 'rowMajor',
+  { cellOrder = 'rowMajor', findsAllSolutions = false }: SolverOptions = {},
 ): Generator<SolverEvent, void, undefined> {
   const grid = [...puzzle]
   const rowUsed = createUsageTable()
@@ -46,6 +51,7 @@ export function* solveByBacktracking(
 
   const n = emptyCells.length - 1
   const S = new Array<number>(n + 1).fill(EMPTY)
+  let solutionCount = 0
 
   function findConflictingUnit(cell: CellPosition, j: number): Unit | null {
     if (rowUsed[cell.row][j]) {
@@ -133,6 +139,9 @@ export function* solveByBacktracking(
           if (solutionFound) {
             return true
           }
+        } else if (findsAllSolutions) {
+          solutionCount++
+          yield { kind: 'solutionListed', solutionNumber: solutionCount }
         } else {
           yield { kind: 'solutionFound' }
           return true
@@ -148,6 +157,16 @@ export function* solveByBacktracking(
     return false
   }
 
+  if (findsAllSolutions) {
+    if (n === 0) {
+      solutionCount++
+      yield { kind: 'solutionListed', solutionNumber: solutionCount }
+    } else {
+      yield* tryStep(1)
+    }
+    yield { kind: 'searchExhausted', solutionCount }
+    return
+  }
   if (n === 0) {
     yield { kind: 'solutionFound' }
     return
