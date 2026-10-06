@@ -1,0 +1,10 @@
+.site-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  container-type: inline-size;
+}
+
+.site-layout > main {
+  flex: 1;
+}

@@ -1,0 +1,70 @@
+.grid-legend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: 20px;
+  margin-top: var(--space-4);
+}
+
+.grid-legend__entry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  white-space: nowrap;
+}
+
+.grid-legend__swatch {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-grid-cell-line);
+  font-size: var(--font-size-caption);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid-legend__swatch--given {
+  background: var(--color-state-given-bg);
+  color: var(--color-state-given-digit);
+  font-weight: 600;
+}
+
+.grid-legend__swatch--trying {
+  background: var(--color-state-trying-bg);
+  color: var(--color-state-trying-digit);
+  box-shadow: inset 0 0 0 2px var(--color-state-trying-cue);
+}
+
+.grid-legend__swatch--rejected {
+  background: var(--color-state-rejected-bg);
+  color: var(--color-state-rejected-digit);
+}
+
+.grid-legend__swatch--rejected .grid-legend__digit,
+.grid-legend__swatch--restored .grid-legend__digit {
+  text-decoration: line-through;
+}
+
+.grid-legend__swatch--recorded {
+  background: var(--color-state-recorded-bg);
+  color: var(--color-state-recorded-digit);
+}
+
+.grid-legend__swatch--restored {
+  background: var(--color-state-restored-bg);
+  color: var(--color-state-restored-digit);
+  outline: 2px dashed var(--color-state-restored-cue);
+  outline-offset: -2px;
+}
+
+.grid-legend__swatch--solved {
+  background: var(--color-state-solved-bg);
+  color: var(--color-state-solved-digit);
+}

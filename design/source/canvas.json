@@ -1,0 +1,260 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "02-trang-chu.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "title": "02 Trang chủ - desktop 1440",
+      "w": 1440,
+      "x": 0,
+      "y": 3500,
+      "is_interactive": true
+    },
+    "03-giai-san-sang.dc.html": {
+      "expand": "fill",
+      "h": 680,
+      "title": "03 Giải Sudoku - sẵn sàng - desktop 1366",
+      "w": 1366,
+      "x": 0,
+      "y": 5900,
+      "is_interactive": true
+    },
+    "04-giai-dang-thu-bi-loai.dc.html": {
+      "expand": "fill",
+      "h": 680,
+      "title": "04 Giải Sudoku - đang thử, bị loại - desktop 1366",
+      "w": 1366,
+      "x": 1446,
+      "y": 5900,
+      "is_interactive": true
+    },
+    "05-giai-quay-lui.dc.html": {
+      "expand": "fill",
+      "h": 680,
+      "title": "05 Giải Sudoku - quay lui - desktop 1366",
+      "w": 1366,
+      "x": 2892,
+      "y": 5900,
+      "is_interactive": true
+    },
+    "06-giai-da-giai.dc.html": {
+      "expand": "fill",
+      "h": 680,
+      "title": "06 Giải Sudoku - đã giải - desktop 1366",
+      "w": 1366,
+      "x": 4338,
+      "y": 5900,
+      "is_interactive": true
+    },
+    "07-giai-de-sai.dc.html": {
+      "expand": "fill",
+      "h": 680,
+      "title": "07 Giải Sudoku - đề sai - desktop 1366",
+      "w": 1366,
+      "x": 0,
+      "y": 6960,
+      "is_interactive": true
+    },
+    "08-giai-vo-nghiem.dc.html": {
+      "expand": "fill",
+      "h": 680,
+      "title": "08 Giải Sudoku - vô nghiệm - desktop 1366",
+      "w": 1366,
+      "x": 1446,
+      "y": 6960,
+      "is_interactive": true
+    },
+    "09-giai-dan-de.dc.html": {
+      "expand": "fill",
+      "h": 680,
+      "title": "09 Giải Sudoku - dán đề (hộp thoại) - desktop 1366",
+      "w": 1366,
+      "x": 2892,
+      "y": 6960,
+      "is_interactive": true
+    },
+    "10-giai-mobile.dc.html": {
+      "h": 844,
+      "title": "10 Giải Sudoku - đang thử, bị loại - mobile 390",
+      "w": 390,
+      "x": 0,
+      "y": 8020
+    },
+    "11-giai-dark.dc.html": {
+      "expand": "fill",
+      "h": 680,
+      "title": "11 Giải Sudoku - đang thử, bị loại - dark - desktop 1366",
+      "w": 1366,
+      "x": 470,
+      "y": 8020,
+      "is_interactive": true
+    },
+    "12-thuat-toan.dc.html": {
+      "expand": "fill",
+      "h": 2020,
+      "title": "12 Thuật toán - desktop 1440",
+      "w": 1440,
+      "x": 1520,
+      "y": 3500,
+      "is_interactive": true
+    },
+    "13-gioi-thieu.dc.html": {
+      "expand": "fill",
+      "h": 780,
+      "title": "13 Giới thiệu - desktop 1440",
+      "w": 1440,
+      "x": 3040,
+      "y": 3500,
+      "is_interactive": true
+    },
+    "Main.dc.html": {
+      "h": 3120,
+      "title": "01 Component sheet",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "14-khong-tim-thay.dc.html": {
+      "x": 0,
+      "y": 9244,
+      "w": 1440,
+      "h": 720,
+      "title": "14 Không tìm thấy trang (404) - desktop 1440",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "15-loi-ung-dung.dc.html": {
+      "x": 1520,
+      "y": 9244,
+      "w": 1440,
+      "h": 720,
+      "title": "15 Lỗi ứng dụng - desktop 1440",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "16-giai-dan-de-loi.dc.html": {
+      "x": 3040,
+      "y": 9244,
+      "w": 1366,
+      "h": 680,
+      "title": "16 Giải Sudoku - dán đề, lỗi định dạng - desktop 1366",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "17-giai-dang-giai-lau.dc.html": {
+      "x": 4486,
+      "y": 9244,
+      "w": 1366,
+      "h": 680,
+      "title": "17 Giải Sudoku - đang giải lâu (Giải ngay) - desktop 1366",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "00-luong-nguoi-dung.dc.html": {
+      "x": 0,
+      "y": -1840,
+      "w": 2448,
+      "h": 1440,
+      "title": "00 Luồng người dùng - end-to-end"
+    },
+    "18-giai-dang-thu-chap-nhan.dc.html": {
+      "x": 5784,
+      "y": 5900,
+      "w": 1366,
+      "h": 680,
+      "title": "18 Giải Sudoku - đang thử, chấp nhận - desktop 1366",
+      "expand": "fill",
+      "is_interactive": true
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-03T10:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "rowA": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "Thành phần - sáng và tối",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    },
+    "rowB": {
+      "kind": "title1",
+      "maxW": 4480,
+      "text": "Các trang",
+      "w": 240,
+      "x": 0,
+      "y": 3240
+    },
+    "rowC": {
+      "kind": "title1",
+      "maxW": 7150,
+      "text": "Giải Sudoku - các bước của thuật toán",
+      "w": 240,
+      "x": 0,
+      "y": 5640
+    },
+    "rowD": {
+      "kind": "title1",
+      "maxW": 4258,
+      "text": "Giải Sudoku - lỗi, vô nghiệm, dán đề",
+      "w": 240,
+      "x": 0,
+      "y": 6700
+    },
+    "rowE": {
+      "kind": "title1",
+      "maxW": 1836,
+      "text": "Mobile và dark",
+      "w": 240,
+      "x": 0,
+      "y": 7760
+    },
+    "rowF": {
+      "kind": "title1",
+      "maxW": 5852,
+      "text": "Lỗi và trường hợp biên",
+      "w": 240,
+      "x": 0,
+      "y": 8984
+    },
+    "rowZ": {
+      "kind": "title1",
+      "maxW": 2448,
+      "text": "Luồng người dùng",
+      "w": 240,
+      "x": 0,
+      "y": -2100
+    }
+  },
+  "order": [
+    "00-luong-nguoi-dung.dc.html",
+    "Main.dc.html",
+    "02-trang-chu.dc.html",
+    "03-giai-san-sang.dc.html",
+    "04-giai-dang-thu-bi-loai.dc.html",
+    "05-giai-quay-lui.dc.html",
+    "06-giai-da-giai.dc.html",
+    "07-giai-de-sai.dc.html",
+    "08-giai-vo-nghiem.dc.html",
+    "09-giai-dan-de.dc.html",
+    "10-giai-mobile.dc.html",
+    "11-giai-dark.dc.html",
+    "12-thuat-toan.dc.html",
+    "13-gioi-thieu.dc.html",
+    "14-khong-tim-thay.dc.html",
+    "15-loi-ung-dung.dc.html",
+    "16-giai-dan-de-loi.dc.html",
+    "17-giai-dang-giai-lau.dc.html",
+    "18-giai-dang-thu-chap-nhan.dc.html"
+  ],
+  "pages": [],
+  "title": "Sudoku · Quay lui"
+}

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giải Sudoku - đang thử, bị loại - mobile</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.r{--page:#F8FAFC;--surface:#FFFFFF;--sunken:#F1F5F9;--border:#E2E8F0;--cell-line:#CBD5E1;--box-line:#334155;--text:#0F172A;--muted:#475569;--primary:#2563EB;--primary-strong:#1D4ED8;--primary-soft:#DBEAFE;--on-primary:#FFFFFF;--given-bg:#FFFFFF;--given-fg:#0F172A;--fill-bg:#EFF6FF;--fill-fg:#1D4ED8;--try-bg:#FEF3C7;--try-fg:#92400E;--try-ring:#D97706;--rej-bg:#FEE2E2;--rej-fg:#B91C1C;--back-bg:#EDE9FE;--back-fg:#6D28D9;--back-ring:#7C3AED;--ok-bg:#CCFBF1;--ok-fg:#0F766E;--shadow:0 1px 2px rgba(15,23,42,0.06),0 1px 3px rgba(15,23,42,0.10);background:var(--page);color:var(--text);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:16px;line-height:24px}
+.r[data-theme="dark"]{--page:#0B1120;--surface:#111827;--sunken:#1E293B;--border:#1F2A3C;--cell-line:#334155;--box-line:#94A3B8;--text:#E2E8F0;--muted:#94A3B8;--primary:#60A5FA;--primary-strong:#93C5FD;--primary-soft:#1E3A8A;--on-primary:#0B1120;--given-bg:#111827;--given-fg:#F1F5F9;--fill-bg:#172554;--fill-fg:#93C5FD;--try-bg:#422006;--try-fg:#FCD34D;--try-ring:#F59E0B;--rej-bg:#450A0A;--rej-fg:#FCA5A5;--back-bg:#2E1065;--back-fg:#C4B5FD;--back-ring:#A78BFA;--ok-bg:#042F2E;--ok-fg:#5EEAD4;--shadow:none}
+.r *,.r *::before,.r *::after{box-sizing:border-box}
+.r h1,.r h2,.r h3,.r p,.r ul,.r dl,.r dd{margin:0}
+.r a{color:var(--primary-strong)}
+.r :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.ic{width:20px;height:20px;flex:none}
+.tnum{font-variant-numeric:tabular-nums}
+.topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border)}
+.r .wordmark{font-size:18px;line-height:24px;font-weight:600;color:var(--text);text-decoration:none;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:44px;padding:0 12px;border-radius:6px;border:1px solid transparent;font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;white-space:nowrap;cursor:pointer;text-decoration:none;transition:background-color 150ms ease-out}
+.r .btn-p{background:var(--primary);color:var(--on-primary)}
+.r .btn-p:hover{background:var(--primary-strong)}
+.r .btn-s{background:var(--surface);color:var(--text);border-color:var(--cell-line)}
+.r .btn-s:hover{background:var(--sunken)}
+.r .btn-g{background:transparent;color:var(--text)}
+.r .btn-g:hover{background:var(--sunken)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow)}
+.code{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;background:var(--sunken);border-radius:6px;padding:4px 0;font:400 14px/22px 'JetBrains Mono',ui-monospace,monospace;color:var(--text);overflow-x:auto}
+.ln{display:flex;align-items:center;gap:8px;height:22px;padding:0 12px 0 13px;border-left:3px solid transparent;white-space:pre}
+.ln.on{background:var(--primary-soft);border-left-color:var(--primary);font-weight:600}
+.tag{font:600 12px/16px 'Be Vietnam Pro',system-ui,sans-serif;padding:0 8px;border-radius:6px;white-space:nowrap}
+.tag-no{background:var(--rej-bg);color:var(--rej-fg)}
+.sg{display:grid;grid-template-columns:repeat(9,39px);border:2px solid var(--box-line);border-radius:8px;overflow:hidden;background:var(--surface);width:max-content}
+.cell{position:relative;width:39px;height:39px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--cell-line);border-bottom:1px solid var(--cell-line);font-size:22px;line-height:1;font-variant-numeric:tabular-nums;background:var(--surface);color:var(--text);transition:background-color 150ms ease-out}
+.cell.br3{border-right:2px solid var(--box-line)}
+.cell.bb3{border-bottom:2px solid var(--box-line)}
+.cell.nr{border-right:0}
+.cell.nb{border-bottom:0}
+.s-given{background:var(--given-bg);color:var(--given-fg);font-weight:600}
+.s-fill{background:var(--fill-bg);color:var(--fill-fg);font-weight:400}
+.s-rej{background:var(--rej-bg);color:var(--rej-fg)}
+.s-rej .dg{text-decoration:line-through;text-decoration-thickness:2px}
+.ring{box-shadow:inset 0 0 0 2px var(--rej-fg)}
+.slots{display:flex;flex-wrap:wrap;gap:4px;max-height:104px;overflow-y:auto}
+.slot{width:26px;height:30px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;flex:none}
+.slot .sd{height:16px;font-size:14px;line-height:16px;font-weight:600}
+.slot .si{height:12px;font-size:12px;line-height:12px}
+.sl-fill{background:var(--fill-bg);color:var(--fill-fg)}
+.sl-try{background:var(--try-bg);color:var(--try-fg);box-shadow:inset 0 0 0 2px var(--try-ring)}
+.sl-empty{border:1px dashed var(--cell-line);color:var(--muted)}
+.ctr{display:flex;justify-content:space-around;gap:16px}
+.ctr > div{min-width:72px;text-align:center}
+.ctr .n{font-size:24px;line-height:32px;font-weight:600;font-variant-numeric:tabular-nums}
+.ctr .l{font-size:12px;line-height:16px;color:var(--muted)}
+.msg{display:flex;align-items:flex-start;gap:8px;padding:4px 12px;border-radius:6px;font-size:14px;line-height:20px}
+.msg strong{font-weight:600}
+.msg-rej{background:var(--rej-bg);color:var(--rej-fg)}
+.acc summary{list-style:none;cursor:pointer;min-height:44px;padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.acc summary::-webkit-details-marker{display:none}
+.acc-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;line-height:20px;font-weight:600}
+.acc-h .ic{color:var(--muted)}
+.bbar{position:absolute;left:0;right:0;bottom:0;padding:16px;background:var(--surface);border-top:1px solid var(--border);display:flex;gap:8px}
+.bbar .btn{flex:1 1 0;min-width:0;padding:0 8px}
+@media (prefers-reduced-motion: reduce){.cell,.btn{transition:none}}
+/* JetBrains Mono: tắt chữ ghép để "-->" hiện đúng như slide */
+.code,.ln,.mono,.textarea,.ic-code{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
+</style>
+</head>
+<body>
+<div class="r" data-theme="light" style="position:relative;width:390px;height:844px;overflow:hidden;display:flex;flex-direction:column">
+<header class="topbar"><div style="height:100%;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+<a class="wordmark" href="02-trang-chu.html">Sudoku · Quay lui</a>
+<button class="btn btn-g" type="button" aria-expanded="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>Menu</button>
+</div></header>
+<main style="padding:16px 16px 92px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+<p style="font-size:14px;line-height:20px;color:var(--muted)">Lab01 · Quay lui mô hình 1</p>
+<button class="btn btn-s" type="button" aria-haspopup="dialog"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="21" x2="14" y1="4" y2="4"></line><line x1="10" x2="3" y1="4" y2="4"></line><line x1="21" x2="12" y1="12" y2="12"></line><line x1="8" x2="3" y1="12" y2="12"></line><line x1="21" x2="16" y1="20" y2="20"></line><line x1="12" x2="3" y1="20" y2="20"></line><line x1="14" x2="14" y1="2" y2="6"></line><line x1="8" x2="8" y1="10" y2="14"></line><line x1="16" x2="16" y1="18" y2="22"></line></svg>Tùy chọn</button>
+</div>
+<div class="sg" style="align-self:center"><div class="cell s-given"><span class="dg">5</span></div><div class="cell s-given"><span class="dg">3</span></div><div class="cell s-given br3"><span class="dg">4</span></div><div class="cell s-given"><span class="dg">6</span></div><div class="cell s-fill"><span class="dg">7</span></div><div class="cell s-fill br3"><span class="dg">8</span></div><div class="cell s-given"><span class="dg">9</span></div><div class="cell s-given"><span class="dg">1</span></div><div class="cell s-given nr"><span class="dg">2</span></div><div class="cell s-fill"><span class="dg">6</span></div><div class="cell s-fill"><span class="dg">2</span></div><div class="cell s-fill br3"><span class="dg">8</span></div><div class="cell s-fill"><span class="dg">1</span></div><div class="cell s-given"><span class="dg">9</span></div><div class="cell s-given br3"><span class="dg">5</span></div><div class="cell s-given"><span class="dg">3</span></div><div class="cell s-given"><span class="dg">4</span></div><div class="cell s-fill nr"><span class="dg">7</span></div><div class="cell s-given bb3"><span class="dg">1</span></div><div class="cell s-given bb3"><span class="dg">9</span></div><div class="cell s-fill br3 bb3"><span class="dg">7</span></div><div class="cell s-fill bb3"><span class="dg">3</span></div><div class="cell s-fill bb3"><span class="dg">4</span></div><div class="cell s-given br3 bb3"><span class="dg">2</span></div><div class="cell s-fill bb3"><span class="dg">5</span></div><div class="cell s-given bb3"><span class="dg">6</span></div><div class="cell s-fill nr bb3"><span class="dg">8</span></div><div class="cell s-fill"><span class="dg">9</span></div><div class="cell s-fill"><span class="dg">5</span></div><div class="cell s-fill br3"><span class="dg">3</span></div><div class="cell s-given"><span class="dg">7</span></div><div class="cell s-given"><span class="dg">6</span></div><div class="cell s-given br3"><span class="dg">1</span></div><div class="cell s-rej"><span class="dg">2</span></div><div class="cell s-given ring"><span class="dg">2</span></div><div class="cell  nr"><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell s-given br3"><span class="dg">6</span></div><div class="cell "><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell s-given br3"><span class="dg">3</span></div><div class="cell s-given"><span class="dg">7</span></div><div class="cell "><span class="dg"></span></div><div class="cell  nr"><span class="dg"></span></div><div class="cell  bb3"><span class="dg"></span></div><div class="cell s-given bb3"><span class="dg">1</span></div><div class="cell  br3 bb3"><span class="dg"></span></div><div class="cell s-given bb3"><span class="dg">9</span></div><div class="cell s-given bb3"><span class="dg">2</span></div><div class="cell s-given br3 bb3"><span class="dg">4</span></div><div class="cell s-given bb3"><span class="dg">8</span></div><div class="cell  bb3"><span class="dg"></span></div><div class="cell  nr bb3"><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell s-given br3"><span class="dg">1</span></div><div class="cell "><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell  br3"><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell s-given"><span class="dg">8</span></div><div class="cell s-given nr"><span class="dg">4</span></div><div class="cell s-given"><span class="dg">2</span></div><div class="cell "><span class="dg"></span></div><div class="cell  br3"><span class="dg"></span></div><div class="cell s-given"><span class="dg">4</span></div><div class="cell s-given"><span class="dg">1</span></div><div class="cell  br3"><span class="dg"></span></div><div class="cell s-given"><span class="dg">6</span></div><div class="cell s-given"><span class="dg">3</span></div><div class="cell s-given nr"><span class="dg">5</span></div><div class="cell  nb"><span class="dg"></span></div><div class="cell s-given nb"><span class="dg">4</span></div><div class="cell  br3 nb"><span class="dg"></span></div><div class="cell s-given nb"><span class="dg">2</span></div><div class="cell  nb"><span class="dg"></span></div><div class="cell s-given br3 nb"><span class="dg">6</span></div><div class="cell s-given nb"><span class="dg">1</span></div><div class="cell s-given nb"><span class="dg">7</span></div><div class="cell  nr nb"><span class="dg"></span></div></div>
+<p class="msg msg-rej" role="status"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg><span><strong>Ô (4, 7)</strong> - thử số 2: bị loại vì 2 đã có ở hàng 4.</span></p>
+<div class="card ctr" style="padding:12px 16px"><div><div class="n">814</div><div class="l">Lần thử</div></div><div><div class="n">96</div><div class="l">Ghi nhận</div></div><div><div class="n">81</div><div class="l">Trả lại</div></div></div>
+<details class="card acc">
+<summary>
+<span class="acc-h">Mã giả<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></span>
+<span class="code" style="display:block"><span class="ln on">if (khả năng j chấp nhận được)<span class="tag tag-no">sai</span></span></span>
+</summary>
+<div class="code" style="margin:0 16px 12px">
+<div class="ln">try(i) =</div>
+<div class="ln">{   for (j = 1 --&gt; k)</div>
+<div class="ln on">        if (khả năng j chấp nhận được)<span class="tag tag-no">sai</span></div>
+<div class="ln">        {   Xác định Sᵢ theo j;</div>
+<div class="ln">            Ghi nhận trạng thái mới của bài toán (nếu có);</div>
+<div class="ln">            if (i &lt; n)</div>
+<div class="ln">                try(i+1);</div>
+<div class="ln">            else</div>
+<div class="ln">                Xuất lời giải S = (S₁, S₂, …, Sₙ);</div>
+<div class="ln">            Trả lại trạng thái cũ của bài toán;</div>
+<div class="ln">        }</div>
+<div class="ln">}</div>
+</div>
+</details>
+<details class="card acc">
+<summary><span class="acc-h">Lời giải S<span style="display:flex;align-items:center;gap:8px"><span class="tnum" style="font-weight:400;color:var(--muted)">i = 16 / 40</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary>
+<div class="slots" style="margin:0 16px 12px"><div class="slot sl-fill"><span class="sd">7</span><span class="si">1</span></div><div class="slot sl-fill"><span class="sd">8</span><span class="si">2</span></div><div class="slot sl-fill"><span class="sd">6</span><span class="si">3</span></div><div class="slot sl-fill"><span class="sd">2</span><span class="si">4</span></div><div class="slot sl-fill"><span class="sd">8</span><span class="si">5</span></div><div class="slot sl-fill"><span class="sd">1</span><span class="si">6</span></div><div class="slot sl-fill"><span class="sd">7</span><span class="si">7</span></div><div class="slot sl-fill"><span class="sd">7</span><span class="si">8</span></div><div class="slot sl-fill"><span class="sd">3</span><span class="si">9</span></div><div class="slot sl-fill"><span class="sd">4</span><span class="si">10</span></div><div class="slot sl-fill"><span class="sd">5</span><span class="si">11</span></div><div class="slot sl-fill"><span class="sd">8</span><span class="si">12</span></div><div class="slot sl-fill"><span class="sd">9</span><span class="si">13</span></div><div class="slot sl-fill"><span class="sd">5</span><span class="si">14</span></div><div class="slot sl-fill"><span class="sd">3</span><span class="si">15</span></div><div class="slot sl-try"><span class="sd">2</span><span class="si">16</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">17</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">18</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">19</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">20</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">21</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">22</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">23</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">24</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">25</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">26</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">27</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">28</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">29</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">30</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">31</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">32</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">33</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">34</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">35</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">36</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">37</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">38</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">39</span></div><div class="slot sl-empty"><span class="sd"></span><span class="si">40</span></div></div>
+</details>
+</main>
+<div class="bbar">
+<button class="btn btn-s" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" x2="19" y1="5" y2="19"></line></svg>Từng bước</button>
+<button class="btn btn-p" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="4" width="4" height="16" rx="1"></rect><rect x="6" y="4" width="4" height="16" rx="1"></rect></svg>Tạm dừng</button>
+<button class="btn btn-s" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>Giải ngay</button>
+</div>
+</div>
+</body>
+</html>

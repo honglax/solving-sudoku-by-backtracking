@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xem từng bước thuật toán quay lui giải Sudoku: ô nào đang thử, số nào bị loại và vì sao." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Sudoku · Quay lui</title>
+    <script>
+      try {
+        const storedTheme = localStorage.getItem('theme')
+        if (storedTheme === 'light' || storedTheme === 'dark') {
+          document.documentElement.dataset.theme = storedTheme
+        }
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <noscript>Trang này cần bật JavaScript để chạy trình giải.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

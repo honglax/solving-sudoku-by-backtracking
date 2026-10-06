@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 Component sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.r{--page:#F8FAFC;--surface:#FFFFFF;--sunken:#F1F5F9;--border:#E2E8F0;--cell-line:#CBD5E1;--box-line:#334155;--text:#0F172A;--muted:#475569;--primary:#2563EB;--primary-strong:#1D4ED8;--primary-soft:#DBEAFE;--on-primary:#FFFFFF;--given-bg:#FFFFFF;--given-fg:#0F172A;--fill-bg:#EFF6FF;--fill-fg:#1D4ED8;--try-bg:#FEF3C7;--try-fg:#92400E;--try-ring:#D97706;--rej-bg:#FEE2E2;--rej-fg:#B91C1C;--back-bg:#EDE9FE;--back-fg:#6D28D9;--back-ring:#7C3AED;--ok-bg:#CCFBF1;--ok-fg:#0F766E;--shadow:0 1px 2px rgba(15,23,42,0.06),0 1px 3px rgba(15,23,42,0.10);background:var(--page);color:var(--text);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:16px;line-height:24px}
+.r[data-theme="dark"]{--page:#0B1120;--surface:#111827;--sunken:#1E293B;--border:#1F2A3C;--cell-line:#334155;--box-line:#94A3B8;--text:#E2E8F0;--muted:#94A3B8;--primary:#60A5FA;--primary-strong:#93C5FD;--primary-soft:#1E3A8A;--on-primary:#0B1120;--given-bg:#111827;--given-fg:#F1F5F9;--fill-bg:#172554;--fill-fg:#93C5FD;--try-bg:#422006;--try-fg:#FCD34D;--try-ring:#F59E0B;--rej-bg:#450A0A;--rej-fg:#FCA5A5;--back-bg:#2E1065;--back-fg:#C4B5FD;--back-ring:#A78BFA;--ok-bg:#042F2E;--ok-fg:#5EEAD4;--shadow:none}
+.r *,.r *::before,.r *::after{box-sizing:border-box}
+.r h1,.r h2,.r h3,.r p,.r ul,.r dl,.r dd{margin:0}
+.r a{color:var(--primary-strong)}
+.r :focus-visible,.r .fx{outline:2px solid var(--primary);outline-offset:2px}
+.ic{width:20px;height:20px;flex:none}
+.tnum{font-variant-numeric:tabular-nums}
+.mono{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;font-family:'JetBrains Mono',ui-monospace,monospace}
+.topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border)}
+.topbar-in{max-width:1248px;height:100%;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.r .wordmark{font-size:18px;line-height:24px;font-weight:600;color:var(--text);text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.r .nav a{font-size:14px;line-height:20px;font-weight:500;color:var(--text);text-decoration:none;padding:8px 12px;border-radius:6px}
+.r .nav a:hover{background:var(--sunken)}
+.r .nav a[aria-current="page"]{background:var(--primary-soft);color:var(--primary-strong)}
+.tb-right{display:flex;align-items:center;gap:12px}
+.tdiv{width:1px;height:20px;background:var(--border);flex:none}
+.theme-sw{display:flex;align-items:center;flex:none;height:36px;border:1px solid var(--cell-line);border-radius:6px;overflow:hidden}
+.r .theme-sw button{display:inline-flex;align-items:center;gap:4px;width:36px;height:34px;justify-content:center;padding:0;border:0;border-radius:0;background:transparent;color:var(--text);font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer}
+.r .theme-sw button:hover{background:var(--sunken)}
+.r .theme-sw button + button{border-left:1px solid var(--cell-line)}
+.r .theme-sw button{color:var(--muted)}
+.r .theme-sw button[aria-pressed="true"]{background:var(--sunken);color:var(--text)}
+.r .theme-sw button[aria-pressed="true"] svg{stroke-width:2.25}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:36px;padding:0 12px;border-radius:6px;border:1px solid transparent;font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;white-space:nowrap;cursor:pointer;text-decoration:none;transition:background-color 150ms ease-out}
+.r .btn-p{background:var(--primary);color:var(--on-primary)}
+.r .btn-p:hover,.r .btn-p.hv{background:var(--primary-strong)}
+.r .btn-s{background:var(--surface);color:var(--text);border-color:var(--cell-line)}
+.r .btn-s:hover,.r .btn-s.hv{background:var(--sunken)}
+.r .btn-g{background:transparent;color:var(--text)}
+.r .btn-g:hover,.r .btn-g.hv{background:var(--sunken)}
+.r .btn:disabled{opacity:0.4;cursor:not-allowed}
+.r .btn-p:disabled{background:var(--primary)}
+.r .btn-s:disabled{background:var(--surface)}
+.r .btn-g:disabled{background:transparent}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.lbl{font-size:14px;line-height:20px;color:var(--muted);white-space:nowrap}
+.selwrap{position:relative;flex:1;min-width:0}
+.selwrap .ic{position:absolute;right:8px;top:8px;pointer-events:none;color:var(--muted)}
+.field{width:100%;height:36px;border-radius:6px;border:1px solid var(--cell-line);background:var(--sunken);color:var(--text);font:400 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;padding:0 36px 0 12px;appearance:none;-webkit-appearance:none}
+.range{flex:1;min-width:0;height:24px;margin:0;accent-color:var(--primary)}
+.textarea{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;display:block;width:100%;border-radius:6px;border:1px solid var(--cell-line);background:var(--sunken);color:var(--text);font:400 14px/22px 'JetBrains Mono',ui-monospace,monospace;padding:12px;resize:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow)}
+.panel{padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.ph{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pt{font-size:14px;line-height:20px;font-weight:600}
+.cap{font-size:14px;line-height:20px;color:var(--muted)}
+.code{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;background:var(--sunken);border-radius:6px;padding:4px 0;font:400 14px/22px 'JetBrains Mono',ui-monospace,monospace;color:var(--text)}
+.ln{display:flex;align-items:center;gap:8px;height:22px;padding:0 12px 0 13px;border-left:3px solid transparent;white-space:pre}
+.ln.on{background:var(--primary-soft);border-left-color:var(--primary);font-weight:600}
+.tag{font:600 12px/16px 'Be Vietnam Pro',system-ui,sans-serif;padding:0 8px;border-radius:6px;white-space:nowrap}
+.tag-ok{background:var(--ok-bg);color:var(--ok-fg)}
+.tag-no{background:var(--rej-bg);color:var(--rej-fg)}
+.gblock{display:grid;grid-template-columns:16px auto;grid-template-rows:16px auto;gap:4px;width:max-content}
+.cn{display:flex;padding-left:2px}
+.cn span{width:44px;text-align:center;font-size:12px;line-height:16px;color:var(--muted)}
+.rn{display:flex;flex-direction:column;padding-top:2px}
+.rn span{height:44px;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:16px;color:var(--muted)}
+.sg{display:grid;grid-template-columns:repeat(9,44px);border:2px solid var(--box-line);border-radius:8px;overflow:hidden;background:var(--surface);width:max-content}
+.cell{position:relative;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--cell-line);border-bottom:1px solid var(--cell-line);font-size:24px;line-height:1;font-variant-numeric:tabular-nums;background:var(--surface);color:var(--text);transition:background-color 150ms ease-out}
+.cell.br3{border-right:2px solid var(--box-line)}
+.cell.bb3{border-bottom:2px solid var(--box-line)}
+.cell.nr{border-right:0}
+.cell.nb{border-bottom:0}
+.sg.g40{grid-template-columns:repeat(9,40px)}
+.g40 .cell{width:40px;height:40px;font-size:22px}
+.sg.g39{grid-template-columns:repeat(9,39px)}
+.g39 .cell{width:39px;height:39px;font-size:22px}
+.s-given{background:var(--given-bg);color:var(--given-fg);font-weight:600}
+.s-fill{background:var(--fill-bg);color:var(--fill-fg);font-weight:400}
+.s-try{background:var(--try-bg);color:var(--try-fg);box-shadow:inset 0 0 0 3px var(--try-ring)}
+.s-rej,.s-err{background:var(--rej-bg);color:var(--rej-fg)}
+.s-rej .dg{text-decoration:line-through;text-decoration-thickness:2px}
+.ring,.s-err{box-shadow:inset 0 0 0 2px var(--rej-fg)}
+.s-back{background:var(--back-bg);color:var(--back-fg);outline:2px dashed var(--back-ring);outline-offset:-4px}
+.ghost{position:absolute;top:4px;right:4px;font-size:11px;line-height:11px;font-weight:500;text-decoration:line-through}
+.s-ok{background:var(--ok-bg);color:var(--ok-fg);font-weight:400}
+.legend{display:flex;justify-content:space-between;align-items:center;gap:4px;height:20px}
+.lg{display:flex;align-items:center;gap:4px;font-size:12px;line-height:16px;color:var(--muted);white-space:nowrap}
+.sw{width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1;border:1px solid var(--cell-line);font-variant-numeric:tabular-nums;flex:none}
+.sw.s-try{box-shadow:inset 0 0 0 2px var(--try-ring)}
+.sw.s-back{outline-offset:-2px}
+.sw.s-back .dg{text-decoration:line-through}
+.slots{display:flex;flex-wrap:wrap;gap:4px;max-height:64px;overflow-y:auto}
+.slot{width:26px;height:30px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;flex:none}
+.slot .sd{height:16px;font-size:14px;line-height:16px;font-weight:600}
+.slot .si{height:12px;font-size:12px;line-height:12px}
+.sl-fill{background:var(--fill-bg);color:var(--fill-fg)}
+.sl-try{background:var(--try-bg);color:var(--try-fg);box-shadow:inset 0 0 0 2px var(--try-ring)}
+.sl-back{background:var(--back-bg);color:var(--back-fg);outline:2px dashed var(--back-ring);outline-offset:-2px}
+.sl-back .sd,.sl-rej .sd{text-decoration:line-through}
+.sl-rej{background:var(--rej-bg);color:var(--rej-fg);box-shadow:inset 0 0 0 2px var(--rej-fg)}
+.sl-ok{background:var(--ok-bg);color:var(--ok-fg)}
+.sl-empty{border:1px dashed var(--cell-line);color:var(--muted)}
+.ctr{display:flex;gap:24px}
+.ctr > div{min-width:72px;text-align:center}
+.ctr .n{font-size:24px;line-height:32px;font-weight:600;font-variant-numeric:tabular-nums}
+.ctr .l{font-size:12px;line-height:16px;color:var(--muted)}
+.msg{display:flex;align-items:flex-start;gap:8px;padding:4px 12px;border-radius:6px;font-size:14px;line-height:20px}
+.msg strong{font-weight:600}
+.msg-info{background:var(--sunken);color:var(--text)}
+.msg-rej{background:var(--rej-bg);color:var(--rej-fg)}
+.msg-try{background:var(--try-bg);color:var(--try-fg)}
+.msg-back{background:var(--back-bg);color:var(--back-fg)}
+.msg-ok{background:var(--ok-bg);color:var(--ok-fg)}
+.foot{border-top:1px solid var(--border);background:var(--surface)}
+.foot-in{max-width:1248px;margin:0 auto;padding:16px 24px;font-size:14px;line-height:20px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.cell,.btn{transition:none}}
+.sh{font-size:14px;line-height:20px;font-weight:600;color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.note{font-size:12px;line-height:16px;color:var(--muted)}
+.chip{display:flex;flex-direction:column;gap:4px}
+.chip-sw{height:32px;border-radius:6px;border:1px solid var(--border)}
+.item{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.cellbox{border:1px solid var(--cell-line);width:max-content}
+.trow{display:grid;grid-template-columns:120px minmax(0,1fr);align-items:baseline;gap:16px}
+/* JetBrains Mono: tắt chữ ghép để "-->" hiện đúng như slide */
+.code,.ln,.mono,.textarea,.ic-code{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
+</style>
+</head>
+<body>
+<div style="width:1440px;min-height:3120px;display:flex">
+
+<div class="r" data-theme="light" style="flex:1 1 0;min-width:0;padding:48px 32px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;justify-content:space-between;align-items:baseline">
+<h1 style="font-size:32px;line-height:40px;font-weight:700">Light</h1>
+<span class="note">01 Component sheet · Light</span>
+</div>
+
+<section>
+<h2 class="sh">Neutrals and brand</h2>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+
+<div class="chip"><div class="chip-sw" style="background: #F8FAFC"></div><span style="font-size:12px;line-height:16px;font-weight:600">page</span><span class="note mono">#F8FAFC</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #FFFFFF"></div><span style="font-size:12px;line-height:16px;font-weight:600">surface</span><span class="note mono">#FFFFFF</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #F1F5F9"></div><span style="font-size:12px;line-height:16px;font-weight:600">sunken</span><span class="note mono">#F1F5F9</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #E2E8F0"></div><span style="font-size:12px;line-height:16px;font-weight:600">border</span><span class="note mono">#E2E8F0</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #CBD5E1"></div><span style="font-size:12px;line-height:16px;font-weight:600">grid-cell-line</span><span class="note mono">#CBD5E1</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #334155"></div><span style="font-size:12px;line-height:16px;font-weight:600">grid-box-line</span><span class="note mono">#334155</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #0F172A"></div><span style="font-size:12px;line-height:16px;font-weight:600">text</span><span class="note mono">#0F172A</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #475569"></div><span style="font-size:12px;line-height:16px;font-weight:600">text-muted</span><span class="note mono">#475569</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #2563EB"></div><span style="font-size:12px;line-height:16px;font-weight:600">primary</span><span class="note mono">#2563EB</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #1D4ED8"></div><span style="font-size:12px;line-height:16px;font-weight:600">primary-strong</span><span class="note mono">#1D4ED8</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #DBEAFE"></div><span style="font-size:12px;line-height:16px;font-weight:600">primary-soft</span><span class="note mono">#DBEAFE</span></div>
+
+</div>
+</section>
+
+<section>
+<h2 class="sh">Cell states</h2>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px">
+
+<div class="item">
+<div class="cellbox"><div class="cell s-given" style="border:0"><span class="dg">5</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đề cho</span><span class="note mono">#FFFFFF / #0F172A</span><span class="note">Chữ số đậm 600</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-fill" style="border:0"><span class="dg">7</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đã ghi nhận</span><span class="note mono">#EFF6FF / #1D4ED8</span><span class="note">Chữ số 400</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-try" style="border:0"><span class="dg">2</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đang thử</span><span class="note mono">#FEF3C7 / #92400E</span><span class="note">Viền trong 3 px</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-rej" style="border:0"><span class="dg">2</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Bị loại</span><span class="note mono">#FEE2E2 / #B91C1C</span><span class="note">Gạch ngang 2 px</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-given ring" style="border:0"><span class="dg">2</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Ô gây mâu thuẫn</span><span class="note mono">ring #B91C1C</span><span class="note">Vòng đỏ 2 px</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-back" style="border:0"><span class="dg"></span><span class="ghost">8</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Vừa trả lại</span><span class="note mono">#EDE9FE / #6D28D9</span><span class="note">Viền nét đứt, số cũ 11 px</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-ok" style="border:0"><span class="dg">4</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đã giải</span><span class="note mono">#CCFBF1 / #0F766E</span><span class="note">Biểu tượng check ở thông báo</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-err" style="border:0"><span class="dg">7</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đề sai</span><span class="note mono">#FEE2E2 / #B91C1C</span><span class="note">Vòng 2 px, cảnh báo</span></div>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2 class="sh">Legend</h2>
+<div class="legend" style="max-width:480px">
+<span class="lg"><span class="sw s-given"><span class="dg">5</span></span>Đề cho</span>
+<span class="lg"><span class="sw s-try"><span class="dg">5</span></span>Đang thử</span>
+<span class="lg"><span class="sw s-rej"><span class="dg">5</span></span>Bị loại</span>
+<span class="lg"><span class="sw s-fill"><span class="dg">5</span></span>Đã ghi nhận</span>
+<span class="lg"><span class="sw s-back"><span class="dg">5</span></span>Vừa trả lại</span>
+<span class="lg"><span class="sw s-ok"><span class="dg">5</span></span>Đã giải</span>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Typography · Be Vietnam Pro, JetBrains Mono</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div class="trow"><span class="note">40/48 hero</span><span style="font-size:40px;line-height:48px;font-weight:700">Sudoku · Quay lui</span></div>
+<div class="trow"><span class="note">32/40 h1</span><span style="font-size:32px;line-height:40px;font-weight:700">Giải Sudoku</span></div>
+<div class="trow"><span class="note">24/32 h2</span><span style="font-size:24px;line-height:32px;font-weight:600">Độ phức tạp</span></div>
+<div class="trow"><span class="note">20/28 h3</span><span style="font-size:20px;line-height:28px;font-weight:600">Bài toán</span></div>
+<div class="trow"><span class="note">17/28 article</span><span style="font-size:17px;line-height:28px">Đánh số các ô trống theo thứ tự hàng rồi cột: 1, 2, …, n.</span></div>
+<div class="trow"><span class="note">16/24 body</span><span>Bài Lab01 môn CS112.</span></div>
+<div class="trow"><span class="note">14/20 small</span><span style="font-size:14px;line-height:20px;color:var(--muted)">Lab01 · Quay lui mô hình 1</span></div>
+<div class="trow"><span class="note">12/16 caption</span><span class="note">Đề cho · Đang thử · Bị loại</span></div>
+<div class="trow"><span class="note">Mono 14/22</span><span class="mono" style="font-size:14px;line-height:22px">if (khả năng j chấp nhận được)</span></div>
+<div class="trow"><span class="note">Tabular</span><span class="tnum" style="font-size:24px;line-height:32px;font-weight:600">1.909 · 445.778</span></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Top bar · theme switch is icon-only (the one exception) and starts on the system setting</h2>
+<div class="card" style="overflow:hidden">
+<div class="topbar"><div class="topbar-in" style="padding:0 16px">
+<a class="wordmark" href="02-trang-chu.html">Sudoku · Quay lui</a>
+<div class="tb-right">
+<nav class="nav">
+<a href="02-trang-chu.html">Trang chủ</a>
+<a href="03-giai-san-sang.html" aria-current="page">Giải Sudoku</a>
+<a href="12-thuat-toan.html">Thuật toán</a>
+<a href="13-gioi-thieu.html">Giới thiệu</a>
+</nav>
+<span class="tdiv" aria-hidden="true"></span>
+<div class="theme-sw" role="group" aria-label="Giao diện"><button type="button" aria-pressed="true" aria-label="Sáng" title="Sáng"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button><button type="button" aria-pressed="false" aria-label="Tối" title="Tối"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button></div>
+</div>
+</div></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Buttons · 36 px desktop, 44 px touch</h2>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px">
+<div class="item"><button class="btn btn-p" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>Tự động</button><span class="note">Primary</span></div>
+<div class="item"><button class="btn btn-p hv" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="4" width="4" height="16" rx="1"></rect><rect x="6" y="4" width="4" height="16" rx="1"></rect></svg>Tạm dừng</button><span class="note">Primary hover · đang chạy</span></div>
+<div class="item"><button class="btn btn-p" type="button" disabled="disabled"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>Tự động</button><span class="note">Disabled · 40%</span></div>
+<div class="item"><button class="btn btn-p fx" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>Tự động</button><span class="note">Focus ring</span></div>
+<div class="item"><button class="btn btn-s" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" x2="19" y1="5" y2="19"></line></svg>Từng bước</button><span class="note">Secondary</span></div>
+<div class="item"><button class="btn btn-s hv" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>Giải ngay</button><span class="note">Secondary hover</span></div>
+<div class="item"><button class="btn btn-s" type="button" disabled="disabled">Kiểm tra đề</button><span class="note">Secondary disabled</span></div>
+<div class="item"><button class="btn btn-g" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>Đặt lại</button><span class="note">Ghost · reset, cancel</span></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Inputs</h2>
+<div style="display:flex;flex-direction:column;gap:16px;max-width:480px">
+<div style="display:flex;align-items:center;gap:8px">
+<label class="sr-only" for="de-light">Đề mẫu</label>
+<div class="selwrap"><select id="de-light" class="field"><option>Đề 3 - Vừa (40 ô trống)</option></select><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;height:24px">
+<label class="lbl" for="tocdo-light">Tốc độ</label>
+<input id="tocdo-light" class="range" type="range" min="1" max="1000" value="20">
+<output class="tnum" style="font-size:14px;line-height:20px;white-space:nowrap">20 lần thử/giây</output>
+</div>
+<span class="note">Nhãn "Đề mẫu" chỉ dành cho trình đọc màn hình; tên đề đã cho biết đây là ô chọn đề.</span>
+<textarea class="textarea" rows="2" aria-label="Dán đề Sudoku">5 3 X X 7 X X X X
+6 X X 1 9 5 X X X</textarea>
+</div>
+</section>
+
+<section>
+<h2 class="sh">S vector slots · 26 × 30</h2>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px">
+<div class="item"><div class="slot sl-fill"><span class="sd">7</span><span class="si">1</span></div><span class="note">Đã ghi nhận</span></div>
+<div class="item"><div class="slot sl-try"><span class="sd">2</span><span class="si">16</span></div><span class="note">Đang thử</span></div>
+<div class="item"><div class="slot sl-back"><span class="sd">8</span><span class="si">13</span></div><span class="note">Vừa trả lại</span></div>
+<div class="item"><div class="slot sl-rej"><span class="sd"></span><span class="si">1</span></div><span class="note">Bị loại</span></div>
+<div class="item"><div class="slot sl-ok"><span class="sd">7</span><span class="si">1</span></div><span class="note">Đã giải</span></div>
+<div class="item"><div class="slot sl-empty"><span class="sd"></span><span class="si">17</span></div><span class="note">Trống</span></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Panel · counters and status messages</h2>
+<div class="card panel">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+<h3 class="pt">Diễn biến</h3>
+<div class="ctr"><div><div class="n">814</div><div class="l">Lần thử</div></div><div><div class="n">96</div><div class="l">Ghi nhận</div></div><div><div class="n">81</div><div class="l">Trả lại</div></div></div>
+</div>
+<p class="msg msg-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Đề hợp lệ, có 40 ô trống. Bấm Từng bước hoặc Tự động để bắt đầu.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg><span><strong>Ô (4, 7)</strong> - thử số 2: bị loại vì 2 đã có ở hàng 4.</span></p>
+<p class="msg msg-try"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="1"></circle></svg><span><strong>Ô (4, 1)</strong> - thử số 9: chấp nhận được.</span></p>
+<p class="msg msg-back"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"></path></svg><span>Quay lui: trả lại <strong>ô (4, 1)</strong>, xóa số 8. Tiếp theo thử số 9 ở ô này.</span></p>
+<p class="msg msg-ok"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span>Đã giải xong: 1.909 lần thử, 187 lần trả lại.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span>Đề không hợp lệ: số 7 xuất hiện 2 lần ở <strong>hàng 4</strong> (cột 1 và cột 4). Sửa lại rồi bấm Kiểm tra đề.</span></p>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Edge cases · messages</h2>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p class="msg msg-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Đề đã đủ, không còn ô trống để giải.</span></p>
+<div class="msg msg-info" style="align-items:center;padding-right:4px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"></path><path d="M5 2h14"></path><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path></svg><span style="flex:1">Đang giải… <strong class="tnum">200.000</strong> lần thử</span><button class="btn btn-s" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect></svg>Dừng</button></div>
+<p class="msg msg-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Đã dừng sau <strong class="tnum">200.000</strong> lần thử. Bấm Giải ngay để chạy tiếp.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span>Cần đúng 9 dòng, mỗi dòng 9 ký tự. Bạn đã dán <strong>8 dòng</strong>.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span><strong>Dòng 3</strong> có ký tự không hợp lệ: "0". Chỉ dùng số 1 → 9 và X.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span>Chuỗi cần đúng 81 ký tự, hiện có <strong class="tnum">80</strong>.</span></p>
+<p class="msg msg-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Trang này cần bật JavaScript để chạy trình giải.</span></p>
+<div style="display:flex;align-items:center;gap:16px"><span style="font-size:14px;line-height:20px;color:var(--muted)">Đang tải…</span><span class="note">Chỉ hiện nếu tải lâu hơn 300 ms</span></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Pseudocode lines</h2>
+<div class="code">
+<div class="ln">{   for (j = 1 --&gt; k)</div>
+<div class="ln on">        if (khả năng j chấp nhận được)<span class="tag tag-ok">đúng</span></div>
+<div class="ln on">        if (khả năng j chấp nhận được)<span class="tag tag-no">sai</span></div>
+<div class="ln on">            Trả lại trạng thái cũ của bài toán;</div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Card</h2>
+<div class="card" style="padding:24px;display:flex;flex-direction:column;gap:8px;max-width:360px">
+<h3 style="font-size:20px;line-height:28px;font-weight:600">Bài toán</h3>
+<p style="color:var(--muted)">Điền đủ lưới 9×9 sao cho mỗi hàng, mỗi cột, mỗi khối 3×3 có đủ các số 1 → 9.</p>
+</div>
+</section>
+</div>
+
+<div class="r" data-theme="dark" style="flex:1 1 0;min-width:0;padding:48px 32px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;justify-content:space-between;align-items:baseline">
+<h1 style="font-size:32px;line-height:40px;font-weight:700">Dark</h1>
+<span class="note">01 Component sheet · Dark</span>
+</div>
+
+<section>
+<h2 class="sh">Neutrals and brand</h2>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+
+<div class="chip"><div class="chip-sw" style="background: #0B1120"></div><span style="font-size:12px;line-height:16px;font-weight:600">page</span><span class="note mono">#0B1120</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #111827"></div><span style="font-size:12px;line-height:16px;font-weight:600">surface</span><span class="note mono">#111827</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #1E293B"></div><span style="font-size:12px;line-height:16px;font-weight:600">sunken</span><span class="note mono">#1E293B</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #1F2A3C"></div><span style="font-size:12px;line-height:16px;font-weight:600">border</span><span class="note mono">#1F2A3C</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #334155"></div><span style="font-size:12px;line-height:16px;font-weight:600">grid-cell-line</span><span class="note mono">#334155</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #94A3B8"></div><span style="font-size:12px;line-height:16px;font-weight:600">grid-box-line</span><span class="note mono">#94A3B8</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #E2E8F0"></div><span style="font-size:12px;line-height:16px;font-weight:600">text</span><span class="note mono">#E2E8F0</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #94A3B8"></div><span style="font-size:12px;line-height:16px;font-weight:600">text-muted</span><span class="note mono">#94A3B8</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #60A5FA"></div><span style="font-size:12px;line-height:16px;font-weight:600">primary</span><span class="note mono">#60A5FA</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #93C5FD"></div><span style="font-size:12px;line-height:16px;font-weight:600">primary-strong</span><span class="note mono">#93C5FD</span></div>
+
+<div class="chip"><div class="chip-sw" style="background: #1E3A8A"></div><span style="font-size:12px;line-height:16px;font-weight:600">primary-soft</span><span class="note mono">#1E3A8A</span></div>
+
+</div>
+</section>
+
+<section>
+<h2 class="sh">Cell states</h2>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px">
+
+<div class="item">
+<div class="cellbox"><div class="cell s-given" style="border:0"><span class="dg">5</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đề cho</span><span class="note mono">#111827 / #F1F5F9</span><span class="note">Chữ số đậm 600</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-fill" style="border:0"><span class="dg">7</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đã ghi nhận</span><span class="note mono">#172554 / #93C5FD</span><span class="note">Chữ số 400</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-try" style="border:0"><span class="dg">2</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đang thử</span><span class="note mono">#422006 / #FCD34D</span><span class="note">Viền trong 3 px</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-rej" style="border:0"><span class="dg">2</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Bị loại</span><span class="note mono">#450A0A / #FCA5A5</span><span class="note">Gạch ngang 2 px</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-given ring" style="border:0"><span class="dg">2</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Ô gây mâu thuẫn</span><span class="note mono">ring #FCA5A5</span><span class="note">Vòng đỏ 2 px</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-back" style="border:0"><span class="dg"></span><span class="ghost">8</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Vừa trả lại</span><span class="note mono">#2E1065 / #C4B5FD</span><span class="note">Viền nét đứt, số cũ 11 px</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-ok" style="border:0"><span class="dg">4</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đã giải</span><span class="note mono">#042F2E / #5EEAD4</span><span class="note">Biểu tượng check ở thông báo</span></div>
+</div>
+
+<div class="item">
+<div class="cellbox"><div class="cell s-err" style="border:0"><span class="dg">7</span></div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;line-height:20px;font-weight:600">Đề sai</span><span class="note mono">#450A0A / #FCA5A5</span><span class="note">Vòng 2 px, cảnh báo</span></div>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2 class="sh">Legend</h2>
+<div class="legend" style="max-width:480px">
+<span class="lg"><span class="sw s-given"><span class="dg">5</span></span>Đề cho</span>
+<span class="lg"><span class="sw s-try"><span class="dg">5</span></span>Đang thử</span>
+<span class="lg"><span class="sw s-rej"><span class="dg">5</span></span>Bị loại</span>
+<span class="lg"><span class="sw s-fill"><span class="dg">5</span></span>Đã ghi nhận</span>
+<span class="lg"><span class="sw s-back"><span class="dg">5</span></span>Vừa trả lại</span>
+<span class="lg"><span class="sw s-ok"><span class="dg">5</span></span>Đã giải</span>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Typography · Be Vietnam Pro, JetBrains Mono</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div class="trow"><span class="note">40/48 hero</span><span style="font-size:40px;line-height:48px;font-weight:700">Sudoku · Quay lui</span></div>
+<div class="trow"><span class="note">32/40 h1</span><span style="font-size:32px;line-height:40px;font-weight:700">Giải Sudoku</span></div>
+<div class="trow"><span class="note">24/32 h2</span><span style="font-size:24px;line-height:32px;font-weight:600">Độ phức tạp</span></div>
+<div class="trow"><span class="note">20/28 h3</span><span style="font-size:20px;line-height:28px;font-weight:600">Bài toán</span></div>
+<div class="trow"><span class="note">17/28 article</span><span style="font-size:17px;line-height:28px">Đánh số các ô trống theo thứ tự hàng rồi cột: 1, 2, …, n.</span></div>
+<div class="trow"><span class="note">16/24 body</span><span>Bài Lab01 môn CS112.</span></div>
+<div class="trow"><span class="note">14/20 small</span><span style="font-size:14px;line-height:20px;color:var(--muted)">Lab01 · Quay lui mô hình 1</span></div>
+<div class="trow"><span class="note">12/16 caption</span><span class="note">Đề cho · Đang thử · Bị loại</span></div>
+<div class="trow"><span class="note">Mono 14/22</span><span class="mono" style="font-size:14px;line-height:22px">if (khả năng j chấp nhận được)</span></div>
+<div class="trow"><span class="note">Tabular</span><span class="tnum" style="font-size:24px;line-height:32px;font-weight:600">1.909 · 445.778</span></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Top bar · theme switch is icon-only (the one exception) and starts on the system setting</h2>
+<div class="card" style="overflow:hidden">
+<div class="topbar"><div class="topbar-in" style="padding:0 16px">
+<a class="wordmark" href="02-trang-chu.html">Sudoku · Quay lui</a>
+<div class="tb-right">
+<nav class="nav">
+<a href="02-trang-chu.html">Trang chủ</a>
+<a href="03-giai-san-sang.html" aria-current="page">Giải Sudoku</a>
+<a href="12-thuat-toan.html">Thuật toán</a>
+<a href="13-gioi-thieu.html">Giới thiệu</a>
+</nav>
+<span class="tdiv" aria-hidden="true"></span>
+<div class="theme-sw" role="group" aria-label="Giao diện"><button type="button" aria-pressed="false" aria-label="Sáng" title="Sáng"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button><button type="button" aria-pressed="true" aria-label="Tối" title="Tối"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button></div>
+</div>
+</div></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Buttons · 36 px desktop, 44 px touch</h2>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px">
+<div class="item"><button class="btn btn-p" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>Tự động</button><span class="note">Primary</span></div>
+<div class="item"><button class="btn btn-p hv" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="4" width="4" height="16" rx="1"></rect><rect x="6" y="4" width="4" height="16" rx="1"></rect></svg>Tạm dừng</button><span class="note">Primary hover · đang chạy</span></div>
+<div class="item"><button class="btn btn-p" type="button" disabled="disabled"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>Tự động</button><span class="note">Disabled · 40%</span></div>
+<div class="item"><button class="btn btn-p fx" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>Tự động</button><span class="note">Focus ring</span></div>
+<div class="item"><button class="btn btn-s" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" x2="19" y1="5" y2="19"></line></svg>Từng bước</button><span class="note">Secondary</span></div>
+<div class="item"><button class="btn btn-s hv" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>Giải ngay</button><span class="note">Secondary hover</span></div>
+<div class="item"><button class="btn btn-s" type="button" disabled="disabled">Kiểm tra đề</button><span class="note">Secondary disabled</span></div>
+<div class="item"><button class="btn btn-g" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>Đặt lại</button><span class="note">Ghost · reset, cancel</span></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Inputs</h2>
+<div style="display:flex;flex-direction:column;gap:16px;max-width:480px">
+<div style="display:flex;align-items:center;gap:8px">
+<label class="sr-only" for="de-dark">Đề mẫu</label>
+<div class="selwrap"><select id="de-dark" class="field"><option>Đề 3 - Vừa (40 ô trống)</option></select><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;height:24px">
+<label class="lbl" for="tocdo-dark">Tốc độ</label>
+<input id="tocdo-dark" class="range" type="range" min="1" max="1000" value="20">
+<output class="tnum" style="font-size:14px;line-height:20px;white-space:nowrap">20 lần thử/giây</output>
+</div>
+<span class="note">Nhãn "Đề mẫu" chỉ dành cho trình đọc màn hình; tên đề đã cho biết đây là ô chọn đề.</span>
+<textarea class="textarea" rows="2" aria-label="Dán đề Sudoku">5 3 X X 7 X X X X
+6 X X 1 9 5 X X X</textarea>
+</div>
+</section>
+
+<section>
+<h2 class="sh">S vector slots · 26 × 30</h2>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px">
+<div class="item"><div class="slot sl-fill"><span class="sd">7</span><span class="si">1</span></div><span class="note">Đã ghi nhận</span></div>
+<div class="item"><div class="slot sl-try"><span class="sd">2</span><span class="si">16</span></div><span class="note">Đang thử</span></div>
+<div class="item"><div class="slot sl-back"><span class="sd">8</span><span class="si">13</span></div><span class="note">Vừa trả lại</span></div>
+<div class="item"><div class="slot sl-rej"><span class="sd"></span><span class="si">1</span></div><span class="note">Bị loại</span></div>
+<div class="item"><div class="slot sl-ok"><span class="sd">7</span><span class="si">1</span></div><span class="note">Đã giải</span></div>
+<div class="item"><div class="slot sl-empty"><span class="sd"></span><span class="si">17</span></div><span class="note">Trống</span></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Panel · counters and status messages</h2>
+<div class="card panel">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+<h3 class="pt">Diễn biến</h3>
+<div class="ctr"><div><div class="n">814</div><div class="l">Lần thử</div></div><div><div class="n">96</div><div class="l">Ghi nhận</div></div><div><div class="n">81</div><div class="l">Trả lại</div></div></div>
+</div>
+<p class="msg msg-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Đề hợp lệ, có 40 ô trống. Bấm Từng bước hoặc Tự động để bắt đầu.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg><span><strong>Ô (4, 7)</strong> - thử số 2: bị loại vì 2 đã có ở hàng 4.</span></p>
+<p class="msg msg-try"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="1"></circle></svg><span><strong>Ô (4, 1)</strong> - thử số 9: chấp nhận được.</span></p>
+<p class="msg msg-back"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"></path></svg><span>Quay lui: trả lại <strong>ô (4, 1)</strong>, xóa số 8. Tiếp theo thử số 9 ở ô này.</span></p>
+<p class="msg msg-ok"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span>Đã giải xong: 1.909 lần thử, 187 lần trả lại.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span>Đề không hợp lệ: số 7 xuất hiện 2 lần ở <strong>hàng 4</strong> (cột 1 và cột 4). Sửa lại rồi bấm Kiểm tra đề.</span></p>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Edge cases · messages</h2>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p class="msg msg-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Đề đã đủ, không còn ô trống để giải.</span></p>
+<div class="msg msg-info" style="align-items:center;padding-right:4px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"></path><path d="M5 2h14"></path><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path></svg><span style="flex:1">Đang giải… <strong class="tnum">200.000</strong> lần thử</span><button class="btn btn-s" type="button"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect></svg>Dừng</button></div>
+<p class="msg msg-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Đã dừng sau <strong class="tnum">200.000</strong> lần thử. Bấm Giải ngay để chạy tiếp.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span>Cần đúng 9 dòng, mỗi dòng 9 ký tự. Bạn đã dán <strong>8 dòng</strong>.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span><strong>Dòng 3</strong> có ký tự không hợp lệ: "0". Chỉ dùng số 1 → 9 và X.</span></p>
+<p class="msg msg-rej"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><span>Chuỗi cần đúng 81 ký tự, hiện có <strong class="tnum">80</strong>.</span></p>
+<p class="msg msg-info"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Trang này cần bật JavaScript để chạy trình giải.</span></p>
+<div style="display:flex;align-items:center;gap:16px"><span style="font-size:14px;line-height:20px;color:var(--muted)">Đang tải…</span><span class="note">Chỉ hiện nếu tải lâu hơn 300 ms</span></div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Pseudocode lines</h2>
+<div class="code">
+<div class="ln">{   for (j = 1 --&gt; k)</div>
+<div class="ln on">        if (khả năng j chấp nhận được)<span class="tag tag-ok">đúng</span></div>
+<div class="ln on">        if (khả năng j chấp nhận được)<span class="tag tag-no">sai</span></div>
+<div class="ln on">            Trả lại trạng thái cũ của bài toán;</div>
+</div>
+</section>
+
+<section>
+<h2 class="sh">Card</h2>
+<div class="card" style="padding:24px;display:flex;flex-direction:column;gap:8px;max-width:360px">
+<h3 style="font-size:20px;line-height:28px;font-weight:600">Bài toán</h3>
+<p style="color:var(--muted)">Điền đủ lưới 9×9 sao cho mỗi hàng, mỗi cột, mỗi khối 3×3 có đủ các số 1 → 9.</p>
+</div>
+</section>
+</div>
+
+</div>
+</body>
+</html>

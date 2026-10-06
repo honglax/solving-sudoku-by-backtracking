@@ -1,0 +1,169 @@
+/*
+ * Sudoku · Quay lui - design tokens
+ * Source: the brief, sections 3.1-3.5, and the agreed changes in HANDOFF.md.
+ * Every color pair here was checked against WCAG 2.1 AA in the brief.
+ * Do not add colors, tints, gradients or opacity variants. Ask Jason first.
+ * Dark mode follows the operating system by default; the top-bar switch "Sáng / Tối" overrides it.
+ */
+
+:root {
+  /* Neutrals and brand */
+  --color-page: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-sunken: #F1F5F9;
+  --color-border: #E2E8F0;
+  --color-grid-cell-line: #CBD5E1;
+  --color-grid-box-line: #334155;
+  --color-text: #0F172A;
+  --color-text-muted: #475569;
+  --color-primary: #2563EB;
+  --color-primary-strong: #1D4ED8;
+  --color-primary-soft: #DBEAFE;
+  --color-on-primary: #FFFFFF;          /* text on --color-primary (white 5.17) */
+  --color-scrim: rgba(15, 23, 42, 0.4); /* dialog backdrop, #0F172A at 40% */
+
+  /* Algorithm states: bg = cell/slot background, digit = digit color, cue = ring/border color */
+  --color-state-given-bg: #FFFFFF;
+  --color-state-given-digit: #0F172A;      /* non-color cue: weight 600 */
+  --color-state-recorded-bg: #EFF6FF;      /* "Đã ghi nhận" */
+  --color-state-recorded-digit: #1D4ED8;   /* non-color cue: weight 400 */
+  --color-state-trying-bg: #FEF3C7;        /* "Đang thử" */
+  --color-state-trying-digit: #92400E;
+  --color-state-trying-cue: #D97706;       /* 3 px inset border (2 px on S slots and legend swatches) */
+  --color-state-rejected-bg: #FEE2E2;      /* "Bị loại" and "Đề sai" */
+  --color-state-rejected-digit: #B91C1C;   /* cue: 2 px strike-through on the digit */
+  --color-state-rejected-cue: #B91C1C;     /* 2 px ring on the conflicting cell / input-error cells */
+  --color-state-restored-bg: #EDE9FE;      /* "Vừa trả lại" */
+  --color-state-restored-digit: #6D28D9;
+  --color-state-restored-cue: #7C3AED;     /* 2 px dashed border + 11 px struck-through ghost digit */
+  --color-state-solved-bg: #CCFBF1;        /* "Đã giải" */
+  --color-state-solved-digit: #0F766E;     /* non-color cue: check icon in the status message */
+
+  /* Spacing - no other values */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* Radius */
+  --radius-control: 6px; /* buttons, inputs, S-vector slots, tags, code blocks */
+  --radius-grid: 8px;    /* outer Sudoku grid; cells have no radius */
+  --radius-card: 10px;   /* cards, panels, dialog */
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.10);
+
+  /* Typography */
+  --font-sans: 'Be Vietnam Pro', system-ui, sans-serif; /* weights 400 500 600 700 */
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace; /* weights 400 600; ligatures OFF */
+  --font-size-caption: 12px;  --line-height-caption: 16px;
+  --font-size-small: 14px;    --line-height-small: 20px;
+  --font-size-body: 16px;     --line-height-body: 24px;
+  --font-size-h3: 20px;       --line-height-h3: 28px;
+  --font-size-h2: 24px;       --line-height-h2: 32px;
+  --font-size-h1: 32px;       --line-height-h1: 40px;
+  --font-size-hero: 40px;     --line-height-hero: 48px; /* home hero only */
+  --font-size-article: 17px;  --line-height-article: 28px; /* max 68ch */
+  --font-size-code: 14px;     --line-height-code: 22px;
+  --font-size-ghost: 11px; /* struck-through ghost digit in a restored cell only */
+  --font-size-wordmark: 18px;
+
+  /* Sudoku grid */
+  --size-cell: min(44px, calc((100vw - 36px) / 9)); /* 44 px desktop, ~39 px at 390 px wide */
+  --font-size-cell: clamp(20px, calc(var(--size-cell) * 0.55), 24px);
+  --size-slot-w: 26px;
+  --size-slot-h: 30px;
+
+  /* Motion */
+  --motion-state: 150ms ease-out;
+  --opacity-disabled: 0.4;
+
+  /* Layout */
+  --content-max: 1200px;
+  --gutter-desktop: 24px;
+  --gutter-mobile: 16px;
+  --topbar-height: 56px;
+}
+
+/* Dark: follows the system until the visitor picks Sáng / Tối; the choice is stored and set as
+ * <html data-theme="light|dark"> by a tiny inline script in index.html before first paint. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-page: #0B1120;
+    --color-surface: #111827;
+    --color-sunken: #1E293B;
+    --color-border: #1F2A3C;
+    --color-grid-cell-line: #334155;
+    --color-grid-box-line: #94A3B8;
+    --color-text: #E2E8F0;
+    --color-text-muted: #94A3B8;
+    --color-primary: #60A5FA;
+    --color-primary-strong: #93C5FD;
+    --color-primary-soft: #1E3A8A;
+    --color-on-primary: #0B1120;
+
+    --color-state-given-bg: #111827;
+    --color-state-given-digit: #F1F5F9;
+    --color-state-recorded-bg: #172554;
+    --color-state-recorded-digit: #93C5FD;
+    --color-state-trying-bg: #422006;
+    --color-state-trying-digit: #FCD34D;
+    --color-state-trying-cue: #F59E0B;
+    --color-state-rejected-bg: #450A0A;
+    --color-state-rejected-digit: #FCA5A5;
+    --color-state-rejected-cue: #FCA5A5;
+    --color-state-restored-bg: #2E1065;
+    --color-state-restored-digit: #C4B5FD;
+    --color-state-restored-cue: #A78BFA;
+    --color-state-solved-bg: #042F2E;
+    --color-state-solved-digit: #5EEAD4;
+
+    --shadow-card: none; /* dark mode: cards use the border color, no shadow */
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-page: #0B1120;
+  --color-surface: #111827;
+  --color-sunken: #1E293B;
+  --color-border: #1F2A3C;
+  --color-grid-cell-line: #334155;
+  --color-grid-box-line: #94A3B8;
+  --color-text: #E2E8F0;
+  --color-text-muted: #94A3B8;
+  --color-primary: #60A5FA;
+  --color-primary-strong: #93C5FD;
+  --color-primary-soft: #1E3A8A;
+  --color-on-primary: #0B1120;
+
+  --color-state-given-bg: #111827;
+  --color-state-given-digit: #F1F5F9;
+  --color-state-recorded-bg: #172554;
+  --color-state-recorded-digit: #93C5FD;
+  --color-state-trying-bg: #422006;
+  --color-state-trying-digit: #FCD34D;
+  --color-state-trying-cue: #F59E0B;
+  --color-state-rejected-bg: #450A0A;
+  --color-state-rejected-digit: #FCA5A5;
+  --color-state-rejected-cue: #FCA5A5;
+  --color-state-restored-bg: #2E1065;
+  --color-state-restored-digit: #C4B5FD;
+  --color-state-restored-cue: #A78BFA;
+  --color-state-solved-bg: #042F2E;
+  --color-state-solved-digit: #5EEAD4;
+
+  --shadow-card: none; /* dark mode: cards use the border color, no shadow */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-state: 0ms; }
+}
+
+/* Breakpoints (use in media queries; CSS variables can't be used there):
+ *   max-width: 767px  -> nav collapses into the "Menu" button
+ *   max-width: 600px  -> phone solver layout (frame 10)
+ */

@@ -1,0 +1,203 @@
+.solver-page {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-32);
+  width: 100%;
+  max-width: calc(var(--content-max) + 2 * var(--gutter-desktop));
+  margin: 0 auto;
+  padding: var(--space-12) var(--gutter-desktop);
+}
+
+.solver-page__board {
+  display: flex;
+  flex: 0 1 480px;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.solver-page__eyebrow {
+  min-height: 20px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.solver-page__panels {
+  display: flex;
+  flex: 1 1 560px;
+  flex-direction: column;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.solver-page--phone {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: var(--space-12);
+  padding: var(--space-16) var(--gutter-mobile) 92px;
+}
+
+.solver-page__heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.solver-page__options-button {
+  height: 44px;
+}
+
+.solver-page__phone-counters .solver-counters {
+  justify-content: space-around;
+  padding: var(--space-12) var(--space-16);
+}
+
+.solver-page__bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.solver-page__bottom-bar .button {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 44px;
+  padding: 0 var(--space-8);
+}
+
+@media (min-width: 1120px) {
+  .solver-page {
+    --solver-height-besides-grid: 292px;
+    --solver-board-width-besides-grid: 84px;
+    --solver-panels-minimum-width: 620px;
+    --solver-container-width: min(100cqw, calc(var(--content-max) + 2 * var(--gutter-desktop)));
+    --solver-width-besides-grid: calc(
+      2 * var(--gutter-desktop) + var(--space-32) + var(--solver-panels-minimum-width) +
+        var(--solver-board-width-besides-grid)
+    );
+    --size-cell: clamp(
+      44px,
+      min(
+        calc((100vh - var(--solver-height-besides-grid)) / 9),
+        calc((var(--solver-container-width) - var(--solver-width-besides-grid)) / 9)
+      ),
+      96px
+    );
+    --font-size-cell: calc(var(--size-cell) * 0.55);
+    --font-size-code: clamp(14px, calc(var(--size-cell) * 0.318), 16px);
+    --line-height-code: clamp(22px, calc(var(--size-cell) * 0.5), 28px);
+  }
+
+  .solver-page {
+    align-content: flex-start;
+  }
+
+  .solver-page__board {
+    flex: 0 0 calc(9 * var(--size-cell) + var(--solver-board-width-besides-grid));
+  }
+
+  .solver-page__panels {
+    align-self: stretch;
+  }
+
+  .solver-page__panels > .solver-panel--fills-height {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .solver-panel--fills-height .solver-tabs__panel {
+    position: relative;
+    flex: 1;
+    min-height: 60px;
+  }
+
+  .solver-panel--fills-height .solver-tabs__panel > .history-table,
+  .solver-panel--fills-height .solver-tabs__panel > .solution-slots {
+    position: absolute;
+    inset: 0;
+    max-height: none;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .solver-panel--fills-height .solver-tabs__panel > .solution-slots {
+    bottom: auto;
+  }
+
+  .solver-panel--fills-height .solution-slots {
+    --size-slot-w: clamp(26px, calc(var(--size-cell) * 0.59), 52px);
+    --size-slot-h: clamp(30px, calc(var(--size-cell) * 0.68), 60px);
+    --slot-digit-font-size: clamp(14px, calc(var(--size-cell) * 0.318), 28px);
+    --slot-digit-line-height: clamp(16px, calc(var(--size-cell) * 0.364), 32px);
+    --slot-index-font-size: clamp(12px, calc(var(--size-cell) * 0.273), 18px);
+    --slot-index-line-height: clamp(12px, calc(var(--size-cell) * 0.273), 18px);
+    align-content: flex-start;
+    gap: clamp(4px, calc(var(--size-cell) * 0.09), 8px);
+  }
+}
+
+.solver-page__puzzle-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-12);
+  border: 1px solid var(--color-grid-cell-line);
+  border-radius: var(--radius-control);
+  background: var(--color-sunken);
+  color: var(--color-text);
+  font: 400 var(--font-size-small) / var(--line-height-small) var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+}
+
+.solver-page__puzzle-switcher svg {
+  flex: none;
+  color: var(--color-text-muted);
+}
+
+.solver-page__puzzle-switcher-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (min-width: 1120px) {
+  .solver-page .grid-legend {
+    height: clamp(20px, calc(var(--size-cell) * 0.455), 28px);
+  }
+
+  .solver-page .grid-legend__entry {
+    font-size: clamp(12px, calc(var(--size-cell) * 0.273), 16px);
+    line-height: 1.3;
+  }
+
+  .solver-page .grid-legend__swatch {
+    width: clamp(18px, calc(var(--size-cell) * 0.41), 26px);
+    height: clamp(18px, calc(var(--size-cell) * 0.41), 26px);
+    font-size: clamp(12px, calc(var(--size-cell) * 0.273), 16px);
+  }
+}
+
+.solver-page__bottom-bar .button--icon-only {
+  flex: 0 0 44px;
+}
+
+@media (max-width: 380px) {
+  .solver-page__bottom-bar .button:not(.button--icon-only) svg {
+    display: none;
+  }
+}

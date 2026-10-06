@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Không tìm thấy trang · Sudoku · Quay lui</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.r{--page:#F8FAFC;--surface:#FFFFFF;--sunken:#F1F5F9;--border:#E2E8F0;--cell-line:#CBD5E1;--text:#0F172A;--muted:#475569;--primary:#2563EB;--primary-strong:#1D4ED8;--primary-soft:#DBEAFE;--on-primary:#FFFFFF;--shadow:0 1px 2px rgba(15,23,42,0.06),0 1px 3px rgba(15,23,42,0.10);background:var(--page);color:var(--text);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:16px;line-height:24px}
+.r[data-theme="dark"]{--page:#0B1120;--surface:#111827;--sunken:#1E293B;--border:#1F2A3C;--cell-line:#334155;--text:#E2E8F0;--muted:#94A3B8;--primary:#60A5FA;--primary-strong:#93C5FD;--primary-soft:#1E3A8A;--on-primary:#0B1120;--shadow:none}
+.r *,.r *::before,.r *::after{box-sizing:border-box}
+.r h1,.r h2,.r h3,.r p{margin:0}
+.r a{color:var(--primary-strong)}
+.r :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.ic{width:20px;height:20px;flex:none}
+.topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border)}
+.topbar-in{max-width:1248px;height:100%;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.r .wordmark{font-size:18px;line-height:24px;font-weight:600;color:var(--text);text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.r .nav a{font-size:14px;line-height:20px;font-weight:500;color:var(--text);text-decoration:none;padding:8px 12px;border-radius:6px}
+.r .nav a:hover{background:var(--sunken)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:36px;padding:0 12px;border-radius:6px;border:1px solid transparent;font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;white-space:nowrap;cursor:pointer;text-decoration:none;transition:background-color 150ms ease-out}
+.r .btn-p{background:var(--primary);color:var(--on-primary)}
+.r .btn-p:hover{background:var(--primary-strong);color:var(--on-primary)}
+.r .btn-s{background:var(--surface);color:var(--text);border-color:var(--cell-line)}
+.r .btn-s:hover{background:var(--sunken);color:var(--text)}
+.r .btn-g{background:transparent;color:var(--text)}
+.r .btn-g:hover{background:var(--sunken)}
+.foot{border-top:1px solid var(--border);background:var(--surface)}
+.foot-in{max-width:1248px;margin:0 auto;padding:16px 24px;font-size:14px;line-height:20px;color:var(--muted)}
+.tb-right{display:flex;align-items:center;gap:12px}
+.tdiv{width:1px;height:20px;background:var(--border);flex:none}
+.theme-sw{display:flex;align-items:center;flex:none;height:36px;border:1px solid var(--cell-line);border-radius:6px;overflow:hidden}
+.r .theme-sw button{display:inline-flex;align-items:center;gap:4px;width:36px;height:34px;justify-content:center;padding:0;border:0;border-radius:0;background:transparent;color:var(--text);font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer;transition:background-color 150ms ease-out}
+.r .theme-sw button:hover{background:var(--sunken)}
+.r .theme-sw button + button{border-left:1px solid var(--cell-line)}
+.r .theme-sw button{color:var(--muted)}
+.r .theme-sw button[aria-pressed="true"]{background:var(--sunken);color:var(--text)}
+.r .theme-sw button[aria-pressed="true"] svg{stroke-width:2.25}
+@media (max-width: 767px){.theme-sw,.tdiv{display:none}}
+@media (prefers-reduced-motion: reduce){.r .theme-sw button{transition:none}}
+.menu-btn{display:none}
+@media (max-width: 767px){.nav{display:none}.r .menu-btn{display:inline-flex;height:44px}}
+@media (max-width: 600px){.topbar-in{padding:0 16px}.r main.pg{padding-left:16px !important;padding-right:16px !important}}
+@media (prefers-reduced-motion: reduce){.btn{transition:none}}
+</style>
+</helmet>
+<div class="r" data-theme="{{theme}}" style="min-height:720px;display:flex;flex-direction:column">
+<header class="topbar"><div class="topbar-in">
+<a class="wordmark" href="02-trang-chu.dc.html">Sudoku · Quay lui</a>
+<div class="tb-right">
+<nav class="nav">
+<a href="02-trang-chu.dc.html">Trang chủ</a>
+<a href="03-giai-san-sang.dc.html">Giải Sudoku</a>
+<a href="12-thuat-toan.dc.html">Thuật toán</a>
+<a href="13-gioi-thieu.dc.html">Giới thiệu</a>
+</nav>
+<span class="tdiv" aria-hidden="true"></span>
+<div class="theme-sw" role="group" aria-label="Giao diện"><button type="button" aria-pressed="{{isLight}}" aria-label="Sáng" title="Sáng" onClick="{{toLight}}"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button><button type="button" aria-pressed="{{isDark}}" aria-label="Tối" title="Tối" onClick="{{toDark}}"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button></div>
+</div>
+<button class="btn btn-g menu-btn" type="button" aria-expanded="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>Menu</button>
+</div></header>
+<main class="pg" style="flex:1;width:100%;max-width:1248px;margin:0 auto;padding:64px 24px;display:flex;align-items:center;justify-content:center">
+<div style="width:100%;max-width:560px;display:flex;flex-direction:column;align-items:flex-start;gap:16px">
+<p style="font-size:14px;line-height:20px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums">404</p>
+<h1 style="font-size:32px;line-height:40px;font-weight:700">Không tìm thấy trang</h1>
+<p style="color:var(--muted);max-width:60ch">Đường dẫn này không tồn tại. Có thể bạn gõ sai địa chỉ, hoặc trang đã được đổi tên.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:8px">
+<a class="btn btn-p" href="02-trang-chu.dc.html">Về trang chủ</a>
+<a class="btn btn-s" href="03-giai-san-sang.dc.html">Mở trình giải</a>
+</div>
+</div>
+</main>
+<footer class="foot"><div class="foot-in">CS112 - Phân tích và thiết kế thuật toán · 2026</div></footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Chế độ"},"$preview":{"width":1440,"height":720}}'>
+class Component extends DCLogic {
+  renderVals() {
+    // Mặc định theo hệ thống (ở canvas: Tweak "dark"); bấm Sáng/Tối thì ghi đè.
+    var self = this;
+    var dark = (this.state && this.state.dark !== undefined) ? this.state.dark : (this.props.dark ?? false);
+    return { theme: dark ? 'dark' : 'light', isLight: !dark, isDark: dark, toLight: function () { self.setState({ dark: false }); }, toDark: function () { self.setState({ dark: true }); } };
+  }
+}
+</script>
+</body>
+</html>

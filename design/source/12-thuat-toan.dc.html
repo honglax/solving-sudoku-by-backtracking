@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Thuật toán</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.r{--page:#F8FAFC;--surface:#FFFFFF;--sunken:#F1F5F9;--border:#E2E8F0;--cell-line:#CBD5E1;--box-line:#334155;--text:#0F172A;--muted:#475569;--primary:#2563EB;--primary-strong:#1D4ED8;--primary-soft:#DBEAFE;--on-primary:#FFFFFF;--shadow:0 1px 2px rgba(15,23,42,0.06),0 1px 3px rgba(15,23,42,0.10);background:var(--page);color:var(--text);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:16px;line-height:24px}
+.r[data-theme="dark"]{--page:#0B1120;--surface:#111827;--sunken:#1E293B;--border:#1F2A3C;--cell-line:#334155;--box-line:#94A3B8;--text:#E2E8F0;--muted:#94A3B8;--primary:#60A5FA;--primary-strong:#93C5FD;--primary-soft:#1E3A8A;--on-primary:#0B1120;--shadow:none}
+.r *,.r *::before,.r *::after{box-sizing:border-box}
+.r h1,.r h2,.r h3,.r p,.r ul,.r dl,.r dd,.r figure,.r pre{margin:0}
+.r a{color:var(--primary-strong)}
+.r :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border)}
+.topbar-in{max-width:1248px;height:100%;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.r .wordmark{font-size:18px;line-height:24px;font-weight:600;color:var(--text);text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.r .nav a{font-size:14px;line-height:20px;font-weight:500;color:var(--text);text-decoration:none;padding:8px 12px;border-radius:6px}
+.r .nav a:hover{background:var(--sunken)}
+.r .nav a[aria-current="page"]{background:var(--primary-soft);color:var(--primary-strong)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:36px;padding:0 12px;border-radius:6px;border:1px solid transparent;font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;white-space:nowrap;cursor:pointer;text-decoration:none;transition:background-color 150ms ease-out}
+.r .btn-g{background:transparent;color:var(--text)}
+.r .btn-g:hover{background:var(--sunken)}
+.ic{width:20px;height:20px;flex:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow)}
+.art{font-size:17px;line-height:28px}
+.art p,.art li{max-width:68ch}
+.art h2{font-size:24px;line-height:32px;font-weight:600;margin-bottom:16px;scroll-margin-top:24px}
+.art section{padding-top:48px}
+.art ul{padding-left:24px;display:flex;flex-direction:column;gap:8px}
+.code{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:16px;line-height:32px}
+.ic-code{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;line-height:20px;background:var(--sunken);border-radius:6px;padding:0 4px}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;font-size:16px;line-height:24px}
+.tbl th{background:var(--sunken);font-size:14px;line-height:20px;font-weight:600;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border)}
+.tbl td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.toc a{display:block;font-size:14px;line-height:20px;font-weight:500;color:var(--text);text-decoration:none;padding:8px 12px;border-radius:6px}
+.toc a:hover{background:var(--sunken)}
+.r .toc a[aria-current="true"]{background:var(--primary-soft);color:var(--primary-strong)}
+.tb-right{display:flex;align-items:center;gap:12px}
+.tdiv{width:1px;height:20px;background:var(--border);flex:none}
+.theme-sw{display:flex;align-items:center;flex:none;height:36px;border:1px solid var(--cell-line);border-radius:6px;overflow:hidden}
+.r .theme-sw button{display:inline-flex;align-items:center;gap:4px;width:36px;height:34px;justify-content:center;padding:0;border:0;border-radius:0;background:transparent;color:var(--text);font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer;transition:background-color 150ms ease-out}
+.r .theme-sw button:hover{background:var(--sunken)}
+.r .theme-sw button + button{border-left:1px solid var(--cell-line)}
+.r .theme-sw button{color:var(--muted)}
+.r .theme-sw button[aria-pressed="true"]{background:var(--sunken);color:var(--text)}
+.r .theme-sw button[aria-pressed="true"] svg{stroke-width:2.25}
+@media (max-width: 767px){.theme-sw,.tdiv{display:none}}
+@media (prefers-reduced-motion: reduce){.r .theme-sw button{transition:none}}
+.menu-btn{display:none}
+@media (max-width: 767px){.nav{display:none}.r .menu-btn{display:inline-flex;height:44px}}
+@media (max-width: 600px){.topbar-in{padding:0 16px}.r main.pg,.r .pg-band{padding-left:16px !important;padding-right:16px !important}}
+.foot{border-top:1px solid var(--border);background:var(--surface)}
+.foot-in{max-width:1248px;margin:0 auto;padding:16px 24px;font-size:14px;line-height:20px;color:var(--muted)}
+/* JetBrains Mono: tắt chữ ghép để "-->" hiện đúng như slide */
+.code,.ln,.mono,.textarea,.ic-code{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
+</style>
+</helmet>
+<div class="r" data-theme="{{theme}}" style="min-height:2020px;display:flex;flex-direction:column">
+<header class="topbar"><div class="topbar-in">
+<a class="wordmark" href="02-trang-chu.dc.html">Sudoku · Quay lui</a>
+<div class="tb-right">
+<nav class="nav">
+<a href="02-trang-chu.dc.html">Trang chủ</a>
+<a href="03-giai-san-sang.dc.html">Giải Sudoku</a>
+<a href="12-thuat-toan.dc.html" aria-current="page">Thuật toán</a>
+<a href="13-gioi-thieu.dc.html">Giới thiệu</a>
+</nav>
+<span class="tdiv" aria-hidden="true"></span>
+<div class="theme-sw" role="group" aria-label="Giao diện"><button type="button" aria-pressed="{{isLight}}" aria-label="Sáng" title="Sáng" onClick="{{toLight}}"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button><button type="button" aria-pressed="{{isDark}}" aria-label="Tối" title="Tối" onClick="{{toDark}}"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button></div>
+</div>
+<button class="btn btn-g menu-btn" type="button" aria-expanded="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>Menu</button>
+</div></header>
+<div style="background:var(--surface);border-bottom:1px solid var(--border)">
+<div class="pg-band" style="max-width:1072px;margin:0 auto;padding:48px 24px">
+<h1 style="font-size:32px;line-height:40px;font-weight:700">Thuật toán</h1>
+</div>
+</div>
+<main class="pg" style="flex:1;width:100%;max-width:1072px;margin:0 auto;padding:0 24px 64px;display:flex;flex-wrap:wrap;align-items:flex-start;gap:64px">
+<article class="art" style="flex:999 1 560px;min-width:0;max-width:720px">
+
+<section id="bai-toan">
+<h2>Bài toán</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+<div class="card" style="padding:16px 24px"><p style="font-size:14px;line-height:20px;font-weight:600;color:var(--muted)">Input</p><p>Ma trận 9×9, mỗi ô là số 1 → 9 hoặc X (ô trống).</p></div>
+<div class="card" style="padding:16px 24px"><p style="font-size:14px;line-height:20px;font-weight:600;color:var(--muted)">Output</p><p>Ma trận 9×9 hợp lệ, giữ nguyên các số đã cho.</p></div>
+</div>
+</section>
+
+<section id="mo-hinh-hoa">
+<h2>Mô hình hóa lời giải</h2>
+<ul>
+<li>Đánh số các ô trống theo thứ tự hàng rồi cột: 1, 2, …, n.</li>
+<li>S = (S₁, …, Sₙ), Sᵢ ∈ {1, …, 9} là số điền vào ô trống thứ i.</li>
+<li>Sᵢ = j chấp nhận được khi j chưa có ở hàng, cột và khối 3×3 của ô đó.</li>
+</ul>
+</section>
+
+<section id="doi-chieu">
+<h2>Đối chiếu với mô hình 1</h2>
+<div class="tbl-wrap">
+<table class="tbl">
+<thead><tr><th scope="col" style="width:50%">Mô hình 1</th><th scope="col">Trong bài này</th></tr></thead>
+<tbody>
+<tr><td><code class="ic-code">for (j = 1 --&gt; k)</code></td><td>thử j = 1 → 9</td></tr>
+<tr><td><code class="ic-code">if (khả năng j chấp nhận được)</code></td><td>j chưa có ở hàng, cột, khối</td></tr>
+<tr><td><code class="ic-code">Xác định Sᵢ theo j</code></td><td><code class="ic-code">S[i] = j</code></td></tr>
+<tr><td><code class="ic-code">Ghi nhận trạng thái mới</code></td><td>ghi j vào lưới, đánh dấu j đã dùng ở hàng, cột, khối</td></tr>
+<tr><td><code class="ic-code">if (i &lt; n) try(i+1)</code></td><td>sang ô trống kế tiếp</td></tr>
+<tr><td><code class="ic-code">Xuất lời giải</code></td><td>in lưới đã điền đủ</td></tr>
+<tr><td><code class="ic-code">Trả lại trạng thái cũ</code></td><td>xóa j khỏi lưới, bỏ đánh dấu</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="do-phuc-tap">
+<h2>Độ phức tạp</h2>
+<pre class="code" style="background:var(--sunken);border-radius:10px;padding:16px 24px;overflow-x:auto">T(n) = 9·T(n − 1) + c₂,   T(0) = c₁
+T(n) = 9ⁱ·T(n − i) + c₂·(9ⁱ⁻¹ + … + 9 + 1)
+Dừng khi n − i = 0 ⟺ i = n
+⟹ T(n) = 9ⁿ·c₁ + c₂·(9ⁿ − 1)/8 ∈ O(9ⁿ)</pre>
+</section>
+
+<section id="so-do-that">
+<h2>Số đo thật</h2>
+<figure style="display:flex;flex-direction:column;gap:12px">
+<div class="tbl-wrap">
+<table class="tbl">
+<thead><tr><th scope="col">Đề</th><th scope="col" style="text-align:right">Ô trống</th><th scope="col" style="text-align:right">Lần thử</th><th scope="col" style="text-align:right">Ghi nhận</th><th scope="col" style="text-align:right">Trả lại</th></tr></thead>
+<tbody>
+<tr><td>1. Wecode</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">0</td></tr>
+<tr><td>2. Wecode mở rộng</td><td class="num">5</td><td class="num">27</td><td class="num">5</td><td class="num">0</td></tr>
+<tr><td>3. Vừa</td><td class="num">40</td><td class="num">1.909</td><td class="num">227</td><td class="num">187</td></tr>
+<tr><td>4. Wikipedia</td><td class="num">51</td><td class="num">37.652</td><td class="num">4.208</td><td class="num">4.157</td></tr>
+<tr><td>5. Arto Inkala</td><td class="num">60</td><td class="num">445.778</td><td class="num">49.558</td><td class="num">49.498</td></tr>
+<tr><td>6. Lưới trống</td><td class="num">81</td><td class="num">3.195</td><td class="num">391</td><td class="num">310</td></tr>
+<tr><td>7. Vô nghiệm</td><td class="num">72</td><td class="num">9</td><td class="num">0</td><td class="num">0</td></tr>
+</tbody>
+</table>
+</div>
+<figcaption style="font-size:14px;line-height:20px;color:var(--muted);max-width:68ch">Lưới trống có 81 ô trống nhưng giải nhanh hơn đề Wikipedia. Số ô trống không quyết định độ khó; số lần phải quay lui mới quyết định.</figcaption>
+</figure>
+</section>
+</article>
+<aside style="flex:1 1 200px;max-width:240px;position:sticky;top:24px;padding-top:48px">
+<nav class="toc" aria-labelledby="toc-title">
+<p id="toc-title" style="font-size:14px;line-height:20px;font-weight:600;color:var(--muted);padding:0 12px 8px">Nội dung</p>
+<a href="#bai-toan" aria-current="true">Bài toán</a>
+<a href="#mo-hinh-hoa">Mô hình hóa lời giải</a>
+<a href="#doi-chieu">Đối chiếu với mô hình 1</a>
+<a href="#do-phuc-tap">Độ phức tạp</a>
+<a href="#so-do-that">Số đo thật</a>
+</nav>
+</aside>
+</main>
+<footer class="foot"><div class="foot-in">CS112 - Phân tích và thiết kế thuật toán · 2026</div></footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Chế độ&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2020}}">
+class Component extends DCLogic {
+  renderVals() {
+    // Mặc định theo hệ thống (ở canvas: Tweak "dark"); bấm Sáng/Tối thì ghi đè.
+    var self = this;
+    var dark = (this.state && this.state.dark !== undefined) ? this.state.dark : (this.props.dark ?? false);
+    return { theme: dark ? 'dark' : 'light', isLight: !dark, isDark: dark, toLight: function () { self.setState({ dark: false }); }, toDark: function () { self.setState({ dark: true }); } };
+  }
+}
+</script>
+</body>
+</html>

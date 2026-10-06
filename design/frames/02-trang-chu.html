@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trang chủ</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.r{--page:#F8FAFC;--surface:#FFFFFF;--sunken:#F1F5F9;--border:#E2E8F0;--cell-line:#CBD5E1;--box-line:#334155;--text:#0F172A;--muted:#475569;--primary:#2563EB;--primary-strong:#1D4ED8;--primary-soft:#DBEAFE;--on-primary:#FFFFFF;--given-bg:#FFFFFF;--given-fg:#0F172A;--fill-bg:#EFF6FF;--fill-fg:#1D4ED8;--try-bg:#FEF3C7;--try-fg:#92400E;--try-ring:#D97706;--rej-bg:#FEE2E2;--rej-fg:#B91C1C;--back-bg:#EDE9FE;--back-fg:#6D28D9;--back-ring:#7C3AED;--ok-bg:#CCFBF1;--ok-fg:#0F766E;--shadow:0 1px 2px rgba(15,23,42,0.06),0 1px 3px rgba(15,23,42,0.10);background:var(--page);color:var(--text);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:16px;line-height:24px}
+.r[data-theme="dark"]{--page:#0B1120;--surface:#111827;--sunken:#1E293B;--border:#1F2A3C;--cell-line:#334155;--box-line:#94A3B8;--text:#E2E8F0;--muted:#94A3B8;--primary:#60A5FA;--primary-strong:#93C5FD;--primary-soft:#1E3A8A;--on-primary:#0B1120;--given-bg:#111827;--given-fg:#F1F5F9;--fill-bg:#172554;--fill-fg:#93C5FD;--try-bg:#422006;--try-fg:#FCD34D;--try-ring:#F59E0B;--rej-bg:#450A0A;--rej-fg:#FCA5A5;--back-bg:#2E1065;--back-fg:#C4B5FD;--back-ring:#A78BFA;--ok-bg:#042F2E;--ok-fg:#5EEAD4;--shadow:none}
+.r *,.r *::before,.r *::after{box-sizing:border-box}
+.r h1,.r h2,.r h3,.r p,.r ul,.r dl,.r dd{margin:0}
+.r a{color:var(--primary-strong)}
+.r :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border)}
+.topbar-in{max-width:1248px;height:100%;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.r .wordmark{font-size:18px;line-height:24px;font-weight:600;color:var(--text);text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.r .nav a{font-size:14px;line-height:20px;font-weight:500;color:var(--text);text-decoration:none;padding:8px 12px;border-radius:6px}
+.r .nav a:hover{background:var(--sunken)}
+.r .nav a[aria-current="page"]{background:var(--primary-soft);color:var(--primary-strong)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:36px;padding:0 12px;border-radius:6px;border:1px solid transparent;font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;white-space:nowrap;cursor:pointer;text-decoration:none;transition:background-color 150ms ease-out}
+.r .btn-p{background:var(--primary);color:var(--on-primary)}
+.r .btn-p:hover{background:var(--primary-strong);color:var(--on-primary)}
+.r .btn-s{background:var(--surface);color:var(--text);border-color:var(--cell-line)}
+.r .btn-s:hover{background:var(--sunken);color:var(--text)}
+.r .btn-g{background:transparent;color:var(--text)}
+.r .btn-g:hover{background:var(--sunken)}
+.ic{width:20px;height:20px;flex:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow)}
+.sg{--cs:min(40px, calc((100vw - 36px) / 9));display:grid;grid-template-columns:repeat(9,var(--cs));border:2px solid var(--box-line);border-radius:8px;overflow:hidden;background:var(--surface);width:max-content}
+.cell{position:relative;width:var(--cs);height:var(--cs);display:flex;align-items:center;justify-content:center;border-right:1px solid var(--cell-line);border-bottom:1px solid var(--cell-line);font-size:clamp(20px, calc(var(--cs) * 0.55), 22px);line-height:1;font-variant-numeric:tabular-nums;background:var(--surface);color:var(--text)}
+.cell.br3{border-right:2px solid var(--box-line)}
+.cell.bb3{border-bottom:2px solid var(--box-line)}
+.cell.nr{border-right:0}
+.cell.nb{border-bottom:0}
+.s-given{background:var(--given-bg);color:var(--given-fg);font-weight:600}
+.s-fill{background:var(--fill-bg);color:var(--fill-fg);font-weight:400}
+.s-rej{background:var(--rej-bg);color:var(--rej-fg)}
+.s-rej .dg{text-decoration:line-through;text-decoration-thickness:2px}
+.ring{box-shadow:inset 0 0 0 2px var(--rej-fg)}
+.tb-right{display:flex;align-items:center;gap:12px}
+.tdiv{width:1px;height:20px;background:var(--border);flex:none}
+.theme-sw{display:flex;align-items:center;flex:none;height:36px;border:1px solid var(--cell-line);border-radius:6px;overflow:hidden}
+.r .theme-sw button{display:inline-flex;align-items:center;gap:4px;width:36px;height:34px;justify-content:center;padding:0;border:0;border-radius:0;background:transparent;color:var(--text);font:500 14px/20px 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer;transition:background-color 150ms ease-out}
+.r .theme-sw button:hover{background:var(--sunken)}
+.r .theme-sw button + button{border-left:1px solid var(--cell-line)}
+.r .theme-sw button{color:var(--muted)}
+.r .theme-sw button[aria-pressed="true"]{background:var(--sunken);color:var(--text)}
+.r .theme-sw button[aria-pressed="true"] svg{stroke-width:2.25}
+@media (max-width: 767px){.theme-sw,.tdiv{display:none}}
+@media (prefers-reduced-motion: reduce){.r .theme-sw button{transition:none}}
+.menu-btn{display:none}
+@media (max-width: 767px){.nav{display:none}.r .menu-btn{display:inline-flex;height:44px}}
+@media (max-width: 600px){.topbar-in{padding:0 16px}.r main.pg,.r .pg-band{padding-left:16px !important;padding-right:16px !important}}
+.foot{border-top:1px solid var(--border);background:var(--surface)}
+.foot-in{max-width:1248px;margin:0 auto;padding:16px 24px;font-size:14px;line-height:20px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="r" data-theme="light" style="min-height:900px;display:flex;flex-direction:column">
+<header class="topbar"><div class="topbar-in">
+<a class="wordmark" href="02-trang-chu.html">Sudoku · Quay lui</a>
+<div class="tb-right">
+<nav class="nav">
+<a href="02-trang-chu.html" aria-current="page">Trang chủ</a>
+<a href="03-giai-san-sang.html">Giải Sudoku</a>
+<a href="12-thuat-toan.html">Thuật toán</a>
+<a href="13-gioi-thieu.html">Giới thiệu</a>
+</nav>
+<span class="tdiv" aria-hidden="true"></span>
+<div class="theme-sw" role="group" aria-label="Giao diện"><button type="button" aria-pressed="true" aria-label="Sáng" title="Sáng"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button><button type="button" aria-pressed="false" aria-label="Tối" title="Tối"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button></div>
+</div>
+<button class="btn btn-g menu-btn" type="button" aria-expanded="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>Menu</button>
+</div></header>
+<div style="background:var(--surface);border-bottom:1px solid var(--border)">
+<div class="pg-band" style="max-width:1248px;margin:0 auto;padding:64px 24px">
+<section style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:48px">
+<div style="flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<h1 style="font-size:40px;line-height:48px;font-weight:700;max-width:16em">Xem thuật toán quay lui giải Sudoku, từng bước một.</h1>
+<p style="max-width:60ch;color:var(--muted)">Bài Lab01 môn CS112. Thuật toán bám đúng mô hình quay lui 1 trên lớp: thử từng số cho từng ô trống, gặp mâu thuẫn thì trả lại trạng thái cũ và lùi về ô trước.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<a class="btn btn-p" href="03-giai-san-sang.html">Mở trình giải</a>
+<a class="btn btn-s" href="12-thuat-toan.html">Đọc về thuật toán</a>
+</div>
+</div>
+<figure style="margin:0;flex:0 1 auto;max-width:100%;overflow-x:auto">
+<div class="sg" role="img" aria-label="Lưới Sudoku: Ô (4, 7) - thử số 2: bị loại vì 2 đã có ở hàng 4."><div class="cell s-given"><span class="dg">5</span></div><div class="cell s-given"><span class="dg">3</span></div><div class="cell s-given br3"><span class="dg">4</span></div><div class="cell s-given"><span class="dg">6</span></div><div class="cell s-fill"><span class="dg">7</span></div><div class="cell s-fill br3"><span class="dg">8</span></div><div class="cell s-given"><span class="dg">9</span></div><div class="cell s-given"><span class="dg">1</span></div><div class="cell s-given nr"><span class="dg">2</span></div><div class="cell s-fill"><span class="dg">6</span></div><div class="cell s-fill"><span class="dg">2</span></div><div class="cell s-fill br3"><span class="dg">8</span></div><div class="cell s-fill"><span class="dg">1</span></div><div class="cell s-given"><span class="dg">9</span></div><div class="cell s-given br3"><span class="dg">5</span></div><div class="cell s-given"><span class="dg">3</span></div><div class="cell s-given"><span class="dg">4</span></div><div class="cell s-fill nr"><span class="dg">7</span></div><div class="cell s-given bb3"><span class="dg">1</span></div><div class="cell s-given bb3"><span class="dg">9</span></div><div class="cell s-fill br3 bb3"><span class="dg">7</span></div><div class="cell s-fill bb3"><span class="dg">3</span></div><div class="cell s-fill bb3"><span class="dg">4</span></div><div class="cell s-given br3 bb3"><span class="dg">2</span></div><div class="cell s-fill bb3"><span class="dg">5</span></div><div class="cell s-given bb3"><span class="dg">6</span></div><div class="cell s-fill nr bb3"><span class="dg">8</span></div><div class="cell s-fill"><span class="dg">9</span></div><div class="cell s-fill"><span class="dg">5</span></div><div class="cell s-fill br3"><span class="dg">3</span></div><div class="cell s-given"><span class="dg">7</span></div><div class="cell s-given"><span class="dg">6</span></div><div class="cell s-given br3"><span class="dg">1</span></div><div class="cell s-rej"><span class="dg">2</span></div><div class="cell s-given ring"><span class="dg">2</span></div><div class="cell  nr"><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell s-given br3"><span class="dg">6</span></div><div class="cell "><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell s-given br3"><span class="dg">3</span></div><div class="cell s-given"><span class="dg">7</span></div><div class="cell "><span class="dg"></span></div><div class="cell  nr"><span class="dg"></span></div><div class="cell  bb3"><span class="dg"></span></div><div class="cell s-given bb3"><span class="dg">1</span></div><div class="cell  br3 bb3"><span class="dg"></span></div><div class="cell s-given bb3"><span class="dg">9</span></div><div class="cell s-given bb3"><span class="dg">2</span></div><div class="cell s-given br3 bb3"><span class="dg">4</span></div><div class="cell s-given bb3"><span class="dg">8</span></div><div class="cell  bb3"><span class="dg"></span></div><div class="cell  nr bb3"><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell s-given br3"><span class="dg">1</span></div><div class="cell "><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell  br3"><span class="dg"></span></div><div class="cell "><span class="dg"></span></div><div class="cell s-given"><span class="dg">8</span></div><div class="cell s-given nr"><span class="dg">4</span></div><div class="cell s-given"><span class="dg">2</span></div><div class="cell "><span class="dg"></span></div><div class="cell  br3"><span class="dg"></span></div><div class="cell s-given"><span class="dg">4</span></div><div class="cell s-given"><span class="dg">1</span></div><div class="cell  br3"><span class="dg"></span></div><div class="cell s-given"><span class="dg">6</span></div><div class="cell s-given"><span class="dg">3</span></div><div class="cell s-given nr"><span class="dg">5</span></div><div class="cell  nb"><span class="dg"></span></div><div class="cell s-given nb"><span class="dg">4</span></div><div class="cell  br3 nb"><span class="dg"></span></div><div class="cell s-given nb"><span class="dg">2</span></div><div class="cell  nb"><span class="dg"></span></div><div class="cell s-given br3 nb"><span class="dg">6</span></div><div class="cell s-given nb"><span class="dg">1</span></div><div class="cell s-given nb"><span class="dg">7</span></div><div class="cell  nr nb"><span class="dg"></span></div></div>
+</figure>
+</section>
+</div>
+</div>
+<main class="pg" style="flex:1;width:100%;max-width:1248px;margin:0 auto;padding:64px 24px">
+<section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+<div class="card" style="padding:24px;display:flex;flex-direction:column;gap:8px">
+<h2 style="font-size:20px;line-height:28px;font-weight:600">Bài toán</h2>
+<p style="color:var(--muted)">Điền đủ lưới 9×9 sao cho mỗi hàng, mỗi cột, mỗi khối 3×3 có đủ các số 1 → 9.</p>
+</div>
+<div class="card" style="padding:24px;display:flex;flex-direction:column;gap:8px">
+<h2 style="font-size:20px;line-height:28px;font-weight:600">Cách giải</h2>
+<p style="color:var(--muted)">Quay lui: thử số 1 → 9 cho ô trống thứ i. Số nào vi phạm thì loại ngay, không đi tiếp nhánh đó.</p>
+</div>
+<div class="card" style="padding:24px;display:flex;flex-direction:column;gap:8px">
+<h2 style="font-size:20px;line-height:28px;font-weight:600">Số đo thật</h2>
+<p style="color:var(--muted)">Đề Arto Inkala có 60 ô trống. Thuật toán giải xong sau <span style="font-variant-numeric:tabular-nums;color:var(--text);font-weight:600">445.778</span> lần thử, trong khi cận xấu nhất là 9⁶⁰.</p>
+</div>
+</section>
+</main>
+<footer class="foot"><div class="foot-in">CS112 - Phân tích và thiết kế thuật toán · 2026</div></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+.paste-dialog {
+  width: 560px;
+  max-width: calc(100% - 2 * var(--space-24));
+  padding: var(--space-24);
+  color: var(--color-text);
+}
+
+.paste-dialog::backdrop {
+  background: var(--color-scrim);
+}
+
+.paste-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.paste-dialog__title {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: 600;
+}
+
+.paste-dialog__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.paste-dialog__textarea {
+  display: block;
+  width: 100%;
+  padding: var(--space-12);
+  border: 1px solid var(--color-grid-cell-line);
+  border-radius: var(--radius-control);
+  background: var(--color-sunken);
+  color: var(--color-text);
+  font: 400 var(--font-size-code) / var(--line-height-code) var(--font-mono);
+  font-variant-ligatures: none;
+  resize: none;
+}
+
+.paste-dialog__textarea[aria-invalid='true'] {
+  border-color: var(--color-state-rejected-cue);
+  box-shadow: inset 0 0 0 1px var(--color-state-rejected-cue);
+}
+
+.paste-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-8);
+}

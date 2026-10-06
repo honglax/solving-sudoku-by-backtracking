@@ -1,0 +1,34 @@
+.status-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-16);
+  width: 100%;
+  max-width: 560px;
+}
+
+.status-page__code {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.status-page__description {
+  max-width: 60ch;
+  color: var(--color-text-muted);
+}
+
+.status-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  padding-top: var(--space-8);
+}

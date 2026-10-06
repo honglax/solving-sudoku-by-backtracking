@@ -1,0 +1,365 @@
+{
+  "meta": {
+    "locale": "vi-VN"
+  },
+  "site": {
+    "name": "Sudoku · Quay lui",
+    "documentTitle": "{pageName} · {siteName}",
+    "footer": "Minh họa thuật toán quay lui · 2026",
+    "navigationLabel": "Điều hướng chính",
+    "navigation": {
+      "home": "Trang chủ",
+      "solver": "Giải Sudoku",
+      "algorithm": "Thuật toán",
+      "about": "Giới thiệu"
+    },
+    "menuButton": "Menu",
+    "loading": "Đang tải…",
+    "theme": {
+      "groupLabel": "Giao diện",
+      "light": "Sáng",
+      "dark": "Tối"
+    },
+    "footerAlgorithmLink": "Thuật toán hoạt động thế nào?"
+  },
+  "notFound": {
+    "documentTitle": "Không tìm thấy trang",
+    "code": "404",
+    "title": "Không tìm thấy trang",
+    "description": "Không tìm thấy trang bạn cần. Có thể địa chỉ bị gõ nhầm, hoặc trang này đã được đổi tên.",
+    "homeButton": "Về trang chủ",
+    "solverButton": "Mở trình giải"
+  },
+  "appError": {
+    "documentTitle": "Đã xảy ra lỗi",
+    "title": "Đã xảy ra lỗi",
+    "description": "Trang gặp sự cố nên không hiển thị được. Bạn hãy thử tải lại trang, thường như vậy là sẽ ổn.",
+    "reloadButton": "Tải lại trang",
+    "homeButton": "Về trang chủ"
+  },
+  "home": {
+    "heroTitle": "Xem thuật toán quay lui giải Sudoku, từng bước một.",
+    "heroLead": "Giống như thử từng chìa khóa cho một ổ khóa: chìa nào không vừa thì bỏ, thử chìa kế tiếp; hết chìa thì quay lại đổi lựa chọn trước đó. Thuật toán quay lui giải Sudoku đúng như vậy, và ở đây bạn xem được từng bước: ô nào đang thử, số nào bị loại và vì sao.",
+    "openSolverButton": "Mở trình giải",
+    "readAlgorithmButton": "Đọc về thuật toán",
+    "problemCardTitle": "Bài toán",
+    "problemCardText": "Điền kín lưới 9×9 sao cho mỗi hàng, mỗi cột và mỗi khối 3×3 đều có đủ các số từ 1 đến 9, không số nào bị lặp lại.",
+    "methodCardTitle": "Cách giải",
+    "methodCardText": "Dùng quay lui: với ô trống thứ i, lần lượt thử các số từ 1 đến 9. Số nào vi phạm luật thì bị loại ngay, thuật toán không đi tiếp vào nhánh đó nữa.",
+    "speedCardTitle": "Nhanh cỡ nào?",
+    "speedCardText": "Lấy một đề khó có {blankCount} ô trống. Nếu thử hết mọi cách điền, ta phải xét tới 9⁶⁰ trường hợp, một con số dài 58 chữ số. Vậy mà thuật toán chỉ cần <strong>{tryCount}</strong> lần thử, vì số nào sai luật là bị loại ngay, không phải đi tiếp vào nhánh phía sau.",
+    "heroAnimationLabel": "Lưới Sudoku đang chạy thử: thuật toán thử số, gặp số bị loại thì thử số khác, hết cách thì quay lui."
+  },
+  "algorithm": {
+    "documentTitle": "Thuật toán",
+    "title": "Thuật toán",
+    "tableOfContentsTitle": "Nội dung",
+    "sections": {
+      "problem": "Bài toán",
+      "modelling": "Mô hình hóa lời giải",
+      "pseudocodeToSudoku": "Từ mã giả đến Sudoku",
+      "complexity": "Độ phức tạp",
+      "measurements": "Số lần thử của từng đề",
+      "antiBacktracking": "Đề chống quay lui"
+    },
+    "inputLabel": "Input",
+    "inputText": "Một ma trận 9×9, mỗi ô chứa một số từ 1 đến 9, hoặc X nếu là ô trống.",
+    "outputLabel": "Output",
+    "outputText": "Ma trận 9×9 đã được điền kín và hợp lệ, trong đó các số đề cho được giữ nguyên.",
+    "modellingPoints": [
+      "Đánh số các ô trống lần lượt từ trái sang phải, từ trên xuống dưới: 1, 2, …, n.",
+      "Lời giải là vectơ S = (S₁, …, Sₙ), trong đó Sᵢ ∈ {1, …, 9} là số được điền vào ô trống thứ i.",
+      "Khả năng Sᵢ = j được chấp nhận khi số j chưa xuất hiện ở hàng, cột và khối 3×3 chứa ô đó."
+    ],
+    "mappingColumns": {
+      "pseudocode": "Mã giả",
+      "inSudoku": "Với Sudoku"
+    },
+    "mappings": [
+      {
+        "pseudocode": "for (j = 1 --> k)",
+        "inSudoku": "lần lượt thử j từ 1 đến 9",
+        "isSudokuSideCode": false
+      },
+      {
+        "pseudocode": "if (khả năng j chấp nhận được)",
+        "inSudoku": "j chưa có ở hàng, cột và khối của ô",
+        "isSudokuSideCode": false
+      },
+      {
+        "pseudocode": "Xác định Sᵢ theo j",
+        "inSudoku": "S[i] = j",
+        "isSudokuSideCode": true
+      },
+      {
+        "pseudocode": "Ghi nhận trạng thái mới",
+        "inSudoku": "ghi j vào lưới, đánh dấu j đã dùng ở hàng, cột và khối",
+        "isSudokuSideCode": false
+      },
+      {
+        "pseudocode": "if (i < n) try(i+1)",
+        "inSudoku": "chuyển sang ô trống kế tiếp",
+        "isSudokuSideCode": false
+      },
+      {
+        "pseudocode": "Xuất lời giải",
+        "inSudoku": "in ra lưới đã điền kín",
+        "isSudokuSideCode": false
+      },
+      {
+        "pseudocode": "Trả lại trạng thái cũ",
+        "inSudoku": "xóa j khỏi lưới và bỏ các đánh dấu vừa thêm",
+        "isSudokuSideCode": false
+      }
+    ],
+    "complexityIntro": "Gọi T(n) là chi phí để giải khi còn n ô trống. Ở mỗi ô, thuật toán thử tối đa 9 số, và mỗi số được chấp nhận có thể mở ra một bài toán con còn n − 1 ô trống.",
+    "complexityDerivation": [
+      "T(n) = 9·T(n − 1) + c₂,   T(0) = c₁",
+      "T(n) = 9ⁱ·T(n − i) + c₂·(9ⁱ⁻¹ + … + 9 + 1)",
+      "Dừng khi n − i = 0 ⟺ i = n",
+      "⟹ T(n) = 9ⁿ·c₁ + c₂·(9ⁿ − 1)/8 ∈ O(9ⁿ)"
+    ],
+    "complexityConclusion": "Đây là chi phí trong trường hợp xấu nhất. Trên thực tế, số lần thử ít hơn rất nhiều, vì số nào vi phạm luật thì bị loại ngay, và toàn bộ nhánh phía sau nó không bao giờ phải thử.",
+    "measurementColumns": {
+      "puzzle": "Đề",
+      "blankCount": "Ô trống",
+      "tryCount": "Lần thử",
+      "recordCount": "Ghi nhận",
+      "restoreCount": "Trả lại"
+    },
+    "measurementRowLabel": "{id}. {name}",
+    "measurementCaption": "Lưới trống có tới 81 ô trống nhưng lại được giải nhanh hơn đề Wikipedia. Như vậy, độ khó không nằm ở số ô trống mà nằm ở số lần thuật toán phải quay lui.",
+    "antiBacktrackingIntro": "Có người cố tình soạn ra những đề để làm khó đúng cách giải này. Đề dưới đây là một ví dụ: chỉ có 17 số cho sẵn, hàng đầu trống trơn, và đáp án của hàng đó là <nowrap>9 8 7 6 5 4 3 2 1</nowrap>. Trong khi đó, thuật toán luôn thử từ 1 lên 9, nên ở hàng đầu, số đúng lúc nào cũng được thử sau cùng.",
+    "antiBacktrackingPictureLabel": "Lưới Sudoku của đề chống quay lui: 17 số cho sẵn, hàng đầu trống",
+    "antiBacktrackingWhyTitle": "Vì sao chậm đến vậy?",
+    "antiBacktrackingReasons": [
+      "Ở ô (1, 1), số 1 và số 5 bị loại ngay từ đầu. Còn các số 2, 3, 4, 6, 7, 8 thì lúc đầu trông đều hợp lệ, phải điền gần kín lưới mới lộ ra là sai.",
+      "Riêng 6 lần chọn sai ở ô đầu tiên đã ngốn tới {wrongFirstCellTryCount} lần thử, tức {wrongFirstCellPercent} tổng số lần thử.",
+      "Các ô khác trên hàng 1 cũng vậy: số đúng luôn là số lớn nhất chưa dùng trong hàng, nên bao giờ cũng được thử sau cùng."
+    ],
+    "antiBacktrackingComparisonCaption": "Đề này chỉ nhiều hơn đề Arto Inkala 4 ô trống, nhưng số lần thử lại gấp khoảng {slowdownFactor} lần.",
+    "antiBacktrackingConclusion": "Nói cách khác, O(9ⁿ) ở phần trên không chỉ là chuyện lý thuyết. Muốn giải đề này nhanh thì phải đổi cách chọn ô hoặc thứ tự thử số, và khi đó không còn là quay lui thuần như trang này minh họa nữa.",
+    "antiBacktrackingTryButton": "Mở đề này trong trình giải",
+    "antiBacktrackingTryNote": "Nếu bấm Giải ngay, máy sẽ phải chạy hơn 10 phút mới xong. Bạn có thể bấm Dừng bất cứ lúc nào.",
+    "wrongFirstCellPercent": "86,7%"
+  },
+  "about": {
+    "documentTitle": "Giới thiệu",
+    "title": "Giới thiệu",
+    "rows": [
+      {
+        "label": "Trang này để làm gì",
+        "text": "Để bạn xem thuật toán quay lui giải Sudoku chạy qua từng bước: ô nào đang được thử, số nào bị loại và vì sao, lúc nào thì phải lùi lại."
+      },
+      {
+        "label": "Cách sử dụng",
+        "text": "Vào trang Giải Sudoku, chọn một đề có sẵn hoặc dán đề của riêng bạn. Muốn xem chậm thì bấm Từng bước, muốn xem máy tự chạy liên tục thì bấm Tự động, còn nếu chỉ cần đáp án thì bấm Giải ngay."
+      },
+      {
+        "label": "Thuật toán",
+        "text": "Quay lui thuần, không dùng thêm mẹo nào: thuật toán đi lần lượt qua từng ô trống, từ trái sang phải, từ trên xuống dưới, và ở mỗi ô thử các số từ 1 đến 9."
+      },
+      {
+        "label": "Tác giả",
+        "text": "Lã Xuân Hồng"
+      },
+      {
+        "label": "Công cụ",
+        "text": "Trang web được xây dựng bằng React, TypeScript và Vite. Giao diện được thiết kế bằng Claude Design, còn mã nguồn được viết cùng Claude Code."
+      }
+    ],
+    "videoLink": "Video demo",
+    "sourceCodeLink": "Mã nguồn",
+    "intro": "Trang này dành cho người mới học thuật toán, hoặc bất kỳ ai tò mò máy tính giải Sudoku thế nào."
+  },
+  "puzzles": {
+    "names": {
+      "1": "Rất dễ",
+      "2": "Dễ",
+      "3": "Vừa",
+      "4": "Wikipedia",
+      "5": "Arto Inkala",
+      "6": "Lưới trống",
+      "7": "Vô nghiệm ngay ô đầu",
+      "8": "Nhiều lời giải",
+      "9": "Vô nghiệm, phải tìm mới biết",
+      "10": "AI Escargot",
+      "11": "Easter Monster",
+      "12": "Chống quay lui"
+    },
+    "sampleLabel": "Đề {id} - {name} ({blankCount} ô trống)",
+    "unlistedLabel": "{name} ({blankCount} ô trống)",
+    "customLabel": "Đề tự nhập ({blankCount} ô trống)"
+  },
+  "units": {
+    "row": "hàng {row}",
+    "column": "cột {column}",
+    "box": "khối (hàng {firstRow}-{lastRow}, cột {firstColumn}-{lastColumn})",
+    "cell": "({row}, {column})",
+    "listSeparator": ", ",
+    "listLastSeparator": " và "
+  },
+  "solver": {
+    "documentTitle": "Giải Sudoku",
+    "eyebrow": "Thử từng số, sai thì lùi lại",
+    "gridLabel": "Lưới Sudoku",
+    "cellLabel": "Ô {cell}",
+    "legend": {
+      "given": "Đề cho",
+      "trying": "Đang thử",
+      "rejected": "Bị loại",
+      "recorded": "Đã ghi nhận",
+      "restored": "Vừa trả lại",
+      "solved": "Đã giải"
+    },
+    "controls": {
+      "puzzleSelectLabel": "Đề mẫu",
+      "paste": "Dán đề",
+      "check": "Kiểm tra đề",
+      "step": "Từng bước",
+      "autoPlay": "Tự động",
+      "pause": "Tạm dừng",
+      "solveInstantly": "Giải ngay",
+      "reset": "Đặt lại",
+      "stop": "Dừng",
+      "options": "Tùy chọn",
+      "speedLabel": "Tốc độ",
+      "speedValue": "{speed} lần thử/giây",
+      "stepBack": "Lùi một bước",
+      "jumpToNextBacktrack": "Tới lần quay lui kế",
+      "changePuzzle": "Đổi đề: {label}"
+    },
+    "optionsSheet": {
+      "title": "Tùy chọn",
+      "close": "Đóng"
+    },
+    "pseudocode": {
+      "title": "Mã giả quay lui",
+      "collapsedTitle": "Mã giả",
+      "caption": "Với Sudoku: k = 9 (thử các số 1 → 9) · n = số ô trống",
+      "acceptedTag": "đúng",
+      "rejectedTag": "sai",
+      "lines": [
+        "try(i) =",
+        "{   for (j = 1 --> k)",
+        "        if (khả năng j chấp nhận được)",
+        "        {   Xác định Sᵢ theo j;",
+        "            Ghi nhận trạng thái mới của bài toán (nếu có);",
+        "            if (i < n)",
+        "                try(i+1);",
+        "            else",
+        "                Xuất lời giải S = (S₁, S₂, …, Sₙ);",
+        "            Trả lại trạng thái cũ của bài toán;",
+        "        }",
+        "}"
+      ]
+    },
+    "solutionVector": {
+      "tabLabel": "S = (S₁, …, Sₙ)",
+      "collapsedTitle": "Lời giải S",
+      "tabsLabel": "Lời giải và lịch sử",
+      "position": "i = {currentIndex} / {blankCount}"
+    },
+    "progress": {
+      "panelTitle": "Diễn biến",
+      "tryCount": "Lần thử",
+      "recordCount": "Ghi nhận",
+      "restoreCount": "Trả lại"
+    },
+    "history": {
+      "tabLabel": "Lịch sử",
+      "limitNotice": "Chỉ lưu {limit} bước gần nhất",
+      "limitReachedNotice": "Lịch sử chỉ lưu {limit} bước gần nhất, nên các bước cũ hơn không xem lại được nữa.",
+      "empty": "Chưa có bước nào được ghi lại. Bấm Từng bước hoặc Tự động để bắt đầu.",
+      "caption": "Lịch sử các bước, bước mới nhất nằm trên cùng. Bấm vào một dòng để xem lại bước đó.",
+      "columns": {
+        "tryNumber": "Lần thử",
+        "cell": "Ô",
+        "digit": "Số",
+        "result": "Kết quả",
+        "reason": "Lý do"
+      },
+      "reviewButtonLabel": "Xem lại lần thử {tryCount}: {result}",
+      "reviewNotice": "Đang xem lại lần thử <strong>{tryCount}</strong>",
+      "olderStep": "Trước",
+      "newerStep": "Sau",
+      "latestStep": "Về bước mới nhất",
+      "notApplicable": "–",
+      "rows": {
+        "accepted": {
+          "result": "Chấp nhận",
+          "reason": "chưa có ở hàng, cột và khối"
+        },
+        "rejected": {
+          "result": "Bị loại",
+          "reason": "đã có ở {unit}"
+        },
+        "restored": {
+          "result": "Trả lại",
+          "reason": "nhánh phía sau không có lời giải"
+        },
+        "solved": {
+          "result": "Có lời giải",
+          "reason": "đã điền đủ các ô trống"
+        },
+        "noSolution": {
+          "result": "Hết cách",
+          "reason": "đã thử hết mọi khả năng"
+        },
+        "recorded": {
+          "result": "Ghi nhận"
+        },
+        "descended": {
+          "result": "Sang ô tiếp theo",
+          "reason": "ô trống thứ {index}"
+        }
+      }
+    },
+    "messages": {
+      "ready": "Đề hợp lệ, có <strong>{blankCount} ô trống</strong>. Bấm Từng bước hoặc Tự động để bắt đầu.",
+      "complete": "Đề đã được điền kín, không còn ô trống nào để giải.",
+      "accepted": "<strong>Ô {cell}</strong> - thử số {digit}: chấp nhận được.",
+      "rejected": "<strong>Ô {cell}</strong> - thử số {digit}: bị loại vì {digit} đã có ở {unit}.",
+      "restoredWithNextDigit": "Quay lui: trả lại <strong>ô {cell}</strong> bằng cách xóa số {digit}. Tiếp theo sẽ thử số {nextDigit} ở chính ô này.",
+      "restoredAfterLastDigit": "Quay lui: trả lại <strong>ô {cell}</strong> bằng cách xóa số {digit}. Ô này đã thử hết các số từ {firstDigit} đến {lastDigit}, nên phải lùi về ô trống trước đó.",
+      "solved": "<strong>Đã giải xong</strong> sau {tryCount} lần thử và {restoreCount} lần trả lại.",
+      "solvingLong": "Đang giải… đã thử <strong>{tryCount}</strong> lần",
+      "instantSolvePaused": "Đã dừng sau <strong>{tryCount}</strong> lần thử. Bấm Giải ngay để chạy tiếp.",
+      "noSolutionGeneral": "Đề này không có lời giải. Sau {tryCount} lần thử, thuật toán đã xét hết mọi cách điền mà không có cách nào hợp lệ.",
+      "noSolutionAtFirstCell": "Đề này không có lời giải. Ở <strong>ô {cell}</strong>, cả 9 số đều bị loại: {reasons}.",
+      "rejectionReason": "{digits} đã có ở {unit}",
+      "rejectionReasonSeparator": ", ",
+      "singleDigit": "số {digit}",
+      "digitRange": "các số từ {firstDigit} đến {lastDigit}",
+      "duplicate": "Đề không hợp lệ: số {digit} xuất hiện {count} lần ở <strong>{location}</strong>. Bạn hãy sửa lại rồi bấm Kiểm tra đề.",
+      "duplicateInRow": "hàng {row} ({columns})",
+      "duplicateInColumn": "cột {column} ({rows})",
+      "duplicateInBox": "{box}: {cells}",
+      "duplicateCell": "ô {cell}",
+      "firstBacktrack": "<strong>Lần quay lui đầu tiên!</strong> Ô {cell} vừa bị trả lại số {digit}, vì với số này không điền tiếp được các ô phía sau. Bạn đoán bước tiếp theo là gì? Bấm Từng bước để xem."
+    },
+    "parseErrors": {
+      "wrongLineCount": "Đề cần có đúng 9 dòng, mỗi dòng 9 ô, nhưng bạn đã dán <strong>{lineCount} dòng</strong>.",
+      "wrongCellCountInLine": "<strong>Dòng {lineNumber}</strong> có {cellCount} ô, trong khi mỗi dòng cần đúng 9 ô.",
+      "invalidCharacterInLine": "<strong>Dòng {lineNumber}</strong> có ký tự không hợp lệ: \"{character}\". Mỗi ô chỉ được là một số từ 1 đến 9, hoặc X nếu là ô trống.",
+      "wrongStringLength": "Chuỗi đề cần có đúng 81 ký tự, nhưng chuỗi bạn dán có <strong>{length}</strong> ký tự.",
+      "invalidCharacterInString": "<strong>Ký tự thứ {position}</strong> không hợp lệ: \"{character}\". Chuỗi chỉ được chứa các số từ 1 đến 9, và dấu chấm cho ô trống."
+    },
+    "pasteDialog": {
+      "title": "Dán đề Sudoku",
+      "description": "Bạn có thể dán 9 dòng, mỗi dòng 9 ô, với X là ô trống (các ô có thể cách nhau bằng dấu cách). Hoặc dán một chuỗi liền 81 ký tự, trong đó dấu chấm là ô trống.",
+      "cancel": "Hủy",
+      "submit": "Dùng đề này"
+    },
+    "cellStates": {
+      "given": "Đề cho",
+      "recorded": "Đã ghi nhận",
+      "trying": "Đang thử",
+      "rejected": "Bị loại",
+      "restored": "Vừa trả lại",
+      "solved": "Đã giải",
+      "inputError": "Số bị trùng",
+      "withConflict": "{state} · ô gây mâu thuẫn"
+    }
+  }
+}
