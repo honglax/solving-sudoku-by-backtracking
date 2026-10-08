@@ -332,7 +332,8 @@
       "9": "Vô nghiệm, phải tìm mới biết",
       "10": "AI Escargot",
       "11": "Easter Monster",
-      "12": "Chống quay lui"
+      "12": "Chống quay lui",
+      "13": "Ngắn, có quay lui"
     },
     "sampleLabel": "Đề {id} - {name} ({blankCount} ô trống)",
     "unlistedLabel": "{name} ({blankCount} ô trống)",

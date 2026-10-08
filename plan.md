@@ -180,6 +180,7 @@ Thứ tự làm: **A → B → C → D**. Trễ lịch thì cắt từ D trở l
 
 **Thêm để nối demo với report và testcase**
 - **Đề minh họa** cho chương 5 của report: tự tạo, khoảng 50-80 lần thử, có 1-2 lần quay lui. Thêm vào danh sách đề mẫu với tên chung, không nhắc tới report.
+  > **Đã làm 8-9/10:** đề 13 "Ngắn, có quay lui" (16 ô trống, 79 lần thử, 3 lần quay lui, lời giải duy nhất), tìm bằng `checks/find_illustration_puzzle.py` (seed 7). Quay lui nằm gọn trong 35 lần thử đầu trên hàng 1, có một lần lùi dây chuyền qua 2 ô. Các bước xuất bằng `report/tools/exportIllustrationTrace.ts` ra `report/data/` (83 bước, 5 ảnh lưới), dùng chính bộ giải của website.
 - Script xuất **toàn bộ** các bước của đề minh họa (bảng Lịch sử trên web chỉ giữ 100 bước), cùng một bộ giải với website. Report dùng bảng này cùng ảnh chụp demo ở các bước then chốt, nên hai bên khớp nhau.
 - Hộp "Dán đề" thêm nút **mở file testcase**: chọn một file nhóm rồi chọn đề trong file, để mở thẳng một testcase trong demo.
 

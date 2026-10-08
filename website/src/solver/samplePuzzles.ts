@@ -116,6 +116,14 @@ export const SAMPLE_PUZZLES: SamplePuzzle[] = [
     measuredWithFewestCandidatesFirst: { tryCount: 407156, recordCount: 45267, restoreCount: 45203 },
     measuredFullSearch: null,
   },
+  {
+    id: 13,
+    puzzle: '53467.9..67..95348.9834.5678.976..234.6.537917139.48569615372.4287419635.45.86179',
+    isListed: true,
+    measured: { tryCount: 79, recordCount: 19, restoreCount: 3 },
+    measuredWithFewestCandidatesFirst: { tryCount: 52, recordCount: 16, restoreCount: 0 },
+    measuredFullSearch: { solutionCount: 1, tryCount: 171, recordCount: 19, restoreCount: 19 },
+  },
 ]
 
 export const DEFAULT_SAMPLE_PUZZLE_ID = 3

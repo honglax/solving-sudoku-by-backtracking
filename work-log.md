@@ -361,3 +361,17 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Chụp màn hình phát hiện tiêu đề trang chủ xuống 3 dòng, chữ "một." đứng lẻ, và đoạn dẫn đổi hình ảnh giữa chừng (ổ khóa → cánh cửa); đã sửa cả hai.
 - Cập nhật đáp án trong 9 test đơn vị và 6 test end-to-end so từng ký tự câu thông báo. Kết quả: 714 test đơn vị, 59 test end-to-end, 292 testcase đều đạt.
 - **Lỗi lọt vào commit `dc0b193`, Claude tự phát hiện ngay sau khi commit:** 3 câu mới có chỗ chờ điền số (`{inkalaTryCount}`, `{fewestCandidatesTryCount}`) nhưng code chưa truyền số vào, nên trang Thuật toán và So sánh hiện nguyên dấu ngoặc nhọn. Không test nào bắt được. Đã sửa, và thêm test end-to-end mở từng trang, khẳng định không còn `{…}` hay thẻ `<strong>` thô nào hiện ra. Kiểm lại chính test này: lần đầu test vẫn đạt trên bản lỗi, vì nó kiểm chữ lúc trang còn đang tải; đổi sang chờ trang tải xong thì test bắt đúng lỗi ở `/algorithm`. Kết quả: 714 test đơn vị, 60 test end-to-end đạt.
+
+---
+
+## 8/10 - 9/10/2026 - Đề minh họa cho report
+
+> Where are we now?
+
+> totally agree
+
+- Claude tóm tắt tiến độ: website và bộ testcase gần xong, report và video chưa bắt đầu, đề minh họa cho Ch.5 đang trễ lịch. Mình đồng ý thứ tự: làm đề minh họa ngay, bắt đầu report từ 9/10 (sớm hơn lịch 5 ngày, viết Ch.6 trước), deploy 11/10, phần D chỉ làm nếu còn thời gian.
+- Claude viết `checks/find_illustration_puzzle.py`: xóa ngẫu nhiên 10-16 ô từ một lưới đầy, giữ đề có đúng một lời giải, 50-90 lần thử, 1-3 lần quay lui, có đủ 3 kiểu bị loại (hàng, cột, khối). Ra 12 đề; chọn đề 79 lần thử, 3 lần quay lui. Lý do: cả 3 lần quay lui nằm trong 35 lần thử đầu, ngay trên hàng 1, trong đó có một lần lùi dây chuyền qua 2 ô (ô (1, 9) hết số → lùi về (1, 8), ô (1, 8) cũng hết số → lùi về (1, 6)).
+- Thêm vào website thành đề 13 "Ngắn, có quay lui". Chạy lại cả 3 bản Python tham chiếu; số của 12 đề cũ không đổi.
+- `report/tools/exportIllustrationTrace.ts` xuất 83 bước (lần thử, i, ô, số, thao tác, lý do kèm ô gây trùng, vectơ S) và 5 ảnh lưới ra `report/data/`, dùng đúng bộ giải của website nên khớp demo từng bước.
+- **Sự cố máy:** `yarn test` từ 9 giây thành 16-17 phút, mỗi lần hỏng một test khác nhau vì quá thời gian. Claude đo: một vòng lặp cần 1,9 giây CPU mà mất 27 giây, tức máy chỉ cấp khoảng 5-7% sức chạy (không phải chế độ tiết kiệm pin, không có cảnh báo nhiệt). Nới giới hạn thời gian mỗi test lên 30 giây. Lượt cuối: 722/723 đạt, test còn lại vẫn quá thời gian do máy; mọi test liên quan tới đề 13 đều đạt.
