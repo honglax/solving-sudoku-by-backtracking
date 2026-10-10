@@ -375,3 +375,10 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Thêm vào website thành đề 13 "Ngắn, có quay lui". Chạy lại cả 3 bản Python tham chiếu; số của 12 đề cũ không đổi.
 - `report/tools/exportIllustrationTrace.ts` xuất 83 bước (lần thử, i, ô, số, thao tác, lý do kèm ô gây trùng, vectơ S) và 5 ảnh lưới ra `report/data/`, dùng đúng bộ giải của website nên khớp demo từng bước.
 - **Sự cố máy:** `yarn test` từ 9 giây thành 16-17 phút, mỗi lần hỏng một test khác nhau vì quá thời gian. Claude đo: một vòng lặp cần 1,9 giây CPU mà mất 27 giây, tức máy chỉ cấp khoảng 5-7% sức chạy (không phải chế độ tiết kiệm pin, không có cảnh báo nhiệt). Nới giới hạn thời gian mỗi test lên 30 giây. Lượt cuối: 722/723 đạt, test còn lại vẫn quá thời gian do máy; mọi test liên quan tới đề 13 đều đạt.
+
+## 10/10/2026 - Chạy lại toàn bộ test
+
+> Re-run all test?
+
+- Máy chạy bình thường lại (vòng lặp đo thử: 2,3 giây, 87% CPU; hôm trước 27 giây).
+- Test đơn vị 723/723 đạt (10 giây), bộ testcase 292/292 đạt và đủ 20 nhánh, test end-to-end 60/60 đạt (22 giây).
