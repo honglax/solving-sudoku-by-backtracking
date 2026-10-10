@@ -360,7 +360,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Giữ nguyên: 12 dòng mã giả, cột "Mã giả" của bảng đối chiếu, nhãn trạng thái ngắn ("Bị loại", "Chấp nhận được", "Ghi nhận", "Trả lại"), nhãn "Input" / "Output".
 - Chụp màn hình phát hiện tiêu đề trang chủ xuống 3 dòng, chữ "một." đứng lẻ, và đoạn dẫn đổi hình ảnh giữa chừng (ổ khóa → cánh cửa); đã sửa cả hai.
 - Cập nhật đáp án trong 9 test đơn vị và 6 test end-to-end so từng ký tự câu thông báo. Kết quả: 714 test đơn vị, 59 test end-to-end, 292 testcase đều đạt.
-- **Lỗi lọt vào commit `dc0b193`, Claude tự phát hiện ngay sau khi commit:** 3 câu mới có chỗ chờ điền số (`{inkalaTryCount}`, `{fewestCandidatesTryCount}`) nhưng code chưa truyền số vào, nên trang Thuật toán và So sánh hiện nguyên dấu ngoặc nhọn. Không test nào bắt được. Đã sửa, và thêm test end-to-end mở từng trang, khẳng định không còn `{…}` hay thẻ `<strong>` thô nào hiện ra. Kiểm lại chính test này: lần đầu test vẫn đạt trên bản lỗi, vì nó kiểm chữ lúc trang còn đang tải; đổi sang chờ trang tải xong thì test bắt đúng lỗi ở `/algorithm`. Kết quả: 714 test đơn vị, 60 test end-to-end đạt.
+- **Lỗi lọt vào commit `bb871f3`, Claude tự phát hiện ngay sau khi commit:** 3 câu mới có chỗ chờ điền số (`{inkalaTryCount}`, `{fewestCandidatesTryCount}`) nhưng code chưa truyền số vào, nên trang Thuật toán và So sánh hiện nguyên dấu ngoặc nhọn. Không test nào bắt được. Đã sửa, và thêm test end-to-end mở từng trang, khẳng định không còn `{…}` hay thẻ `<strong>` thô nào hiện ra. Kiểm lại chính test này: lần đầu test vẫn đạt trên bản lỗi, vì nó kiểm chữ lúc trang còn đang tải; đổi sang chờ trang tải xong thì test bắt đúng lỗi ở `/algorithm`. Kết quả: 714 test đơn vị, 60 test end-to-end đạt.
 
 ---
 
@@ -382,3 +382,10 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 
 - Máy chạy bình thường lại (vòng lặp đo thử: 2,3 giây, 87% CPU; hôm trước 27 giây).
 - Test đơn vị 723/723 đạt (10 giây), bộ testcase 292/292 đạt và đủ 20 nhánh, test end-to-end 60/60 đạt (22 giây).
+
+> Set up git author for this repo (Hong La, hongla.html@gmail.com)
+
+> Of course (đồng ý sửa tác giả cho các commit cũ)
+
+- Cài tác giả git riêng cho repo `final-project`: Hong La <hongla.html@gmail.com>. Cấu hình git chung của máy không đổi.
+- Viết lại tác giả và người commit cho cả 9 commit cũ (trước đó ký bằng email công ty). Repo chưa có remote nên an toàn. Kiểm lại: nội dung code giống hệt trước khi viết lại, chỉ mã commit đổi. Đã sửa mã commit nhắc trong nhật ký (`dc0b193` → `bb871f3`).
