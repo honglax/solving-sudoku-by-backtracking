@@ -459,3 +459,12 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Ch.8: 294/294 đề đạt; thời gian; so sánh (cấu trúc dữ liệu chỉ đổi hằng số; thứ tự chọn ô giảm số lần thử 5 tới 1.529 lần; đề Vừa và Inkala thử ít hơn mà chậm hơn); kiểm thử tự động; giao diện; ghi thẳng là chưa thử với người dùng thật; hạn chế và hướng phát triển.
 - Lỗi tự soát ra trước khi commit: Ch.8 bản nháp ghép nhầm 4,9 ms (bản đo có đếm) với 623 ms của generator thành "chậm hơn 130 lần"; số đúng là 3,7 ms so với 623 ms, khoảng 170 lần, khớp Ch.4 và Ch.6.
 - Report 48 trang, không cảnh báo, không ký tự `%`.
+
+**Skill hội đồng góp ý**
+> Do you know how to set up agent councils to feedback our work?
+
+> Save as a skill first then we can start the council later
+
+- Claude đề xuất hội đồng 5 vai bám theo tiêu chí chấm của cô: giảng viên chấm bài, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp, người hoài nghi (soát chỗ giống AI viết và độ trung thực của phần kể dùng AI). Các agent chỉ đọc, làm việc độc lập, không thấy ý kiến của nhau.
+- Lưu thành skill dự án `council` (`.claude/skills/council/`, ngoài repo). Quy trình 5 bước: chuẩn bị (compile report hoặc chụp ảnh website), giao việc song song, chủ tọa gộp ý và kiểm chứng từng ý với file gốc (gắn nhãn Đúng / Đúng một phần / Sai / Tùy chọn), trình sinh viên chọn sửa, sửa rồi ghi nhật ký. Mã giả của cô và khuôn trình bày của cô luôn thắng mọi góp ý.
+- Chạy được với tham số `report`, `website`, `video`, `final`.
