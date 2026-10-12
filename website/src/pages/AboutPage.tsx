@@ -5,6 +5,7 @@ import { messages } from '../i18n/messages.ts'
 import '../styles/pages/AboutPage.css'
 
 const ABOUT = messages.about
+const SOURCE_CODE_URL = 'https://github.com/honglax/solving-sudoku-by-backtracking'
 
 type ExternalLink = {
   label: string
@@ -14,7 +15,7 @@ type ExternalLink = {
 
 const EXTERNAL_LINKS: ExternalLink[] = [
   { label: ABOUT.videoLink, url: null, icon: Video },
-  { label: ABOUT.sourceCodeLink, url: null, icon: Code },
+  { label: ABOUT.sourceCodeLink, url: SOURCE_CODE_URL, icon: Code },
 ]
 
 export default function AboutPage() {

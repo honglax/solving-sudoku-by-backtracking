@@ -6,6 +6,7 @@ const PAGES = [
   { path: '/algorithm', title: 'Thuật toán · Sudoku · Quay lui' },
   { path: '/compare', title: 'So sánh · Sudoku · Quay lui' },
   { path: '/all-solutions', title: 'Mọi lời giải · Sudoku · Quay lui' },
+  { path: '/sizes', title: 'Kích thước lưới · Sudoku · Quay lui' },
   { path: '/about', title: 'Giới thiệu · Sudoku · Quay lui' },
   { path: '/khong-co-trang-nay', title: 'Không tìm thấy trang · Sudoku · Quay lui' },
 ]
@@ -45,7 +46,7 @@ for (const viewport of [{ width: 1366, height: 680 }, { width: 1712, height: 122
   })
 }
 
-for (const width of [900, 1366]) {
+for (const width of [1020, 1366]) {
   test(`at ${width} px every navigation link stays on one line`, async ({ page }) => {
     await page.setViewportSize({ width, height: 800 })
     await page.goto('/')
@@ -61,8 +62,8 @@ for (const width of [900, 1366]) {
   })
 }
 
-test('below 900 px the navigation moves into the menu', async ({ page }) => {
-  await page.setViewportSize({ width: 899, height: 800 })
+test('below 1020 px the navigation moves into the menu', async ({ page }) => {
+  await page.setViewportSize({ width: 1019, height: 800 })
   await page.goto('/')
   await expect(page.getByRole('button', { name: 'Menu' })).toBeVisible()
 })
@@ -124,6 +125,12 @@ test('the footer links to the algorithm page and About opens with who the site i
   await expect(page.getByRole('row', { name: /Tác giả/ }).or(page.getByText('Tác giả'))).toBeVisible()
   await page.getByRole('contentinfo').getByRole('link', { name: 'Thuật toán hoạt động thế nào?' }).click()
   await expect(page).toHaveURL('/algorithm')
+})
+
+test('About links to the source code repository', async ({ page }) => {
+  await page.goto('/about')
+  const sourceCodeLink = page.getByRole('link', { name: 'Mã nguồn' })
+  await expect(sourceCodeLink).toHaveAttribute('href', 'https://github.com/honglax/solving-sudoku-by-backtracking')
 })
 
 test('algorithm captions use the article text size, and table code matches the text beside it', async ({ page }) => {

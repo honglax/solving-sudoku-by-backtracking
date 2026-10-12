@@ -8,6 +8,9 @@ import { applySolverEvent, createSolverProgress, type SolverProgress } from '../
 import { EMPTY, SIZE, type CellPosition, type Grid } from '../../website/src/solver/sudokuRules.ts'
 
 const ILLUSTRATION_PUZZLE_ID = 13
+const EXCERPT_FLAG = '--excerpt='
+const EXCERPT_STEPS_PATH_NAME = 'excerpt-steps.csv'
+const EXCERPT_CSV_COLUMNS = ['stepButtonPresses', 'tryNumber', 'index', 'row', 'column', 'digit', 'action', 'unit', 'conflictRow', 'conflictColumn', 'window']
 const DATA_DIRECTORY = fileURLToPath(new URL('../data/', import.meta.url))
 const STEPS_PATH = `${DATA_DIRECTORY}illustration-steps.csv`
 const SNAPSHOTS_PATH = `${DATA_DIRECTORY}illustration-snapshots.json`
@@ -122,8 +125,40 @@ function csvLine(row: StepRow): string {
   ].join(',')
 }
 
+type Excerpt = { puzzleId: number; fromTry: number; toTry: number; firstIndex: number; lastIndex: number }
+
+function parseExcerpt(): Excerpt | null {
+  const argument = process.argv.find(candidate => candidate.startsWith(EXCERPT_FLAG))
+  if (argument === undefined) {
+    return null
+  }
+  const [puzzleId, fromTry, toTry, firstIndex, lastIndex] = argument.slice(EXCERPT_FLAG.length).split(':').map(Number)
+  return { puzzleId, fromTry, toTry, firstIndex, lastIndex }
+}
+
+function windowText(solutionVector: string, excerpt: Excerpt): string {
+  return solutionVector.split(' ').slice(excerpt.firstIndex - 1, excerpt.lastIndex).join(' ')
+}
+
+function excerptLine(row: StepRow, excerpt: Excerpt): string {
+  return [
+    row.stepButtonPresses,
+    row.tryNumber,
+    row.index ?? '',
+    row.cell?.row ?? '',
+    row.cell?.column ?? '',
+    row.digit ?? '',
+    row.action,
+    row.unit,
+    row.conflictingCell?.row ?? '',
+    row.conflictingCell?.column ?? '',
+    windowText(row.solutionVector, excerpt),
+  ].join(',')
+}
+
 function main() {
-  const sample = findSamplePuzzle(ILLUSTRATION_PUZZLE_ID)
+  const excerpt = parseExcerpt()
+  const sample = findSamplePuzzle(excerpt?.puzzleId ?? ILLUSTRATION_PUZZLE_ID)
   const parseResult = parsePuzzle(sample.puzzle)
   if (!parseResult.ok) {
     throw new Error(`Illustration puzzle ${ILLUSTRATION_PUZZLE_ID} does not parse`)
@@ -171,6 +206,12 @@ function main() {
   }
 
   mkdirSync(DATA_DIRECTORY, { recursive: true })
+  if (excerpt !== null) {
+    const excerptRows = rows.filter(row => row.tryNumber >= excerpt.fromTry && row.tryNumber <= excerpt.toTry)
+    writeFileSync(`${DATA_DIRECTORY}${EXCERPT_STEPS_PATH_NAME}`, [EXCERPT_CSV_COLUMNS.join(','), ...excerptRows.map(row => excerptLine(row, excerpt))].join('\n') + '\n')
+    console.log(`${excerptRows.length} excerpt steps from try ${excerpt.fromTry} to ${excerpt.toTry} -> report/data/${EXCERPT_STEPS_PATH_NAME}`)
+    return
+  }
   writeFileSync(STEPS_PATH, [CSV_COLUMNS.join(','), ...rows.map(csvLine)].join('\n') + '\n')
   writeFileSync(SNAPSHOTS_PATH, JSON.stringify(snapshots, null, 2) + '\n')
   console.log(`${rows.length} steps, ${progress.tryCount} tries, ${progress.restoreCount} restores`)

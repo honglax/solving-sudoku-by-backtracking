@@ -85,3 +85,12 @@ Hàng 1 đã có các số từ 2 đến 9, cột 1 đã có số 1, nên ô \((
     Đề này không có lời giải. Ở ô \((1, 1)\), cả 9 số đều trùng: số 1 đã có ở cột 1, các số từ 2 đến 9 đã có ở hàng 1.
   \end{minipage}
 \end{center}
+
+\section{Hai phần mở rộng của website}
+
+Website còn có hai phần mở rộng, đều dùng lại mô hình bài toán ở trên với một thay đổi (Chương 4).
+
+\begin{itemize}
+  \item \textbf{Tìm mọi lời giải.} Input giữ nguyên. Output thay \(B\) bằng danh sách \(B_1, B_2, \ldots, B_m\), là mọi lời giải theo thứ tự tìm được, và số lời giải \(m \ge 0\). Đề không có lời giải thì \(m = 0\).
+  \item \textbf{Lưới \(k \times k\).} Với \(k = b^2\), \(A\) là ma trận \(k \times k\). Mỗi phần tử là ô trống hoặc một trong \(k\) chữ số đầu của dãy \(1, \ldots, 9, \texttt{A}, \ldots, \texttt{G}\), trong đó \texttt{A} là 10 và \texttt{G} là 16. Khối gồm \(b \times b\) ô và số ô trống \(n \le k^2\). Lưới hợp lệ khi mỗi hàng, mỗi cột và mỗi khối có đủ \(k\) giá trị, mỗi giá trị một lần. Các cỡ dùng trên website là \(k = 4, 9, 16\), ứng với \(b = 2, 3, 4\).
+\end{itemize}

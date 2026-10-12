@@ -1,6 +1,6 @@
 \chapter{Đánh giá}
 
-Lần chạy ngày 12/10/2026 trên code hiện tại cho cả 294 đề của bộ testcase đạt. 723 test đơn vị và 62 test trên Chrome cũng đạt. Các số đo trong chương chạy trên máy Apple M2 Pro, RAM 16 GB, macOS 26.7, Node 24.13 và Chrome 154. Số đo thời gian phụ thuộc máy, còn số lần thử thì không.
+Lần chạy đầy đủ ngày 12/10/2026, kể cả hai đề chậm, cho cả 294 đề của bộ testcase đạt. Ngày 13/10/2026, 772 test đơn vị và 76 test trên Chrome cũng đạt. Các số đo trong chương chạy trên máy Apple M2 Pro, RAM 16 GB, macOS 26.7, Node 24.13 và Chrome 154. Số đo thời gian phụ thuộc máy, còn số lần thử thì không.
 
 \section{Kết quả trên bộ testcase}
 
@@ -16,7 +16,7 @@ Kết quả từng đề lưu trong \texttt{testcases/results/results.csv}. Lệ
   \item \textbf{Hai đề chậm:} đề chống quay lui mất 13 phút 57 giây, đề 17 số mất 4 phút 45 giây.
 \end{itemize}
 
-Phần lớn thời gian đó tốn vào việc minh họa từng bước. Bộ giải của website là một generator, và mỗi sự kiện phải đi qua từng tầng đệ quy mới tới giao diện (Chương 4). Trên đề Arto Inkala, bản generator mất 596 ms, bản đệ quy thường của trang So sánh mất 4,42 ms, chậm hơn khoảng 135 lần. Phép đo này chạy riêng với bảng so sánh ở mục sau, và cùng bản đệ quy đó trong bảng mất 5,17 ms, lệch khoảng 15 phần trăm, nên các tỉ lệ chỉ nên đọc là gần đúng. Trên các đề mẫu khác, tỉ lệ này từ 63 đến 104 lần (\texttt{report/data/generator-overhead.csv}).
+Phần lớn thời gian đó tốn vào việc minh họa từng bước. Bộ giải của website là một generator, và mỗi sự kiện phải đi qua từng tầng đệ quy mới tới giao diện (Chương 4). Trên đề Arto Inkala, bản generator mất 596 ms, bản đệ quy thường của trang So sánh mất 4,42 ms, chậm hơn khoảng 135 lần. Phép đo này chạy riêng với bảng so sánh ở mục sau, và cùng bản đệ quy đó trong bảng mất 5,17 ms, lệch khoảng 15 phần trăm, nên các tỉ lệ chỉ nên đọc là gần đúng. Trên ba đề mẫu khác, tỉ lệ này từ 63 đến 104 lần (\texttt{report/data/generator-overhead.csv}).
 
 Trên Node, bộ giải của website chạy khoảng 744 nghìn lần thử mỗi giây. Nút Giải ngay trên Chrome giải đề Inkala trong khoảng 0,6 giây, tức khoảng 770 nghìn lần thử mỗi giây. Người xem bấm Dừng được bất cứ lúc nào, trang không treo.
 
@@ -42,24 +42,25 @@ Trang So sánh đo 6 cách: 2 thứ tự chọn ô nhân với 3 cách kiểm tr
 
 Cấu trúc dữ liệu chỉ đổi hằng số. Ba cách kiểm tra cho đúng cùng số lần thử trên mọi đề, đúng như phân tích ở Chương 4: cách kiểm tra chỉ đổi \(c_2\) trong \(T(n) = 9\,T(n-1) + c_2\). Quét lưới chậm khoảng gấp đôi ba mảng đánh dấu, ví dụ 9,55 ms so với 5,17 ms trên đề Inkala. Bitmask nhanh hơn ba mảng đánh dấu khoảng 4 đến 16 phần trăm ở bốn đề, bằng nhau ở đề Vừa, và chậm hơn ở đề chống quay lui: 8.892 ms so với 8.588 ms.
 
-Thứ tự chọn ô thì đổi cả cây tìm kiếm. Điền ô dễ nhất trước cần ít lần thử hơn ở cả sáu đề. Mức giảm ít nhất ở đề Inkala, khoảng 5 lần (445.778 xuống 90.665), nhiều nhất ở đề chống quay lui, khoảng 1.529 lần (622.577.597 xuống 407.156).
+Thứ tự chọn ô thì đổi cả cây tìm kiếm. Cách chọn ô ít khả năng nhất trước (MRV, trên website gọi là ``Điền ô dễ nhất trước'') cần ít lần thử hơn ở cả sáu đề. Mức giảm ít nhất ở đề Inkala, khoảng 5 lần (445.778 xuống 90.665), nhiều nhất ở đề chống quay lui, khoảng 1.529 lần (622.577.597 xuống 407.156).
 
-Ít lần thử hơn chưa chắc nhanh hơn. Trước mỗi bước, cách điền ô dễ nhất trước phải đếm lại khả năng của mọi ô trống còn lại. Ở đề Vừa và đề Inkala, số lần thử giảm chưa đủ bù phần đếm đó, nên tổng thời gian dài hơn: đề Inkala 23,5 ms so với 5,17 ms. Ở bốn đề còn lại, số lần thử giảm từ khoảng 47 lần trở lên và cách này nhanh hơn rõ: đề chống quay lui từ 8,6 giây xuống 0,17 giây, đề Easter Monster từ 29,3 ms xuống 10,6 ms.
+Ít lần thử hơn chưa chắc nhanh hơn. Trước mỗi bước, MRV phải đếm lại khả năng của mọi ô trống còn lại. Ở đề Vừa và đề Inkala, số lần thử giảm chưa đủ bù phần đếm đó, nên tổng thời gian dài hơn: đề Inkala 23,5 ms so với 5,17 ms. Ở bốn đề còn lại, số lần thử giảm từ khoảng 47 lần trở lên và cách này nhanh hơn rõ: đề chống quay lui từ 8,6 giây xuống 0,17 giây, đề Easter Monster từ 29,3 ms xuống 10,6 ms.
 
 \section{Kiểm thử tự động}
 
 \begin{itemize}
-  \item \textbf{723 test đơn vị} (Vitest):
+  \item \textbf{772 test đơn vị} (Vitest):
   \begin{itemize}
     \item bộ giải khớp bản Python đến từng con số trên các đề mẫu;
     \item trạng thái lưới khớp các khung của bản thiết kế;
-    \item ba cách kiểm tra và thứ tự điền ô dễ nhất trước khớp bản Python riêng của chúng;
+    \item ba cách kiểm tra và MRV khớp bản Python riêng của chúng;
     \item chế độ tìm hết khớp số lời giải;
     \item lịch sử lùi từ 1 đến 300 sự kiện vẫn ra đúng trạng thái;
     \item câu thông báo đúng từng ký tự;
-    \item toàn bộ 292 đề nhanh của bộ testcase.
+    \item toàn bộ 292 đề nhanh của bộ testcase;
+    \item bộ giải theo kích thước lưới khớp bản Python trên 11 đề và phát ra đúng chuỗi sự kiện của bộ giải \(9 \times 9\) trên 8 đề.
   \end{itemize}
-  \item \textbf{62 test trên Chrome thật} (Playwright): mọi trạng thái trong bản thiết kế, các nút Từng bước, Tự động, Giải ngay, Dừng, lịch sử, cuộc đua và phép đo ở trang So sánh, trang Mọi lời giải, bố cục ở nhiều cỡ màn hình từ 320 đến 2560 px, và không trang nào hiện chỗ chờ điền chưa thay số.
+  \item \textbf{76 test trên Chrome thật} (Playwright): mọi trạng thái trong bản thiết kế, các nút Từng bước, Tự động, Giải ngay, Dừng, lịch sử, cuộc đua và phép đo ở trang So sánh, trang Mọi lời giải, bố cục ở nhiều cỡ màn hình từ 320 đến 2560 px, và không trang nào hiện chỗ chờ điền chưa thay số.
   \item \textbf{Soát code:} TypeScript ở chế độ nghiêm ngặt, oxlint, không còn chữ tiếng Việt nào trong code ngoài file ngôn ngữ.
 \end{itemize}
 
@@ -75,6 +76,7 @@ Phần minh họa cho người xem thấy cùng lúc bốn thứ: lưới với 
   \item Bảng lịch sử 100 bước gần nhất, bấm vào một dòng để xem lại đúng trạng thái lúc đó.
   \item Cuộc đua hai lưới ở trang So sánh, mỗi ô trống hiện số khả năng còn lại.
   \item Bộ sưu tập lời giải ở trang Mọi lời giải, tô các ô khác lời giải đầu tiên.
+  \item Trang Kích thước lưới chạy cùng mã giả trên lưới \(4 \times 4\), \(9 \times 9\) và \(16 \times 16\), kèm bảng số lần thử của 11 đề mẫu.
 \end{itemize}
 
 Về khả năng tiếp cận, các cặp màu chữ và nền đạt độ tương phản WCAG AA. Mỗi trạng thái ô có thêm dấu hiệu ngoài màu, ví dụ gạch ngang cho số bị loại và viền nét đứt cho ô vừa trả lại. Lưới đi được bằng phím mũi tên. Trang có chế độ tối, có bố cục riêng cho điện thoại, và hoạt ảnh ở trang chủ đứng yên khi máy bật giảm chuyển động.
@@ -86,10 +88,10 @@ Em chưa kiểm thử với người dùng thật. Các góp ý về giao diện
 \subsection*{Hạn chế}
 
 \begin{itemize}
-  \item Để minh họa từng bước, bộ giải trên website chậm hơn bản đệ quy thường khoảng 135 lần trên đề Inkala. Theo tốc độ đo trên Chrome, đề chống quay lui cần khoảng 14 phút khi bấm Giải ngay.
+  \item Để minh họa từng bước, bộ giải trên website chậm hơn bản đệ quy thường từ 63 đến 135 lần tùy đề, 135 lần ở đề Inkala. Theo tốc độ đo trên Chrome, đề chống quay lui cần khoảng 14 phút khi bấm Giải ngay.
   \item Chưa có người dùng thật thử.
-  \item Thứ tự điền ô dễ nhất trước mới có ở trang So sánh, chưa chạy từng bước được ở trang Giải Sudoku.
-  \item Chưa có lưới cỡ khác như \(4 \times 4\) hay \(16 \times 16\). Phần này có trong kế hoạch nhưng bị cắt để dành thời gian cho report.
+  \item MRV mới có ở trang So sánh, chưa chạy từng bước được ở trang Giải Sudoku.
+  \item Trang Kích thước lưới chỉ có 11 đề mẫu cố định, chưa cho dán hay gõ đề riêng. Các đề \(16 \times 16\) sinh ngẫu nhiên nên một số có nhiều lời giải.
   \item Đề ngẫu nhiên trong bộ testcase nghiêng về phía dễ, vì script bỏ các đề cần hơn 1 triệu lần thử.
   \item Đáp án của bộ testcase và bộ giải của website cùng do Claude viết (Chương 7).
   \item Lịch sử chỉ giữ 100 bước gần nhất. Muốn xem lại bước cũ hơn thì phải chạy lại từ đầu.
@@ -99,9 +101,9 @@ Em chưa kiểm thử với người dùng thật. Các góp ý về giao diện
 \subsection*{Hướng phát triển}
 
 \begin{itemize}
-  \item Cho trang Giải Sudoku chọn thứ tự điền ô dễ nhất trước và chạy từng bước.
+  \item Cho trang Giải Sudoku chọn MRV và chạy từng bước.
   \item Chạy Giải ngay bằng bản đệ quy thường trong một luồng riêng của trình duyệt (Web Worker), chỉ dùng generator khi cần xem từng bước.
-  \item Thêm lưới \(4 \times 4\) và \(16 \times 16\) để thấy \(\Oh{k^n}\) thay đổi theo \(k\).
+  \item Cho trang Kích thước lưới nhận đề do người dùng dán, và thêm các cỡ khác như \(25 \times 25\).
   \item Dùng lại phần minh họa cho các bài quay lui khác trong slide: 8 quân hậu, tổng tập con, tô màu đồ thị.
   \item Thử với một nhóm người học thật, ghi lại chỗ họ không hiểu.
   \item Thêm bản tiếng Anh.

@@ -46,9 +46,10 @@ function PseudocodeBlock({ highlight }: { highlight: PseudocodeHighlight | null 
 type PseudocodePanelProps = {
   highlight: PseudocodeHighlight | null
   isCollapsible: boolean
+  caption?: string
 }
 
-export function PseudocodePanel({ highlight, isCollapsible }: PseudocodePanelProps) {
+export function PseudocodePanel({ highlight, isCollapsible, caption = PSEUDOCODE.caption }: PseudocodePanelProps) {
   if (isCollapsible) {
     return (
       <details className="card collapsible-panel">
@@ -78,7 +79,7 @@ export function PseudocodePanel({ highlight, isCollapsible }: PseudocodePanelPro
     <section className="card solver-panel">
       <div className="solver-panel__header">
         <h2 className="solver-panel__title">{PSEUDOCODE.title}</h2>
-        <p className="solver-panel__caption">{PSEUDOCODE.caption}</p>
+        <p className="solver-panel__caption">{caption}</p>
       </div>
       <PseudocodeBlock highlight={highlight} />
     </section>

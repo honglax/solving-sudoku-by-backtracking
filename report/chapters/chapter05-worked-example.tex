@@ -1,6 +1,6 @@
 \chapter{Ví dụ minh họa các bước thực hiện}
 
-Ví dụ của chương này là đề số 13, tên ``Ngắn, có quay lui'' trong danh sách đề mẫu của website. Đề có 16 ô trống và đúng một lời giải. Thuật toán cần 79 lần thử, ghi nhận 19 lần và trả lại 3 lần: một lần ở giai đoạn 1, hai lần liền nhau ở giai đoạn 2. Hai lần liền nhau đó là một lần lùi dây chuyền qua hai ô. Toàn bộ 83 bước nằm trong Bảng \ref{tab:illustration-steps} ở cuối chương.
+Ví dụ của chương này là đề số 13, tên ``Ngắn, có quay lui'' trong danh sách đề mẫu của website. Đề có 16 ô trống và đúng một lời giải. Thuật toán cần 79 lần thử, ghi nhận 19 lần và trả lại 3 lần: một lần ở giai đoạn 1, hai lần ở giai đoạn 2. Hai lần ở giai đoạn 2 hợp thành một chuỗi lùi dây chuyền qua hai ô. Toàn bộ 83 bước nằm trong Bảng \ref{tab:illustration-steps} ở cuối chương.
 
 \section{Chọn đề và cách đọc bảng}
 
@@ -44,9 +44,9 @@ Bảng \ref{tab:illustration-cells} đánh số 16 ô trống theo thứ tự h�
 Trạng thái dữ liệu gồm lưới \texttt{grid}, vectơ \(S\) và ba mảng đánh dấu \texttt{rowUsed}, \texttt{columnUsed}, \texttt{boxUsed} (Chương 4). Mỗi dòng của Bảng \ref{tab:illustration-steps} là một bước thuật toán:
 
 \begin{itemize}
-  \item \textbf{Bấm}: số lần bấm nút Từng bước trên trang Giải Sudoku để tới đúng trạng thái đó. Mỗi lần bấm, trang đi một sự kiện, kể cả các sự kiện không có dòng riêng trong bảng như ``ghi nhận'' và ``sang ô kế''. Vì vậy sau mỗi dòng Chấp nhận, cột Bấm tăng 3 (chấp nhận, ghi nhận, sang ô kế). Sau dòng Bị loại hay Trả lại, cột Bấm tăng 1. Ở ô cuối cùng, lần bấm 119 là ghi nhận, lần bấm 120 là xuất lời giải.
+  \item \textbf{Bấm}: số lần bấm nút Từng bước trên trang Giải Sudoku để tới đúng trạng thái đó. Mỗi lần bấm, trang đi một sự kiện, kể cả các sự kiện không có dòng riêng trong bảng như ``ghi nhận'' và ``sang ô kế''. Vì vậy sau mỗi dòng Chấp nhận, cột Bấm tăng 3 (chấp nhận, ghi nhận, sang ô kế). Sau dòng Bị loại hay Trả lại, cột Bấm tăng 1. Ở ô cuối cùng, lần bấm 118 là chấp nhận, lần bấm 119 là ghi nhận, lần bấm 120 là xuất lời giải.
   \item \textbf{Lần thử}, \(i\), \textbf{Ô}, \(j\): bộ đếm lần thử, ô trống thứ mấy, nằm ở đâu, và số đang thử. Dòng Trả lại không tính là một lần thử, nên giữ nguyên bộ đếm của dòng trước, và \(j\) ở dòng đó là số vừa bị xóa.
-  \item \textbf{Thao tác} và \textbf{Lý do}: ``Chấp nhận'' là số \(j\) chấp nhận được, thuật toán ghi nhận rồi sang ô trống kế tiếp. ``Bị loại'' kèm hàng, cột hoặc khối bị trùng và ô đang giữ số đó. Số trùng ở nhiều chỗ thì bảng ghi chỗ đầu tiên theo thứ tự hàng, cột, khối, đúng thứ tự thuật toán kiểm tra. ``Trả lại'' là trả lại trạng thái cũ vì ô phía sau đã hết số để thử.
+  \item \textbf{Thao tác} và \textbf{Lý do}: ``Chấp nhận'' là số \(j\) chấp nhận được, thuật toán ghi nhận rồi sang ô trống kế tiếp. ``Bị loại'' kèm hàng, cột hoặc khối bị trùng và ô đang giữ số đó. Số trùng ở nhiều chỗ thì bảng ghi chỗ đầu tiên theo thứ tự hàng, cột, khối, đúng thứ tự thuật toán kiểm tra. ``Trả lại'' là trả lại trạng thái cũ vì ô phía sau đã hết số để thử. ``Có lời giải'' là dòng cuối, không thử thêm số nào, nên bộ đếm lần thử vẫn là 79.
   \item \textbf{\(S\) sau bước}: vectơ \(S_1 \ldots S_{16}\) sau khi bước đó xong, dấu chấm là thành phần chưa có giá trị.
 \end{itemize}
 
@@ -91,7 +91,7 @@ Thuật toán thử tiếp số 2 ở ô \((1, 6)\), và số 2 chấp nhận đ
 
 \subsection*{Giai đoạn 3: lần thử 30 đến 79, đi thẳng tới lời giải}
 
-Ở ô \((1, 6)\), các số 3 đến 7 đều trùng hàng 1. Số 8 chấp nhận được ở lần thử 35. Từ đây thuật toán không quay lui lần nào nữa. Ô \((1, 8)\) nhận số 1, ô \((1, 9)\) nhận số 2, rồi 13 ô còn lại lần lượt nhận số. Ở lần thử 79 (lần bấm 120), ô trống cuối cùng \((9, 4)\) nhận số 2, và thuật toán xuất lời giải (Hình \ref{fig:press-120}).
+Ở ô \((1, 6)\), các số 3 đến 7 đều trùng hàng 1. Số 8 chấp nhận được ở lần thử 35. Từ đây thuật toán không quay lui lần nào nữa. Ô \((1, 8)\) nhận số 1, ô \((1, 9)\) nhận số 2, rồi 13 ô còn lại lần lượt nhận số. Ở lần thử 79 (lần bấm 118), ô trống cuối cùng \((9, 4)\) nhận số 2, và ở lần bấm 120 thuật toán xuất lời giải (Hình \ref{fig:press-120}).
 
 \begin{figure}[H]
   \centering
@@ -101,6 +101,49 @@ Thuật toán thử tiếp số 2 ở ô \((1, 6)\), và số 2 chấp nhận đ
 \end{figure}
 
 Kết quả cuối cùng là lời giải ở Hình \ref{fig:illustration-grids}(b), với \(S = (8, 1, 2, 2, 1, 1, 2, 5, 1, 4, 2, 8, 2, 8, 3, 2)\). Nếu không phải lùi lần nào, thuật toán chỉ cần thử \(S_1 + S_2 + \cdots + S_{16} = 52\) lần, vì ô thứ \(i\) thử từ 1 tới \(S_i\). Thực tế cần 79 lần, nên ba lần quay lui làm mất 27 lần thử, khoảng một phần ba tổng số. Thuật toán thử theo thứ tự cố định nên không ``nhìn'' trước như người giải bằng tay. Với cùng đề này, cách điền ô ít khả năng nhất trước (mục \ref{sec:variants}) chỉ cần 52 lần thử và không quay lui lần nào.
+
+\section{Ví dụ thứ hai: quay lui qua sáu ô}
+\label{sec:deep-example}
+
+Ví dụ trên chỉ quay lui ở hàng 1. Đề mẫu số 3 ``Vừa'' có 40 ô trống, cần 1.909 lần thử và 187 lần trả lại, nên cho thấy một lần quay lui sâu hơn nhiều. Bảng \ref{tab:excerpt-steps} ghi các bước từ lần thử 783 đến lần thử 816, tức lần bấm 1.044 đến 1.089. Cột \(S_{13} \ldots S_{19}\) chỉ giữ bảy thành phần của vectơ \(S\) đang thay đổi trong đoạn này, vì đề có tới 40 thành phần.
+
+Ở lần thử 704, thuật toán điền số 8 vào ô \((4, 1)\), tức \(S_{13} = 8\). Nhánh phía sau còn sống thêm 99 lần thử mới chết hẳn. Ở lần thử 783, ô \((5, 2)\) (\(i = 19\)) hết số: cả 9 số đều trùng. Từ đây thuật toán lùi liên tiếp qua sáu ô:
+
+\begin{itemize}
+  \item Ô \((5, 1)\) đang giữ 4. Các số 5 đến 9 đều trùng (lần thử 784 đến 788), nên thuật toán trả lại ô này.
+  \item Ô \((4, 9)\) đang giữ 3. Các số 4 đến 9 đều trùng (lần thử 789 đến 794), nên trả lại tiếp.
+  \item Ô \((4, 7)\) đang giữ 4. Các số 5 đến 9 đều trùng (lần thử 795 đến 799), nên trả lại tiếp.
+  \item Ô \((4, 3)\) đang giữ 9, số cuối cùng, nên không còn số nào để thử. Thuật toán trả lại ngay, không tốn lần thử nào.
+  \item Ô \((4, 2)\) đang giữ 5. Các số 6 đến 9 đều trùng (lần thử 800 đến 803), nên trả lại tiếp.
+  \item Ô \((4, 1)\) đang giữ 8, số điền ở lần thử 704. Ở lần thử 803, thuật toán trả lại ô \((4, 1)\) (Hình \ref{fig:press-1070}) và thử tiếp số 9, được chấp nhận ở lần thử 804.
+\end{itemize}
+
+Sau đó thuật toán điền lại các ô phía sau. Ô \((4, 2)\) loại các số 1 đến 4 rồi nhận số 5 (lần thử 809). Ô \((4, 3)\) loại số 1 và 2 rồi nhận số 3 (lần thử 812). Ô \((4, 7)\) loại các số 1, 2 và 3 rồi nhận số 4 (lần thử 816). Số 8 mà ô \((4, 1)\) nhận ở lần thử 704 cũng nằm trong lời giải đầu tiên thuật toán tìm ra. Nhánh của nó chết vì trong các ô \(S_4\) đến \(S_{12}\) phía trước còn ô mang số khác với lời giải đó (\(S_4 = 2\) thay vì 7). Số 8 chỉ được điền lại ở lần thử 1.253, sau khi các ô đó đã đổi.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/excerpt-press-1044.png}
+  \caption{Lần bấm 1.044: ô \((5, 2)\) vừa hết số ở lần thử 783. Bộ đếm: 783 lần thử, 93 ghi nhận, 75 trả lại}
+  \label{fig:press-1044}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/excerpt-press-1070.png}
+  \caption{Lần bấm 1.070: thuật toán vừa trả lại ô \((4, 1)\), xóa số 8. Bộ đếm: 803 lần thử, 93 ghi nhận, 81 trả lại}
+  \label{fig:press-1070}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/excerpt-press-1089.png}
+  \caption{Lần bấm 1.089: ô \((4, 7)\) vừa nhận số 4 ở lần thử 816. Bộ đếm: 816 lần thử, 96 ghi nhận, 81 trả lại}
+  \label{fig:press-1089}
+\end{figure}
+
+Muốn kiểm lại trên website, chọn đề 3 ``Vừa'' ở trang Giải Sudoku rồi bấm Từng bước đủ số lần ở cột Bấm. Nút ``Tới lần quay lui kế'' cho nhảy qua từng lần trả lại thay cho việc bấm tay hàng nghìn lần.
+
+\input{generated/excerpt-steps}
 
 \section{Bảng toàn bộ các bước}
 

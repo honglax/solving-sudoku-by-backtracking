@@ -15,20 +15,23 @@ Bộ testcase có 294 đề, chia 6 nhóm. Số ô trống trải từ 0 đến 
 Script \texttt{testcases/tools/generate\_testcases.py} sinh toàn bộ 294 đề với seed cố định 20261006. Chạy lại script sẽ ra đúng bộ đề cũ, không lệch ký tự nào. Script dùng năm cách tạo đề:
 
 \begin{itemize}
-  \item \textbf{Lưới đầy ngẫu nhiên.} Quay lui trên lưới trống với thứ tự số xáo trộn. Các lần chạy cho ra những lưới đầy khác nhau. Bản đầu của script lấy một lưới mẫu rồi hoán vị hàng, cột và đổi tên số. Cách đó chỉ sinh được một họ lưới, nên Claude bỏ (Chương 6).
+  \item \textbf{Lưới đầy ngẫu nhiên.} Quay lui trên lưới trống với thứ tự số xáo trộn, nên các lưới đầy trong bộ khác nhau từng đôi một. Bản đầu của script lấy một lưới mẫu rồi hoán vị hàng, cột và đổi tên số. Cách đó chỉ sinh được một họ lưới, nên Claude bỏ (Chương 6).
   \item \textbf{Đề có lời giải duy nhất.} Từ một lưới đầy, xóa lần lượt từng ô theo thứ tự ngẫu nhiên. Lần xóa nào làm đề có từ hai lời giải trở lên thì trả số lại. Dừng khi đủ số ô trống cần có.
   \item \textbf{Đề nhiều lời giải.} Xóa ngẫu nhiên nhiều ô, không kiểm tra lời giải duy nhất.
   \item \textbf{Đề dựng có chủ đích.} Đề đúng 2 lời giải: xóa 4 ô tạo thành hình chữ nhật mà hai số ở hai góc đối nhau đổi chỗ được. Đề vô nghiệm: lấy một đề có lời giải duy nhất, đổi một số cho sẵn thành số khác mà không tạo số trùng, rồi kiểm tra đề mới không còn lời giải nào. Đề không hợp lệ: thêm số trùng, ký tự lạ, bớt hoặc thêm dòng, ô.
   \item \textbf{Đề nổi tiếng.} Đề minh họa trên Wikipedia \cite{wikipedia-sudoku}, đề Arto Inkala công bố năm 2012 \cite{sudokuwiki-inkala}, đề AI Escargot \cite{sudokuwiki-escargot}, đề Easter Monster \cite{sudokusnake-easter-monster}, đề 17 số đầu tiên trong danh sách của Gordon Royle \cite{wikipedia-sudoku-math}, và đề chống quay lui \cite{wikipedia-sudoku-algorithms}.
 \end{itemize}
 
-Đề sinh ngẫu nhiên nào cần hơn 1 triệu lần thử thì script bỏ và sinh đề khác, để bộ test chạy nhanh. Lựa chọn này làm các đề ngẫu nhiên nghiêng về phía dễ. Các đề khó thật sự nằm ở nhóm đề nổi tiếng.
+Đề sinh ngẫu nhiên nào cần hơn 1 triệu lần thử thì script bỏ và sinh đề khác, để bộ test chạy nhanh. Lựa chọn này làm các đề ngẫu nhiên nghiêng về phía dễ. Nhóm ``Lớn, khó'' vì thế có nhiều ô trống nhưng dễ hơn tên gọi của nó. Các đề khó thật sự là sáu đề nổi tiếng và đề chống quay lui.
 
 \subsection*{Định dạng}
 
 Mỗi nhóm là một file văn bản. Mỗi đề trong file là một khối gồm dòng mô tả, phần \texttt{input} và phần \texttt{expected}. Phần input giữ nguyên từng ký tự, kể cả dòng trống, tab và ký tự xuống dòng kiểu Windows, dùng đúng các định dạng mà hộp Dán đề của website nhận. Phần expected là lưới lời giải, hoặc \texttt{NO SOLUTION}, hoặc \texttt{INVALID} kèm lý do. File \texttt{manifest.csv} ghi thêm cho mỗi đề: nhóm, định dạng, số ô trống, kết quả mong đợi, số lời giải, số lần thử, ghi nhận, trả lại, và số lần bị loại vì hàng, cột, khối.
 
 \section{Các nhóm testcase}
+
+Ngoài 294 đề của sáu nhóm dưới đây còn một file riêng cho lưới kích thước khác, nằm trong thư mục \texttt{testcases/other-sizes/} với tên \texttt{other-sizes.txt}. File có 11 đề: 5 đề \(4 \times 4\), 2 đề \(9 \times 9\) và 4 đề \(16 \times 16\) (mục \ref{sec:sizes}). Mỗi đề ghi lưới đầu vào, kết quả mong đợi, ba bộ đếm, số lời giải và lời giải đầu tiên. Đáp án lấy từ một chương trình Python viết riêng, \texttt{reference\_sized\_solver.py} trong thư mục \texttt{checks/}. Một test đơn vị đọc chính file này để so với bộ giải của website. File này tách khỏi 294 đề để số liệu ở Chương 8 không đổi.
+
 
 \begin{itemize}
   \item \textbf{Nhỏ (40 đề):} 1 đến 5 ô trống, người đọc tự kiểm bằng tay được. Gồm hai đề mẫu ``Dễ nhất'' và ``Dễ''.
@@ -86,4 +89,4 @@ Khi chạy mỗi đề, script ghi lại những nhánh xử lý mà đề đó 
 
 Cả hai chương trình đều do Claude viết, cùng tác giả với bộ giải đang được kiểm. Nếu Claude hiểu sai một điểm của bài toán, cả hai bên có thể cùng sai. Bộ đếm lời giải bớt được rủi ro này vì đi theo cách giải khác hẳn, nhưng không loại hết được.
 
-Script dừng ngay nếu hai chương trình không khớp nhau, hoặc nếu lời giải không đúng luật: 27 hàng, cột, khối phải là hoán vị của 1 đến 9, và các số đề cho phải giữ nguyên. Một kiểm tra chéo nữa đến từ trang Mọi lời giải. Chế độ tìm hết của website đếm lại số lời giải của 251 đề: bỏ 25 đề không hợp lệ, 2 lưới đã đầy, và 16 đề có từ 1000 lời giải trở lên mà bộ đếm chỉ ghi ``1000+''. 239 đề tìm hết trong giới hạn 300 nghìn lần thử, và cả 239 đề khớp bộ đếm độc lập.
+Script dừng ngay nếu hai chương trình không khớp nhau, hoặc nếu lời giải không đúng luật: 27 hàng, cột, khối phải là hoán vị của 1 đến 9, và các số đề cho phải giữ nguyên. Một kiểm tra chéo nữa đến từ trang Mọi lời giải. Chế độ tìm hết của website đếm lại số lời giải của 251 đề: bỏ 25 đề không hợp lệ, 2 lưới đã đầy, và 16 đề có từ 1000 lời giải trở lên mà bộ đếm chỉ ghi ``1000+''. 239 đề tìm hết trong giới hạn 300 nghìn lần thử, và cả 239 đề khớp bộ đếm độc lập. 12 đề còn lại vượt giới hạn đó nên không đối chiếu được bằng cách này.

@@ -1,5 +1,18 @@
 \chapter{Chạy mã nguồn}
 
+\section{Cấu trúc bài nộp}
+
+Bài nộp có bốn thư mục con theo yêu cầu của cô:
+
+\begin{itemize}
+  \item \texttt{Source code/}: toàn bộ thư mục \texttt{final-project} của repo GitHub, không kèm lịch sử git, để các lệnh bên dưới chạy được nguyên vẹn.
+  \item \texttt{Video demo/}: file \texttt{sudoku-backtracking.mp4}.
+  \item \texttt{Testcase/}: bản sao của \texttt{testcases/}, gồm 6 file đề theo nhóm, file \texttt{manifest.csv}, file đề cho lưới kích thước khác và các script sinh đề.
+  \item \texttt{Report/}: mã nguồn LaTeX của report và file PDF.
+\end{itemize}
+
+\section{Địa chỉ website và mã nguồn}
+
 Website chạy trực tiếp trên trình duyệt, không cần cài gì. Mã nguồn có trên GitHub và trong thư mục Source code của bài nộp:
 
 \begin{itemize}
@@ -7,7 +20,7 @@ Website chạy trực tiếp trên trình duyệt, không cần cài gì. Mã ng
   \item GitHub: \url{https://github.com/honglax/solving-sudoku-by-backtracking}
 \end{itemize}
 
-Mã nguồn gồm bốn thư mục:
+Bên trong \texttt{Source code/} có bốn thư mục chính:
 
 \begin{itemize}
   \item \texttt{website/}: website React và TypeScript, kèm test đơn vị, test trên Chrome và script chụp ảnh cho report.
@@ -15,6 +28,8 @@ Mã nguồn gồm bốn thư mục:
   \item \texttt{testcases/}: 6 file đề theo nhóm, file \texttt{manifest.csv} ghi đáp án và số đo của từng đề, script sinh đề và script chạy bộ testcase.
   \item \texttt{report/}: mã nguồn LaTeX của report, dữ liệu đo, bảng sinh tự động và các script đo.
 \end{itemize}
+
+\section{Các lệnh chạy}
 
 Cần Node 24, Yarn 4.18.1 (bật bằng Corepack), Python 3.9 trở lên và Chrome. Các lệnh chạy trong thư mục \texttt{website/}:
 
@@ -25,7 +40,7 @@ yarn dev                        mở website ở http://localhost:5173
 yarn test                       test đơn vị
 yarn test:e2e                   test trên Chrome
 yarn testcases                  292 đề nhanh của bộ testcase
-yarn testcases --include-slow   cả 294 đề, khoảng 20 phút
+yarn testcases --include-slow   cả 294 đề, khoảng 19 phút
 yarn build                      bản build trong website/dist
 \end{Verbatim}
 

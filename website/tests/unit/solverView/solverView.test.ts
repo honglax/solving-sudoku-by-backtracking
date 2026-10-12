@@ -266,7 +266,7 @@ describe('the puzzles added on 4/10', () => {
     const progress = runUntil(puzzle, () => false)
     const message = buildStatusMessage({ puzzle, puzzleStatus: analyzePuzzle(puzzle), progress, phase: 'running' })
     expect(progress.lastEvent?.kind).toBe('noSolution')
-    expect(messageText(message)).toBe('Đề này không có lời giải. Thuật toán thử 981 lần, xét hết mọi cách điền, không cách nào hợp lệ.')
+    expect(messageText(message)).toBe('Đề này không có lời giải. Thuật toán thử 981 lần, mọi nhánh đều dẫn tới ngõ cụt, không cách điền nào hợp lệ.')
   })
 
   it('"Nhiều lời giải" stops at the first solution it finds', () => {
@@ -308,7 +308,7 @@ describe('changes from the end-user feedback', () => {
     })
     expect(message.tone).toBe('restored')
     expect(emphasizedText(message)).toEqual(['Lần quay lui đầu tiên!'])
-    expect(messageText(message)).toMatch(/^Lần quay lui đầu tiên! Thuật toán vừa xóa số \d ở ô \(\d, \d\): giữ số này thì các ô phía sau hết đường điền\. Bạn đoán bước tiếp theo là gì\? Bấm Từng bước để xem\.$/)
+    expect(messageText(message)).toMatch(/^Lần quay lui đầu tiên! Thuật toán vừa xóa số \d ở ô \(\d, \d\): giữ số này thì ô kế tiếp không còn số nào điền được\. Bạn đoán bước tiếp theo là gì\? Bấm Từng bước để xem\.$/)
   })
 
   it('every coloured cell explains its colour on hover', () => {

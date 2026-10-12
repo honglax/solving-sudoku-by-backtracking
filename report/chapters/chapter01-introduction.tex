@@ -2,7 +2,7 @@
 
 \section{Lý do chọn bài toán}
 
-Em phân vân giữa hai bài: tìm đường ngắn nhất bằng Dijkstra và giải Sudoku. Em thích cả hai, nên hỏi ý kiến Claude Code. Claude khuyên không chọn Dijkstra vì trên lớp chưa học bài này, cô chỉ nhắc tới khi cho xem sản phẩm của một sinh viên lớp chính quy. Một sản phẩm gần giống đã có sẵn thì bài của em dễ bị so sánh trực tiếp. Claude khuyên chọn Sudoku, và em đồng ý vì hai lý do.
+Em phân vân giữa hai bài: tìm đường ngắn nhất bằng Dijkstra và giải Sudoku. Em thích cả hai, nên hỏi ý kiến Claude Code. Claude khuyên không chọn Dijkstra vì trên lớp chưa học bài này, cô chỉ nhắc tới khi cho xem sản phẩm của một sinh viên lớp chính quy. Một sản phẩm gần giống đã có sẵn thì bài của em dễ bị so sánh trực tiếp. Claude khuyên chọn Sudoku vì hai lý do, và em chọn Sudoku theo lời khuyên đó.
 
 Lý do đầu là chiến lược giải. Sudoku giải bằng quay lui, phần cô dặn đề thi lúc nào cũng có. Làm bài này, em phải hiểu kỹ mô hình 1 trong slide của cô \cite{slide-backtracking}.
 
@@ -26,6 +26,6 @@ Sudoku là một bài toán thỏa mãn ràng buộc: có 81 biến (các ô), m
   \item \textbf{Tô màu đồ thị.} Mỗi ô là một đỉnh. Hai ô cùng hàng, cột hoặc khối nối với nhau bằng một cạnh. Mỗi đỉnh có đúng 20 đỉnh kề: 8 ô cùng hàng, 8 ô cùng cột, 4 ô còn lại cùng khối. Giải Sudoku chính là tô đồ thị 81 đỉnh, 810 cạnh bằng 9 màu sao cho hai đỉnh kề khác màu, với một số đỉnh đã tô sẵn.
 \end{itemize}
 
-Quay lui cũng là cách giải chung cho các bài cùng loại trong slide của cô: 8 quân hậu, tổng tập con, chu trình Hamilton, tô màu đồ thị \cite{slide-backtracking}. Với Sudoku tổng quát cỡ \(n^2 \times n^2\), bài toán thuộc lớp NP-đầy đủ \cite{wikipedia-sudoku-math}, nên chưa ai biết cách giải luôn nhanh cho mọi đề. Đề ``chống quay lui'' trong bộ testcase của em cho thấy điều đó: chỉ 64 ô trống mà thuật toán cần 622.577.597 lần thử.
+Quay lui cũng là cách giải chung cho các bài cùng loại trong slide của cô: 8 quân hậu, tổng tập con, chu trình Hamilton, tô màu đồ thị \cite{slide-backtracking}. Với Sudoku tổng quát cỡ \(n^2 \times n^2\), bài toán thuộc lớp NP-đầy đủ \cite{wikipedia-sudoku-math}, nên chưa ai biết cách giải luôn nhanh cho mọi đề. Với lưới \(9 \times 9\) cố định, đề ``chống quay lui'' trong bộ testcase của em là một ví dụ về đề làm thuật toán chậm: chỉ 64 ô trống mà cần 622.577.597 lần thử.
 
 Bản thân website là một ứng dụng dạy học. Người mới học thuật toán nhìn được thuật toán thử, loại và lùi lại trên từng ô, thay vì chỉ đọc mã giả.

@@ -12,7 +12,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 
 - Xem lại video Buổi 8 để biết cô yêu cầu gì (0:12-0:23, 0:43-0:45, 2:53-2:58) và thông báo "NỘP BÀI TẬP LỚN" trên e-learning.
 - Chọn đề. Mình thích cả Dijkstra lẫn Sudoku. Claude khuyên không chọn Dijkstra vì trên lớp chưa học, cô chỉ nhắc tới khi cho xem sản phẩm của một sinh viên lớp chính quy. Claude khuyên chọn Sudoku vì bài giải bằng quay lui mô hình 1 và có đủ thử, loại, quay lui để nhìn thấy trên hình. Mình đồng ý.
-- Lập `plan.md` trước khi viết dòng code nào. Claude chạy thử logic `sudoku.py` trên 7 đề để lấy số đo thật (bảng 3.4). Các quyết định về thiết kế dựa trên số đo này, ví dụ đề Inkala 445.778 lần thử thì không thể chạy hoạt ảnh.
+- Lập `plan.md` trước khi viết dòng code nào. Claude dựng một bản Python có bộ đếm số lần thử và chạy trên 7 đề để lấy số đo thật (bảng 3.4). Các quyết định về thiết kế dựa trên số đo này, ví dụ đề Inkala 445.778 lần thử thì không thể chạy hoạt ảnh.
 
 **Prompt chính**
 
@@ -65,7 +65,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 **Việc đã làm**
 
 - Claude chạy lại thuật toán để kiểm tra số liệu trong bản thiết kế: khung 04 (814 / 96 / 81), khung 05 (803 / 93 / 81), khung 17 (đề Inkala ở lần thử 200.000: 22.236 / 22.206). Cả ba khớp.
-- Tìm lại dữ liệu Đề 1 (đề mẫu Wecode) và Đề 2 (đề Wecode xóa thêm 4 ô), chạy lại ra 1 / 1 / 0 và 27 / 5 / 0, khớp bảng 3.4.
+- Tìm lại dữ liệu Đề 1 (1 ô trống) và Đề 2 (xóa thêm 4 ô), chạy lại ra 1 / 1 / 0 và 27 / 5 / 0, khớp bảng 3.4.
 
 **Quyết định của mình**
 
@@ -89,7 +89,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 
 - Gom bộ bàn giao vào `design/`, `git init` (chưa commit).
 - Đổi tên tài liệu sang tiếng Anh: `plan.md`, `work-log.md`.
-- `checks/lab01_counts.py`: logic Lab01 giữ nguyên cấu trúc mô hình 1, thêm 3 bộ đếm. Chạy ra đúng bảng 3.4 cho cả 7 đề, và ghi 3 thời điểm giữa chừng (đề 3 lần thử 804, 814; đề 5 lần thử 200.000) vào `checks/expected_counts.json` để làm đáp án cho test.
+- `checks/reference_solver.py`: bản Python giữ nguyên cấu trúc mô hình 1, thêm 3 bộ đếm. Chạy ra đúng bảng 3.4 cho cả 7 đề, và ghi 3 thời điểm giữa chừng (đề 3 lần thử 804, 814; đề 5 lần thử 200.000) vào `checks/expected_counts.json` để làm đáp án cho test.
 - Dựng khung website React + Vite + TypeScript trong `website/`:
   - thanh trên cùng, menu cho điện thoại, nút Sáng / Tối, chân trang;
   - 4 đường dẫn, trang 404, trang báo lỗi;
@@ -118,11 +118,11 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
   - Bỏ số 9: 10 test báo lỗi.
   - Đảo thứ tự kiểm tra cột trước hàng: lúc đầu **không** test nào bắt được, vì 3 thời điểm chụp đều chỉ trùng ở hàng. Đã thêm test duyệt cả 1.682 lần bị loại của đề 3, giờ bắt được.
 
-**Bỏ chữ "Lab", "Wecode" khỏi website và làm trang Giải Sudoku (bước 5)**
+**Bỏ các nhãn nhắc tới bài tập khỏi website và làm trang Giải Sudoku (bước 5)**
 
-> Yes, please go head. But before moving forward, I don't think label "Wecode" is ok, we can use another label, right?
+> (prompt chép nguyên văn ở Chương 6 của report)
 
-> I mean don't want any text relates to "Lab" "Wecode" like we're studying. Treat this website like the one to be used for people understand the algorithm, not my exercises
+> (prompt chép nguyên văn ở Chương 6 của report)
 
 - Website giờ viết cho người muốn hiểu thuật toán: Đề 1 "Rất dễ", Đề 2 "Dễ", trên lưới ghi "Thử từng số, sai thì lùi lại", panel "Mã giả quay lui", footer "Minh họa thuật toán quay lui · 2026". Nội dung mã giả vẫn chép đúng slide.
 - Trang Giải Sudoku: lưới (gõ số được trước khi chạy, phím mũi tên để di chuyển), chú thích màu, chọn đề mẫu, hộp dán đề, Từng bước / Tự động / Giải ngay / Đặt lại, thanh tốc độ, panel mã giả, bảng S, bộ đếm và câu thông báo.
@@ -283,11 +283,11 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 
 **Đổi góc nhìn: website dạy học**
 
-> Không nhất thiết cứ phải mention Lab 01 hay Wecode, hãy mở rộng phạm vi ra. Treat mọi thứ như chúng ta đang dựng 1 website để dạy học và chia sẻ kiến thức vậy
+> (prompt chép nguyên văn ở Chương 6 của report)
 
 - Claude hỏi lại "mở rộng" theo hướng nào: chỉ đổi góc nhìn, thêm trang bài học quay lui, hay thêm bài toán khác. Mình chọn **đổi góc nhìn, vẫn Sudoku**, và **làm thêm MRV** (chọn ô ít khả năng nhất trước) sau A, B.
-- `plan.md` viết lại theo góc nhìn website dạy học: định dạng đề, đề mẫu, bộ testcase, report, video không còn dựa vào Lab01/Wecode.
-- Đổi tên `checks/lab01_counts.py` thành `checks/reference_solver.py` (bản Python tham chiếu).
+- `plan.md` viết lại theo góc nhìn website dạy học: định dạng đề, đề mẫu, bộ testcase, report, video đều viết như một dự án website dạy học.
+- Đặt tên bản Python tham chiếu là `checks/reference_solver.py`.
 
 **Commit đầu tiên và bộ testcase**
 
@@ -424,7 +424,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 > Let's do it, I will deploy Netlify later
 
 - Dựng khung report LaTeX trong `report/`: lớp `report`, preamble lấy từ HW02 (đổi đầu trang, thêm hộp prompt, bảng dài), trang bìa, mục lục, 8 chương theo đúng danh sách mục cô yêu cầu.
-- Trích toàn bộ prompt từ transcript Claude Code để chép nguyên văn vào report. Xác nhận cả 3 phiên làm bài tập lớn dùng model Claude Opus 5.5 (`claude-opus-5-5`), Claude Code 2.1.287 đến 2.1.295. Phát hiện cần đính chính: bản nhận xét "người dùng thử" ngày 4/10 do một phiên Claude riêng viết; đã sửa dòng tương ứng trong nhật ký. (Đính chính 12/10, sau hội đồng: phiên đó có sửa file. Prompt đầu của phiên nhờ viết lại chữ giao diện, và phiên đó viết lại 53 câu trong `vi.json` cùng đáp án test.)
+- Trích toàn bộ prompt từ transcript Claude Code để chép nguyên văn vào report. Xác nhận cả 3 phiên làm bài tập lớn dùng model Claude Opus 5.5 (`claude-opus-5-5`), Claude Code 2.1.287 đến 2.1.295. Phát hiện cần đính chính: bản nhận xét "người dùng thử" ngày 4/10 do một phiên Claude riêng viết; đã sửa dòng tương ứng trong nhật ký. (Đính chính 12/10, sau Hội đồng AI: phiên đó có sửa file. Prompt đầu của phiên nhờ viết lại chữ giao diện, và phiên đó viết lại 53 câu trong `vi.json` cùng đáp án test.)
 - Viết Ch.6 (quá trình thiết kế và xây dựng): bảng công cụ, cách làm việc, 11 giai đoạn có prompt nguyên văn, bảng phân chia việc giữa mình và Claude. Ghi rõ report do Claude viết nháp từ nhật ký và transcript, mình đọc, sửa và chịu trách nhiệm nội dung.
 - `website/scripts/captureReportFigures.ts` chụp ảnh cho report từ website thật (hiện có ảnh cuộc đua).
 - Compile XeLaTeX không cảnh báo, không còn ký tự `%` trong file `.tex`. Report 24 trang.
@@ -460,16 +460,16 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Lỗi tự soát ra trước khi commit: Ch.8 bản nháp ghép nhầm 4,9 ms (bản đo có đếm) với 623 ms của generator thành "chậm hơn 130 lần"; số đúng là 3,7 ms so với 623 ms, khoảng 170 lần, khớp Ch.4 và Ch.6.
 - Report 48 trang, không cảnh báo, không ký tự `%`.
 
-**Skill hội đồng góp ý**
+**Skill Hội đồng AI góp ý**
 > Do you know how to set up agent councils to feedback our work?
 
 > Save as a skill first then we can start the council later
 
-- Claude đề xuất hội đồng 5 vai bám theo tiêu chí chấm của cô: giảng viên chấm bài, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp, người hoài nghi (soát chỗ giống AI viết và độ trung thực của phần kể dùng AI). Các agent chỉ đọc, làm việc độc lập, không thấy ý kiến của nhau.
+- Claude đề xuất Hội đồng AI 5 vai bám theo tiêu chí chấm của cô: giảng viên chấm bài, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp, người hoài nghi (soát chỗ giống AI viết và độ trung thực của phần kể dùng AI). Các agent chỉ đọc, làm việc độc lập, không thấy ý kiến của nhau.
 - Lưu thành skill dự án `council` (`.claude/skills/council/`, ngoài repo). Quy trình 5 bước: chuẩn bị (compile report hoặc chụp ảnh website), giao việc song song, chủ tọa gộp ý và kiểm chứng từng ý với file gốc (gắn nhãn Đúng / Đúng một phần / Sai / Tùy chọn), trình sinh viên chọn sửa, sửa rồi ghi nhật ký. Mã giả của cô và khuôn trình bày của cô luôn thắng mọi góp ý.
 - Chạy được với tham số `report`, `website`, `video`, `final`.
 
-**Hội đồng góp ý cho report (commit `dbf025b`)**
+**Hội đồng AI góp ý cho report (commit `dbf025b`)**
 > Start the council
 
 - Tham số `report`, đủ 5 vai: giảng viên chấm bài, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp, người hoài nghi. Năm agent nêu khoảng 130 ý; Claude gộp còn khoảng 45 ý, kiểm từng ý với file gốc, dữ liệu và transcript: 11 ý Nặng, 18 ý Vừa và khoảng 25 ý Nhẹ là đúng.
@@ -477,7 +477,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Ý đã loại: viết `= O(9ⁿ)` thay cho `∈ O(9ⁿ)` (khuôn truy hồi cô chữa dùng `∈`); đổi "bài toán quyết định" (chữ của cô); sửa mã giả mô hình 1 (khớp slide từng chữ). Ý tùy chọn không làm: rút gọn mục văn phong ở Ch.6, thêm cột cờ vào bảng 83 bước, thêm trích đoạn ví dụ thứ hai, chia nhóm 4 cho cột S, nút Tự động tô xanh.
 - Mình chọn sửa hết các ý đã kiểm là đúng. Ba bộ quy tắc văn phong và bài mẫu ngày 6/10 do một công cụ AI dạng chat khác soạn; report ghi thêm công cụ đó vào bảng công cụ.
 - Đã sửa trong report:
-  - Ch.6 ghi đúng ai đề xuất, ai chọn (phần lớn là phương án Claude khuyên; lần chọn khác là trang Mọi lời giải riêng); thêm prompt ở các giai đoạn xây bộ giải; thêm mục "Một phiên Claude riêng" với prompt viết lại 53 câu; thêm mục "Viết report và hội đồng agent"; nhật ký ghi rõ do Claude viết; tách phần em tự kiểm (dùng thử) và phần Claude chạy.
+  - Ch.6 ghi đúng ai đề xuất, ai chọn (phần lớn là phương án Claude khuyên; lần chọn khác là trang Mọi lời giải riêng); thêm prompt ở các giai đoạn xây bộ giải; thêm mục "Một phiên Claude riêng" với prompt viết lại 53 câu; thêm mục "Viết report và Hội đồng AI"; nhật ký ghi rõ do Claude viết; tách phần em tự kiểm (dùng thử) và phần Claude chạy.
   - Ch.1 lý do chọn đề viết lại theo đúng transcript ngày 3/10; bỏ lý do nghĩ ra sau; thêm nguồn cho phần ứng dụng.
   - Ch.4: câu ý tưởng sai bước; định nghĩa cây tìm kiếm; thêm biến i, j, (r, c), b(r, c), `found` vào bảng; ví dụ đánh số khối; mã giả Sudoku dừng bằng `found` thay cho "và dừng"; truy hồi ghi rõ là cận trên, nghĩa của c₁, công thức tổng cấp số nhân dạng chung; bỏ câu "cận vẫn có thật", viết lại đoạn đề chống quay lui (622.577.597 vẫn cách xa 9⁶⁴); ví dụ bitmask, hai phép OR; O(n) thay O(9n); đề vô nghiệm thử bằng nhau ở hai bản; giải thích vì sao generator chậm (`yield*` qua từng tầng); đối chiếu tên trên website; trích Levitin.
   - Ch.5: 27 lần thử bị mất vì quay lui (không phải 34); cách đọc cột Bấm, dòng Trả lại, thứ tự lý do bị loại; hướng dẫn mở đề 13 và nút "Tới lần quay lui kế"; đề 13 do Claude chọn; sửa chủ ngữ "ô thử số".
@@ -531,3 +531,38 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Cập nhật README và report: 62 test trên Chrome; report thêm mục "Video demo bằng Playwright" ở Chương 6.
 - Bản video hiện tại (`video/sudoku-backtracking-demo.mp4`): 3840 × 2160, H.264, 25 khung/giây, âm thanh AAC stereo 48 kHz (chỉ có nhạc nền, độ ồn tích hợp -22 LUFS), dài 5 phút 36 giây, 89,6 MB. Kiểm tra bằng ảnh cắt các khung hình ở 8 thời điểm: khung sáng ôm đúng thành phần, con trỏ đúng chỗ, chữ giải thích không che giao diện. Lỗi suýt lọt thứ hai: lần quay 4K đầu tiên với `zoom`, khung sáng và con trỏ co nhỏ và lệch về góc trên trái vì Claude chia tọa độ của Playwright cho `zoom`, trong khi Playwright trả tọa độ trong hệ đơn vị của website. Sửa rồi quay lại cả 10 cảnh.
 - Chưa có: hoạt ảnh mở đầu và kết từ Claude Design (đang chờ bạn mở artifact và xuất video), giọng bạn thu (tùy chọn). Hiện dùng hai thẻ chữ tĩnh thay.
+
+## 13/10/2026 - Cập nhật theo yêu cầu, ba tùy chọn
+
+> - Intro và outro được dựng từ Claude Design. Nhạc nền cũng sử dụng Claude Design. Ghép video bằng Capcut. Resolution 4K - 25FPS. Sản phẩm cuối cùng là sudoku-backtracking.mp4
+> - Update report
+> - Khởi chạy council
+> - Làm 3 tùy chọn bạn gợi ý
+
+- Report Ch.6 viết lại theo đúng điều bạn nói: hoạt ảnh mở đầu, kết và nhạc nền làm bằng Claude Design, ghép bằng CapCut, xuất 4K 25 khung hình/giây, file `sudoku-backtracking.mp4`. Bỏ câu "giọng thuyết minh em tự thu" vì bạn không nhắc tới giọng. Bảng công cụ thêm CapCut, Higgsfield (thử rồi bỏ), ffmpeg. Lưu ý: bộ sinh nhạc bằng code `generateMusic.ts` do Claude Code viết trước đó vẫn nằm trong repo, report ghi là phương án dự phòng, video cuối dùng nhạc từ Claude Design.
+- Quyết định thứ tự: chạy Hội đồng AI sau cùng, sau ba tùy chọn, để Hội đồng AI soát cả phần mới.
+- **Tùy chọn 1, ví dụ thứ hai (Ch.5):** đề "Vừa" lần thử 783 đến 816 (lần bấm 1.044 đến 1.089): một lần lùi liên tiếp qua sáu ô, ô (4, 1) nhận số 8 ở lần thử 704 (bản đầu ghi nhầm là số sai, xem mục Hội đồng AI lần hai bên dưới). Bảng 40 bước sinh bằng `exportIllustrationTrace.ts --excerpt=3:783:816:13:19`, ba ảnh chụp bằng `captureReportFigures.ts`, bộ đếm khớp bảng (783/93/75, 803/93/81, 816/96/81).
+- **Tùy chọn 2, độ phức tạp (Ch.4):** thêm trường hợp tốt nhất (tổng S_i ≤ 9n, Θ(n)) và độ phức tạp của bốn biến thể (ba cách kiểm tra, chọn ô ít khả năng nhất, tìm mọi lời giải, generator), đều giữ O(9ⁿ) vì chi phí thêm mỗi bước bị chặn bởi n ≤ 81.
+- **Tùy chọn 3, lưới 4×4 và 16×16:** bộ giải riêng `website/src/gridSizes/` (không đụng bộ giải 9×9 và bộ 294 đề, vì video đã quay), trang `/sizes`, 11 đề mẫu. Python `checks/reference_sized_solver.py` + `find_sized_puzzles.py` (seed 20261013). Với 16×16, đề 120 ô trống cần 29 nghìn đến 1,5 triệu lần thử; đề 140 ô trống không đề nào giải xong trong 3 triệu lần. Kiểm tra: 11 đề khớp Python; 8 đề 9×9 phát ra đúng cùng chuỗi sự kiện với bộ giải chính. `testcases/other-sizes/other-sizes.txt` + test đọc chính file.
+- **Đặt tên mục:** Claude đặt "Cỡ khác"; bạn chê vô nghĩa; đổi "Cỡ lưới"; bạn chê tiếp, đề nghị "kích thước bảng hoặc kích thước lưới"; chốt "Kích thước lưới". Tên dài làm thanh điều hướng tràn ở độ rộng dưới khoảng 1.010 px: đo lại, chuyển menu từ 900 lên 1.020 px, sửa hai test.
+- Test: 772 test đơn vị, 75 test trên Chrome, lint và kiểm kiểu đạt. Report 64 trang, không cảnh báo.
+
+## 13/10/2026 - Hội đồng AI lần hai (tham số `final`)
+
+- **Bản được đọc:** thư mục làm việc chưa commit, trên nền commit `cfbd033`. Sáu agent: giảng viên, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp, người hoài nghi, người kiểm thử giao diện. Tài liệu đọc: chữ của report, ảnh chụp mọi trang (1366 × 768 và 390 × 844, sáng và tối), danh sách file của thư mục nộp, kịch bản video.
+- **Kết quả:** khoảng 115 ý. Sau khi gộp và kiểm với file gốc: khoảng 50 ý Đúng, trong đó 10 ý Nặng; phần còn lại Đúng một phần, Sai hoặc Tùy chọn. Điểm thử của vai giảng viên: mức đáp ứng 8,5/10 (lần đầu 6), mức đầu tư 9 (8,5), sáng tạo 8,5 (8).
+- **Ý Nặng đã kiểm là đúng:**
+  - Ví dụ thứ hai (Ch.5) gọi số 8 ở ô (4, 1) là sai. Số 8 nằm trong lời giải đầu tiên; nhánh chết vì S₄ đến S₁₂ phía trước mang số khác (S₄ = 2 thay vì 7).
+  - Ch.4, biến thể tìm mọi lời giải: "số lần thử bằng số nút" (đúng là 9 lần số nút: 18.619.020 = 9 × 2.068.780) và "không còn trường hợp tốt nhất" (đề "Dễ" cần 45 = 9n lần thử).
+  - Ch.6: sai model (Opus 5.5 đến chiều 12/10, Sonnet 5.5 sau đó), sai phiên bản Claude Code (đến 2.1.296), vài câu gán cho em việc của Claude, và câu "Em đồng ý với cách xử lý này" không có trong transcript.
+  - Số test lệch giữa các chương (723 và 772), và gán số của ngày 13/10 cho lần chạy ngày 12/10.
+  - Ba câu trên website nói quá về cận 9ⁿ (`vi.json`: `complexityConclusion`, câu ở mục Rút ra của trang So sánh, `boundText` ở trang Kích thước lưới).
+  - Link GitHub trong phụ lục dẫn tới repo Private.
+  - Ảnh khung thiết kế trong report và thư mục `design/` còn chữ nhắc bài tập cũ; email công ty còn trong reflog của git.
+- **Đã loại:** hai ý về độ tương phản màu ở chế độ tối (tính lại từ bảng màu: 8,15 đến 10,11, đạt WCAG AA); ý đổi tên "Kích thước lưới" (tùy chọn, bạn đã chốt); ý đổi tên bộ đếm trên mọi trang (thay bằng một câu chú thích ở Ch.4); ý sửa mã giả (không có chỗ nào lệch slide).
+- **Bạn chọn sửa:** ý Nặng, ý Vừa, và các câu cụt trong ý Nhẹ. Repo chuyển sang Public và giữ link. Gỡ sạch chữ nhắc bài tập cũ khỏi `plan.md`, `work-log.md`, `design/` (kể cả vẽ lại ảnh chụp bản thiết kế). Đóng gói không kèm `.git`. Không quay thêm video, chỉ ghi chú trong report.
+- **Đã sửa:**
+  - Report: Ch.1 (chủ ngữ, câu NP-đầy đủ), Ch.3 (mục hai phần mở rộng), Ch.4 (định nghĩa lần thử, bit, A đến G, trường hợp tốt nhất tách hằng số, tên biến thể kèm tên trên website, số liệu 63 đến 135 lần), Ch.5 (bỏ chữ "sai", lần bấm 118, dòng "Có lời giải"), Ch.6 (model, phiên bản, chủ ngữ, prompt tách và đủ nguyên văn, mục Vercel và GitHub, mục video có thêm prompt Claude Design, Higgsfield, âm thanh, ghi chú video, mục Hội đồng AI lần hai), Ch.7 (12 đề không đối chiếu được, câu về seed), Ch.8 (số test, ngày), Phụ lục A (cấu trúc bài nộp).
+  - Website: ba câu nói quá, hai câu thông báo, câu "lưới trái, lưới phải", chú thích màu xanh, 14 phút, link mã nguồn ở trang Giới thiệu; test cập nhật, thêm một test Chrome (76).
+  - Thư mục: `design/` (chữ, ảnh chụp vẽ lại, file zip dựng lại), `plan.md`, `work-log.md`, reflog git dọn sạch.
+- **Việc còn chờ bạn:** chuyển repo sang Public trên GitHub (Settings, Danger Zone); xác nhận các chi tiết Claude Design và CapCut; chọn có điền phần "em tự kiểm tra" hay không.

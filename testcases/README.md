@@ -64,6 +64,10 @@ testcases/
 | Đặc biệt | nhiều lời giải, đúng 2 lời giải, vô nghiệm ngay ô đầu, vô nghiệm phải tìm mới biết; cùng một đề viết theo 3 định dạng; dòng trống xen giữa, xuống dòng kiểu Windows, nhiều dấu cách và tab | 21 |
 | Không hợp lệ | trùng ở hàng / cột / khối / nhiều chỗ; số 0, chữ cái, số 10, dấu chấm, dấu gạch; thiếu / thừa dòng, thiếu / thừa ô; chuỗi 80 / 82 ký tự; file rỗng | 25 |
 
+## Lưới kích thước khác
+
+`other-sizes/other-sizes.txt` có 11 đề ngoài 294 đề trên: 5 đề 4×4, 2 đề 9×9 và 4 đề 16×16. Mỗi đề là một khối cùng khuôn với các nhóm ở trên, nhưng phần `expected` ghi thêm ba bộ đếm, số lời giải và lời giải đầu tiên. Đáp án lấy từ `checks/reference_sized_solver.py`. Sinh lại file bằng `python3 testcases/tools/generate_sized_testcases.py`. Test đơn vị `tests/unit/gridSizes/otherSizesTestcases.test.ts` đọc chính file này và so với bộ giải của website.
+
 ## Cách tạo
 
 - **Lưới đầy ngẫu nhiên** được sinh bằng quay lui với thứ tự số xáo trộn, nên mỗi lưới khác nhau thật sự, không phải cùng một lưới đổi tên số.
@@ -98,7 +102,7 @@ Khi chạy, mỗi đề ghi lại những nhánh xử lý mà nó đi qua. Cả 
 ```
 cd website
 yarn testcases                    chạy cả bộ, bỏ 2 đề chậm
-yarn testcases --include-slow     chạy cả 2 đề chậm (đo ngày 6/10: 18 phút 45 giây)
+yarn testcases --include-slow     chạy cả 2 đề chậm (khoảng 19 phút)
 yarn test                         test đơn vị, gồm luôn bộ testcase
 
 python3 ../testcases/tools/generate_testcases.py    sinh lại bộ đề (khoảng 4 phút)

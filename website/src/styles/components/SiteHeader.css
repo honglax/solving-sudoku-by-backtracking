@@ -47,7 +47,7 @@
   display: none;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1019px) {
   .site-header__actions {
     display: none;
   }

@@ -6,6 +6,9 @@ REPORT_DIRECTORY = Path(__file__).resolve().parent.parent
 PROJECT_DIRECTORY = REPORT_DIRECTORY.parent
 GENERATED_DIRECTORY = REPORT_DIRECTORY / 'generated'
 STEPS_PATH = REPORT_DIRECTORY / 'data' / 'illustration-steps.csv'
+EXCERPT_PATH = REPORT_DIRECTORY / 'data' / 'excerpt-steps.csv'
+SIZED_PUZZLES_PATH = PROJECT_DIRECTORY / 'checks' / 'sized_puzzles.json'
+SIZED_EXPECTED_PATH = PROJECT_DIRECTORY / 'checks' / 'expected_sized.json'
 COMPARISON_PATH = REPORT_DIRECTORY / 'data' / 'comparison-measurements.csv'
 EXPECTED_COUNTS_PATH = PROJECT_DIRECTORY / 'checks' / 'expected_counts.json'
 MANIFEST_PATH = PROJECT_DIRECTORY / 'testcases' / 'manifest.csv'
@@ -164,6 +167,52 @@ def format_milliseconds(value):
     return f'{value:.{decimals}f}'.replace('.', DECIMAL_SEPARATOR)
 
 
+def excerpt_longtable(steps):
+    header = (r'\textbf{Bấm} & \textbf{Lần thử} & \(\boldsymbol{i}\) & \textbf{Ô} & \(\boldsymbol{j}\) & '
+              r'\textbf{Thao tác} & \textbf{Lý do} & \multicolumn{1}{l}{\textbf{\(S_{13} \ldots S_{19}\) sau bước}} \\')
+    lines = [r'\begingroup\footnotesize\setlength{\tabcolsep}{3pt}',
+             r'\begin{longtable}{@{}rrrcc>{\raggedright\arraybackslash}p{2.1cm}>{\raggedright\arraybackslash}p{3.7cm}>{\ttfamily}l@{}}',
+             r"\caption{Các bước từ lần thử 783 đến lần thử 816 của đề ``Vừa''}\label{tab:excerpt-steps}\\",
+             r'\toprule', header, r'\midrule', r'\endfirsthead',
+             r'\toprule', header, r'\midrule', r'\endhead',
+             r'\bottomrule', r'\endfoot']
+    for step in steps:
+        cells = [
+            step['stepButtonPresses'],
+            step['tryNumber'],
+            step['index'],
+            cell_text(step['row'], step['column']),
+            step['digit'],
+            ACTION_NAMES[step['action']],
+            step_reason(step),
+            step['window'],
+        ]
+        lines.append(' & '.join(cells) + r' \\')
+    lines += [r'\end{longtable}', r'\endgroup']
+    return '\n'.join(lines) + '\n'
+
+
+def sizes_table():
+    puzzles = {item['id']: item for item in json.loads(SIZED_PUZZLES_PATH.read_text(encoding='utf-8'))}
+    measured = json.loads(SIZED_EXPECTED_PATH.read_text(encoding='utf-8'))['puzzles']
+    lines = [r'\begin{tabular}{@{}llrrrrr@{}}', r'\toprule',
+             r'\textbf{Cỡ} & \textbf{Đề} & \(\boldsymbol{n}\) & \textbf{Chữ số của \(k^n\)} & \textbf{Lần thử} & \textbf{Lần trả lại} & \textbf{Lời giải} \\',
+             r'\midrule']
+    previous_size = None
+    for item in measured:
+        size = item['boxSize'] ** 2
+        blank_count = item['blankCount']
+        digits = len(str(size ** blank_count))
+        if previous_size is not None and size != previous_size:
+            lines.append(r'\midrule')
+        previous_size = size
+        solution_text = format_count(item['solutionCount'])
+        lines.append(f"{size}\\(\\times\\){size} & {puzzles[item['id']]['name']} & {blank_count} & {digits} & "
+                     f"{format_count(item['tryCount'])} & {format_count(item['restoreCount'])} & {solution_text} \\\\")
+    lines += [r'\bottomrule', r'\end{tabular}']
+    return '\n'.join(lines) + '\n'
+
+
 def comparison_tables(puzzles):
     with COMPARISON_PATH.open(encoding='utf-8') as comparison_file:
         rows = list(csv.DictReader(comparison_file))
@@ -240,10 +289,13 @@ def main():
     with STEPS_PATH.open(encoding='utf-8') as steps_file:
         steps = list(csv.DictReader(steps_file))
     write('illustration-steps.tex', steps_longtable(steps))
+    with EXCERPT_PATH.open(encoding='utf-8') as excerpt_file:
+        write('excerpt-steps.tex', excerpt_longtable(list(csv.DictReader(excerpt_file))))
     try_table, time_table = comparison_tables(puzzles)
     write('comparison-tries.tex', try_table)
     write('comparison-times.tex', time_table)
     write('testcase-groups.tex', testcase_group_table())
+    write('sizes-table.tex', sizes_table())
     print(f'{len(steps)} steps and 8 grids -> {GENERATED_DIRECTORY.relative_to(PROJECT_DIRECTORY)}')
 
 

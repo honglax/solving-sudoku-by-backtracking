@@ -1,8 +1,8 @@
 \chapter{Quá trình thiết kế và xây dựng}
 
-Em dùng Claude Code để lập kế hoạch, viết code, viết test, đo đạc và viết nháp report. Em đặt yêu cầu, dùng thử, báo chỗ chưa ổn và chốt các lựa chọn. Phần lớn lựa chọn là phương án Claude đề xuất, chương này ghi rõ từng lần. Các giai đoạn kể theo thứ tự thời gian, từ ngày 3/10 đến ngày 12/10/2026.
+Em dùng Claude Code để lập kế hoạch, viết code, viết test, đo đạc và viết nháp report. Em đặt yêu cầu, dùng thử, báo chỗ chưa ổn và chốt các lựa chọn. Phần lớn lựa chọn là phương án Claude đề xuất, chương này ghi rõ từng lần. Các giai đoạn kể theo thứ tự thời gian, từ ngày 3/10 đến ngày 13/10/2026.
 
-Chương này dựa trên hai nguồn: nhật ký \texttt{work-log.md} và transcript của Claude Code lưu trên máy. Nhật ký do Claude ghi sau mỗi việc, em đọc lại. Khi soát report ngày 12/10, hội đồng agent đối chiếu nhật ký với transcript và tìm ra hai chỗ nhật ký ghi sai, đã sửa (mục \ref{sec:report-writing}). Prompt trong chương chép nguyên văn từ transcript, kể cả lỗi chính tả. Prompt dài thì phần giữa thay bằng mô tả trong ngoặc vuông.
+Chương này dựa trên hai nguồn: nhật ký \texttt{work-log.md} và transcript của Claude Code lưu trên máy. Nhật ký do Claude ghi sau mỗi việc, em đọc lại. Khi soát report ngày 12/10, Hội đồng AI (AI council) đối chiếu nhật ký với transcript và tìm ra hai chỗ nhật ký ghi sai, đã sửa (mục \ref{sec:report-writing}). Prompt trong chương chép nguyên văn từ transcript, kể cả lỗi chính tả. Phần nào của tin nhắn bị lược thì thay bằng mô tả trong ngoặc vuông. Hai tin nhắn gửi cách nhau nằm ở hai khung riêng.
 
 \section{Công cụ và cách làm việc}
 
@@ -16,13 +16,17 @@ Bảng \ref{tab:tools} liệt kê các công cụ, thư viện và model em dùn
     \toprule
     \textbf{Công cụ} & \textbf{Vai trò} \\
     \midrule
-    Claude Code (tiện ích VS Code, phiên bản 2.1.287 đến 2.1.295), model Claude Opus 5.5 & Lập kế hoạch, viết code website và các script, viết test, đo đạc, mở website trên Chrome để chụp màn hình và tự soát, ghi nhật ký, viết nháp chữ trên website và report \\
-    Các agent con do Claude Code gọi & Chấm ba tiêu đề trang chủ; hội đồng năm vai đọc soát report \\
+    Claude Code (tiện ích VS Code, phiên bản 2.1.287 đến 2.1.296), model Claude Opus 5.5, từ chiều 12/10 là Claude Sonnet 5.5 & Lập kế hoạch, viết code website và các script, viết test, đo đạc, mở website trên Chrome để chụp màn hình và tự soát, ghi nhật ký, viết nháp chữ trên website và report \\
+    Các agent con do Claude Code gọi & Chấm ba tiêu đề trang chủ; Hội đồng AI năm vai đọc soát report \\
     Một phiên Claude Code riêng & Viết lại 53 câu trên website cho tự nhiên hơn; đóng vai người dùng phổ thông, nhận xét website \\
-    Claude Design (trên claude.ai) & Vẽ 19 khung hình giao diện từ một prompt do Claude Code soạn \\
+    Claude Design (trên claude.ai) & Vẽ 19 khung hình giao diện từ một prompt do Claude Code soạn; làm hoạt ảnh mở đầu, hoạt ảnh kết và nhạc nền của video demo \\
+    CapCut & Ghép video demo: đoạn mở đầu, đoạn quay màn hình, đoạn kết và nhạc nền, xuất 4K 25 khung hình/giây \\
+    Higgsfield & Thử tạo clip mở đầu và kết bằng AI, bỏ vì clip không phù hợp \\
+    Vercel, GitHub & Vercel chạy website tại địa chỉ công khai; GitHub lưu mã nguồn \\
     Một công cụ AI dạng chat khác & Soạn ba bộ quy tắc văn phong và bài viết mẫu mà em dán vào Claude Code \\
     React 19, React Router 8, TypeScript 6, Vite 8 & Website chạy hoàn toàn trên trình duyệt, không có máy chủ \\
-    Vitest 5, Playwright 1.63, oxlint & Test đơn vị, test trên Chrome thật, soát lỗi code \\
+    Vitest 5, Playwright 1.63, oxlint & Test đơn vị, test trên Chrome thật, soát lỗi code; Playwright cũng quay màn hình cho video demo \\
+    ffmpeg & Xử lý các đoạn quay màn hình trước khi ghép \\
     Python 3.9 & Các bản cài đặt tham chiếu để đối chiếu, script sinh bộ testcase \\
     Yarn 4.18.1, lucide-react, Fontsource & Quản lý gói, biểu tượng, phông Be Vietnam Pro và JetBrains Mono \\
     XeLaTeX & Report này \\
@@ -77,7 +81,8 @@ Claude viết \texttt{plan.md} gồm 12 mục. Trước khi viết, Claude dựn
 
 \begin{promptbox}{3/10}
 5.1. I wanna build a completely website and deploy to Netlify or any supported free server\\
-6. UI must be nice, modern, can I use Claude Design for this?
+6. UI must be nice, modern, can I use Claude Design for this?\\[0pt]
+[mục 12: 12.1 đến 12.4 đều ``Agree'', 12.5 ``Wait for confirmation'']
 \end{promptbox}
 
 \begin{promptbox}{3/10}
@@ -92,7 +97,7 @@ Claude trả lời câu hỏi hiệu năng bằng số đo trên một bản th�
 Can we build a very detail prompt then I can use to talk with Claude Design for the mockup? We should have the color pallet for the website, it should be mordern, no violate design rule.
 \end{promptbox}
 
-Claude Code soạn file \texttt{design/claude-design-prompt.md}. Em thấy file có bốn điểm đáng giữ:
+Claude Code soạn file \texttt{design/claude-design-prompt.md}. File này có bốn điểm đáng giữ:
 
 \begin{itemize}
   \item Bảng màu có đo độ tương phản theo chuẩn WCAG AA. Một màu xám chỉ đạt 4,34:1, thiếu so với mức 4,5:1, nên Claude bỏ màu đó.
@@ -197,11 +202,15 @@ Bảng lịch sử không tốn nhiều bộ nhớ. Website không lưu bản sa
 \subsection*{Bố cục, chữ giao diện và test trên trình duyệt}
 
 \begin{promptbox}{4/10}
+[ba câu trả lời cho ba câu hỏi của Claude: ``Yes can be'', ``Let me think and get back later'', ``Yes'']\\[0pt]
 Screenshot: The solver screen, the components are very tight while we still have a lot of blank space below, can we make it fit the screen (responsive height)?
 \end{promptbox}
 
 \begin{promptbox}{4/10}
-I don't like put css in the same folder with tsx file. Any suggestion for folder structure?\\
+I don't like put css in the same folder with tsx file. Any suggestion for folder structure?
+\end{promptbox}
+
+\begin{promptbox}{4/10}
 And for the label, we should store them in a json file to preparing for localization/i18n in the future
 \end{promptbox}
 
@@ -237,7 +246,12 @@ As an end user (normal end user), how you rate my sudoku website? And feedback f
 Em dán nguyên bản nhận xét sang phiên chính:
 
 \begin{promptbox}{4/10}
-A feedback from an end-user [nguyên văn bản nhận xét]\\
+A feedback from an end-user [nguyên văn bản nhận xét]
+\end{promptbox}
+
+Gần chín phút sau, em gửi thêm:
+
+\begin{promptbox}{4/10}
 We can skip the video demo/source code for now. You can address the feedback from the end-user
 \end{promptbox}
 
@@ -251,7 +265,7 @@ Claude đo lại trước khi sửa. Bảng $S$ ở màn hình 1366 × 768 cắt
   \item Trang chủ có lưới chạy lại thật các bước 783 đến 814 của đề ``Vừa'', đứng yên nếu máy bật giảm chuyển động.
 \end{itemize}
 
-Claude không làm theo một góp ý. Nhận xét nói đề Wikipedia chạy tự động mất nửa giờ. Con số đó đúng ở tốc độ mặc định 20 lần thử mỗi giây, còn ở tốc độ tối đa 1.000 lần thử mỗi giây, đề này chạy hết 38 giây. Claude giữ tốc độ tối đa và thêm nút tới lần quay lui kế, để người xem nhảy thẳng tới chỗ thuật toán lùi lại. Em đồng ý với cách xử lý này.
+Claude không làm theo một góp ý. Nhận xét nói đề Wikipedia chạy tự động mất nửa giờ. Con số đó đúng ở tốc độ mặc định 20 lần thử mỗi giây, còn ở tốc độ tối đa 1.000 lần thử mỗi giây, đề này chạy hết 38 giây. Claude giữ tốc độ tối đa và thêm nút tới lần quay lui kế, để người xem nhảy thẳng tới chỗ thuật toán lùi lại.
 
 Em cũng thấy một chữ Claude đặt nghe lạ và đề nghị đổi:
 
@@ -267,7 +281,7 @@ Claude nhận đó là chữ của mình và đổi thành ``Tác giả''.
 Cô đã cập nhật yêu cầu cho final-project rồi, review qua xem chúng ta còn cần gì. Yêu cầu này sẽ overwrite yêu cầu ở buổi 8 [nguyên văn yêu cầu của cô]
 \end{promptbox}
 
-Claude đối chiếu yêu cầu mới với kế hoạch và code. Phần demo đã đủ. Còn thiếu bộ testcase, report khoảng 10 mục, video đi qua mọi chức năng, và phần sáng tạo. Kế hoạch cũ ghi ``không dùng thuật toán khác'', trong khi tiêu chí mới chấm việc giải nhiều cách rồi so sánh. Claude đề xuất bốn phần mở rộng: so sánh ba cách kiểm tra, tìm mọi lời giải, chọn ô ít khả năng nhất trước, và lưới cỡ khác. Claude cũng tìm ra một lỗi trong kế hoạch: dòng ``Dừng khi $k - i = 0$'' phải là $n - i = 0$.
+Claude đối chiếu yêu cầu mới với kế hoạch và code: phần demo đã đủ, còn thiếu bộ testcase, report khoảng 10 mục, video đi qua mọi chức năng, và phần sáng tạo. Kế hoạch cũ ghi ``không dùng thuật toán khác'', trong khi tiêu chí mới chấm việc giải nhiều cách rồi so sánh. Claude đề xuất bốn phần mở rộng: so sánh ba cách kiểm tra, tìm mọi lời giải, chọn ô ít khả năng nhất trước, và lưới kích thước khác. Claude cũng tìm ra một lỗi trong kế hoạch: dòng ``Dừng khi $k - i = 0$'' phải là $n - i = 0$.
 
 \begin{promptbox}{6/10}
 1. Đồng ý với gợi ý của bạn\\
@@ -312,7 +326,7 @@ Wow, there are too much files .in and .out
 Why it takes so long?
 \end{promptbox}
 
-Hai đề chậm nhất chạy hết 18 phút 36 giây trên bộ giải của website: đề chống quay lui cần 622.577.597 lần thử, đề 17 số cho sẵn cần 239.312.393 lần. Phần chậm nằm ở generator. Claude đề xuất giữ nguyên, vì bộ test phải chạy đúng bộ giải người xem thấy trên website, và cho hai đề này không chạy mặc định. Em đồng ý.
+Hai đề chậm nhất chạy hết khoảng 19 phút trên bộ giải của website: đề chống quay lui cần 622.577.597 lần thử, đề 17 số cho sẵn cần 239.312.393 lần. Phần chậm nằm ở generator. Claude đề xuất giữ nguyên, vì bộ test phải chạy đúng bộ giải người xem thấy trên website, và cho hai đề này không chạy mặc định. Em chấp nhận cách đó.
 
 \section{Trang So sánh (6/10)}
 
@@ -372,7 +386,7 @@ Sao bạn không lưu vào như 1 SKILL?
 
 Bộ quy tắc thành một skill của Claude Code, có bước tự kiểm trước khi giao chữ. Với bài viết mẫu, Claude chỉ ra hai lỗi thuật toán: ``điền bừa một số'' (thuật toán thử lần lượt từ 1 đến 9, không có gì bừa) và ``thử hết tất cả các trường hợp'' (thuật toán bỏ ngay số trùng, nên đề Inkala chỉ cần 445.778 lần thử thay vì $9^{60}$).
 
-Claude viết lại khoảng 50 câu trên website theo skill. Lần viết lại này để lọt một lỗi. Ba câu mới có chỗ chờ điền số, nhưng code chưa truyền số vào, nên trang hiện nguyên dấu ngoặc nhọn. Không test nào bắt được. Claude tự phát hiện ngay sau khi commit, sửa, rồi thêm một test mở từng trang và kiểm tra không còn chỗ chờ điền nào hiện ra. Lần đầu chính test này vẫn đạt trên bản lỗi, vì test đọc chữ lúc trang còn đang tải. Claude đổi sang chờ trang tải xong, và test báo lỗi đúng ở trang Thuật toán.
+Claude viết lại khoảng 50 câu trên website theo skill. Lần viết lại này để lọt một lỗi. Ba câu mới có chỗ chờ điền số, nhưng code chưa truyền số vào, nên trang hiện nguyên dấu ngoặc nhọn, và không test nào bắt được. Claude tự phát hiện ngay sau khi commit, sửa, rồi thêm một test mở từng trang và kiểm tra không còn chỗ chờ điền nào hiện ra. Lần đầu chính test này vẫn đạt trên bản lỗi, vì test đọc chữ lúc trang còn đang tải. Claude đổi sang chờ trang tải xong, và test báo lỗi đúng ở trang Thuật toán.
 
 Bảng \ref{tab:rewrite} có ba câu trước và sau khi viết lại. Hai câu cuối còn được sửa thêm ngày 12/10, sau các lượt soát ở mục \ref{sec:report-writing}.
 
@@ -399,11 +413,11 @@ Ngày 8/10, Claude tóm tắt việc còn lại và đề xuất làm đề minh
 totally agree
 \end{promptbox}
 
-Claude viết script tìm đề theo tiêu chí: 10 đến 16 ô trống, đúng một lời giải, 50 đến 90 lần thử, 1 đến 3 lần quay lui, có đủ ba kiểu bị loại. Script ra 12 đề. Claude chọn đề 79 lần thử, 3 lần quay lui, vì cả ba lần quay lui nằm gọn trong 35 lần thử đầu trên hàng 1, và có một lần lùi dây chuyền qua hai ô. Đề này thành đề mẫu số 13 trên website. Một script khác xuất cả 83 bước bằng chính bộ giải của website, nên bảng ở Chương 5 khớp với demo.
+Claude viết script tìm đề theo tiêu chí: 10 đến 16 ô trống, đúng một lời giải, 50 đến 90 lần thử, 1 đến 3 lần quay lui, có đủ ba kiểu bị loại. Script ra 12 đề, trong đó Claude chọn đề 79 lần thử, 3 lần quay lui, vì cả ba lần quay lui nằm gọn trong 35 lần thử đầu trên hàng 1, và có một lần lùi dây chuyền qua hai ô. Đề này thành đề mẫu số 13 trên website. Một script khác xuất cả 83 bước bằng chính bộ giải của website, nên bảng ở Chương 5 khớp với demo.
 
 Ngày 9/10, \texttt{yarn test} từ 9 giây thành 16 phút, mỗi lần chạy hỏng một test khác nhau vì quá giờ. Claude đo bằng một vòng lặp: cần 1,9 giây CPU mà mất 27 giây, tức máy chỉ cấp khoảng 5 đến 7 phần trăm sức chạy. Máy không bật tiết kiệm pin, cũng không có cảnh báo nhiệt. Claude nới giới hạn thời gian mỗi test lên 30 giây. Ngày 10/10 máy chạy bình thường trở lại, và toàn bộ test đạt: 723 test đơn vị, 292 testcase, 60 test trên Chrome.
 
-\section{Viết report và hội đồng agent (12/10)}
+\section{Viết report và Hội đồng AI (12/10)}
 \label{sec:report-writing}
 
 Claude đề xuất bắt đầu report, em đồng ý và để việc đưa website lên mạng lại sau:
@@ -418,7 +432,7 @@ Claude viết Chương 6 trước, từ nhật ký và transcript. Giữa chừn
 "Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa." Cái câu này đọc không giống người thường một chút nào cả, nghe là biết AI rồi. Bạn thử hỏi mấy con agent khác xem, nghe thấy gớm
 \end{promptbox}
 
-Claude giao cho ba agent riêng, mỗi agent đóng một vai người đọc: người viết nội dung cho trang dạy code, sinh viên năm hai, biên tập viên tiếng Việt. Ba agent chấm ba tiêu đề: bản của Claude, bản em tự viết lại (``Cùng xem thuật toán quay lui giải Sudoku như thế nào nhé!'') và bản gốc. Cả ba chấm bản của em thấp nhất, 3 đến 4 trên 10, vì ``Cùng\ldots nhé!'' là giọng người dẫn chương trình. Bản của Claude được 6 đến 7.
+Claude giao cho ba agent riêng, mỗi agent đóng một vai người đọc: người viết nội dung cho trang dạy code, sinh viên năm hai, biên tập viên tiếng Việt. Ba agent chấm ba tiêu đề: bản của Claude, bản em tự viết lại (``Cùng xem thuật toán quay lui giải Sudoku như thế nào nhé!'') và bản gốc. Cả ba chấm bản của em thấp nhất, 3 đến 4 trên 10, vì ``Cùng\ldots nhé!'' là giọng người dẫn chương trình. Bản của Claude được 6 đến 7, bản gốc 5 đến 7.
 
 Cả ba agent cùng chỉ ra hai lỗi ở bản của Claude: chữ ``nó'' dịch từ ``it'' của tiếng Anh, và nhịp hai câu cụt kiểu khẩu hiệu. Biên tập viên còn bắt thêm lỗi trong đoạn dẫn: ``mỗi cửa thử từng chìa'' sai chủ ngữ, và hình ảnh dãy cửa chưa giải thích vì sao phải quay lại. Em chọn tiêu đề ``Thuật toán quay lui giải Sudoku như thế nào?'', là phương án agent người viết nội dung đề xuất, và dùng nguyên đoạn dẫn biên tập viên sửa. Các lỗi này thành luật mới trong skill văn phong.
 
@@ -448,7 +462,18 @@ Save as a skill first then we can start the council later
 Start the council
 \end{promptbox}
 
-Hội đồng gồm năm agent đọc độc lập, mỗi agent một vai: giảng viên chấm bài, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp và người hoài nghi. Năm agent nêu khoảng 130 ý. Claude gộp các ý trùng còn khoảng 45 ý, rồi tự kiểm từng ý với file gốc, dữ liệu và transcript trước khi trình em. Một số ý bị loại vì đi ngược khuôn của cô, ví dụ đề nghị viết \(T(n) = \Oh{9^n}\) thay cho \(\in \Oh{9^n}\), trong khi lời giải truy hồi cô chữa dùng dấu \(\in\).
+Hội đồng AI (AI council) là một nhóm agent do Claude Code gọi song song trong cùng một lượt. Mỗi agent là một lần gọi model riêng, bắt đầu với ngữ cảnh trống, được giao một vai người đọc, và chỉ được đọc file, không được sửa. Các agent không thấy ý kiến của nhau. Claude Code giữ vai chủ tọa: gộp ý trùng, kiểm từng ý với file gốc rồi mới trình em. Em dùng cách này, thay vì nhờ Claude đọc lại bản nháp một lần, vì bốn lý do:
+
+\begin{itemize}
+  \item Claude là bên viết bản nháp, nên khó thấy lỗi của chính mình. Agent mới không biết đoạn nào do AI viết.
+  \item Mỗi vai bắt một loại lỗi khác: giảng viên nhìn mức đáp ứng yêu cầu, người soát thuật toán đối chiếu số liệu, biên tập viên bắt văn máy, người hoài nghi tìm câu phóng đại.
+  \item Em chưa có người thật đọc thử bản nháp, và các vai này thay phần nào cho người đọc đó.
+  \item Agent cũng có thể nhầm, nên không ý nào đến tay em khi chưa qua bước kiểm của chủ tọa.
+\end{itemize}
+
+Hội đồng AI không thay được người thật: các điểm do agent chấm chỉ là điểm thử.
+
+Hội đồng AI gồm năm agent đọc độc lập, mỗi agent một vai: giảng viên chấm bài, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp và người hoài nghi. Năm agent nêu khoảng 130 ý. Claude gộp các ý trùng còn khoảng 45 ý, rồi tự kiểm từng ý với file gốc, dữ liệu và transcript trước khi trình em. Một số ý bị loại vì đi ngược khuôn của cô, ví dụ đề nghị viết \(T(n) = \Oh{9^n}\) thay cho \(\in \Oh{9^n}\), trong khi lời giải truy hồi cô chữa dùng dấu \(\in\).
 
 Các ý được giữ cho thấy bản nháp có những chỗ sai thật:
 
@@ -462,22 +487,186 @@ Các ý được giữ cho thấy bản nháp có những chỗ sai thật:
 
 Em chọn sửa hết các ý đã kiểm là đúng. Claude sửa report, sửa câu trên website, chạy lại test và các phép đo, rồi ghi vào nhật ký.
 
+\section{Đưa website lên Vercel và GitHub (12/10)}
+
+Kế hoạch ban đầu là Netlify. Ngày 12/10 em đổi sang Vercel và nói trước là sẽ đẩy mã nguồn lên GitHub cá nhân:
+
+\begin{promptbox}{12/10}
+Deploy lên Vercel chứ k phải Netlify, tôi sẽ push commit lên git cá nhân trước
+\end{promptbox}
+
+\begin{promptbox}{12/10}
+\raggedright
+Commit và xóa nhánh backup. Git repo là 'https://github.com/honglax/solving-sudoku-by-backtracking.git'
+\end{promptbox}
+
+\begin{promptbox}{12/10}
+Repo chỉ nên bao gồm trong thư mục website
+\end{promptbox}
+
+Claude hỏi lại nên đẩy gì lên repo. Claude khuyên đẩy đủ thư mục \texttt{final-project}, để Vercel chọn thư mục \texttt{website} làm Root Directory, vì bộ test và báo cáo cần nằm cùng repo. Em chọn phương án đó, và repo để chế độ Private lúc đầu. Claude thêm file \texttt{website/vercel.json} với một luật chuyển mọi đường dẫn về trang \texttt{index.html}, để các trang con của website mở trực tiếp được từ địa chỉ gõ vào trình duyệt.
+
+Lần push đầu qua HTTPS báo lỗi ``Repository not found''. Claude tìm ra nguyên nhân: Keychain của máy lưu sẵn một tài khoản GitHub khác, nên GitHub không nhận ra repo. Em chuyển sang SSH:
+
+\begin{promptbox}{12/10}
+Ok, tôi đã dùng SSH, push complete
+\end{promptbox}
+
+Em dựng dự án trên Vercel rồi gửi địa chỉ website:
+
+\begin{promptbox}{12/10}
+Here it is: https://solving-sudoku-by-backtracking.vercel.app/
+\end{promptbox}
+
+Tiếp theo em đọc README của repo và thấy thiếu hai thông tin:
+
+\begin{promptbox}{12/10}
+Trang README thiếu thông tin tác giả cũng như mục đích của repo
+\end{promptbox}
+
+Claude bổ sung hai phần đó vào README. Cô cần mở được mã nguồn từ report, nên trước hạn nộp em chuyển repo từ Private sang Public.
+
 \section{Video demo bằng Playwright (12/10)}
 \label{sec:demo-video}
 
-Cô cho phép video không lời, chỉ cần chữ giải thích. Claude đề xuất hai cách quay: em tự quay màn hình bằng QuickTime, hoặc Claude dựng một script điều khiển Chrome. Em chọn script, vì video lặp lại được và không phụ thuộc giọng đọc:
+Cô cho phép video không lời, chỉ cần chữ giải thích. Claude đề xuất hai cách quay: em tự quay màn hình bằng QuickTime, hoặc Claude dựng một script điều khiển Chrome. Claude khuyên script, vì video lặp lại được và không phụ thuộc giọng đọc. Em chọn script, và muốn thêm clip làm bằng AI:
 
 \begin{promptbox}{12/10}
-Đồng ý với Playwright option. Bên cạnh đó tôi muốn xây dựng một video bằng Claude kết hợp cùng Higgsfield
+1. Đồng ý\\
+2. Đồng ý với Playwright option. Bên cạnh đó tôi muốn xây dựng một video bằng Claude kết hợp cùng Higgsfield
 \end{promptbox}
 
 Claude viết bộ script trong \texttt{website/scripts/demoVideo/}. Một trang chủ chứa website trong khung \(1366 \times 680\), đúng cỡ màn hình laptop mà thiết kế giao diện chọn, kèm một dải chữ giải thích bên dưới. Script bấm từng nút, vẽ khung sáng quanh thành phần đang giới thiệu và chạy con trỏ giả tới chỗ cần bấm, rồi Playwright thu thành video. \texttt{ffmpeg} ghép 10 đoạn thành một video. Nội dung 10 đoạn bám theo kịch bản trong kế hoạch: các trang chính, từng thành phần giao diện, ba cách nhập đề, chạy từng bước, chạy tự động, giải ngay, các đề đặc biệt, hai trang mở rộng, giao diện điện thoại và chạy bộ testcase. Đoạn cuối chạy thật lệnh \texttt{yarn testcases} rồi hiện lại kết quả, không gõ tay.
 
-Em muốn video có độ phân giải 4K. Lần quay đầu với tỉ lệ điểm ảnh cao ra file đúng kích thước 3840 \(\times\) 2160, nhưng nội dung chỉ chiếm góc trên trái, phần còn lại xám: Playwright không phóng khung hình. Bài thử ngắn đầu tiên không phát hiện vì chỉ cắt đúng vùng góc đó. Claude đổi cách làm: mở cửa sổ 3840 \(\times\) 2160 thật, phóng toàn bộ trang chủ bằng CSS \texttt{zoom} 2,8125 để trình duyệt vẽ lại chữ ở độ phân giải gốc, và bấm nút bằng \texttt{element.click()} vì Playwright không bấm chuột được trong khung bị phóng. Em kiểm bằng ảnh cắt 1:1 một khung hình: chữ sắc nét.
+Em hỏi video có lên 4K được không, rồi nhắc lại ngay khi Claude đang trả lời:
 
-Em cũng muốn có hai đoạn mở đầu và kết bằng hoạt ảnh. Claude soạn hai prompt cho Higgsfield, một công cụ tạo video bằng AI, kể chuyện chùm chìa thử dãy ổ khóa. Việc tạo clip qua dòng lệnh bị Higgsfield từ chối vì tài khoản đang ở chế độ dùng thử, chỉ cho tạo trên website. Claude không đi vòng qua giới hạn đó. Em tạo thử trên website, xem kết quả và thấy clip xấu, không phù hợp, nên bỏ. Thay vào đó Claude dựng hoạt ảnh bằng CSS trong Claude Design: một chùm chìa thử chín ổ khóa, ổ thứ năm kẹt nên chìa quay lại ổ thứ tư để đổi, rồi các ổ mở dần. Em mở trong ứng dụng Claude để xuất video. Nhạc nền do Claude viết code sinh ra, gồm vài hợp âm nhẹ và nốt rải, không dùng bản nhạc có sẵn nên không vướng bản quyền. Giọng thuyết minh em tự thu, không dùng giọng máy. Claude sinh sẵn kịch bản đọc có mốc thời gian, đã viết số và ký hiệu thành chữ.
+\begin{promptbox}{12/10}
+You can try again with HiggFields. One more question. Can video has 4K resolution?
+\end{promptbox}
+
+\begin{promptbox}{12/10}
+I mean, our recording should be 4K
+\end{promptbox}
+
+Lần quay đầu với tỉ lệ điểm ảnh cao ra file đúng kích thước 3840 \(\times\) 2160, nhưng nội dung chỉ chiếm góc trên trái, phần còn lại xám: Playwright không phóng khung hình. Bài thử ngắn đầu tiên không phát hiện vì chỉ cắt đúng vùng góc đó. Claude đổi cách làm: mở cửa sổ 3840 \(\times\) 2160 thật, phóng toàn bộ trang chủ bằng CSS \texttt{zoom} 2,8125 để trình duyệt vẽ lại chữ ở độ phân giải gốc, và bấm nút bằng \texttt{element.click()} vì Playwright không bấm chuột được trong khung bị phóng. Claude kiểm bằng ảnh cắt 1:1 một khung hình: chữ sắc nét.
+
+Với hai đoạn mở đầu và kết, Claude soạn hai prompt cho Higgsfield, một công cụ tạo video bằng AI. Cả hai kể chuyện một chùm chìa thử dãy ổ khóa. Đây là prompt mở đầu:
+
+\begin{promptbox}{12/10, prompt do Claude Code soạn}
+A hand holds a ring of nine brass keys in front of a row of nine connected brass padlocks on a clean light studio background with soft blue accents. The hand tries keys on the padlocks one by one from left to right. At the fifth padlock every key fails and the lock stays shut. The hand moves back to the fourth padlock, swaps its key for the next one on the ring, and goes forward again. Smooth slow camera dolly along the row, shallow depth of field, no text, no numbers.
+\end{promptbox}
+
+Việc tạo clip qua dòng lệnh bị Higgsfield từ chối vì tài khoản đang ở chế độ dùng thử, chỉ cho tạo trên website. Claude không đi vòng qua giới hạn đó. Em tạo thử trên website, xem kết quả và thấy clip xấu, không phù hợp, nên bỏ:
+
+\begin{promptbox}{12/10}
+Bỏ qua idea video từ Higgfields vì video tạo ra không phù hợp, rất xấu. Dùng Claude Design tạo video được không?
+\end{promptbox}
+
+\begin{promptbox}{12/10}
+Không cần dùng Playwright, thực thi với Claude Design đi rồi tôi sẽ mở Claude app để export ra video. Hoặc bạn hand over prompt để tôi tự làm
+\end{promptbox}
+
+Claude làm theo cả hai cách em đề nghị. Claude soạn hai prompt trong file \texttt{video/\allowbreak claude-\allowbreak design-\allowbreak prompt.md}, và dựng sẵn hoạt ảnh bằng CSS trong một artifact Claude Design: một chùm chìa thử chín ổ khóa, ổ thứ năm kẹt nên chìa quay lại ổ thứ tư để đổi, rồi các ổ mở dần. Đây là đoạn đầu của prompt mở đầu:
+
+\begin{promptbox}{12/10, prompt do Claude Code soạn}
+Design a 15-second animated intro, 1920×1080, 16:9, to open a screen-recorded demo video of a website that teaches backtracking through Sudoku. Animation only needs to play once and must be exportable as a 4K (3840×2160) video at 25 fps.\\[0pt]
+[bảng màu, phông chữ, ba dòng chữ ở đầu video, cảnh chìa khóa thử chín ổ khóa]
+\end{promptbox}
+
+Em xuất hai đoạn mở đầu và kết từ Claude Design, và cũng dùng Claude Design làm nhạc nền. Ngoài ra Claude Code còn viết sẵn một bộ sinh nhạc nền ambient bằng code (\texttt{generate\allowbreak Music.ts}) làm phương án dự phòng. Video cuối dùng nhạc từ Claude Design.
+
+Về âm thanh, em dặn video không được câm, rồi nói rõ chỉ cần nhạc nền:
+
+\begin{promptbox}{12/10}
+How about audio, the video should not be muted or without audio
+\end{promptbox}
+
+\begin{promptbox}{12/10}
+Nah, tôi có thể thu âm, đừng dùng giọng người khác. Ý tôi là nhạc nền
+\end{promptbox}
+
+Claude viết sẵn kịch bản thu âm (\texttt{video/narration-script.md}) và tùy chọn \texttt{--voice} cho bộ ghép, phòng khi em muốn tự thu lời đọc. Em còn yêu cầu thêm một bản chỉ có đoạn quay màn hình:
+
+\begin{promptbox}{12/10}
+Tạo thêm cho mình một bản không có intro, outro và nhạc nền
+\end{promptbox}
+
+Bản này dài 5 phút 28 giây, không có tiếng. Sau đó em báo sẽ tự ghép:
+
+\begin{promptbox}{13/10}
+Tôi sẽ tự ghép video bằng Capcut, tiếp theo ta còn những bước nào
+\end{promptbox}
+
+Gần 20 phút sau, em báo kết quả cuối của video, kèm ba việc tiếp theo cho Claude:
+
+\begin{promptbox}{13/10}
+- Intro và outro được dựng từ Claude Design. Nhạc nền cũng sử dụng Claude Design. Ghép video bằng Capcut. Resolution 4K - 25FPS. Sản phẩm cuối cùng là sudoku-backtracking.mp4.\\
+- Update report\\
+- Khởi chạy council\\
+- Làm 3 tùy chọn bạn gợi ý
+\end{promptbox}
+
+Em ghép video bằng CapCut: đoạn mở đầu, đoạn quay màn hình do Playwright thu (có chữ giải thích, không có tiếng), đoạn kết và nhạc nền. Video xuất ở độ phân giải 4K, 25 khung hình mỗi giây, tên file \texttt{sudoku-backtracking.mp4}.
+
+Đoạn quay màn hình được thu trước khi website có trang Kích thước lưới (13/10), nên video không có trang này. Lời giải thích ở cảnh menu điện thoại nói menu có sáu trang, nay website có bảy. Cảnh cuối chạy bộ testcase hiện 292 trên 292 đề, vì hai đề chậm nhất chạy riêng, còn bộ testcase có 294 đề. Trang Kích thước lưới xem được trực tiếp trên website.
 
 Cách quay này làm lộ ra một lỗi thật mà 723 test đơn vị và 60 test trên Chrome đều bỏ sót. Khi giải xong đề vô nghiệm rồi đổi sang một đề khác, trang Giải Sudoku báo ``Đã xảy ra lỗi''. Claude tái hiện riêng và đọc thông báo trong console: ``Digit 7 was rejected at (1, 5) but no unit holds it''. Nguyên nhân nằm ở thứ tự cập nhật. Khi đề đổi, trang vẽ lại ngay với đề mới nhưng tiến trình cũ vẫn còn một lượt, nên câu thông báo ``không có lời giải'' của đề cũ đem đối chiếu với lưới của đề mới. Claude viết test trước, thấy test hỏng đúng như vậy, rồi sửa: bộ phát lại báo đề nào vừa được nạp, và trang bỏ qua tiến trình không thuộc đề đang hiện. Hai trang So sánh và Mọi lời giải được thử cùng kiểu, không bị lỗi này. Sau khi sửa có 723 test đơn vị và 62 test trên Chrome, đều đạt.
+
+\section{Ba phần bổ sung sau Hội đồng AI (13/10)}
+\label{sec:three-options}
+
+Sau lượt sửa theo Hội đồng AI, Claude gợi ý ba việc nếu còn thời gian: thêm một ví dụ minh họa có quay lui sâu hơn, thêm phân tích độ phức tạp trường hợp tốt nhất và của từng biến thể, và thêm lưới \(4 \times 4\), \(16 \times 16\). Claude nói thẳng là không khuyên làm việc thứ ba ở giai đoạn này vì tốn công nhất. Em vẫn chọn làm cả ba, bằng dòng cuối trong tin nhắn ở mục video: ``Làm 3 tùy chọn bạn gợi ý''.
+
+Việc đầu là mục ``Ví dụ thứ hai'' ở Chương 5. Claude chọn đoạn từ lần thử 783 đến 816 của đề ``Vừa'' vì có một lần lùi liên tiếp qua sáu ô, xuất bảng bước từ chính bộ giải của website và chụp ba ảnh bằng script. Bộ đếm trên từng ảnh khớp bảng. Việc thứ hai là mục trường hợp tốt nhất và độ phức tạp các biến thể ở Chương 4.
+
+Việc thứ ba mất nhiều công nhất. Bộ giải 9 \(\times\) 9 của website dùng hằng số \(9\) ở khắp nơi, và 723 test đơn vị đang dựa vào nó. Claude chọn không sửa bộ giải đó. Claude viết một bộ giải riêng theo kích thước lưới trong thư mục \texttt{website/src/gridSizes}, một trang riêng cho nó, và để nguyên bộ 294 đề, vì video demo đã quay xong với con số đó. Trước khi viết code, Claude viết bản Python riêng cho các kích thước và dùng script ngẫu nhiên để tìm đề: sinh 40 đề cho mỗi mức số ô trống rồi chọn những đề có số lần thử vừa phải. Với \(16 \times 16\), đề 120 ô trống cần từ 28.937 đến 1,5 triệu lần thử, còn đề 140 ô trống không đề nào giải xong trong 3 triệu lần thử, nên Claude dừng ở 120 ô.
+
+Kiểm tra quan trọng nhất là so bộ giải mới với bộ giải 9 \(\times\) 9 cũ: trên 8 đề, hai bộ phát ra đúng cùng chuỗi sự kiện, từng sự kiện một. Ngoài ra 11 đề đều khớp bản Python về số lần thử, số lần ghi nhận, số lần trả lại và lời giải đầu tiên.
+
+Hai chỗ Claude làm chưa tốt, do em chỉ ra hoặc do kiểm tra tìm thấy:
+
+\begin{itemize}
+  \item \textbf{Tên mục.} Claude đặt tên mục trên thanh điều hướng là ``Cỡ khác''. Em phản hồi:
+\end{itemize}
+
+\begin{promptbox}{13/10}
+"Cỡ khác" là gì? Một từ chẳng có ý nghĩa gì cả?
+\end{promptbox}
+
+Claude đổi thành ``Cỡ lưới''. Em vẫn thấy chưa ổn:
+
+\begin{promptbox}{13/10}
+Tại sao nhất thiết phải là 2 từ, nghe rất thô và không hiểu gì cả. Kích thước bảng hoặc kích thước lưới thì sao?
+\end{promptbox}
+
+Tên cuối cùng là ``Kích thước lưới''.
+
+\begin{itemize}
+  \item \textbf{Thanh điều hướng bị tràn.} Thêm mục thứ bảy làm các mục không còn vừa một dòng ở độ rộng dưới khoảng 1.010 px, thanh bị tràn ngang. Claude đo lại ở nhiều độ rộng, chuyển ngưỡng thu thanh điều hướng vào menu từ 900 lên 1.020 px và sửa hai test tương ứng.
+\end{itemize}
+
+Sau khi xong có 772 test đơn vị và 75 test trên Chrome, đều đạt. Lượt sửa theo Hội đồng AI lần hai thêm một test trên Chrome nữa (trang Giới thiệu dẫn tới mã nguồn), nên tổng cộng là 76.
+
+\section{Hội đồng AI lần hai trước khi nộp (13/10)}
+\label{sec:council2}
+
+Sau ba phần bổ sung, Claude chạy Hội đồng AI lần hai ở chế độ soát cuối. Hội đồng AI có sáu agent: năm vai của lần đầu và một người kiểm thử giao diện, đọc ảnh chụp mọi trang ở hai cỡ màn hình, sáng và tối. Các agent nêu khoảng 115 ý. Claude gộp ý trùng rồi kiểm từng ý với file gốc, dữ liệu và transcript: khoảng 50 ý đúng, trong đó 10 ý nặng.
+
+Các ý nặng cho thấy bản nháp vẫn còn lỗi thật dù đã qua Hội đồng AI lần đầu:
+
+\begin{itemize}
+  \item Ví dụ thứ hai ở Chương 5 gọi số 8 ở ô \((4, 1)\) là sai. Số 8 đó nằm trong lời giải đầu tiên của đề. Lỗi nằm ở các ô điền trước nó.
+  \item Chương 4 viết hai câu sai về biến thể tìm mọi lời giải: ``số lần thử bằng số nút'' (thực tế bằng 9 lần số nút) và ``không còn trường hợp tốt nhất'' (đề ``Dễ'' vẫn chỉ cần \(9n\) lần thử).
+  \item Chương 6 ghi một model và một phiên bản Claude Code. Transcript cho thấy Claude Opus 5.5 làm việc đến chiều 12/10, sau đó là Claude Sonnet 5.5. Chương 6 còn gán cho em vài việc Claude làm, và một câu ``em đồng ý'' mà transcript không có.
+  \item Ba câu trên website nói quá về cận \(9^n\), như ``đề 60 ô trống sẽ tốn cỡ \(9^{60}\) lần thử''. Cận chỉ cho biết số lần thử không thể vượt quá con số đó.
+  \item Phụ lục A dẫn một repo GitHub đang ở chế độ Private, nên cô không mở được.
+\end{itemize}
+
+Claude cũng loại một số ý sai. Ví dụ, người kiểm thử giao diện nói màu trạng thái ở chế độ tối thiếu tương phản. Claude tính lại từ bảng màu: bốn trạng thái đạt từ 8,15 đến 10,11, vượt mức 4,5 của chuẩn WCAG AA.
+
+Vai giảng viên chấm thử ba tiêu chí. Đây là điểm do agent chấm, không phải điểm của cô: mức đáp ứng 8,5 trên 10, mức đầu tư 9, độ sáng tạo 8,5. Ở lần đầu, các điểm tương ứng là 6, 8,5 và 8.
+
+Em chọn sửa hết ý nặng, ý vừa, và các câu cụt trong ý nhẹ. Em cũng chọn chuyển repo sang Public, đóng gói bài nộp không kèm lịch sử git, và không quay thêm cảnh cho trang Kích thước lưới. Vì video đã quay xong, report ghi chú rõ điều này ở mục \ref{sec:demo-video}.
 
 \section{Phần việc của em và phần việc của AI}
 
@@ -496,8 +685,9 @@ Bảng \ref{tab:roles} tách phần em làm và phần Claude làm.
     Giao diện & Duyệt bản thiết kế, thêm yêu cầu Sáng và Tối, chụp màn hình chỗ bố cục chật, yêu cầu nhãn cho từng cột & Claude Code soạn prompt; Claude Design vẽ; Claude Code code theo bản vẽ \\
     Code website, script, test & Dùng thử và báo lỗi; đặt luật code tiếng Anh, tách CSS và chữ giao diện & Viết toàn bộ code, test, script đo đạc \\
     Chữ trên website & Đưa bộ quy tắc văn phong; chỉ ra chữ ``Người làm'' và tiêu đề trang chủ nghe như máy viết & Viết chữ theo quy tắc, gọi agent chấm tiêu đề \\
-    Kiểm chứng & Dùng thử và hỏi lại khi thấy lạ (trang So sánh, thời gian chạy) & Đề xuất và chạy các cách soát: bản Python riêng, cố tình làm sai, chụp màn hình, hội đồng agent \\
-    Report & Đặt yêu cầu, đọc bản nháp, chọn ý cần sửa sau hội đồng, chịu trách nhiệm nội dung & Viết toàn bộ bản nháp từ nhật ký và transcript, sinh bảng và ảnh, sửa theo lựa chọn của em \\
+    Kiểm chứng & Dùng thử và hỏi lại khi thấy lạ (trang So sánh, thời gian chạy) & Đề xuất và chạy các cách soát: bản Python riêng, cố tình làm sai, chụp màn hình, Hội đồng AI \\
+    Report & Đặt yêu cầu, đọc bản nháp, chọn ý cần sửa sau Hội đồng AI, chịu trách nhiệm nội dung & Viết toàn bộ bản nháp từ nhật ký và transcript, sinh bảng và ảnh, sửa theo lựa chọn của em \\
+    Video demo & Chọn cách quay, bỏ Higgsfield, xuất hoạt ảnh mở đầu và kết từ Claude Design, làm nhạc nền bằng Claude Design, ghép bằng CapCut, xuất 4K & Viết script Playwright quay màn hình ở 4K, viết nội dung chữ giải thích, soạn prompt và dựng hoạt ảnh CSS cho Claude Design, tìm và sửa lỗi lộ ra khi quay \\
     \bottomrule
   \end{tabularx}
 \end{table}

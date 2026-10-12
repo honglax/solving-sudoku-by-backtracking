@@ -13,7 +13,8 @@
       "algorithm": "Thuật toán",
       "comparison": "So sánh",
       "allSolutions": "Mọi lời giải",
-      "about": "Giới thiệu"
+      "about": "Giới thiệu",
+      "sizes": "Kích thước lưới"
     },
     "menuButton": "Menu",
     "loading": "Đang tải…",
@@ -45,7 +46,7 @@
     "openSolverButton": "Mở trình giải",
     "readAlgorithmButton": "Đọc về thuật toán",
     "problemCardTitle": "Bài toán",
-    "problemCardText": "Điền kín lưới 9×9. Mỗi hàng, mỗi cột và mỗi khối 3×3 phải có đủ các số từ 1 đến 9, không số nào lặp lại.",
+    "problemCardText": "Điền kín lưới 9×9 sao cho mỗi hàng, mỗi cột và mỗi khối 3×3 có đủ các số từ 1 đến 9, không số nào lặp lại.",
     "methodCardTitle": "Cách giải",
     "methodCardText": "Lấy ô trống kế tiếp, thử lần lượt 1, 2, …, 9. Số nào trùng hàng, cột hay khối thì bỏ ngay. Ô nào hết số để thử thì lùi về ô trước.",
     "speedCardTitle": "Nhanh cỡ nào?",
@@ -121,7 +122,7 @@
       "Dừng khi n − i = 0 ⟺ i = n",
       "⟹ T(n) = 9ⁿ·c₁ + c₂·(9ⁿ − 1)/8 ∈ O(9ⁿ)"
     ],
-    "complexityConclusion": "Đó là trường hợp xấu nhất: đề 60 ô trống sẽ tốn cỡ 9⁶⁰ lần thử, một số dài 58 chữ số. Đề Arto Inkala cũng có 60 ô trống, vậy mà chỉ cần {inkalaTryCount} lần thử. Số nào trùng là bỏ ngay, cả nhánh phía sau khỏi phải thử.",
+    "complexityConclusion": "Đó là trường hợp xấu nhất, và chỉ là cận trên: đề 60 ô trống không thể tốn quá 9⁶⁰ lần thử, một số dài 58 chữ số. Đề Arto Inkala cũng có 60 ô trống, vậy mà chỉ cần {inkalaTryCount} lần thử. Số nào trùng là bỏ ngay, cả nhánh phía sau khỏi phải thử.",
     "measurementColumns": {
       "puzzle": "Đề",
       "blankCount": "Ô trống",
@@ -142,7 +143,7 @@
     "antiBacktrackingComparisonCaption": "Chỉ hơn đề Arto Inkala 4 ô trống, mà số lần thử gấp khoảng {slowdownFactor} lần.",
     "antiBacktrackingConclusion": "Đề này chưa chạm tới cận O(9ⁿ) ở phần trên, vì 9⁶⁴ là một số có 62 chữ số. Nhưng chỉ cần đáp án hàng đầu ngược với thứ tự thử, số lần thử đã lên hơn 600 triệu. Muốn nhanh thì phải đổi thứ tự chọn ô. Trên trang So sánh, cách điền ô dễ nhất trước giải đề này với {fewestCandidatesTryCount} lần thử.",
     "antiBacktrackingTryButton": "Mở đề này trong trình giải",
-    "antiBacktrackingTryNote": "Bấm Giải ngay thì máy phải chạy khoảng 15 phút. Bấm Dừng lúc nào cũng được.",
+    "antiBacktrackingTryNote": "Bấm Giải ngay thì máy phải chạy khoảng 14 phút. Bấm Dừng lúc nào cũng được.",
     "wrongFirstCellPercent": "86,7%"
   },
   "comparison": {
@@ -156,8 +157,8 @@
       "takeaways": "Rút ra được gì?"
     },
     "race": {
-      "intro": "Hai lưới giải cùng một đề, cùng tốc độ thử. Lưới trái điền lần lượt từ ô đầu tiên. Lưới phải luôn chọn ô dễ nhất, tức ô còn ít số điền được nhất. Bấm Chạy và xem lưới nào về đích trước.",
-      "legend": "Số nhỏ ở góc mỗi ô trống cho biết ô đó còn bao nhiêu số điền được. Ô nền xanh nhạt chỉ còn đúng một số.",
+      "intro": "Hai lưới giải cùng một đề, cùng tốc độ thử. Lưới \"Điền lần lượt\" đi từ ô đầu tiên. Lưới \"Điền ô dễ nhất trước\" luôn chọn ô dễ nhất, tức ô còn ít số điền được nhất. Bấm Chạy và xem lưới nào về đích trước.",
+      "legend": "Số nhỏ ở góc mỗi ô trống cho biết ô đó còn bao nhiêu số điền được. Ô được tô màu xanh chỉ còn đúng một số.",
       "puzzleSelectLabel": "Đề",
       "lanes": {
         "rowMajor": {
@@ -188,11 +189,11 @@
       }
     },
     "checks": {
-      "intro": "Mỗi lần thử một số, máy phải hỏi: số này đã có trong hàng, cột hay khối chưa? Với đề Arto Inkala, câu hỏi đó lặp lại {inkalaTryCount} lần. Cách trả lời vì thế quyết định tốc độ. Có ba cách.",
+      "intro": "Mỗi lần thử một số, máy phải hỏi: số này đã có trong hàng, cột hay khối chưa? Với đề Arto Inkala, câu hỏi đó lặp lại {inkalaTryCount} lần. Cách trả lời vì thế quyết định tốc độ, và có ba cách trả lời.",
       "strategies": {
         "gridScan": {
           "name": "Nhìn lại lưới",
-          "description": "Không ghi nhớ gì. Mỗi lần hỏi lại nhìn cả hàng, cả cột và cả khối của ô, nhiều nhất 27 ô. Giống như bạn giải bằng mắt: lần nào cũng dò lại từ đầu."
+          "description": "Cách này không ghi nhớ gì, nên mỗi lần hỏi lại nhìn cả hàng, cả cột và cả khối của ô, nhiều nhất 27 ô. Giống như bạn giải bằng mắt: lần nào cũng dò lại từ đầu."
         },
         "usageFlags": {
           "name": "Sổ ghi chép",
@@ -248,7 +249,7 @@
       "Điền ô nào trước làm thay đổi hẳn số lần thử. Với đề Easter Monster, điền ô dễ nhất trước chỉ cần {easterMonsterFewestTryCount} lần thử, thay vì {easterMonsterRowMajorTryCount}.",
       "Cách kiểm tra không làm thay đổi số lần thử, chỉ làm mỗi lần thử nhanh hay chậm hơn. Sổ ghi chép nhanh hơn nhìn lại lưới, vì mỗi lần chỉ tra 3 dòng thay vì dò tới 27 ô.",
       "Ít lần thử hơn chưa chắc đã nhanh hơn. Muốn biết ô nào dễ nhất, trước mỗi bước phải đếm lại số khả năng của mọi ô trống. Hãy đo đề Arto Inkala: số lần thử giảm từ {inkalaRowMajorTryCount} xuống {inkalaFewestTryCount}, nhưng thời gian lại có thể lâu hơn.",
-      "Không cách nào thoát hẳn trường hợp xấu nhất. Gặp đề soạn đủ hiểm, cả 6 cách vẫn có thể phải thử cỡ 9ⁿ lần, như trang Thuật toán đã tính."
+      "Không cách nào thoát hẳn trường hợp xấu nhất. Cận trên của cả 6 cách vẫn là 9ⁿ lần thử, như trang Thuật toán đã tính. Gặp đề soạn đủ hiểm, số lần thử có thể lên rất cao."
     ]
   },
   "allSolutions": {
@@ -290,6 +291,76 @@
     "costText": "Với đề Arto Inkala, tìm lời giải đầu tiên mất {firstTryCount} lần thử. Biết chắc không còn lời giải nào khác mất {fullTryCount} lần thử, gấp khoảng {ratio} lần. Lời giải đầu tiên hiện ra là dừng được. Còn \"không còn lời giải nào\" thì phải đi hết mọi nhánh mới dám nói.",
     "middlePuzzleNote": "Ngay cả đề mẫu \"Vừa\" cũng có {solutionCount} lời giải: thử chọn đề đó để xem chúng khác nhau ở đâu."
   },
+  "sizes": {
+    "documentTitle": "Kích thước lưới",
+    "title": "Quay lui trên lưới 4×4, 9×9 và 16×16",
+    "intro": "Mô hình 1 chỉ cần biết mỗi ô có k số để thử, lưới to hay nhỏ không đổi gì. Lưới 4×4 có k = 4, lưới 9×9 có k = 9, lưới 16×16 có k = 16. Mỗi ô trống thêm vào làm cận trên của số cách điền nhân lên k lần, nên T(n) = k·T(n − 1) + c và cận trên là O(kⁿ).",
+    "sizeLabel": "Kích thước lưới",
+    "sizeOptions": {
+      "2": "4×4 (k = 4)",
+      "3": "9×9 (k = 9)",
+      "4": "16×16 (k = 16)"
+    },
+    "puzzleSelectLabel": "Đề",
+    "puzzleLabel": "{name} ({blankCount} ô trống)",
+    "puzzleNames": {
+      "1": "Dễ",
+      "2": "Có quay lui",
+      "3": "Nhiều lời giải",
+      "4": "Vô nghiệm",
+      "5": "Lưới trống",
+      "6": "Ngắn, có quay lui",
+      "7": "Vừa",
+      "8": "Dễ",
+      "9": "Vừa",
+      "10": "Khó",
+      "11": "Rất khó"
+    },
+    "gridLabel": "Lưới {size}×{size}",
+    "cellLabel": "Ô {cell}: {digit}",
+    "emptyCellLabel": "Ô {cell}: trống",
+    "controls": {
+      "step": "Từng bước",
+      "autoPlay": "Tự động",
+      "pause": "Tạm dừng",
+      "solveInstantly": "Giải ngay",
+      "stop": "Dừng",
+      "reset": "Đặt lại"
+    },
+    "counters": {
+      "tryCount": "Lần thử",
+      "recordCount": "Ghi nhận",
+      "restoreCount": "Trả lại"
+    },
+    "pseudocodeCaption": "Với lưới này: k = {size} (thử các số 1 → {size}) · n = số ô trống",
+    "status": {
+      "notStarted": "Đề này có {blankCount} ô trống, mỗi ô có {size} số để thử. Bấm Từng bước, Tự động hoặc Giải ngay.",
+      "accepted": "Ô {cell} - thử số {digit}: chưa có ở hàng, cột và khối, ghi nhận.",
+      "rejected": "Ô {cell} - thử số {digit}: {unit} đã có số {digit}, bỏ.",
+      "restored": "Quay lui: trả lại ô {cell}, xóa số {digit}.",
+      "searching": "Đang giải… đã thử {tryCount} lần.",
+      "solved": "Giải xong sau {tryCount} lần thử, ghi nhận {recordCount} lần, trả lại {restoreCount} lần.",
+      "noSolution": "Đề này không có lời giải. Thuật toán thử {tryCount} lần và mọi nhánh đều dẫn tới ngõ cụt."
+    },
+    "units": {
+      "row": "hàng {number}",
+      "column": "cột {number}",
+      "box": "khối {number}"
+    },
+    "boundTitle": "Cận kⁿ so với số lần thử thật",
+    "boundText": "Đề này có n = {blankCount} ô trống và k = {size}, nên kⁿ là một số có {digits} chữ số. Đó chỉ là cận trên. Số nào trùng thì thuật toán bỏ ngay, nên số lần thử thật nhỏ hơn kⁿ nhiều bậc.",
+    "tableTitle": "Số lần thử của các đề mẫu",
+    "tableCaption": "Số lần thử đo bằng chính bộ giải của trang này, điền ô theo thứ tự hàng rồi cột.",
+    "tableColumns": {
+      "size": "Kích thước",
+      "puzzle": "Đề",
+      "blankCount": "Số ô trống n",
+      "bound": "Số chữ số của kⁿ",
+      "tryCount": "Số lần thử",
+      "restoreCount": "Số lần trả lại"
+    },
+    "tableSize": "{size}×{size}"
+  },
   "about": {
     "documentTitle": "Giới thiệu",
     "title": "Giới thiệu",
@@ -304,7 +375,7 @@
       },
       {
         "label": "Thuật toán",
-        "text": "Trang Giải Sudoku dùng quay lui thuần: đi lần lượt qua từng ô trống, từ trái sang phải, từ trên xuống dưới, mỗi ô thử từ 1 đến 9. Trang So sánh thêm cách điền ô dễ nhất trước. Trang Mọi lời giải cho thuật toán chạy tới khi hết mọi khả năng."
+        "text": "Trang Giải Sudoku dùng quay lui thuần: đi lần lượt qua từng ô trống, từ trái sang phải, từ trên xuống dưới, mỗi ô thử từ 1 đến 9. Trang So sánh thêm cách điền ô dễ nhất trước. Trang Mọi lời giải cho thuật toán chạy tới khi hết mọi khả năng. Trang Kích thước lưới chạy cùng thuật toán trên lưới 4×4, 9×9 và 16×16."
       },
       {
         "label": "Tác giả",
@@ -474,7 +545,7 @@
       "solved": "<strong>Đã giải xong</strong> sau {tryCount} lần thử và {restoreCount} lần trả lại.",
       "solvingLong": "Đang giải… đã thử <strong>{tryCount}</strong> lần",
       "instantSolvePaused": "Đã dừng sau <strong>{tryCount}</strong> lần thử. Bấm Giải ngay để chạy tiếp.",
-      "noSolutionGeneral": "Đề này không có lời giải. Thuật toán thử {tryCount} lần, xét hết mọi cách điền, không cách nào hợp lệ.",
+      "noSolutionGeneral": "Đề này không có lời giải. Thuật toán thử {tryCount} lần, mọi nhánh đều dẫn tới ngõ cụt, không cách điền nào hợp lệ.",
       "noSolutionAtFirstCell": "Đề này không có lời giải. Ở <strong>ô {cell}</strong>, cả 9 số đều trùng: {reasons}.",
       "rejectionReason": "{digits} đã có ở {unit}",
       "rejectionReasonSeparator": ", ",
@@ -485,7 +556,7 @@
       "duplicateInColumn": "cột {column} ({rows})",
       "duplicateInBox": "{box}: {cells}",
       "duplicateCell": "ô {cell}",
-      "firstBacktrack": "<strong>Lần quay lui đầu tiên!</strong> Thuật toán vừa xóa số {digit} ở ô {cell}: giữ số này thì các ô phía sau hết đường điền. Bạn đoán bước tiếp theo là gì? Bấm Từng bước để xem."
+      "firstBacktrack": "<strong>Lần quay lui đầu tiên!</strong> Thuật toán vừa xóa số {digit} ở ô {cell}: giữ số này thì ô kế tiếp không còn số nào điền được. Bạn đoán bước tiếp theo là gì? Bấm Từng bước để xem."
     },
     "parseErrors": {
       "wrongLineCount": "Đề cần có đúng 9 dòng, mỗi dòng 9 ô, nhưng bạn đã dán <strong>{lineCount} dòng</strong>.",

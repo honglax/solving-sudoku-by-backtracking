@@ -94,7 +94,7 @@ The four state hues (amber, red, violet, teal) plus the brand blue are the whole
 
 - Two typefaces only. Both support Vietnamese diacritics:
   - **Be Vietnam Pro** for everything except code. Weights 400, 500, 600, 700.
-  - **JetBrains Mono** for the pseudocode, Wecode input text, and inline code. Weights 400 and 600.
+  - **JetBrains Mono** for the pseudocode, input text, and inline code. Weights 400 and 600.
 - Scale (px, line-height): 12/16 caption, 14/20 small, 16/24 body, 20/28 h3, 24/32 h2, 32/40 h1, 40/48 home hero only.
 - Article text on the Algorithm page: 17/28, max width 68 characters.
 - **All counters and the S vector use tabular numerals** (`font-variant-numeric: tabular-nums`). During the animation these numbers change up to 60 times a second; proportional digits would make them jitter.
@@ -126,7 +126,7 @@ Two columns with 32 px between them.
 
 **Left column - the grid and the controls (width = grid width):**
 
-- Small heading row above the grid: "Lab01 · Quay lui mô hình 1" in 14 px `text-muted`.
+- Small heading row above the grid: "Quay lui mô hình 1" in 14 px `text-muted`.
 - The 9×9 grid:
   - Cells 48 × 48, digits 26 px.
   - Thin cell lines 1 px `grid-cell-line`; box lines and outer edge 2 px `grid-box-line`.
@@ -296,7 +296,7 @@ All data below comes from actually running the algorithm on puzzle "Đề 3 - V�
 **Frame 09 - dán đề (paste dialog):**
 - Modal, 560 px wide, over a dimmed page (`#0F172A` at 40%).
 - Title: "Dán đề Sudoku".
-- Body text: "Dán 9 dòng đúng định dạng Wecode (các số cách nhau bởi dấu cách, X là ô trống), hoặc một chuỗi 81 ký tự (dấu chấm là ô trống)."
+- Body text: "Dán 9 dòng (các số cách nhau bởi dấu cách, X là ô trống), hoặc một chuỗi 81 ký tự (dấu chấm là ô trống)."
 - A JetBrains Mono textarea, 9 rows tall, pre-filled with:
   ```
   5 3 X X 7 X X X X
@@ -331,7 +331,7 @@ Frame 04 rebuilt with the dark tokens. The dark mode follows the operating syste
 - Hero, two columns:
   - Left column:
     - H1: "Xem thuật toán quay lui giải Sudoku, từng bước một."
-    - Paragraph (max 60 characters per line): "Bài Lab01 môn CS112. Thuật toán bám đúng mô hình quay lui 1 trên lớp: thử từng số cho từng ô trống, gặp mâu thuẫn thì trả lại trạng thái cũ và lùi về ô trước."
+    - Paragraph (max 60 characters per line): "Thuật toán bám đúng mô hình quay lui 1 trên lớp: thử từng số cho từng ô trống, gặp mâu thuẫn thì trả lại trạng thái cũ và lùi về ô trước."
     - Buttons: primary "Mở trình giải", secondary "Đọc về thuật toán".
   - Right column: a static, slightly smaller copy of the frame 04 grid with its state colors. This is the only visual. No illustrations, no 3D, no photos.
 - Below the hero, three cards in one row:
@@ -370,8 +370,8 @@ A long reading page with a 720 px article column and a sticky table of contents 
 5. **"Số đo thật"** - a table with tabular numerals, numbers right-aligned:
    | Đề | Ô trống | Lần thử | Ghi nhận | Trả lại |
    |---|---|---|---|---|
-   | 1. Wecode | 1 | 1 | 1 | 0 |
-   | 2. Wecode mở rộng | 5 | 27 | 5 | 0 |
+   | 1. Rất dễ | 1 | 1 | 1 | 0 |
+   | 2. Dễ | 5 | 27 | 5 | 0 |
    | 3. Vừa | 40 | 1.909 | 227 | 187 |
    | 4. Wikipedia | 51 | 37.652 | 4.208 | 4.157 |
    | 5. Arto Inkala | 60 | 445.778 | 49.558 | 49.498 |
@@ -387,7 +387,7 @@ Simple definition list in one card, max width 720 px:
 - "Môn học": "CS112 - Phân tích và thiết kế thuật toán"
 - "Giảng viên": "Huỳnh Thị Thanh Thương"
 - "Sinh viên": "Lã Xuân Hồng - 25410056". Design this row so it can be removed without breaking the layout.
-- "Bài gốc": "Lab01 - Sudoku (Wecode), yêu cầu quay lui mô hình 1"
+- "Bài gốc": "Sudoku, quay lui mô hình 1"
 - "Công cụ": "Claude Code (viết code), Claude Design (thiết kế giao diện)"
 
 Below the card, a row of three link cards:

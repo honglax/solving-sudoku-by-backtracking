@@ -5,7 +5,9 @@ import type { StatusMessage } from '../../solverView/statusMessage.ts'
 import { StatusMessageBox } from './StatusMessageBox.tsx'
 import '../../styles/components/solver/SolverPanels.css'
 
-export function SolverCounters({ progress }: { progress: SolverProgress | null }) {
+type CounterValues = Pick<SolverProgress, 'tryCount' | 'recordCount' | 'restoreCount'>
+
+export function SolverCounters({ progress }: { progress: CounterValues | null }) {
   const counters = [
     { label: messages.solver.progress.tryCount, value: progress?.tryCount ?? 0 },
     { label: messages.solver.progress.recordCount, value: progress?.recordCount ?? 0 },

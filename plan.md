@@ -10,7 +10,7 @@ Hạn nộp: **23:59 Chủ nhật 18/10/2026**. Cô ghi rõ không nhận trễ,
 
 **Ngày 6/10/2026 cô ra yêu cầu chính thức, thay toàn bộ yêu cầu Buổi 8.** Nguyên văn ở `requirements.md`. Tóm tắt:
 
-- Demo có giao diện cho phép **nhập Input**, **theo dõi từng bước** thuật toán, **xem Output**. Bài lấy từ ví dụ trên lớp, Wecode hoặc tài liệu tham khảo. Sudoku là bài quay lui đã học, đạt điều kiện.
+- Demo có giao diện cho phép **nhập Input**, **theo dõi từng bước** thuật toán, **xem Output**. Bài lấy từ ví dụ trên lớp hoặc tài liệu tham khảo. Sudoku là bài quay lui đã học, đạt điều kiện.
 - Nộp **một thư mục gồm 4 thư mục con** (quá lớn thì gửi link, phải mở được ngay, không chờ xin quyền):
   1. **Source code**: toàn bộ mã nguồn.
   2. **Video demo**: chạy thử, nhập dữ liệu và giải, giới thiệu **đầy đủ chức năng** và **từng thành phần trên giao diện**, minh họa quá trình giải. Không nói cũng được, cho hiện chữ.
@@ -20,7 +20,7 @@ Hạn nộp: **23:59 Chủ nhật 18/10/2026**. Cô ghi rõ không nhận trễ,
 - Yêu cầu chung: bài toán - mô hình - CTDL - thuật toán - demo - testcase - thực nghiệm - đánh giá phải **thống nhất** với nhau.
 - Cô nhắc phần thiết kế thuật toán trong bài thi của nhiều bạn rất yếu. Report phải trình bày phần này đúng khuôn cô dạy (`On-thi/Huong-dan-lam-bai.md`, mục "Phần thiết kế").
 - Tiêu chí chấm: (1) đủ sản phẩm và đủ mục report; (2) mức độ đầu tư: demo, giao diện, độ chi tiết minh họa, **quy mô bộ testcase**, phân tích trong report; (3) **sáng tạo**: biến thể, nhiều tham số, **giải nhiều cách rồi so sánh**, chế độ minh họa.
-- Bài này cộng với 2 assignment Wecode (quay lui, QHĐ) thành **điểm thực hành**.
+- Bài này là một phần của **điểm thực hành**.
 
 **Còn chưa rõ:** tên file / cách nộp (zip hay link). Chốt sau khi làm xong mọi thứ (12.5).
 
@@ -46,24 +46,24 @@ Mô tả theo đúng cách cô bắt trình bày Input/Output (B6 2:30, B8 0:24)
 
 ### 3.1 Mô hình hóa lời giải
 - Đánh số các ô trống theo thứ tự hàng rồi cột: ô trống thứ 1, 2, …, n. Ví dụ đề Wikipedia có n = 51.
-- Ký hiệu theo đúng slide mô hình 1 của cô: **n** là số thành phần của lời giải (ở đây là số ô trống, khớp biến `n` trong `sudoku.py`), **k** là số khả năng mỗi Sᵢ có thể chọn (ở đây k = 9).
+- Ký hiệu theo đúng slide mô hình 1 của cô: **n** là số thành phần của lời giải (ở đây là số ô trống, khớp biến `n` trong bản Python tham chiếu), **k** là số khả năng mỗi Sᵢ có thể chọn (ở đây k = 9).
 - Lời giải là S = (S₁, S₂, …, Sₙ). Sᵢ là số điền vào ô trống thứ i, Sᵢ ∈ {1, …, 9}.
 - **Chấp nhận được:** số j chưa xuất hiện ở hàng, cột và khối 3×3 của ô trống thứ i.
 - **Trạng thái:** lưới `grid` và 3 mảng đánh dấu `row_used`, `column_used`, `box_used`. Mỗi lần kiểm tra chỉ đọc 3 ô nhớ, không cần quét lại cả hàng hay cột.
 
-### 3.2 Đối chiếu từng dòng `sudoku.py` với mô hình 1 của cô
+### 3.2 Đối chiếu từng dòng bản Python với mô hình 1 của cô
 Bản JS sẽ giữ đúng cấu trúc này, chỉ thêm các điểm báo sự kiện để giao diện vẽ lại (mục 5.2).
 
-| Mô hình 1 (slide cô) | Bản cài đặt đầu tiên (`Lab01/sudoku.py`) |
+| Mô hình 1 (slide cô) | Bản Python |
 |---|---|
-| `try(i)` | dòng 27 `def try_step(i)` |
-| `for (j = 1 → k)` | dòng 28 `for j in range(1, SIZE + 1)` |
-| `if (khả năng j chấp nhận được)` | dòng 29, gọi `is_acceptable` ở dòng 13-17 |
-| Xác định Sᵢ theo j | dòng 30 `S[i] = j` |
-| Ghi nhận trạng thái mới | dòng 33-36: ghi vào `grid`, bật 3 cờ |
-| `if (i < n) try(i+1)` | dòng 37-38 |
-| `else` Xuất lời giải | dòng 39-40 `write_solution()` |
-| Trả lại trạng thái cũ | dòng 41-44: xóa ô, tắt 3 cờ |
+| `try(i)` | `def try_step(i)` |
+| `for (j = 1 → k)` | `for j in range(1, SIZE + 1)` |
+| `if (khả năng j chấp nhận được)` | gọi `is_acceptable` |
+| Xác định Sᵢ theo j | `S[i] = j` |
+| Ghi nhận trạng thái mới | ghi vào `grid`, bật 3 cờ |
+| `if (i < n) try(i+1)` | `try_step(i + 1)` |
+| `else` Xuất lời giải | `write_solution()` |
+| Trả lại trạng thái cũ | xóa ô, tắt 3 cờ |
 
 ### 3.3 Độ phức tạp, viết theo cách cô dạy
 Gọi T(n) là chi phí khi còn n ô trống:
@@ -79,7 +79,7 @@ Dừng khi n − i = 0 ⟺ i = n
 
 Đây là cận xấu nhất. Thực tế nhỏ hơn rất nhiều vì nhánh nào vi phạm thì bị cắt ngay. Bảng ở 3.4 cho thấy rõ điều này: đề Inkala 60 ô trống chỉ tốn khoảng 446 nghìn lần thử, trong khi 9⁶⁰ là một số có 58 chữ số. Report sẽ dùng chính bảng này.
 
-### 3.4 Số đo thật (đã chạy hôm nay bằng logic của `sudoku.py`)
+### 3.4 Số đo thật (đã chạy hôm nay bằng bản Python)
 Quy ước đếm:
 - "Lần thử" = số lần xét một số j cho một ô.
 - "Ghi nhận" = số lần j được chấp nhận và điền vào.
@@ -165,6 +165,8 @@ Thứ tự làm: **A → B → C → D**. Trễ lịch thì cắt từ D trở l
 - `checks/` thêm bản Python đếm mọi lời giải để đối chiếu.
 
 **D. Kích thước khác: 4×4, 9×9, 16×16** (k = 4, 9, 16; khối 2×2, 3×3, 4×4)
+
+> **Đã làm 13/10** theo cách khác kế hoạch: không sửa bộ giải 9×9, mà viết bộ giải riêng theo kích thước lưới (`website/src/gridSizes/`) và một trang riêng tên "Kích thước lưới" (`/sizes`). 11 đề mẫu (5 đề 4×4, 2 đề 9×9, 4 đề 16×16), bản Python `checks/reference_sized_solver.py`, file đề `testcases/other-sizes/other-sizes.txt`. Bộ giải mới phát ra đúng cùng chuỗi sự kiện với bộ giải 9×9 trên 8 đề.
 - Vẫn mô hình 1, chỉ đổi tham số k. Cho thấy T(n) = k·T(n − 1) + c, ra O(kⁿ).
 - Hiện `SIZE`, `BOX_SIZE` là hằng toàn cục trong `src/solver/sudokuRules.ts`. Phải đổi thành tham số đi qua lưới, parser, validator, CSS, đề mẫu và bộ đếm. Đây là phần tốn công nhất trong 3 phần nên làm sau cùng.
 - Trước khi làm, đo xem đề 16×16 nào giải được trong thời gian hợp lý với thứ tự xét ô tuần tự.
@@ -214,7 +216,7 @@ Thứ tự làm: **A → B → C → D**. Trễ lịch thì cắt từ D trở l
 
   | Cách chạy | Đếm được | Thời gian |
   |---|---|---|
-  | Đệ quy thường, giống `sudoku.py` | 445.778 lần thử | 3,7 ms |
+  | Đệ quy thường, bản Python | 445.778 lần thử | 3,7 ms |
   | Generator với `yield*` | 941.055 sự kiện | 623 ms |
 
   - Generator chậm hơn khoảng 170 lần, vì mỗi sự kiện phải đi ngược qua từng tầng `yield*`, có lúc tới 60 tầng. Chậm chỉ thành vấn đề khi chạy một mạch làm treo trang.
@@ -513,7 +515,7 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 | 12.15 | Quay lui sau số 9: "Quay lui: trả lại ô (h, c), xóa số 9. Ô này đã thử hết 1 → 9, lùi về ô trống trước." | **Đã chốt** (4/10) |
 | 12.16 | Đề mặc định: Đề 3. "Giải ngay" không giới hạn số lần thử, chỉ dừng khi bấm "Dừng". Trang Giới thiệu ẩn link video/report cho tới khi có | **Đã chốt** (4/10) |
 | 12.17 | Dùng Yarn 4 (ghim trong dự án, `nodeLinker: node-modules`) thay npm | **Đã chốt** (4/10) |
-| 12.18 | Website viết cho người muốn hiểu thuật toán, không phải bài nộp: không chữ "Lab", "Wecode", "CS112", tên môn trên giao diện. Đề 1 "Rất dễ", Đề 2 "Dễ"; trên lưới "Thử từng số, sai thì lùi lại"; panel "Mã giả quay lui", chú thích "Với Sudoku: …"; footer "Minh họa thuật toán quay lui · 2026". Mã giả vẫn chép đúng slide. Thông tin môn học, MSSV để trong report | **Đã chốt** (4/10) |
+| 12.18 | Website viết cho người muốn hiểu thuật toán, không phải bài nộp: không chữ nào nhắc bài tập hay tên môn trên giao diện. Đề 1 "Rất dễ", Đề 2 "Dễ"; trên lưới "Thử từng số, sai thì lùi lại"; panel "Mã giả quay lui", chú thích "Với Sudoku: …"; footer "Minh họa thuật toán quay lui · 2026". Mã giả vẫn chép đúng slide. Thông tin môn học, MSSV để trong report | **Đã chốt** (4/10) |
 | 12.19 | 4 câu thông báo thiết kế chưa có: dòng thiếu ô "Dòng {d} có {n} ô, cần đúng 9 ô."; ký tự sai trong chuỗi 81 "Ký tự thứ {n} không hợp lệ: "{k}". Chỉ dùng số 1 → 9 và dấu chấm."; trùng ở cột và trùng ở khối (theo mẫu câu trùng ở hàng) | **Đã chốt** (4/10) |
 | 12.20 | Bảng "Lịch sử" trong panel S (tab "Lời giải S" / "Lịch sử"), cuộn được, giữ 100 bước gần nhất; bấm một dòng để xem lại trạng thái lúc đó. Gọi là "Xem lại", không dùng chữ "quay lui" để khỏi nhầm với bước của thuật toán. Lý do chọn 100: đo trên đề 3, 4, 5, một nhánh sai dài trung vị 21-31 bước; 100 bước thấy trọn khoảng 80% nhánh sai, 15 bước chỉ khoảng 30% | **Đã chốt** (4/10), làm ở bước 8 |
 | 12.21 | Thêm 4 đề mẫu (tổng 11 đề trong danh sách): "Nhiều lời giải", "Vô nghiệm, phải tìm mới biết", "AI Escargot", "Easter Monster"; đổi Đề 7 thành "Vô nghiệm ngay ô đầu". AI Escargot và Easter Monster đã đối chiếu với SudokuWiki và Sudoku Snake | **Đã chốt** (4/10) |
@@ -525,5 +527,5 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 | 12.27 | Bộ testcase khoảng 300 đề, 7 nhóm, đáp án từ bản Python tham chiếu, có seed cố định (7.2) | **Đã chốt** hướng làm (6/10); số lượng từng nhóm chỉnh khi làm |
 | 12.28 | Thêm MRV (C) làm cách giải để so sánh, làm sau A, B | **Đã chốt** (6/10) |
 | 12.29 | Đề minh họa cho Ch.5 tự tạo (50-80 lần thử, có quay lui), thêm vào danh sách đề mẫu; script xuất toàn bộ các bước | **Đã chốt** (6/10) |
-| 12.30 | Mọi phần (plan, testcase, report, video) viết như dự án website dạy học về quay lui, không xoay quanh bài tập cũ. Report không nhắc Lab01/Wecode. `checks/lab01_counts.py` đổi tên thành `checks/reference_solver.py` | **Đã chốt** (6/10) |
+| 12.30 | Mọi phần (plan, testcase, report, video) viết như dự án website dạy học về quay lui, không xoay quanh bài tập cũ. Bản Python tham chiếu đặt tên `checks/reference_solver.py` | **Đã chốt** (6/10) |
 | 12.31 | Bộ testcase gom mỗi nhóm một file `.txt` (6 file + `manifest.csv`) thay vì 2 file mỗi đề | **Đã chốt** (6/10) |

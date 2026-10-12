@@ -20,6 +20,7 @@ Repo giữ trọn bộ sản phẩm nộp: mã nguồn website, bộ testcase, r
 - **Thuật toán:** mã giả quay lui, cách tính độ phức tạp, và đề "chống quay lui" cần 622.577.597 lần thử với 64 ô trống.
 - **So sánh:** cuộc đua hai lưới (điền lần lượt và điền ô dễ nhất trước), cùng bảng đo thời gian của 6 cách giải.
 - **Mọi lời giải:** đi hết cây tìm kiếm và liệt kê mọi lời giải của một đề.
+- **Kích thước lưới:** cùng thuật toán trên lưới 4×4, 9×9 và 16×16, 11 đề mẫu và bảng số lần thử so với cận kⁿ.
 - Có chế độ sáng và tối, dùng được trên điện thoại.
 
 ## Chạy trên máy
@@ -38,8 +39,8 @@ Mở http://localhost:5173. Các lệnh khác, đều chạy trong `website/`:
 | Lệnh | Việc làm |
 |---|---|
 | `yarn build` | Build ra `website/dist/` |
-| `yarn test` | 723 test đơn vị (Vitest) |
-| `yarn test:e2e` | 62 test trên Chrome thật (Playwright) |
+| `yarn test` | 772 test đơn vị (Vitest) |
+| `yarn test:e2e` | 76 test trên Chrome thật (Playwright) |
 | `yarn lint` | Soát code bằng oxlint |
 | `yarn testcases` | Chạy 292 đề nhanh của bộ testcase, khoảng 9 giây |
 | `yarn testcases --include-slow` | Chạy cả 294 đề, khoảng 19 phút vì có 2 đề cần hàng trăm triệu lần thử |
@@ -61,7 +62,7 @@ work-log.md  nhật ký làm việc
 Chi tiết từng phần:
 
 - **Bộ giải** nằm trong `website/src/solver/`, là TypeScript thuần, không phụ thuộc React. Hàm `solveByBacktracking` viết thành generator: mỗi bước phát ra một sự kiện để giao diện vẽ.
-- **Bộ testcase:** định dạng và cách chạy nằm trong [testcases/README.md](testcases/README.md).
+- **Bộ testcase:** định dạng và cách chạy nằm trong [testcases/README.md](testcases/README.md). Thư mục `testcases/other-sizes/` có thêm 11 đề cho lưới 4×4, 9×9 và 16×16.
 - **Đáp án:** sinh lại bằng `python3 checks/reference_solver.py` (cần Python 3.9 trở lên, vài phút vì phải giải đề chống quay lui) và `python3 testcases/tools/generate_testcases.py`. Hạt giống ngẫu nhiên cố định nên hai lệnh cho ra đúng bộ đề cũ.
 - **Report:** `cd report && python3 tools/build_report_tables.py && latexmk -xelatex main.tex`.
 

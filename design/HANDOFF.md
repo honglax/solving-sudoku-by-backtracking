@@ -131,8 +131,8 @@ Number format everywhere: Vietnamese, dot as thousands separator (`n.toLocaleStr
 
 | Đề | Ô trống | Lần thử | Ghi nhận | Trả lại |
 |---|---|---|---|---|
-| 1. Wecode | 1 | 1 | 1 | 0 |
-| 2. Wecode mở rộng | 5 | 27 | 5 | 0 |
+| 1. Rất dễ | 1 | 1 | 1 | 0 |
+| 2. Dễ | 5 | 27 | 5 | 0 |
 | 3. Vừa | 40 | 1.909 | 227 | 187 |
 | 4. Wikipedia | 51 | 37.652 | 4.208 | 4.157 |
 | 5. Arto Inkala | 60 | 445.778 | 49.558 | 49.498 |
@@ -153,7 +153,7 @@ Puzzle data (81 characters, `.` = blank):
 Đề 7 - Vô nghiệm    .234567891.......................................................................
 ```
 
-Đề 4 is also the text pre-filled in the paste dialog (frame 09). **Ask Jason for Đề 1 and Đề 2 (Wecode).**
+Đề 4 is also the text pre-filled in the paste dialog (frame 09). **Ask Jason for Đề 1 and Đề 2.**
 
 ## 7. Behaviour that the frames imply
 
@@ -163,7 +163,7 @@ Puzzle data (81 characters, `.` = blank):
   - Invalid puzzle (07): "Từng bước", "Tự động", "Giải ngay" disabled.
   - Solved (06) and no solution (08): "Từng bước", "Tự động", "Giải ngay" disabled; "Đặt lại" is the next action.
 - "Kiểm tra đề" validates the grid (duplicate in a row, column or box) and produces the frame 03 or 07 message.
-- "Dán đề" opens the dialog (frame 09): 560 px wide, `color-scrim` backdrop, textarea 9 rows in JetBrains Mono. Accept 9 lines of 9 tokens (digits, `X` = blank, separated by spaces, the Wecode format) or one 81-character string (`.` = blank). "Hủy" (ghost) closes, "Dùng đề này" (primary) loads and validates. Trap focus, close on Esc, return focus to "Dán đề".
+- "Dán đề" opens the dialog (frame 09): 560 px wide, `color-scrim` backdrop, textarea 9 rows in JetBrains Mono. Accept 9 lines of 9 tokens (digits, `X` = blank, separated by spaces, the 9-line format) or one 81-character string (`.` = blank). "Hủy" (ghost) closes, "Dùng đề này" (primary) loads and validates. Trap focus, close on Esc, return focus to "Dán đề".
 - Cells are editable before running (frame 07 shows a typed 7). Givens loaded from a puzzle are not editable.
 - Motion: state changes at most 150 ms ease-out; a rejected cell flashes once (no shake); `prefers-reduced-motion` → instant.
 - Focus: 2 px `primary` ring with 2 px offset on every interactive element. Visible keyboard focus everywhere.
@@ -200,7 +200,7 @@ Copy comes from the frames and frame 01. `{n}`, `{d}`, `{k}` are values filled i
 | Duplicate in a row / column / box | All conflicting cells get the Đề sai ring; run buttons disabled | frame 07 wording | 07 |
 | No solution | First blank cell outlined red; run buttons disabled | frame 08 wording | 08 |
 | Puzzle already complete (0 blanks) and valid | Run buttons disabled; "Đặt lại" available | "Đề đã đủ, không còn ô trống để giải." | 01 |
-| Paste: not 9 lines (Wecode form) | Dialog stays open, text kept, textarea `aria-invalid="true"` with red border, message under it (`role="alert"`, linked with `aria-describedby`) | "Cần đúng 9 dòng, mỗi dòng 9 ký tự. Bạn đã dán {n} dòng." | 16 |
+| Paste: not 9 lines (9-line form) | Dialog stays open, text kept, textarea `aria-invalid="true"` with red border, message under it (`role="alert"`, linked with `aria-describedby`) | "Cần đúng 9 dòng, mỗi dòng 9 ký tự. Bạn đã dán {n} dòng." | 16 |
 | Paste: bad character | same | "Dòng {d} có ký tự không hợp lệ: "{k}". Chỉ dùng số 1 → 9 và X." | 01 |
 | Paste: 81-character form, wrong length | same | "Chuỗi cần đúng 81 ký tự, hiện có {n}." | 01 |
 | Paste: valid format but duplicates | Close the dialog, load the puzzle, show the Đề sai state | frame 07 wording | 07 |

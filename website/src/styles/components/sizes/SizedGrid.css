@@ -1,0 +1,17 @@
+.sized-grid[data-size='4'] {
+  --size-cell: min(76px, calc((100vw - 2 * var(--gutter-mobile)) / 4));
+  --font-size-cell: calc(var(--size-cell) * 0.55);
+  --font-size-ghost: 14px;
+}
+
+.sized-grid[data-size='9'] {
+  --size-cell: min(48px, calc((100vw - 2 * var(--gutter-mobile)) / 9));
+  --font-size-cell: calc(var(--size-cell) * 0.55);
+  --font-size-ghost: 11px;
+}
+
+.sized-grid[data-size='16'] {
+  --size-cell: min(32px, calc((100vw - 2 * var(--gutter-mobile)) / 16));
+  --font-size-cell: calc(var(--size-cell) * 0.55);
+  --font-size-ghost: 9px;
+}
