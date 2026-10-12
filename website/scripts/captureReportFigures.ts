@@ -15,10 +15,28 @@ async function captureComparisonRace(page: Page) {
   await page.locator('.solver-race').screenshot({ path: `${FIGURES_DIRECTORY}comparison-race.png` })
 }
 
+const ILLUSTRATION_PUZZLE_LABEL = 'Đề 13 - Ngắn, có quay lui (16 ô trống)'
+const ILLUSTRATION_STEP_BUTTON_PRESSES = [13, 29, 38, 120]
+
+async function captureIllustrationStep(page: Page, pressCount: number) {
+  await page.goto(`${BASE_URL}/solver`)
+  await page.getByLabel('Đề mẫu').selectOption({ label: ILLUSTRATION_PUZZLE_LABEL })
+  const stepButton = page.getByRole('button', { name: 'Từng bước' })
+  for (let pressNumber = 0; pressNumber < pressCount; pressNumber++) {
+    await stepButton.click()
+  }
+  const counters = await page.locator('.progress-panel, [class*="counters"]').first().innerText()
+  console.log(`after ${pressCount} presses: ${counters.replaceAll('\n', ' ')}`)
+  await page.locator('main').screenshot({ path: `${FIGURES_DIRECTORY}illustration-press-${pressCount}.png` })
+}
+
 async function main() {
   const browser = await chromium.launch({ channel: 'chrome' })
   const page = await browser.newPage({ viewport: DESKTOP_VIEWPORT, locale: 'vi-VN', colorScheme: 'light' })
   await captureComparisonRace(page)
+  for (const pressCount of ILLUSTRATION_STEP_BUTTON_PRESSES) {
+    await captureIllustrationStep(page, pressCount)
+  }
   await browser.close()
   console.log(`Figures written to ${FIGURES_DIRECTORY}`)
 }

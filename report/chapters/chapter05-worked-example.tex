@@ -1,1 +1,105 @@
 \chapter{Ví dụ minh họa các bước thực hiện}
+
+Ví dụ của chương này là đề số 13, tên ``Ngắn, có quay lui'' trong danh sách đề mẫu của website. Đề có 16 ô trống và đúng một lời giải. Thuật toán cần 79 lần thử, ghi nhận 19 lần và quay lui 3 lần, trong đó có một lần lùi dây chuyền qua hai ô. Toàn bộ 83 bước nằm trong Bảng \ref{tab:illustration-steps} ở cuối chương.
+
+\section{Chọn đề và cách đọc bảng}
+
+Em cần một đề đủ ngắn để in trọn từng bước, mà vẫn có quay lui thật. Đề Arto Inkala cần 445.778 lần thử, quá dài. Đề ``Dễ'' chỉ cần 27 lần thử nhưng không quay lui lần nào. Script \texttt{checks/find\_illustration\_puzzle.py} xóa ngẫu nhiên 10 đến 16 ô từ một lưới đầy, rồi giữ lại các đề thỏa: đúng một lời giải, 50 đến 90 lần thử, 1 đến 3 lần quay lui, có đủ ba kiểu bị loại vì hàng, cột và khối. Trong 12 đề tìm được, em chọn đề này vì cả ba lần quay lui nằm gọn trong 35 lần thử đầu, ngay trên hàng 1.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.46\linewidth}
+    \centering
+    \input{generated/grid-illustration-puzzle}
+    \par\smallskip\small (a) Đề: 16 ô trống
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.46\linewidth}
+    \centering
+    \input{generated/grid-illustration-solution}
+    \par\smallskip\small (b) Lời giải: số in xanh là số thuật toán điền
+  \end{minipage}
+  \caption{Đề số 13 và lời giải}
+  \label{fig:illustration-grids}
+\end{figure}
+
+Bảng \ref{tab:illustration-cells} đánh số 16 ô trống theo thứ tự hàng rồi cột. \(S_i\) là số điền vào ô trống thứ \(i\).
+
+\begin{table}[H]
+  \centering
+  \caption{Vị trí của 16 ô trống}
+  \label{tab:illustration-cells}
+  \small
+  \begin{tabular}{@{}l*{8}{c}@{}}
+    \toprule
+    \(i\) & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+    Ô & (1, 6) & (1, 8) & (1, 9) & (2, 3) & (2, 4) & (3, 1) & (3, 6) & (4, 2) \\
+    \midrule
+    \(i\) & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+    Ô & (4, 6) & (4, 7) & (5, 2) & (5, 4) & (6, 5) & (7, 8) & (9, 1) & (9, 4) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Trạng thái dữ liệu gồm lưới \texttt{grid}, vectơ \(S\) và ba mảng đánh dấu \texttt{rowUsed}, \texttt{columnUsed}, \texttt{boxUsed} (Chương 4). Mỗi dòng của Bảng \ref{tab:illustration-steps} là một bước thuật toán:
+
+\begin{itemize}
+  \item \textbf{Bấm}: số lần bấm nút Từng bước trên trang Giải Sudoku để tới đúng trạng thái đó. Mỗi lần bấm, trang đi một sự kiện, kể cả các sự kiện không có dòng riêng trong bảng như ``ghi nhận'' và ``sang ô kế''. Nhờ cột này, người đọc mở website và kiểm lại được bất kỳ dòng nào.
+  \item \textbf{Lần thử}, \(i\), \textbf{Ô}, \(j\): bộ đếm lần thử, ô trống thứ mấy, nằm ở đâu, và số đang thử.
+  \item \textbf{Thao tác} và \textbf{Lý do}: ``Chấp nhận'' là số \(j\) chấp nhận được, thuật toán ghi nhận rồi sang ô trống kế tiếp. ``Bị loại'' kèm hàng, cột hoặc khối bị trùng và ô đang giữ số đó. ``Trả lại'' là trả lại trạng thái cũ vì ô phía sau đã hết số để thử.
+  \item \textbf{\(S\) sau bước}: vectơ \(S_1 \ldots S_{16}\) sau khi bước đó xong, dấu chấm là thành phần chưa có giá trị.
+\end{itemize}
+
+\section{Diễn biến}
+
+Hàng 1 đã có các số 5, 3, 4, 6, 7, 9, nên ba ô trống \((1, 6)\), \((1, 8)\), \((1, 9)\) phải nhận đúng ba số 1, 2, 8. Số 8 đã nằm ở ô \((2, 9)\), cùng cột 9 với ô \((1, 9)\) và cùng khối 3 với cả hai ô \((1, 8)\), \((1, 9)\). Vậy chỉ ô \((1, 6)\) nhận được số 8. Người giải bằng tay thấy ngay điều này. Thuật toán thì thử từ nhỏ lên lớn, nên phải đi vào ngõ cụt hai lần mới tới số 8.
+
+\subsection*{Giai đoạn 1: lần thử 1 đến 10, quay lui một ô}
+
+Ở lần thử 1, ô \((1, 6)\) thử số 1. Hàng 1, cột 6 và khối 2 đều chưa có số 1, nên số 1 chấp nhận được. Thuật toán ghi nhận: \(S_1 = 1\), \texttt{grid[1][6] = 1}, bật \texttt{rowUsed[1][1]}, \texttt{columnUsed[6][1]}, \texttt{boxUsed[2][1]}. Rồi sang ô trống thứ 2.
+
+Ô \((1, 8)\) thử 9 số và cả 9 đều trùng. Số 1 trùng ngay với số vừa điền ở ô \((1, 6)\). Số 2 trùng cột 8, số 8 trùng khối 3, các số còn lại trùng hàng 1. Ô \((1, 8)\) hết số, nên ở lần thử 10 (lần bấm 13) thuật toán trả lại trạng thái cũ của ô \((1, 6)\): xóa số 1 khỏi lưới, tắt ba cờ vừa bật, \(S_1\) trở về trống (Hình \ref{fig:press-13}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/illustration-press-13.png}
+  \caption{Lần bấm 13: thuật toán vừa trả lại ô (1, 6), xóa số 1. Bộ đếm: 10 lần thử, 1 ghi nhận, 1 trả lại}
+  \label{fig:press-13}
+\end{figure}
+
+\subsection*{Giai đoạn 2: lần thử 11 đến 29, quay lui dây chuyền}
+
+Ô \((1, 6)\) thử tiếp số 2 và chấp nhận được (lần thử 11). Lần này ô \((1, 8)\) nhận được số 1, vì số 1 không còn ở hàng 1 nữa (lần thử 12). Ô trống thứ 3, ô \((1, 9)\), thử 9 số đều trùng: số 1 trùng với ô \((1, 8)\) vừa điền, số 2 trùng với ô \((1, 6)\), số 8 trùng cột 9, các số còn lại trùng hàng 1. Ở lần thử 21 (lần bấm 29), thuật toán trả lại ô \((1, 8)\), xóa số 1 (Hình \ref{fig:press-29}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/illustration-press-29.png}
+  \caption{Lần bấm 29: thuật toán vừa trả lại ô (1, 8), xóa số 1. Bộ đếm: 21 lần thử, 3 ghi nhận, 2 trả lại}
+  \label{fig:press-29}
+\end{figure}
+
+Ô \((1, 8)\) chưa hết số, nên thử tiếp từ số 2. Số 2 trùng ô \((1, 6)\), số 8 trùng khối 3, các số còn lại trùng hàng 1. Ô \((1, 8)\) hết số lần thứ hai, nên ở lần thử 29 (lần bấm 38) thuật toán lùi tiếp thêm một ô: trả lại ô \((1, 6)\), xóa số 2 (Hình \ref{fig:press-38}). Đây là quay lui dây chuyền: ô \((1, 9)\) hết số làm ô \((1, 8)\) phải đổi số, và ô \((1, 8)\) hết số làm ô \((1, 6)\) phải đổi số.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/illustration-press-38.png}
+  \caption{Lần bấm 38: thuật toán vừa trả lại ô (1, 6), xóa số 2. Bộ đếm: 29 lần thử, 3 ghi nhận, 3 trả lại}
+  \label{fig:press-38}
+\end{figure}
+
+\subsection*{Giai đoạn 3: lần thử 30 đến 79, đi thẳng tới lời giải}
+
+Ô \((1, 6)\) thử số 3 đến 7, cả năm số đều trùng hàng 1. Số 8 chấp nhận được ở lần thử 35. Từ đây thuật toán không quay lui lần nào nữa. Ô \((1, 8)\) nhận số 1, ô \((1, 9)\) nhận số 2, rồi 13 ô còn lại lần lượt nhận số. Ở lần thử 79 (lần bấm 120), ô trống cuối cùng \((9, 4)\) nhận số 2, và thuật toán xuất lời giải (Hình \ref{fig:press-120}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/illustration-press-120.png}
+  \caption{Lần bấm 120: đã giải xong. Bộ đếm: 79 lần thử, 19 ghi nhận, 3 trả lại}
+  \label{fig:press-120}
+\end{figure}
+
+Kết quả cuối cùng là lời giải ở Hình \ref{fig:illustration-grids}(b), với \(S = (8, 1, 2, 2, 1, 1, 2, 5, 1, 4, 2, 8, 2, 8, 3, 2)\). Ba lần quay lui tốn 34 lần thử, gần một nửa tổng số. Đó là cái giá của việc thử theo thứ tự cố định: thuật toán không ``nhìn'' trước như người giải bằng tay. Với cùng đề này, cách điền ô ít khả năng nhất trước (mục \ref{sec:variants}) chỉ cần 52 lần thử và không quay lui lần nào.
+
+\section{Bảng toàn bộ các bước}
+
+\input{generated/illustration-steps}

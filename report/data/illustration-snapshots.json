@@ -1,6 +1,7 @@
 [
   {
     "afterStep": 0,
+    "stepButtonPresses": 0,
     "tryNumber": 0,
     "moment": "start",
     "grid": "53467.9..\n67..95348\n.9834.567\n8.976..23\n4.6.53791\n7139.4856\n9615372.4\n287419635\n.45.86179",
@@ -8,6 +9,7 @@
   },
   {
     "afterStep": 11,
+    "stepButtonPresses": 13,
     "tryNumber": 10,
     "moment": "restore",
     "grid": "53467.9..\n67..95348\n.9834.567\n8.976..23\n4.6.53791\n7139.4856\n9615372.4\n287419635\n.45.86179",
@@ -15,6 +17,7 @@
   },
   {
     "afterStep": 23,
+    "stepButtonPresses": 29,
     "tryNumber": 21,
     "moment": "restore",
     "grid": "5346729..\n67..95348\n.9834.567\n8.976..23\n4.6.53791\n7139.4856\n9615372.4\n287419635\n.45.86179",
@@ -22,6 +25,7 @@
   },
   {
     "afterStep": 32,
+    "stepButtonPresses": 38,
     "tryNumber": 29,
     "moment": "restore",
     "grid": "53467.9..\n67..95348\n.9834.567\n8.976..23\n4.6.53791\n7139.4856\n9615372.4\n287419635\n.45.86179",
@@ -29,6 +33,7 @@
   },
   {
     "afterStep": 83,
+    "stepButtonPresses": 120,
     "tryNumber": 79,
     "moment": "solution",
     "grid": "534678912\n672195348\n198342567\n859761423\n426853791\n713924856\n961537284\n287419635\n345286179",

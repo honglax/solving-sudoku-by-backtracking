@@ -2,8 +2,85 @@
 
 \section{Input}
 
+\begin{itemize}
+  \item \(A\): ma trận \(9 \times 9\). \(A[r][c] \in \{1, \ldots, 9\} \cup \{\texttt{X}\}\) với \(1 \le r, c \le 9\). \(A[r][c]\) là số đề cho ở ô hàng \(r\), cột \(c\); \texttt{X} nghĩa là ô đó trống.
+  \item Website nhận thêm hai cách viết đề: 9 dòng viết liền không dấu cách, và một chuỗi 81 ký tự trong đó dấu chấm là ô trống.
+\end{itemize}
+
 \section{Output}
+
+Một trong ba kết quả:
+
+\begin{itemize}
+  \item \(B\): ma trận \(9 \times 9\), \(B[r][c] \in \{1, \ldots, 9\}\), là lưới đã điền kín và hợp lệ.
+  \item Thông báo đề không hợp lệ, kèm số trùng, nằm ở hàng, cột hay khối nào, và các ô trùng.
+  \item Thông báo đề không có lời giải.
+\end{itemize}
 
 \section{Điều kiện và ràng buộc}
 
+\begin{itemize}
+  \item Số ô trống \(n\) thỏa \(0 \le n \le 81\).
+  \item Khối thứ \(b\), với \(1 \le b \le 9\), gồm các ô có hàng từ \(3\lfloor (b-1)/3 \rfloor + 1\) đến \(3\lfloor (b-1)/3 \rfloor + 3\) và cột từ \(3\,((b-1) \bmod 3) + 1\) đến \(3\,((b-1) \bmod 3) + 3\).
+  \item \textbf{Đề hợp lệ} khi không có hai ô đã điền nào cùng số mà nằm chung hàng, chung cột hoặc chung khối.
+  \item \textbf{Giữ nguyên số đề cho:} \(B[r][c] = A[r][c]\) với mọi ô có \(A[r][c] \ne \texttt{X}\).
+  \item \textbf{Lưới hợp lệ:} mỗi hàng \(r\) có \(\{B[r][1], \ldots, B[r][9]\} = \{1, \ldots, 9\}\). Mỗi cột và mỗi khối cũng vậy.
+  \item \textbf{Nhiều lời giải:} chọn lời giải đầu tiên tìm được khi xét ô trống theo thứ tự hàng rồi cột, thử số từ 1 đến 9. Quy ước này làm đầu ra xác định, nên so được với bản cài đặt tham chiếu từng ký tự.
+\end{itemize}
+
 \section{Ví dụ Input và Output}
+
+\subsection*{Ví dụ 1: đề có lời giải duy nhất}
+
+Đề số 13 ở Chương 2. Chương 5 đi qua toàn bộ các bước giải đề này.
+
+\needspace{16\baselineskip}
+\subsection*{Ví dụ 2: đề nhiều lời giải}
+
+Đề ``Nhiều lời giải'' có 44 ô trống và 18 lời giải. Output là lời giải đầu tiên, thuật toán tìm ra sau 827 lần thử.
+
+\begin{center}
+  \begin{minipage}[t]{0.44\linewidth}
+    \textbf{Input}
+    \input{generated/text-multiple-input}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.44\linewidth}
+    \textbf{Output}
+    \input{generated/text-multiple-output}
+  \end{minipage}
+\end{center}
+
+\needspace{16\baselineskip}
+\subsection*{Ví dụ 3: đề không hợp lệ}
+
+Hai số 7 cùng nằm trên hàng 4.
+
+\begin{center}
+  \begin{minipage}[t]{0.44\linewidth}
+    \textbf{Input}
+    \input{generated/text-duplicate-input}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.44\linewidth}
+    \textbf{Output}\par\smallskip
+    Đề không hợp lệ: số 7 xuất hiện 2 lần ở hàng 4 (cột 1 và cột 9).
+  \end{minipage}
+\end{center}
+
+\needspace{16\baselineskip}
+\subsection*{Ví dụ 4: đề không có lời giải}
+
+Hàng 1 đã có các số từ 2 đến 9, cột 1 đã có số 1, nên ô \((1, 1)\) không nhận được số nào.
+
+\begin{center}
+  \begin{minipage}[t]{0.44\linewidth}
+    \textbf{Input}
+    \input{generated/text-no-solution-input}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.44\linewidth}
+    \textbf{Output}\par\smallskip
+    Đề này không có lời giải. Ở ô \((1, 1)\), cả 9 số đều trùng: số 1 đã có ở cột 1, các số từ 2 đến 9 đã có ở hàng 1.
+  \end{minipage}
+\end{center}

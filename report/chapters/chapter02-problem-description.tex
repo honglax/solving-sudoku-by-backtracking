@@ -1,1 +1,35 @@
 \chapter{Mô tả bài toán}
+
+Sudoku là trò chơi điền số trên lưới \(9 \times 9\). Lưới chia thành 9 khối \(3 \times 3\) bằng các đường kẻ đậm. Một lưới Sudoku hợp lệ khi mỗi hàng, mỗi cột và mỗi khối đều chứa đủ 9 số từ 1 đến 9, mỗi số đúng một lần.
+
+Cho một lưới trong đó một số ô đã điền sẵn, các ô còn lại để trống. Hãy điền số vào các ô trống để được một lưới Sudoku hợp lệ, giữ nguyên các số đã cho.
+
+\subsection*{Input}
+
+Gồm 9 dòng, mỗi dòng 9 ký tự cách nhau bởi dấu cách. Mỗi ký tự là một số từ 1 đến 9 (ô đã điền) hoặc chữ \texttt{X} (ô trống). Số ô trống từ 0 đến 81.
+
+\subsection*{Output}
+
+\begin{itemize}
+  \item Nếu điền được: 9 dòng, mỗi dòng 9 số cách nhau bởi dấu cách, là lưới đã điền kín và hợp lệ. Nếu có nhiều cách điền, xuất cách đầu tiên tìm được khi xét ô trống theo thứ tự hàng rồi cột và thử số từ nhỏ đến lớn.
+  \item Nếu đề có hai ô cùng số trong cùng một hàng, cột hoặc khối: thông báo đề không hợp lệ, kèm số trùng và vị trí.
+  \item Nếu không có cách điền nào: thông báo đề không có lời giải.
+\end{itemize}
+
+\subsection*{Ví dụ}
+
+\begin{center}
+  \begin{minipage}[t]{0.44\linewidth}
+    \textbf{Input}
+    \input{generated/text-illustration-input}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.44\linewidth}
+    \textbf{Output}
+    \input{generated/text-illustration-output}
+  \end{minipage}
+\end{center}
+
+\subsection*{Yêu cầu}
+
+Giải bằng kỹ thuật quay lui theo mô hình 1. Chương trình phải cho người dùng nhập đề, theo dõi từng bước thuật toán thực hiện, và xem kết quả.

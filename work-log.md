@@ -440,3 +440,12 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Mình chọn tiêu đề "Thuật toán quay lui giải Sudoku như thế nào?" và dùng nguyên đoạn dẫn biên tập viên sửa. Bỏ thêm 2 chữ "nó" chỉ thuật toán ở trang Mọi lời giải.
 - Các lỗi này thành mục "Dấu hiệu văn máy hay gặp" trong skill `vietnamese-writing`. Report Ch.6 kể lại lần sửa này, bảng ví dụ dùng tiêu đề mới.
 - Khi chạy test, 11 test end-to-end hỏng cùng kiểu "Expected 0, Received -15". Lý do: macOS đang để thanh cuộn "Automatic", có chuột rời nên hiện thanh cuộn cố định 15 px. Test đòi độ tràn ngang đúng bằng 0, mà khi có thanh cuộn thì số này âm (tức là không tràn). Sửa test kiểm đúng điều cần kiểm: độ tràn không lớn hơn 0, đo bằng `clientWidth` thay cho `innerWidth`. Test điện thoại hẹp (320 px) giả lập đúng điện thoại (thanh cuộn nổi). Kết quả: 723 test đơn vị, 60 test end-to-end đạt.
+
+**Report: Ch.1 đến Ch.5**
+> Okay, go ahead
+
+- Ch.4 (thiết kế) đi đúng khuôn cô hướng dẫn cho câu thiết kế (`On-thi/Huong-dan-lam-bai.md`): hai dấu hiệu chọn quay lui, mô hình hóa S, bảng cấu trúc dữ liệu (tên, kiểu, miền, vai trò), mã giả mô hình 1 chép đúng slide kể cả 2 dòng ghi chú, mã giả cho Sudoku đánh số Bước 1-3, bảng đối chiếu, độ phức tạp bằng truy hồi 4 bước ra dạng đóng \((c_1 + c_2/8)9^n - c_2/8 \in O(9^n)\), ba biến thể, và cấu trúc dữ liệu của phần minh họa (9 loại sự kiện).
+- Ch.5 dùng đề 13. Bảng 83 bước và các lưới **sinh tự động** từ dữ liệu xuất ra (`report/tools/build_report_tables.py`), không gõ tay.
+- Lỗi tìm ra khi chụp màn hình: sau 32 lần bấm Từng bước, trang mới ở lần thử 24, không khớp "bước 32" của bảng. Lý do: mỗi lần bấm đi một sự kiện, kể cả "ghi nhận" và "sang ô kế". Đổi cột đầu của bảng thành số lần bấm Từng bước; ảnh chụp ở lần bấm 13, 29, 38, 120 khớp bộ đếm của dữ liệu từng con số (10/1/1, 21/3/2, 29/3/3, 79/19/3).
+- Ch.1 (lý do chọn, nguồn gốc Sudoku, ứng dụng: xếp lịch, thời khóa biểu, tô màu đồ thị 81 đỉnh 810 cạnh), Ch.2 (đề bài kiểu cô ra đề), Ch.3 (Input, Output, ràng buộc, 4 ví dụ).
+- Rà theo skill: bỏ 4 chữ "nó" chỉ thuật toán/ô và 3 câu bị động. Report 42 trang, không cảnh báo.

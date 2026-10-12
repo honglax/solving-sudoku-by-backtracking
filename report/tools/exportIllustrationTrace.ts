@@ -12,12 +12,13 @@ const DATA_DIRECTORY = fileURLToPath(new URL('../data/', import.meta.url))
 const STEPS_PATH = `${DATA_DIRECTORY}illustration-steps.csv`
 const SNAPSHOTS_PATH = `${DATA_DIRECTORY}illustration-snapshots.json`
 const EMPTY_SLOT_MARK = '.'
-const CSV_COLUMNS = ['step', 'tryNumber', 'index', 'row', 'column', 'digit', 'action', 'unit', 'conflictRow', 'conflictColumn', 'solutionVector']
+const CSV_COLUMNS = ['step', 'stepButtonPresses', 'tryNumber', 'index', 'row', 'column', 'digit', 'action', 'unit', 'conflictRow', 'conflictColumn', 'solutionVector']
 
 type StepAction = 'accept' | 'reject' | 'restore' | 'solution' | 'noSolution'
 
 type StepRow = {
   step: number
+  stepButtonPresses: number
   tryNumber: number
   index: number | null
   cell: CellPosition | null
@@ -32,6 +33,7 @@ type SnapshotMoment = 'start' | StepAction
 
 type GridSnapshot = {
   afterStep: number
+  stepButtonPresses: number
   tryNumber: number
   moment: SnapshotMoment
   grid: string
@@ -68,9 +70,10 @@ function gridText(grid: Grid): string {
   return lines.join('\n')
 }
 
-function startRow(event: SolverEvent, step: number, tryNumber: number): StepRow {
+function startRow(event: SolverEvent, step: number, stepButtonPresses: number, tryNumber: number): StepRow {
   const row: StepRow = {
     step,
+    stepButtonPresses,
     tryNumber,
     index: null,
     cell: null,
@@ -105,6 +108,7 @@ function startRow(event: SolverEvent, step: number, tryNumber: number): StepRow 
 function csvLine(row: StepRow): string {
   return [
     row.step,
+    row.stepButtonPresses,
     row.tryNumber,
     row.index ?? '',
     row.cell?.row ?? '',
@@ -128,7 +132,7 @@ function main() {
   const progress = createSolverProgress(puzzle)
   const rows: StepRow[] = []
   const snapshots: GridSnapshot[] = [
-    { afterStep: 0, tryNumber: 0, moment: 'start', grid: gridText(puzzle), solutionVector: solutionVectorText(progress) },
+    { afterStep: 0, stepButtonPresses: 0, tryNumber: 0, moment: 'start', grid: gridText(puzzle), solutionVector: solutionVectorText(progress) },
   ]
 
   const finishRow = (row: StepRow | undefined) => {
@@ -139,6 +143,7 @@ function main() {
     if (row.action === 'restore' || row.action === 'solution' || row.action === 'noSolution') {
       snapshots.push({
         afterStep: row.step,
+        stepButtonPresses: row.stepButtonPresses,
         tryNumber: row.tryNumber,
         moment: row.action,
         grid: gridText(progress.grid),
@@ -147,13 +152,15 @@ function main() {
     }
   }
 
+  let eventCount = 0
   for (const event of solveByBacktracking(puzzle)) {
     if (isVisibleStep(event)) {
       finishRow(rows.at(-1))
     }
     applySolverEvent(progress, event)
+    eventCount++
     if (isVisibleStep(event)) {
-      rows.push(startRow(event, rows.length + 1, progress.tryCount))
+      rows.push(startRow(event, rows.length + 1, eventCount, progress.tryCount))
     }
   }
   finishRow(rows.at(-1))

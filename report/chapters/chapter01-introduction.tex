@@ -2,6 +2,30 @@
 
 \section{Lý do chọn bài toán}
 
+Em phân vân giữa hai bài: tìm đường ngắn nhất bằng Dijkstra và giải Sudoku. Em thích cả hai. Khi em hỏi ý kiến Claude Code, Claude nhận xét cô chưa dạy Dijkstra trên lớp, chỉ nhắc tới như một bài của khóa trước. Em chọn Sudoku vì ba lý do:
+
+\begin{itemize}
+  \item \textbf{Em đã tự giải bài này.} Trong một bài thực hành trên Wecode, em đã cài đặt quay lui theo mô hình 1 cho Sudoku. Em hiểu thuật toán từ bên trong, nên có thể tự kiểm từng bước mà AI làm.
+  \item \textbf{Thuật toán nhìn thấy được.} Ba động tác thử số, loại số trùng và lùi về ô trước đều hiện ngay trên lưới. Yêu cầu của bài tập lớn là cho người dùng theo dõi từng bước, và Sudoku cho thấy điều đó rõ hơn một đồ thị.
+  \item \textbf{Có chỗ để phát triển.} Cùng một bài toán, em so sánh được nhiều cấu trúc dữ liệu, nhiều thứ tự chọn ô, và chế độ tìm mọi lời giải đúng nguyên văn mô hình 1.
+\end{itemize}
+
 \section{Nguồn gốc của Sudoku}
 
+Trò chơi lưới số dạng hiện nay do Howard Garns soạn, xuất hiện lần đầu năm 1979 trên tạp chí đố vui của Dell ở Mỹ với tên ``Number Place''. Năm 1984, nhà xuất bản Nikoli đưa trò chơi sang Nhật và đặt tên Sudoku, rút gọn từ một câu tiếng Nhật nghĩa là ``mỗi chữ số chỉ được xuất hiện một lần''. Từ năm 2004, khi báo The Times ở Anh đăng Sudoku hằng ngày, trò chơi lan ra khắp thế giới \cite{wikipedia-sudoku}.
+
+Luật chơi chỉ có một câu: điền lưới \(9 \times 9\) sao cho mỗi hàng, mỗi cột và mỗi khối \(3 \times 3\) có đủ các số từ 1 đến 9. Đằng sau câu đó là những con số lớn. Có tổng cộng 6.670.903.752.021.072.936.960 lưới đầy hợp lệ, theo phép tính của Felgenhauer và Jarvis năm 2005. Một đề có lời giải duy nhất cần ít nhất 17 số cho sẵn, McGuire và cộng sự chứng minh năm 2012 \cite{wikipedia-sudoku-math}. Bộ testcase của em có một đề 17 số lấy từ danh sách của Gordon Royle.
+
 \section{Ứng dụng thực tế}
+
+Sudoku là một bài toán thỏa mãn ràng buộc: có 81 biến (các ô), mỗi biến nhận giá trị trong miền \(\{1, \ldots, 9\}\), và các ràng buộc ``khác nhau'' trong từng hàng, cột, khối. Cùng khung này xuất hiện trong nhiều bài toán thật:
+
+\begin{itemize}
+  \item \textbf{Xếp lịch thi.} Hai môn có chung sinh viên không được xếp cùng ca, giống hai ô cùng hàng không được cùng số.
+  \item \textbf{Xếp thời khóa biểu.} Một giáo viên không dạy hai lớp cùng tiết, một phòng không chứa hai lớp cùng tiết.
+  \item \textbf{Tô màu đồ thị.} Mỗi ô là một đỉnh. Hai ô cùng hàng, cột hoặc khối nối với nhau bằng một cạnh. Mỗi đỉnh có đúng 20 đỉnh kề: 8 ô cùng hàng, 8 ô cùng cột, 4 ô còn lại cùng khối. Giải Sudoku chính là tô đồ thị 81 đỉnh, 810 cạnh bằng 9 màu sao cho hai đỉnh kề khác màu, với một số đỉnh đã tô sẵn.
+\end{itemize}
+
+Quay lui cũng là cách giải chung cho các bài cùng loại trong slide của cô: 8 quân hậu, tổng tập con, chu trình Hamilton, tô màu đồ thị \cite{slide-backtracking}. Với Sudoku tổng quát cỡ \(n^2 \times n^2\), bài toán thuộc lớp NP-đầy đủ \cite{wikipedia-sudoku-math}, nên chưa ai biết cách giải luôn nhanh cho mọi đề. Hiểu quay lui chạy thế nào, và vì sao có đề làm thuật toán chậm, là bước đầu để hiểu các bài toán khó này.
+
+Bản thân website là một ứng dụng dạy học. Người mới học thuật toán nhìn được thuật toán thử, loại và lùi lại trên từng ô, thay vì chỉ đọc mã giả.
