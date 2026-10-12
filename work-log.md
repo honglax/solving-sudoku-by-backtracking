@@ -9,21 +9,23 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 **Công cụ:** Claude Code trong VS Code.
 
 **Việc đã làm**
+
 - Xem lại video Buổi 8 để biết cô yêu cầu gì (0:12-0:23, 0:43-0:45, 2:53-2:58) và thông báo "NỘP BÀI TẬP LỚN" trên e-learning.
 - Chọn đề. Mình thích cả Dijkstra lẫn Sudoku. Claude khuyên không chọn Dijkstra vì trên lớp chưa học, chỉ được nhắc tới như bài của khóa trước. Mình chọn Sudoku: đây là bài Lab01 mình đã tự giải và nộp trên Wecode ngày 13/9 (`Lab01/sudoku.py`), đề bắt buộc dùng quay lui mô hình 1.
 - Lập `plan.md` trước khi viết dòng code nào. Claude chạy thử logic `sudoku.py` trên 7 đề để lấy số đo thật (bảng 3.4). Các quyết định về thiết kế dựa trên số đo này, ví dụ đề Inkala 445.778 lần thử thì không thể chạy hoạt ảnh.
 
 **Prompt chính**
+
 > Ok, tôi đồng ý với Sudoku, nhưng chúng ta sẽ không thực hiện liền mà cần lên kế hoạch phân tích toàn bộ bài toán trước khi viết những dòng code đầu tiên. Vì vậy, hãy tạo 1 file markdown chứa toàn bộ chi tiết kế hoạch cho bài tập lớn này [...]
 
-> 5.1. I wanna build a completely website and deploy to Netlify or any supported free server
-> 6. UI must be nice, modern, can I use Claude Design for this?
+> 5.1. I wanna build a completely website and deploy to Netlify or any supported free server 6. UI must be nice, modern, can I use Claude Design for this?
 
 > Remember everything in code should be in English, code must be easy to read, easy to understand, must be explicit, can explain itself without comment. Do you think we can use React for the website?
 
 > Just let me know if we use React, does it affect to the performance?
 
 **Quyết định của mình**
+
 - Website hoàn chỉnh nhiều trang, deploy Netlify.
 - React + Vite + TypeScript. Mọi thứ trong code bằng tiếng Anh, không comment.
 - Giao diện vẽ bằng Claude Design trước khi code.
@@ -37,9 +39,11 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 **Công cụ:** Claude Code (viết prompt), Claude Design trên claude.ai (vẽ giao diện).
 
 **Prompt**
+
 > Can we build a very detail prompt then I can use to talk with Claude Design for the mockup? We should have the color pallet for the website, it should be mordern, no violate design rule.
 
 **Việc đã làm**
+
 - Claude Code viết `design/claude-design-prompt.md`. Trong đó có:
   - bảng màu, mỗi cặp màu chữ/nền được đo độ tương phản theo chuẩn WCAG AA. Một màu xám bị loại vì chỉ đạt 4,34 (cần 4,5);
   - mỗi trạng thái của ô có thêm dấu hiệu ngoài màu, cho người khó phân biệt đỏ/xanh;
@@ -55,13 +59,16 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 **Công cụ:** Claude Code.
 
 **Prompt**
+
 > Claude Design has finished their job and hand-off design in the folder design, you can take a look at this and let me know what your plan next?
 
 **Việc đã làm**
+
 - Claude chạy lại thuật toán để kiểm tra số liệu trong bản thiết kế: khung 04 (814 / 96 / 81), khung 05 (803 / 93 / 81), khung 17 (đề Inkala ở lần thử 200.000: 22.236 / 22.206). Cả ba khớp.
 - Tìm lại dữ liệu Đề 1 (đề mẫu Wecode) và Đề 2 (đề Wecode xóa thêm 4 ô), chạy lại ra 1 / 1 / 0 và 27 / 5 / 0, khớp bảng 3.4.
 
 **Quyết định của mình**
+
 - "Giải ngay" dùng chung generator với hoạt ảnh, chạy theo từng lát thời gian để không treo trang. Bỏ bản đệ quy thường riêng.
 - Duyệt các câu thông báo còn thiếu (bị loại vì khối 3×3, chấp nhận được, quay lui sau số 9).
 - Đề mặc định khi mở trang: Đề 3. Không giới hạn số lần thử của "Giải ngay", chỉ dừng khi bấm "Dừng".
@@ -73,11 +80,13 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 **Công cụ:** Claude Code.
 
 **Prompt**
+
 > Ok, go ahead
 
 > Remember, file name must be in English as well
 
 **Việc đã làm**
+
 - Gom bộ bàn giao vào `design/`, `git init` (chưa commit).
 - Đổi tên tài liệu sang tiếng Anh: `plan.md`, `work-log.md`.
 - `checks/lab01_counts.py`: logic Lab01 giữ nguyên cấu trúc mô hình 1, thêm 3 bộ đếm. Chạy ra đúng bảng 3.4 cho cả 7 đề, và ghi 3 thời điểm giữa chừng (đề 3 lần thử 804, 814; đề 5 lần thử 200.000) vào `checks/expected_counts.json` để làm đáp án cho test.
@@ -89,6 +98,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - `tokens.css` chép từ bản thiết kế, giữ nguyên 129 giá trị, chỉ bỏ phần comment.
 
 **Đổi sang Yarn 4**
+
 > Can we use yarn v2 instead of npm?
 
 - Yarn v2 đã ngừng hỗ trợ, nên dùng Yarn 4.18.1, cùng kiến trúc với v2. Ghim trong `website/.yarnrc.yml`.
@@ -96,6 +106,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Yarn 4 không cài `lucide-react` 1.51.0 vì bản này mới phát hành chưa đủ 24 giờ. Giữ lớp bảo vệ, dùng bản 1.50.0.
 
 **Đổi tên thư mục và viết thuật toán (bước 4)**
+
 > Yes, it should be renamed, then what's next?
 
 - Đổi tên thư mục `Bai-tap-lon` thành `final-project`.
@@ -108,6 +119,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
   - Đảo thứ tự kiểm tra cột trước hàng: lúc đầu **không** test nào bắt được, vì 3 thời điểm chụp đều chỉ trùng ở hàng. Đã thêm test duyệt cả 1.682 lần bị loại của đề 3, giờ bắt được.
 
 **Bỏ chữ "Lab", "Wecode" khỏi website và làm trang Giải Sudoku (bước 5)**
+
 > Yes, please go head. But before moving forward, I don't think label "Wecode" is ok, we can use another label, right?
 
 > I mean don't want any text relates to "Lab" "Wecode" like we're studying. Treat this website like the one to be used for people understand the algorithm, not my exercises
@@ -123,6 +135,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
   - 81 ô lưới bị vẽ lại mỗi khung hình vì hàm truyền xuống ô không cố định.
 
 **Bảng lịch sử (chốt) và giao diện điện thoại, máy tính bảng (bước 6)**
+
 > I'm thinking about "Diễn biến" table should has history or last 10~15 steps, and can we trace back through history? Does it cost more performance?
 
 > History table should be scrollable. How many last steps you think is ok?
@@ -135,6 +148,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Kiểm tra ở 390 px và 820 px: không trang nào bị tràn ngang; đóng bảng "Tùy chọn" thì con trỏ quay về nút "Tùy chọn".
 
 **Trang chủ và trang Thuật toán (bước 7, phần 1)**
+
 > Totally agree, go ahead please
 
 - Duyệt 2 câu mới: "Đề tự nhập (n ô trống)" và câu báo vô nghiệm chung.
@@ -144,6 +158,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Trang Giới thiệu: chờ duyệt nội dung mới (bỏ thông tin môn học).
 
 **Sửa câu chữ trang chủ, thêm đề mẫu, mục "Đề chống quay lui"**
+
 > I feel the 3rd block is weird wording, is there any more suggestion?
 
 > Go with A, and I think we should add more đề mẫu, what's ur suggestion?
@@ -163,8 +178,9 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Thẻ thứ 3 ở trang chủ đổi tiêu đề "Số đo thật" thành "Nhanh cỡ nào?", câu chữ viết lại kiểu nói chuyện. Mục cùng tên trên trang Thuật toán đổi thành "Số lần thử của từng đề".
 
 **Trang Giới thiệu, trang Giải Sudoku co giãn theo màn hình**
+
 > 1. Yes can be 2. Let me think and get back later 3. Yes
-> Screenshot: The solver screen, the components are very tight while we still have a lot of blank space below, can we make it fit the screen (responsive height)?
+>    Screenshot: The solver screen, the components are very tight while we still have a lot of blank space below, can we make it fit the screen (responsive height)?
 
 > These blocks are too small
 
@@ -180,6 +196,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Chưa kiểm được trên Windows (thanh cuộn thật); đã ghi vào danh sách kiểm tra sau khi deploy.
 
 **Bảng lịch sử (bước 8) và sắp xếp lại thư mục**
+
 > Go ahead
 
 > After history component, can we restructure the folder? test should be in test folder, custom hook inside custom hook folder, can considering do we need e2e test?
@@ -200,6 +217,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Lỗi tìm ra khi đo: dòng thông báo cuối bảng không xuống dòng, kéo cả bảng rộng hơn khung 57 px (cả trên máy tính). Đã sửa; bảng vừa khít ở 390, 1366 và 1712 px.
 
 **Test end-to-end, CSS tách riêng, chữ giao diện vào JSON**
+
 > Yes, you should, and also restructure the folder
 
 > I don't like put css in the same folder with tsx file. Any suggestion for folder structure?
@@ -212,7 +230,8 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Tổng: 69 test đơn vị + 31 test end-to-end, tất cả đạt.
 - Trang Giới thiệu: đổi nhãn "Người làm" thành "Tác giả".
 
-**Sửa theo góp ý của người dùng thử**
+**Sửa theo góp ý của người dùng thử** (đính chính 12/10: "người dùng thử" là một phiên Claude Code riêng mà mình nhờ đóng vai người dùng phổ thông, phiên `f26245fe`, không phải người thật)
+
 > A feedback from an end-user (dán nguyên văn góp ý: điểm tốt, lỗi giao diện, lỗi chức năng, góp ý nhỏ)
 
 > We can skip the video demo/source code for now. You can address the feedback from the end-user
@@ -238,11 +257,13 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 **Công cụ:** Claude Code trong VS Code.
 
 **Prompt**
+
 > Cô đã cập nhật yêu cầu cho final-project rồi, review qua xem chúng ta còn cần gì. Yêu cầu này sẽ overwrite yêu cầu ở buổi 8
 
 > 1. Đồng ý với gợi ý của bạn 2. Report bằng LaTeX 3. Sẽ quyết định sau khi chúng ta hoàn tất mọi thứ
 
 **Việc đã làm**
+
 - Lưu nguyên văn yêu cầu mới vào `requirements.md`.
 - Claude đối chiếu yêu cầu mới với `plan.md`, `work-log.md` và code. Demo đã đủ phần "nhập dữ liệu, xem từng bước, xem kết quả". Còn thiếu:
   - bộ testcase để nộp;
@@ -255,11 +276,13 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Cập nhật `plan.md`: mục 1 (yêu cầu mới), 4.1 (phần mở rộng), 5.3 (thư mục nộp), 7.2 (bộ testcase), 8 (video), 9 (report), 10 (lịch), 11, 12.
 
 **Quyết định của mình**
+
 - Phần mở rộng làm theo thứ tự: A (so sánh 3 cách tổ chức dữ liệu: quét lưới, 3 mảng đánh dấu, bitmask), B (Tìm mọi lời giải, đúng nguyên văn mô hình 1 trên slide), rồi D (4×4, 16×16). MRV để quyết sau.
 - Report viết bằng LaTeX.
 - Cách nộp và tên file chốt sau khi làm xong mọi thứ.
 
 **Đổi góc nhìn: website dạy học**
+
 > Không nhất thiết cứ phải mention Lab 01 hay Wecode, hãy mở rộng phạm vi ra. Treat mọi thứ như chúng ta đang dựng 1 website để dạy học và chia sẻ kiến thức vậy
 
 - Claude hỏi lại "mở rộng" theo hướng nào: chỉ đổi góc nhìn, thêm trang bài học quay lui, hay thêm bài toán khác. Mình chọn **đổi góc nhìn, vẫn Sudoku**, và **làm thêm MRV** (chọn ô ít khả năng nhất trước) sau A, B.
@@ -267,6 +290,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Đổi tên `checks/lab01_counts.py` thành `checks/reference_solver.py` (bản Python tham chiếu).
 
 **Commit đầu tiên và bộ testcase**
+
 > Okay
 
 - Commit đầu tiên của `final-project/` (177 file).
@@ -276,6 +300,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - `testcases/tools/testcaseRunner.ts` + `runTestcases.ts` chạy từng đề bằng đúng `website/src/solver`, so kết quả, bộ đếm và độ phủ 20 nhánh xử lý. Lệnh `yarn testcases`; `yarn test` cũng chạy cả bộ.
 
 **Sự cố khi làm**
+
 - Lần chạy đầu treo hơn 10 phút. Claude đo từng nhóm: vòng sinh đề "đúng 2 lời giải" lặp mãi. Lý do: mọi lưới "ngẫu nhiên" đều sinh từ một lưới mẫu rồi hoán vị hàng / cột / đổi tên số. Cả họ lưới đó không bao giờ có hình chữ nhật 4 ô đổi chỗ được, và cũng có nghĩa bộ đề kém đa dạng hơn tưởng. Đổi sang sinh lưới đầy bằng quay lui với thứ tự số xáo trộn.
 - Mọi đề đạt ngay lần đầu, nên Claude kiểm lại chính bộ test bằng cách cố tình làm sai bộ giải (4 lỗi). Lần đầu chỉ 2/4 lỗi bị bắt:
   - "kiểm tra cột trước hàng" lọt qua, vì đáp án không ghi lý do bị loại → thêm 3 cột số lần bị loại theo hàng / cột / khối;
@@ -295,6 +320,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Giữ nguyên: bộ test phải chạy đúng bộ giải người xem thấy trên web. 2 đề này đánh dấu chậm, không chạy mặc định. Đây là số liệu cho mục Đánh giá (cái giá của việc minh họa từng bước).
 
 **Trang "So sánh" (phần mở rộng A, và phần so sánh của C)**
+
 > Ok, let's continue
 
 > Bạn có thể thêm tab mới hoặc trang mới để đáp ứng các yêu cầu của cô nhé
@@ -310,6 +336,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Kết quả: 440 test đơn vị + 49 test end-to-end đạt; menu 5 mục vẫn vừa thanh trên cùng từ 820 px trở lên, dưới đó vào menu thu gọn.
 
 **Làm lại trang So sánh cho người bình thường đọc hiểu**
+
 > Do we have any visualize for Comparing page? As a normal user, I don't understand any word of this page?
 
 - Mình chụp màn hình gửi kèm: trang chỉ có 2 biểu đồ trống ("-") cho tới khi bấm Đo, chữ toàn thuật ngữ (bitmask, MRV, "đọc bộ nhớ").
@@ -322,6 +349,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Kết quả: 452 test đơn vị + 52 test end-to-end đạt.
 
 **Trang "Mọi lời giải" (phần mở rộng B)**
+
 > Ok rồi
 
 - Commit trang So sánh. Claude hỏi đặt chế độ "Tìm mọi lời giải" trong trang Giải Sudoku hay trang riêng; mình chọn **trang riêng**.
@@ -335,6 +363,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Kết quả: 714 test đơn vị + 59 test end-to-end đạt.
 
 **Bộ quy tắc văn phong (skill `vietnamese-writing`) và viết lại chữ trên website**
+
 > Nguyên tắc dành cho bạn khi làm việc với câu chữ, hãy lưu vào system (…)
 
 > (dán thêm 2 bộ quy tắc: nhịp câu, bộ lọc từ, mạch lạc, tông giọng)
@@ -352,7 +381,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Gộp 3 bộ quy tắc thành skill dự án `.claude/skills/vietnamese-writing/` (ngoài repo `final-project`). Claude chỉ ra chỗ xung đột (3S với kim tự tháp ngược; "không đưa code" với mã giả cô chấm; giọng content creator với report) và đề xuất chia theo nơi dùng: website dùng đủ bộ, report chỉ dùng luật câu và bộ lọc từ, câu trả lời theo kim tự tháp ngược. Mình đồng ý, thêm: **mã giả bất khả xâm phạm**.
 - Bài mẫu mình đưa được lưu kèm chú thích. Claude chỉ ra 2 lỗi thuật toán trong bài ("điền bừa", "thử hết tất cả trường hợp") và các số bịa ("hàng triệu phép tính mỗi giây"), rồi viết lại bằng số đo thật.
 - Viết lại khoảng 50 câu trên website theo skill: bỏ "Tóm lại", "Nói cách khác", "rất", thể bị động; câu ngắn dài xen nhau; mỗi nhận xét về độ khó có con số. Ví dụ:
-  - Tiêu đề trang chủ: "Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa."; đoạn dẫn dùng hình ảnh dãy cửa và chùm chìa khóa.
+  - Tiêu đề trang chủ: "Cùng xem thuật toán quay lui giải Sudoku như thế nào nhé!"; đoạn dẫn dùng hình ảnh dãy cửa và chùm chìa khóa.
   - Câu bị loại: "Ô (4, 7) - thử số 2: hàng 4 đã có số 2, bỏ." (trước: "… bị loại vì 2 đã có ở hàng 4").
   - Trang Thuật toán: kết luận độ phức tạp có số Inkala thật; đoạn đề chống quay lui trỏ sang cuộc đua ở trang So sánh (407.156 lần thử nếu điền ô dễ nhất trước). Ba câu này lấy số từ dữ liệu đề mẫu, không gõ tay.
   - Lưới trống: "Cứ cho máy tìm 1 triệu lời giải mỗi giây thì cũng mất khoảng 211 triệu năm."
@@ -389,3 +418,13 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 
 - Cài tác giả git riêng cho repo `final-project`: Hong La <hongla.html@gmail.com>. Cấu hình git chung của máy không đổi.
 - Viết lại tác giả và người commit cho cả 9 commit cũ (trước đó ký bằng email công ty). Repo chưa có remote nên an toàn. Kiểm lại: nội dung code giống hệt trước khi viết lại, chỉ mã commit đổi. Đã sửa mã commit nhắc trong nhật ký (`dc0b193` → `bb871f3`).
+
+## 12/10/2026 - Bắt đầu report
+
+> Let's do it, I will deploy Netlify later
+
+- Dựng khung report LaTeX trong `report/`: lớp `report`, preamble lấy từ HW02 (đổi đầu trang, thêm hộp prompt, bảng dài), trang bìa, mục lục, 8 chương theo đúng danh sách mục cô yêu cầu.
+- Trích toàn bộ prompt từ transcript Claude Code để chép nguyên văn vào report. Xác nhận cả 3 phiên làm bài tập lớn dùng model Claude Opus 5.5 (`claude-opus-5-5`), Claude Code 2.1.287 đến 2.1.295. Phát hiện cần đính chính: bản nhận xét "người dùng thử" ngày 4/10 do một phiên Claude riêng viết (phiên đó không sửa file nào); đã sửa dòng tương ứng trong nhật ký và report ghi đúng như vậy.
+- Viết Ch.6 (quá trình thiết kế và xây dựng): bảng công cụ, cách làm việc, 11 giai đoạn có prompt nguyên văn, bảng phân chia việc giữa mình và Claude. Ghi rõ report do Claude viết nháp từ nhật ký và transcript, mình đọc, sửa và chịu trách nhiệm nội dung.
+- `website/scripts/captureReportFigures.ts` chụp ảnh cho report từ website thật (hiện có ảnh cuộc đua).
+- Compile XeLaTeX không cảnh báo, không còn ký tự `%` trong file `.tex`. Report 24 trang.

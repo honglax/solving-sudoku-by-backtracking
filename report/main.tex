@@ -1,0 +1,49 @@
+\documentclass[12pt, a4paper]{report}
+
+\input{preamble}
+
+\newcommand{\hoten}{Lã Xuân Hồng}
+\newcommand{\mssv}{25410056}
+\newcommand{\lophoc}{CS112.F31.LT.TTNT}
+\newcommand{\giangvien}{Huỳnh Thị Thanh Thương}
+\newcommand{\tenbaitap}{Bài tập lớn: Minh họa thuật toán quay lui qua bài toán Sudoku}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  {\large\bfseries ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH \\
+   TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN \\
+   KHOA KHOA HỌC MÁY TÍNH \par}
+
+  \vspace{2.5cm}
+  \rule{\linewidth}{0.5pt}\\[0.5cm]
+  {\Huge\bfseries PHÂN TÍCH \& THIẾT KẾ \\[0.3cm] THUẬT TOÁN \par}
+  \vspace{0.4cm}
+  {\Large \tenbaitap \par}
+  \rule{\linewidth}{0.5pt}\\[2cm]
+
+  \begin{tabular}{@{}ll@{}}
+    \textbf{Sinh viên thực hiện} & : \hoten \\[4pt]
+    \textbf{MSSV}                & : \mssv \\[4pt]
+    \textbf{Lớp}                 & : \lophoc \\[4pt]
+    \textbf{Giảng viên hướng dẫn}& : \giangvien \\[4pt]
+    \textbf{Ngày nộp bài}        & : \today \\
+  \end{tabular}
+
+  \vfill
+  {\large TP. Hồ Chí Minh, \today \par}
+\end{titlepage}
+
+\tableofcontents
+
+\input{chapters/chapter01-introduction}
+\input{chapters/chapter02-problem-description}
+\input{chapters/chapter03-problem-model}
+\input{chapters/chapter04-design}
+\input{chapters/chapter05-worked-example}
+\input{chapters/chapter06-development-story}
+\input{chapters/chapter07-experiment-design}
+\input{chapters/chapter08-evaluation}
+
+\end{document}

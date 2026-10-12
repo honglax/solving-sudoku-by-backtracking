@@ -1,0 +1,379 @@
+\chapter{Quá trình thiết kế và xây dựng}
+
+Em dùng Claude Code để lập kế hoạch, viết code, viết test và đo đạc. Phần chọn hướng, duyệt kết quả và quyết định cuối cùng do em giữ. Chương này kể lại từng giai đoạn theo thứ tự thời gian, từ ngày 3/10 đến ngày 12/10/2026.
+
+Nguồn của chương là nhật ký làm việc \texttt{work-log.md}, em ghi ngay sau mỗi buổi, và transcript của Claude Code lưu trên máy. Mọi prompt trong chương chép nguyên văn từ transcript, kể cả lỗi chính tả. Mỗi giai đoạn ghi công cụ, prompt, kết quả, vấn đề gặp phải và cách em kiểm chứng.
+
+\section{Công cụ và cách làm việc}
+
+Bảng \ref{tab:tools} liệt kê các công cụ, thư viện và model em dùng.
+
+\begin{table}[H]
+  \centering
+  \caption{Công cụ, thư viện và model}
+  \label{tab:tools}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{5.2cm}L@{}}
+    \toprule
+    \textbf{Công cụ} & \textbf{Vai trò} \\
+    \midrule
+    Claude Code (tiện ích VS Code, phiên bản 2.1.287 đến 2.1.295), model Claude Opus 5.5 & Lập kế hoạch, viết code website và các script, viết test, đo đạc, mở website trên Chrome để chụp màn hình và tự soát, viết nháp chữ trên website và report \\
+    Claude Design (trên claude.ai) & Vẽ 19 khung hình giao diện từ một prompt do Claude Code soạn \\
+    Một phiên Claude Code riêng & Đóng vai người dùng phổ thông, nhận xét website \\
+    React 19, React Router 8, TypeScript 6, Vite 8 & Website chạy hoàn toàn trên trình duyệt, không có máy chủ \\
+    Vitest 5, Playwright 1.63, oxlint & Test đơn vị, test trên Chrome thật, soát lỗi code \\
+    Python 3.9 & Các bản cài đặt tham chiếu để đối chiếu, script sinh bộ testcase \\
+    Yarn 4.18.1, lucide-react, Fontsource & Quản lý gói, biểu tượng, phông Be Vietnam Pro và JetBrains Mono \\
+    XeLaTeX & Report này \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Mỗi việc đi qua cùng một vòng:
+
+\begin{itemize}
+  \item Em nêu yêu cầu bằng một prompt ngắn.
+  \item Claude đọc code hiện có, đo đạc khi cần, rồi đề xuất phương án. Chỗ nào có nhiều lựa chọn thì Claude hỏi lại em.
+  \item Em chọn. Claude làm, chạy test, mở website trên Chrome thật để chụp màn hình và tự soát.
+  \item Em xem kết quả, góp ý tiếp, rồi ghi vào nhật ký.
+\end{itemize}
+
+Ngay prompt lập kế hoạch đầu tiên, em đặt luật văn phong cho Claude. Em giữ nguyên bảy dòng tiếng Anh:
+
+\begin{promptbox}{3/10, kèm theo prompt lập kế hoạch}
+- Cut hype, buzzwords, empty phrasing and anything that reads like marketing copy.\\
+- Write with a clear position. Fewer “it depends” hedges, fewer generic recommendations.\\
+- Mix short, medium and long sentences. Uniform, too-perfect rhythm reads as machine-written.\\
+- Replace vague claims with examples, scenarios and real detail — numbers, file paths, commit hashes.\\
+- Use plain, natural words, as if explaining to someone without much background in the topic.\\
+- Drop generic openers, filler, repeated transitions and summary paragraphs that add nothing.\\
+- Match the user's own voice: sample a few things they wrote, then follow that word choice, sentence rhythm and personality.
+\end{promptbox}
+
+Luật về code em đặt ngay sau đó, và giữ suốt dự án:
+
+\begin{promptbox}{3/10}
+Remember everything in code should be in English, code must be easy to read, easy to understand, must be explicit, can explain itself without comment. Do you think we can use React for the website?
+\end{promptbox}
+
+\section{Chọn đề và lập kế hoạch (3/10)}
+
+Em phân vân giữa Dijkstra và Sudoku.
+
+\begin{promptbox}{3/10}
+Bạn nghĩ sao về Dijkstra, tôi cũng thích Sudoku
+\end{promptbox}
+
+Claude khuyên bỏ Dijkstra vì trên lớp chưa học, cô chỉ nhắc tới như bài của khóa trước. Em chọn Sudoku. Lý do: em đã tự cài đặt quay lui theo mô hình 1 cho bài này từ trước, và bài toán có đủ ba động tác thử, loại, quay lui để nhìn thấy trên hình.
+
+Em yêu cầu lập kế hoạch đầy đủ trước khi viết dòng code nào:
+
+\begin{promptbox}{3/10}
+Ok, tôi đồng ý với Sudoku, nhưng chúng ta sẽ không thực hiện liền mà cần lên kế hoạch phân tích toàn bộ bài toán trước khi viết những dòng code đầu tiên. Vì vậy, hãy tạo 1 file markdown chứa toàn bộ chi tiết kế hoạch cho bài tập lớn này, lưu ý, giọng văn của bạn phải tuân thủ tuyệt đối theo yêu cầu của tôi dưới đây [bảy dòng luật văn phong ở mục trên]
+\end{promptbox}
+
+Claude viết \texttt{plan.md} gồm 12 mục. Trước khi viết, Claude chạy bản cài đặt Python của em trên 7 đề để lấy số đo thật. Các quyết định thiết kế dựa vào số đo đó. Đề Arto Inkala cần 445.778 lần thử, nên không thể chỉ có hoạt ảnh chậm: website phải có thêm nút giải một mạch.
+
+\begin{promptbox}{3/10}
+5.1. I wanna build a completely website and deploy to Netlify or any supported free server\\
+6. UI must be nice, modern, can I use Claude Design for this?
+\end{promptbox}
+
+\begin{promptbox}{3/10}
+Yes, file name should be in English as well. Don't need to care about zip and offline for now. Just let me know if we use React, does it affect to the performance?
+\end{promptbox}
+
+Câu hỏi hiệu năng có câu trả lời bằng số đo. Trên đề Inkala, bản đệ quy thường chạy hết 3,7 ms. Bản viết thành generator, để giao diện dừng được ở từng bước, mất 623 ms. Phần chậm nằm ở generator, không nằm ở React. Từ số đo này, kế hoạch chốt cách vẽ: mỗi khung hình lấy một loạt bước rồi mới vẽ lại một lần, thay vì vẽ lại sau từng bước.
+
+\section{Thiết kế giao diện bằng Claude Design (3/10 - 4/10)}
+
+\begin{promptbox}{3/10}
+Can we build a very detail prompt then I can use to talk with Claude Design for the mockup? We should have the color pallet for the website, it should be mordern, no violate design rule.
+\end{promptbox}
+
+Claude Code soạn file \texttt{design/claude-design-prompt.md}. File này có bốn điểm em thấy quan trọng:
+
+\begin{itemize}
+  \item \textbf{Bảng màu có đo độ tương phản} theo chuẩn WCAG AA. Một màu xám chỉ đạt 4,34:1, thiếu so với mức 4,5:1, nên Claude bỏ màu đó.
+  \item \textbf{Mỗi trạng thái ô có dấu hiệu ngoài màu}, ví dụ số không hợp lệ có thêm nét gạch ngang, để người khó phân biệt đỏ và xanh vẫn đọc được.
+  \item \textbf{Trạng thái lưới lấy từ lần chạy thật} của đề ``Vừa'' tại lần thử 803, lần thử 814 và lúc giải xong, không vẽ phỏng đoán.
+  \item \textbf{Mã giả chép đúng từng chữ slide} mô hình 1 của cô.
+\end{itemize}
+
+Em đưa prompt vào Claude Design và trong lúc làm yêu cầu thêm nút chuyển Sáng và Tối. Claude Design trả về 19 khung hình, file màu \texttt{tokens.css} và hướng dẫn bàn giao. Hình \ref{fig:design-frame} là một khung trong số đó.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{figures/design-frame-04-rejected.png}
+  \caption{Khung 04 của bản thiết kế: lần thử 814 của đề ``Vừa'', số 2 bị loại ở ô (4, 7)}
+  \label{fig:design-frame}
+\end{figure}
+
+\begin{promptbox}{4/10}
+Claude Design has finished their job and hand-off design in the folder design, you can take a look at this and let me know what your plan next?
+\end{promptbox}
+
+Trước khi code theo bản thiết kế, Claude chạy lại thuật toán tới đúng thời điểm của từng khung để soát số. Khung 04 (lần thử 814), khung 05 (lần thử 803) và khung 17 (đề Inkala ở lần thử 200.000) đều khớp từng con số.
+
+\section{Chuyển thuật toán sang TypeScript (4/10)}
+
+Claude viết lại bản cài đặt của em bằng TypeScript, đặt trong thư mục \texttt{website/src/solver}. Hàm \texttt{tryStep(i)} giữ đúng các bước của mô hình 1. Khác biệt duy nhất: ở mỗi bước, hàm phát ra một sự kiện để giao diện vẽ. Bảng đối chiếu từng dòng nằm ở Chương 4.
+
+Đáp án cho test là bản Python thêm ba bộ đếm: số lần thử, số lần ghi nhận, số lần trả lại. Hai bản phải cho cùng lời giải và cùng ba con số trên mọi đề. Lần đầu có 29 test, tất cả đạt.
+
+Tất cả đạt ngay lần đầu chưa chứng minh được gì, nên Claude thử làm sai thuật toán xem test có bắt được không:
+
+\begin{itemize}
+  \item \textbf{Bỏ số 9} khỏi vòng thử: 10 test báo lỗi.
+  \item \textbf{Kiểm tra cột trước hàng}: không test nào báo lỗi. Lý do: ba thời điểm chụp dùng làm đáp án đều chỉ trùng ở hàng. Claude thêm một test duyệt toàn bộ 1.682 lần bị loại của đề ``Vừa'', so cả lý do bị loại. Từ đó test bắt được lỗi này.
+\end{itemize}
+
+Giai đoạn này có hai sự cố nhỏ với trình quản lý gói:
+
+\begin{promptbox}{4/10}
+Can we use yarn v2 instead of npm?
+\end{promptbox}
+
+\begin{itemize}
+  \item Yarn 2 đã ngừng hỗ trợ, nên Claude dùng Yarn 4.18.1, cùng kiến trúc với bản 2. Lần chạy đầu, Yarn ghi nhầm ba file vào thư mục home vì ở đó có một file \texttt{yarn.lock} rỗng từ ngày 26/8. Claude xóa đúng ba thứ vừa tạo, giữ nguyên file cũ, rồi chạy lại trong thư mục dự án.
+  \item Yarn 4 từ chối cài lucide-react 1.51.0 vì bản này phát hành chưa đủ 24 giờ. Claude giữ lớp bảo vệ đó và dùng bản 1.50.0.
+\end{itemize}
+
+\section{Xây dựng trang Giải Sudoku (4/10)}
+
+Website lúc đầu còn ghi chữ ``Wecode'' trên giao diện. Em yêu cầu bỏ:
+
+\begin{promptbox}{4/10}
+Yes, please go head. But before moving forward, I don't think label “Wecode” is ok, we can use another label, right?
+\end{promptbox}
+
+\begin{promptbox}{4/10}
+I mean don't want any text relates to “Lab” “Wecode” like we're studying. Treat this website like the one to be used for people understand the algorithm, not my exercises
+\end{promptbox}
+
+Từ đây website viết cho người muốn hiểu thuật toán. Mã giả vẫn chép đúng slide, chỉ tiêu đề đổi thành chữ chung như ``Mã giả quay lui''.
+
+Trang Giải Sudoku có lưới gõ số được, chú thích màu, chọn đề mẫu, dán đề, các nút Từng bước, Tự động, Giải ngay, Đặt lại, thanh tốc độ, mã giả tô sáng dòng đang chạy, bảng $S = (S_1, \ldots, S_n)$, bộ đếm và câu thông báo.
+
+\subsection*{Bảng lịch sử}
+
+\begin{promptbox}{4/10}
+I'm thinking about “Diễn biến” table should has history or last 10\textasciitilde{}15 steps, and can we trace back through history? Does it cost more performance?
+\end{promptbox}
+
+Claude không đoán con số mà đo. Trên ba đề ``Vừa'', Wikipedia và Inkala, một nhánh sai dài trung vị 21 đến 31 bước. Giữ 100 bước thì thấy trọn khoảng 80 phần trăm số nhánh sai. Giữ 15 bước chỉ thấy khoảng 30 phần trăm. Em chọn 100.
+
+Cách làm cũng tránh tốn bộ nhớ. Website không lưu bản sao lưới ở mỗi bước, chỉ lưu sự kiện. Khi xem lại, website ``hoàn tác'' ngược từ trạng thái hiện tại. Test kiểm tra lùi từ 1 đến 300 sự kiện đều ra đúng trạng thái thật lúc đó.
+
+\subsection*{Bố cục, chữ giao diện và test trên trình duyệt}
+
+\begin{promptbox}{4/10}
+Screenshot: The solver screen, the components are very tight while we still have a lot of blank space below, can we make it fit the screen (responsive height)?
+\end{promptbox}
+
+\begin{promptbox}{4/10}
+I don't like put css in the same folder with tsx file. Any suggestion for folder structure?\\
+And for the label, we should store them in a json file to preparing for localization/i18n in the future
+\end{promptbox}
+
+Lưới giờ co giãn theo chiều cao màn hình, từ ô 44 px tới 96 px. CSS tách sang thư mục riêng. Khoảng 300 dòng chữ giao diện chuyển vào một file JSON. Claude kiểm tra không còn chữ tiếng Việt nào trong code ngoài file đó.
+
+Claude viết một script điều khiển Chrome để bấm tới đúng lần thử của từng khung thiết kế rồi chụp màn hình so sánh. Cách soát này tìm ra các lỗi sau, tất cả đã sửa:
+
+\begin{itemize}
+  \item Thanh trên cùng cao 57 px thay vì 56 px, làm trang dư 1 px.
+  \item Đề sai thì bảng $S$ biến mất.
+  \item Đóng hộp dán đề thì con trỏ bàn phím không quay về nút ``Dán đề''.
+  \item 81 ô lưới vẽ lại ở mọi khung hình, vì hàm truyền xuống ô không cố định.
+  \item Mục lục trang Thuật toán tô sai mục khi cuộn.
+  \item Mở tab Lịch sử làm trang cao tới 2.998 px.
+\end{itemize}
+
+Sau đó Claude chuyển các bước soát này thành 31 test Playwright chạy trên Chrome thật. Để chắc bộ test có tác dụng, Claude đưa lại lỗi 57 px của ngày đầu. Ba test báo đúng ``Expected 680, Received 681''.
+
+\section{Góp ý từ một phiên Claude đóng vai người dùng (4/10)}
+
+Em chưa có người thật dùng thử. Em mở một phiên Claude Code riêng và nhờ nó đóng vai người dùng phổ thông:
+
+\begin{promptbox}{4/10, phiên riêng}
+As an end user (normal end user), how you rate my sudoku website? And feedback from your side for UI, for functional, any things else?
+\end{promptbox}
+
+Phiên đó chỉ trả lời, không sửa file nào. Em dán nguyên bản nhận xét sang phiên chính:
+
+\begin{promptbox}{4/10}
+A feedback from an end-user [nguyên văn bản nhận xét]\\
+We can skip the video demo/source code for now. You can address the feedback from the end-user
+\end{promptbox}
+
+Claude đo lại trước khi sửa. Bảng $S$ ở màn hình 1366 × 768 cắt đôi hàng ô 33 đến 40, chú thích màu cao 12 px. Hai điểm này đúng như nhận xét. Các thay đổi sau đó:
+
+\begin{itemize}
+  \item Bảng $S$ chỉ hiện trọn hàng, có thanh cuộn luôn thấy được.
+  \item Rê chuột lên ô nào thì hiện nghĩa màu của ô đó. Chú thích màu lớn theo lưới.
+  \item Thêm nút lùi một bước cạnh nút Từng bước, và nút tới lần quay lui kế tiếp.
+  \item Chạy tự động thì dừng ở lần quay lui đầu tiên và hỏi người xem đoán bước tiếp theo.
+  \item Trang chủ có lưới chạy lại thật các bước 783 đến 814 của đề ``Vừa'', đứng yên nếu máy bật giảm chuyển động.
+\end{itemize}
+
+Một góp ý em không làm theo. Nhận xét nói đề Wikipedia chạy tự động mất nửa giờ. Con số đó đúng ở tốc độ mặc định 20 lần thử mỗi giây. Ở tốc độ tối đa 1.000 lần thử mỗi giây, đề này chạy hết 38 giây. Em giữ tốc độ tối đa, thêm nút tới lần quay lui kế để người xem tới khoảnh khắc đáng xem nhanh hơn.
+
+Em cũng tự sửa vài chỗ chữ, ví dụ:
+
+\begin{promptbox}{4/10}
+The word “Người làm” is very weird, why you don't use “Tác giả” or more meaningful word?
+\end{promptbox}
+
+\section{Yêu cầu chính thức và đổi góc nhìn (6/10)}
+
+\begin{promptbox}{6/10}
+Cô đã cập nhật yêu cầu cho final-project rồi, review qua xem chúng ta còn cần gì. Yêu cầu này sẽ overwrite yêu cầu ở buổi 8 [nguyên văn yêu cầu của cô]
+\end{promptbox}
+
+Claude đối chiếu yêu cầu mới với kế hoạch và code. Phần demo đã đủ. Phần thiếu gồm bộ testcase, report khoảng 10 mục, video phải đi qua mọi chức năng, và phần sáng tạo: kế hoạch cũ ghi ``không dùng thuật toán khác'', trong khi tiêu chí mới chấm điểm việc giải nhiều cách rồi so sánh. Claude cũng tìm ra một lỗi trong kế hoạch: dòng ``Dừng khi $k - i = 0$'' phải là $n - i = 0$.
+
+\begin{promptbox}{6/10}
+1. Đồng ý với gợi ý của bạn\\
+2. Report bằng LaTeX\\
+3. Sẽ quyết định sau khi chúng ta hoàn tất mọi thứ
+\end{promptbox}
+
+\begin{promptbox}{6/10}
+Không nhất thiết cứ phải mention Lab 01 hay Wecode, hãy mở rộng phạm vi ra. Treat mọi thứ như chúng ta đang dựng 1 website để dạy học và chia sẻ kiến thức vậy
+\end{promptbox}
+
+Claude hỏi lại ``mở rộng'' theo hướng nào: chỉ đổi góc nhìn, thêm trang bài học quay lui, hay thêm bài toán khác. Em chọn đổi góc nhìn và vẫn giữ Sudoku, vì 12 ngày không đủ cho bài toán thứ hai. Em chọn thêm cách ``điền ô ít khả năng nhất trước'' (MRV) để so sánh với mô hình 1.
+
+\section{Bộ testcase (6/10)}
+
+Claude viết script sinh 294 đề chia 6 nhóm, đáp án lấy từ hai chương trình Python độc lập với website. Chương 7 trình bày chi tiết. Ở đây em kể các vấn đề gặp phải.
+
+\textbf{Vòng lặp không dừng.} Lần chạy đầu treo hơn 10 phút. Claude đo từng nhóm và tìm ra vòng sinh đề ``đúng 2 lời giải'' lặp mãi. Lý do: mọi lưới ``ngẫu nhiên'' đều sinh từ một lưới mẫu rồi hoán vị hàng, cột và đổi tên số. Cả họ lưới đó không bao giờ có bốn ô hình chữ nhật đổi chỗ được. Lỗi này còn lộ ra một điểm yếu: bộ đề kém đa dạng hơn em tưởng. Claude đổi sang sinh lưới đầy bằng quay lui với thứ tự số xáo trộn.
+
+\textbf{Bộ test lỏng.} Mọi đề đạt ngay lần đầu. Claude kiểm lại bằng bốn lỗi cố ý, và lần đầu test chỉ bắt được hai lỗi:
+
+\begin{itemize}
+  \item ``Kiểm tra cột trước hàng'' lọt qua, vì đáp án chỉ ghi lời giải và ba bộ đếm. Claude thêm ba cột: số lần bị loại vì hàng, vì cột, vì khối.
+  \item ``Bỏ qua khối khi kiểm tra đề'' làm bộ giải chạy mãi trên đề trùng khối. Claude đặt giới hạn số lần thử cho mỗi đề, bằng đúng số trong đáp án.
+\end{itemize}
+
+Sau khi vá, test bắt được cả bốn lỗi, lần lượt 229, 5, 1 và 262 đề báo sai. Trong lúc thử, một lệnh chạy nền vẫn tiếp tục sửa code sai sau khi Claude đã dừng nó. Claude dừng hẳn tiến trình đó và khôi phục code từ git trước khi làm tiếp.
+
+\begin{promptbox}{6/10}
+Wow, there are too much files .in and .out
+\end{promptbox}
+
+294 đề nhân hai file là 588 file. Em chọn gom mỗi nhóm thành một file văn bản, mỗi đề một khối gồm mô tả, đề và kết quả mong đợi.
+
+\begin{promptbox}{6/10}
+Why it takes so long?
+\end{promptbox}
+
+Hai đề chậm nhất chạy hết 18 phút 45 giây trên bộ giải của website: đề chống quay lui cần 622.577.597 lần thử, đề 17 số cho sẵn cần 239.312.393 lần. Phần chậm nằm ở generator. Em giữ nguyên, vì bộ test phải chạy đúng bộ giải người xem thấy trên website. Hai đề này không chạy mặc định.
+
+\section{Trang So sánh (6/10)}
+
+Claude viết phần thuật toán trước, đo xong mới làm giao diện. Ba cách kiểm tra một số có hợp lệ không (đọc lại lưới, ba mảng đánh dấu, bitmask) cho đúng cùng số lần thử trên cả 12 đề. Cách điền ô ít khả năng nhất trước giảm mạnh số lần thử: đề chống quay lui giảm từ 622.577.597 xuống 407.156. Trên đề Inkala, cách này lại chậm hơn bản thường: 21,5 ms so với 5,2 ms, vì mỗi bước phải đếm lại khả năng của mọi ô trống.
+
+Phiên bản đầu của trang có bảng số liệu và hai biểu đồ thanh. Em mở thử và không hiểu:
+
+\begin{promptbox}{6/10, kèm ảnh chụp màn hình}
+Do we have any visualize for Comparing page? As a normal user, I don't understand any word of this page?
+\end{promptbox}
+
+Hai biểu đồ để trống cho tới khi bấm Đo, và chữ toàn thuật ngữ. Claude đề xuất ba kiểu minh họa. Em chọn cuộc đua giữa hai lưới (Hình \ref{fig:race}): cùng đề, cùng tốc độ, lưới trái điền lần lượt, lưới phải điền ô dễ nhất trước, mỗi ô trống hiện số khả năng còn lại. Thuật ngữ đổi sang lời thường: ``Nhìn lại lưới'', ``Sổ ghi chép'', ``Dãy công tắc''.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{figures/comparison-race.png}
+  \caption{Cuộc đua trên đề ``Vừa'': điền ô dễ nhất trước xong sau 226 lần thử, điền lần lượt cần 1.909 lần}
+  \label{fig:race}
+\end{figure}
+
+Để có đáp án độc lập, Claude viết thêm một bản Python cho cách điền ô ít khả năng nhất trước. Bản này khớp bản TypeScript trên cả 12 đề.
+
+\section{Trang Mọi lời giải (6/10)}
+
+Mô hình 1 trên slide vốn không dừng ở lời giải đầu: xuất xong một lời giải, nó trả lại trạng thái cũ rồi thử tiếp. Em chọn đặt chế độ ``tìm hết'' ở một trang riêng để trang Giải Sudoku giữ nguyên.
+
+Khi chạy bản Python đếm lời giải, Claude phát hiện đề mẫu ``Vừa'', đề mặc định của trình giải, có 4 lời giải chứ không phải 1. Bộ đếm độc lập trong bộ testcase cũng ra 4. Em sửa lại các chỗ tài liệu ghi sai điều này.
+
+Claude kiểm chéo thêm: chế độ tìm hết đếm lại số lời giải của 251 đề trong bộ testcase. 239 đề tìm hết trong giới hạn 300 nghìn lần thử, và cả 239 đề khớp bộ đếm độc lập. Lỗi tìm ra khi chụp màn hình: ở màn hình rộng 820 px, chữ trong menu sáu mục dồn xuống hai dòng. Claude đo thấy sáu mục vừa một dòng từ 880 px, nên cho menu thu gọn dưới 900 px.
+
+\section{Quy tắc văn phong và viết lại chữ trên website (6/10)}
+
+Em dán ba bộ quy tắc văn phong, bắt đầu bằng:
+
+\begin{promptbox}{6/10}
+Nguyên tắc dành cho bạn khi làm việc với câu chữ, hãy lưu vào system\\
+• Quy tắc chống văn phong AI (Anti-AI Patterns): Cấm dùng các từ ngữ sáo rỗng, cầu kỳ quá mức (ví dụ: “trong bức tranh toàn cảnh”, “tóm lại là”, “không thể phủ nhận rằng”), ưu tiên câu ngắn, nhịp điệu linh hoạt.\\
+• Quy chuẩn mạch lạc (Flow): Hướng dẫn cách chuyển ý tự nhiên giữa các đoạn, đi từ ví dụ thực tế rồi mới rút ra kết luận thay vì áp đặt lý thuyết khô khan
+\end{promptbox}
+
+Claude chỉ ra ba chỗ các bộ quy tắc mâu thuẫn nhau hoặc mâu thuẫn với bài làm. Cấu trúc ``câu chuyện trước'' ngược với ``kết luận trước''. Luật ``không đưa code'' đụng tới mã giả cô chấm. Giọng hài hước không hợp với report. Claude đề xuất chia quy tắc theo nơi dùng: website dùng đủ cả bộ, report chỉ dùng luật về câu và bộ lọc từ.
+
+\begin{promptbox}{6/10}
+Yeah, về mã giả thì bất khả xâm phạm, tôi đồng ý
+\end{promptbox}
+
+\begin{promptbox}{6/10}
+Sao bạn không lưu vào như 1 SKILL?
+\end{promptbox}
+
+Bộ quy tắc thành một skill của Claude Code, có bước tự kiểm trước khi giao chữ. Em đưa thêm một bài viết mẫu. Claude chỉ ra hai lỗi thuật toán trong bài: ``điền bừa một số'' (thuật toán thử lần lượt từ 1 đến 9, không có gì bừa) và ``thử hết tất cả các trường hợp'' (thuật toán bỏ ngay số trùng, nên đề Inkala chỉ cần 445.778 lần thử thay vì $9^{60}$).
+
+Claude viết lại khoảng 50 câu trên website. Bảng \ref{tab:rewrite} có ba ví dụ.
+
+\begin{table}[H]
+  \centering
+  \caption{Ba câu trước và sau khi viết lại}
+  \label{tab:rewrite}
+  \begin{tabularx}{\linewidth}{@{}LL@{}}
+    \toprule
+    \textbf{Trước} & \textbf{Sau} \\
+    \midrule
+    Xem thuật toán quay lui giải Sudoku, từng bước một. & Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa. \\
+    Ô (4, 7) - thử số 2: bị loại vì 2 đã có ở hàng 4. & Ô (4, 7) - thử số 2: hàng 4 đã có số 2, bỏ. \\
+    Nói cách khác, O($9^n$) ở phần trên không chỉ là chuyện lý thuyết. & O($9^n$) ở phần trên không chỉ nằm trên giấy: đề này bắt thuật toán đi gần hết cái cây đó. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Lần viết lại này để lọt một lỗi. Ba câu mới có chỗ chờ điền số, nhưng code chưa truyền số vào, nên trang hiện nguyên dấu ngoặc nhọn. Không test nào bắt được. Claude tự phát hiện ngay sau khi commit, sửa, rồi thêm một test mở từng trang và khẳng định không còn chỗ chờ điền nào hiện ra. Lần đầu chính test này vẫn đạt trên bản lỗi, vì nó đọc chữ khi trang còn đang tải. Claude đổi sang chờ trang tải xong, và test báo lỗi đúng ở trang Thuật toán.
+
+\section{Đề minh họa và sự cố máy chậm (8/10 - 10/10)}
+
+Chương 5 cần một đề đủ ngắn để in trọn từng bước, mà vẫn có quay lui. Claude viết script tìm đề theo tiêu chí: 10 đến 16 ô trống, đúng một lời giải, 50 đến 90 lần thử, 1 đến 3 lần quay lui, có đủ ba kiểu bị loại. Script ra 12 đề. Em chọn đề 79 lần thử, 3 lần quay lui, vì cả ba lần quay lui nằm gọn trong 35 lần thử đầu trên hàng 1, và có một lần lùi dây chuyền qua hai ô. Đề này thành đề mẫu số 13 trên website. Một script khác xuất cả 83 bước bằng chính bộ giải của website, nên bảng ở Chương 5 khớp với demo.
+
+Ngày 9/10, \texttt{yarn test} từ 9 giây thành 16 phút, mỗi lần chạy hỏng một test khác nhau vì quá giờ. Claude đo bằng một vòng lặp: cần 1,9 giây CPU mà mất 27 giây, tức máy chỉ cấp khoảng 5 đến 7 phần trăm sức chạy. Máy không bật tiết kiệm pin, cũng không có cảnh báo nhiệt. Claude nới giới hạn thời gian mỗi test lên 30 giây. Ngày 10/10 máy chạy bình thường trở lại, và toàn bộ test đạt: 723 test đơn vị, 292 testcase, 60 test trên Chrome.
+
+\section{Phần việc của em và phần việc của AI}
+
+Bảng \ref{tab:roles} tách phần em làm và phần Claude làm.
+
+\begin{table}[H]
+  \centering
+  \caption{Phân chia công việc}
+  \label{tab:roles}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.4cm}LL@{}}
+    \toprule
+    \textbf{Việc} & \textbf{Em} & \textbf{Claude} \\
+    \midrule
+    Chọn đề, phạm vi, công nghệ & Quyết định mọi lựa chọn & Đề xuất phương án, đo đạc để em chọn \\
+    Thuật toán & Tự cài đặt quay lui theo mô hình 1 bằng Python từ trước & Chuyển sang TypeScript, giữ đúng cấu trúc; viết thêm biến thể MRV và tìm hết \\
+    Giao diện & Duyệt bản thiết kế, thêm yêu cầu Sáng và Tối, góp ý từng màn hình & Claude Code soạn prompt; Claude Design vẽ; Claude Code code theo bản vẽ \\
+    Code website, script, test & Duyệt kết quả qua ảnh chụp và chạy thử & Viết toàn bộ code, test, script đo đạc \\
+    Chữ trên website & Đặt quy tắc văn phong, sửa các câu chưa tự nhiên & Viết nháp theo quy tắc \\
+    Kiểm chứng & Yêu cầu soát lại khi thấy lạ (trang So sánh, thời gian chạy) & Đề xuất và chạy các cách soát: bản Python độc lập, cố tình làm sai, chụp màn hình \\
+    Report & Đọc, sửa và chịu trách nhiệm nội dung & Viết bản nháp từ nhật ký và transcript \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Các cách kiểm chứng em dựa vào xuyên suốt dự án:
+
+\begin{itemize}
+  \item \textbf{Đáp án độc lập.} Mọi con số trên website và trong report đều so với bản Python viết riêng: bản tham chiếu mô hình 1, bản điền ô ít khả năng nhất trước, bản tìm hết, và bộ đếm lời giải dùng cách khác hẳn.
+  \item \textbf{Cố tình làm sai.} Mỗi khi test đạt hết ngay lần đầu, Claude đưa lỗi vào thuật toán để xem test có bắt được không. Hai lần cách này lộ ra lỗ hổng thật.
+  \item \textbf{Chụp màn hình trên Chrome thật} ở nhiều cỡ màn hình, sáng và tối, trên điện thoại.
+  \item \textbf{Số đo thật thay cho phỏng đoán}, từ số bước giữ trong lịch sử tới chiều rộng menu.
+\end{itemize}

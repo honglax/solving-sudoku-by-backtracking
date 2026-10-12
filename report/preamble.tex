@@ -1,0 +1,101 @@
+\usepackage{fontspec}
+\setmainfont{texgyretermes}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic
+]
+\setsansfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Scale          = 0.95
+]
+\setmonofont{texgyrecursor}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+  Scale          = 0.88
+]
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setotherlanguage{english}
+
+\usepackage{geometry}
+\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=2cm, headheight=15pt}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Phân tích \& Thiết kế thuật toán - Bài tập lớn}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{longtable}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+
+\usepackage{enumitem}
+\usepackage{pifont}
+\newcommand{\vong}[1]{\ding{\numexpr171+#1\relax}}
+
+\usepackage{listings, xcolor}
+\definecolor{codebg}{gray}{0.96}
+\lstset{
+  backgroundcolor = \color{codebg},
+  basicstyle      = \ttfamily\small,
+  keywordstyle    = \color{blue!70!black}\bfseries,
+  commentstyle    = \color{green!45!black}\itshape,
+  stringstyle     = \color{orange!80!black},
+  numbers         = left,
+  numberstyle     = \tiny\color{gray},
+  numbersep       = 8pt,
+  breaklines      = true,
+  frame           = single,
+  framesep        = 5pt,
+  xleftmargin     = 18pt,
+  showstringspaces= false,
+  captionpos      = b,
+  literate        = {->}{{$\rightarrow$}}1 {<=}{{$\leq$}}1 {>=}{{$\geq$}}1
+}
+
+\usepackage[most]{tcolorbox}
+\newtcolorbox{promptbox}[1]{
+  colback=gray!4, colframe=gray!55!black, boxrule=0.5pt,
+  title={Prompt · #1}, fonttitle=\small\bfseries, fontupper=\small,
+  sharp corners=downhill, breakable
+}
+\newtcolorbox{ghichu}[1][Lưu ý]{
+  colback=yellow!8, colframe=orange!70!black, boxrule=0.6pt,
+  title=#1, fonttitle=\bfseries
+}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true, linkcolor = blue!60!black,
+  urlcolor   = cyan!70!black, pdfstartview = FitH
+}
+
+\newcommand{\T}[1]{T\!\left(#1\right)}
+\newcommand{\Oh}[1]{\mathcal{O}\!\left(#1\right)}
+\newcommand{\Om}[1]{\Omega\!\left(#1\right)}
+\newcommand{\Th}[1]{\Theta\!\left(#1\right)}
+\newcommand{\lgn}{\log_2 n}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
