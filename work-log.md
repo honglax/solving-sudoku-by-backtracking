@@ -11,7 +11,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 **Việc đã làm**
 
 - Xem lại video Buổi 8 để biết cô yêu cầu gì (0:12-0:23, 0:43-0:45, 2:53-2:58) và thông báo "NỘP BÀI TẬP LỚN" trên e-learning.
-- Chọn đề. Mình thích cả Dijkstra lẫn Sudoku. Claude khuyên không chọn Dijkstra vì trên lớp chưa học, chỉ được nhắc tới như bài của khóa trước. Mình chọn Sudoku: đây là bài Lab01 mình đã tự giải và nộp trên Wecode ngày 13/9 (`Lab01/sudoku.py`), đề bắt buộc dùng quay lui mô hình 1.
+- Chọn đề. Mình thích cả Dijkstra lẫn Sudoku. Claude khuyên không chọn Dijkstra vì trên lớp chưa học, cô chỉ nhắc tới khi cho xem sản phẩm của một sinh viên lớp chính quy. Claude khuyên chọn Sudoku vì bài giải bằng quay lui mô hình 1 và có đủ thử, loại, quay lui để nhìn thấy trên hình. Mình đồng ý.
 - Lập `plan.md` trước khi viết dòng code nào. Claude chạy thử logic `sudoku.py` trên 7 đề để lấy số đo thật (bảng 3.4). Các quyết định về thiết kế dựa trên số đo này, ví dụ đề Inkala 445.778 lần thử thì không thể chạy hoạt ảnh.
 
 **Prompt chính**
@@ -230,7 +230,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Tổng: 69 test đơn vị + 31 test end-to-end, tất cả đạt.
 - Trang Giới thiệu: đổi nhãn "Người làm" thành "Tác giả".
 
-**Sửa theo góp ý của người dùng thử** (đính chính 12/10: "người dùng thử" là một phiên Claude Code riêng mà mình nhờ đóng vai người dùng phổ thông, phiên `f26245fe`, không phải người thật)
+**Sửa theo góp ý của người dùng thử** (đính chính 12/10: "người dùng thử" là một phiên Claude Code riêng mà mình nhờ đóng vai người dùng phổ thông, phiên `f26245fe`, không phải người thật. Trước đó, cũng trong phiên này, mình nhờ viết lại chữ giao diện: "You're a specalist in language and how to speak naturally. You will review this vi.json file for each text and fix these label more naturally. A sentence must not be too short, "cụt lủn"", và phiên đó viết lại 53 câu trong `vi.json`)
 
 > A feedback from an end-user (dán nguyên văn góp ý: điểm tốt, lỗi giao diện, lỗi chức năng, góp ý nhỏ)
 
@@ -286,7 +286,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 > Không nhất thiết cứ phải mention Lab 01 hay Wecode, hãy mở rộng phạm vi ra. Treat mọi thứ như chúng ta đang dựng 1 website để dạy học và chia sẻ kiến thức vậy
 
 - Claude hỏi lại "mở rộng" theo hướng nào: chỉ đổi góc nhìn, thêm trang bài học quay lui, hay thêm bài toán khác. Mình chọn **đổi góc nhìn, vẫn Sudoku**, và **làm thêm MRV** (chọn ô ít khả năng nhất trước) sau A, B.
-- `plan.md` viết lại theo góc nhìn website dạy học: định dạng đề, đề mẫu, bộ testcase, report, video không còn dựa vào Lab01/Wecode. Lab01 chỉ còn trong phần lý do chọn đề của report, vì cô yêu cầu nêu lý do thật.
+- `plan.md` viết lại theo góc nhìn website dạy học: định dạng đề, đề mẫu, bộ testcase, report, video không còn dựa vào Lab01/Wecode.
 - Đổi tên `checks/lab01_counts.py` thành `checks/reference_solver.py` (bản Python tham chiếu).
 
 **Commit đầu tiên và bộ testcase**
@@ -381,7 +381,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Gộp 3 bộ quy tắc thành skill dự án `.claude/skills/vietnamese-writing/` (ngoài repo `final-project`). Claude chỉ ra chỗ xung đột (3S với kim tự tháp ngược; "không đưa code" với mã giả cô chấm; giọng content creator với report) và đề xuất chia theo nơi dùng: website dùng đủ bộ, report chỉ dùng luật câu và bộ lọc từ, câu trả lời theo kim tự tháp ngược. Mình đồng ý, thêm: **mã giả bất khả xâm phạm**.
 - Bài mẫu mình đưa được lưu kèm chú thích. Claude chỉ ra 2 lỗi thuật toán trong bài ("điền bừa", "thử hết tất cả trường hợp") và các số bịa ("hàng triệu phép tính mỗi giây"), rồi viết lại bằng số đo thật.
 - Viết lại khoảng 50 câu trên website theo skill: bỏ "Tóm lại", "Nói cách khác", "rất", thể bị động; câu ngắn dài xen nhau; mỗi nhận xét về độ khó có con số. Ví dụ:
-  - Tiêu đề trang chủ: "Cùng xem thuật toán quay lui giải Sudoku như thế nào nhé!"; đoạn dẫn dùng hình ảnh dãy cửa và chùm chìa khóa.
+  - Tiêu đề trang chủ: "Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa."; đoạn dẫn dùng hình ảnh dãy cửa và chùm chìa khóa. (Đính chính 12/10: dòng này trước đây ghi nhầm câu mình tự sửa sau này.)
   - Câu bị loại: "Ô (4, 7) - thử số 2: hàng 4 đã có số 2, bỏ." (trước: "… bị loại vì 2 đã có ở hàng 4").
   - Trang Thuật toán: kết luận độ phức tạp có số Inkala thật; đoạn đề chống quay lui trỏ sang cuộc đua ở trang So sánh (407.156 lần thử nếu điền ô dễ nhất trước). Ba câu này lấy số từ dữ liệu đề mẫu, không gõ tay.
   - Lưới trống: "Cứ cho máy tìm 1 triệu lời giải mỗi giây thì cũng mất khoảng 211 triệu năm."
@@ -424,7 +424,7 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 > Let's do it, I will deploy Netlify later
 
 - Dựng khung report LaTeX trong `report/`: lớp `report`, preamble lấy từ HW02 (đổi đầu trang, thêm hộp prompt, bảng dài), trang bìa, mục lục, 8 chương theo đúng danh sách mục cô yêu cầu.
-- Trích toàn bộ prompt từ transcript Claude Code để chép nguyên văn vào report. Xác nhận cả 3 phiên làm bài tập lớn dùng model Claude Opus 5.5 (`claude-opus-5-5`), Claude Code 2.1.287 đến 2.1.295. Phát hiện cần đính chính: bản nhận xét "người dùng thử" ngày 4/10 do một phiên Claude riêng viết (phiên đó không sửa file nào); đã sửa dòng tương ứng trong nhật ký và report ghi đúng như vậy.
+- Trích toàn bộ prompt từ transcript Claude Code để chép nguyên văn vào report. Xác nhận cả 3 phiên làm bài tập lớn dùng model Claude Opus 5.5 (`claude-opus-5-5`), Claude Code 2.1.287 đến 2.1.295. Phát hiện cần đính chính: bản nhận xét "người dùng thử" ngày 4/10 do một phiên Claude riêng viết; đã sửa dòng tương ứng trong nhật ký. (Đính chính 12/10, sau hội đồng: phiên đó có sửa file. Prompt đầu của phiên nhờ viết lại chữ giao diện, và phiên đó viết lại 53 câu trong `vi.json` cùng đáp án test.)
 - Viết Ch.6 (quá trình thiết kế và xây dựng): bảng công cụ, cách làm việc, 11 giai đoạn có prompt nguyên văn, bảng phân chia việc giữa mình và Claude. Ghi rõ report do Claude viết nháp từ nhật ký và transcript, mình đọc, sửa và chịu trách nhiệm nội dung.
 - `website/scripts/captureReportFigures.ts` chụp ảnh cho report từ website thật (hiện có ảnh cuộc đua).
 - Compile XeLaTeX không cảnh báo, không còn ký tự `%` trong file `.tex`. Report 24 trang.
@@ -468,3 +468,29 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Claude đề xuất hội đồng 5 vai bám theo tiêu chí chấm của cô: giảng viên chấm bài, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp, người hoài nghi (soát chỗ giống AI viết và độ trung thực của phần kể dùng AI). Các agent chỉ đọc, làm việc độc lập, không thấy ý kiến của nhau.
 - Lưu thành skill dự án `council` (`.claude/skills/council/`, ngoài repo). Quy trình 5 bước: chuẩn bị (compile report hoặc chụp ảnh website), giao việc song song, chủ tọa gộp ý và kiểm chứng từng ý với file gốc (gắn nhãn Đúng / Đúng một phần / Sai / Tùy chọn), trình sinh viên chọn sửa, sửa rồi ghi nhật ký. Mã giả của cô và khuôn trình bày của cô luôn thắng mọi góp ý.
 - Chạy được với tham số `report`, `website`, `video`, `final`.
+
+**Hội đồng góp ý cho report (commit `dbf025b`)**
+> Start the council
+
+- Tham số `report`, đủ 5 vai: giảng viên chấm bài, người soát thuật toán, biên tập viên tiếng Việt, bạn cùng lớp, người hoài nghi. Năm agent nêu khoảng 130 ý; Claude gộp còn khoảng 45 ý, kiểm từng ý với file gốc, dữ liệu và transcript: 11 ý Nặng, 18 ý Vừa và khoảng 25 ý Nhẹ là đúng.
+- Điểm thử của vai giảng viên: đáp ứng 6/10 (thiếu video, link demo, phụ lục), đầu tư 8,5/10, sáng tạo 8/10.
+- Ý đã loại: viết `= O(9ⁿ)` thay cho `∈ O(9ⁿ)` (khuôn truy hồi cô chữa dùng `∈`); đổi "bài toán quyết định" (chữ của cô); sửa mã giả mô hình 1 (khớp slide từng chữ). Ý tùy chọn không làm: rút gọn mục văn phong ở Ch.6, thêm cột cờ vào bảng 83 bước, thêm trích đoạn ví dụ thứ hai, chia nhóm 4 cho cột S, nút Tự động tô xanh.
+- Mình chọn sửa hết các ý đã kiểm là đúng. Ba bộ quy tắc văn phong và bài mẫu ngày 6/10 do một công cụ AI dạng chat khác soạn; report ghi thêm công cụ đó vào bảng công cụ.
+- Đã sửa trong report:
+  - Ch.6 ghi đúng ai đề xuất, ai chọn (phần lớn là phương án Claude khuyên; lần chọn khác là trang Mọi lời giải riêng); thêm prompt ở các giai đoạn xây bộ giải; thêm mục "Một phiên Claude riêng" với prompt viết lại 53 câu; thêm mục "Viết report và hội đồng agent"; nhật ký ghi rõ do Claude viết; tách phần em tự kiểm (dùng thử) và phần Claude chạy.
+  - Ch.1 lý do chọn đề viết lại theo đúng transcript ngày 3/10; bỏ lý do nghĩ ra sau; thêm nguồn cho phần ứng dụng.
+  - Ch.4: câu ý tưởng sai bước; định nghĩa cây tìm kiếm; thêm biến i, j, (r, c), b(r, c), `found` vào bảng; ví dụ đánh số khối; mã giả Sudoku dừng bằng `found` thay cho "và dừng"; truy hồi ghi rõ là cận trên, nghĩa của c₁, công thức tổng cấp số nhân dạng chung; bỏ câu "cận vẫn có thật", viết lại đoạn đề chống quay lui (622.577.597 vẫn cách xa 9⁶⁴); ví dụ bitmask, hai phép OR; O(n) thay O(9n); đề vô nghiệm thử bằng nhau ở hai bản; giải thích vì sao generator chậm (`yield*` qua từng tầng); đối chiếu tên trên website; trích Levitin.
+  - Ch.5: 27 lần thử bị mất vì quay lui (không phải 34); cách đọc cột Bấm, dòng Trả lại, thứ tự lý do bị loại; hướng dẫn mở đề 13 và nút "Tới lần quay lui kế"; đề 13 do Claude chọn; sửa chủ ngữ "ô thử số".
+  - Ch.7: hai chương trình đáp án đều do Claude viết, nêu giới hạn; giải thích con số 251; sửa câu "ba định dạng"; thêm nguồn cho các đề nổi tiếng; người làm lỗi cố ý là Claude.
+  - Ch.8 viết lại theo số đo mới; bốn ý so sánh chuyển sang văn xuôi, sửa câu "5 tới 1.529 lần" và kết luận "khi cây đủ lớn".
+  - Ch.2, Ch.3: đặt tên đề số 13, Input ghi kiểu ký tự, đặt tên M₁, M₂ cho hai thông báo.
+  - Thêm phụ lục "Chạy mã nguồn". Bỏ 5 chữ "nó", các câu khẩu hiệu và chữ "cái giá".
+- Website: câu kết đoạn đề chống quay lui ở trang Thuật toán nói quá ("bắt thuật toán đi gần hết cái cây đó"), viết lại thành "Đề này chưa chạm tới cận O(9ⁿ) ở phần trên, vì 9⁶⁴ là một số có 62 chữ số. Nhưng chỉ cần đáp án hàng đầu ngược với thứ tự thử, số lần thử đã lên hơn 600 triệu."
+- Đo lại trên code hiện tại:
+  - `yarn testcases --include-slow`: cả 294 đề đạt, 18 phút 52 giây. Đề chống quay lui 13 phút 57 giây, đề 17 số 4 phút 45 giây. `yarn testcases` (292 đề) khoảng 9 giây.
+  - Script mới `report/tools/measureGeneratorOverhead.ts`: trên đề Inkala, generator 596 ms so với 4,42 ms của bản đệ quy ở trang So sánh, khoảng 135 lần (các đề khác 63 đến 104 lần). Con số 170 lần cũ đo trên bản thử ngày 3/10, chưa phải bộ giải hiện tại.
+  - `measureComparison.ts` chạy lại; cùng bản đệ quy trên đề Inkala ra 5,17 ms, lệch 15% so với lần đo trên, report ghi rõ điều này.
+  - Giải ngay trên Chrome: đề Inkala khoảng 0,6 giây, khoảng 770 nghìn lần thử mỗi giây.
+- Chụp lại ảnh: ảnh các bước của đề 13 chụp khi tắt hiệu ứng (ô hồng nhạt trước đây là màu "bị loại" đang mờ dần); ảnh cuộc đua chụp lúc đang chạy để thấy số khả năng ở góc ô.
+- Sửa nhật ký: dòng tiêu đề trang chủ ngày 6/10 ghi nhầm câu sửa sau này; dòng nói phiên Claude riêng "không sửa file nào".
+- Kết quả: 723 test đơn vị, 60 test end-to-end, lint và kiểm kiểu đạt. Report 56 trang, không cảnh báo, không ký tự `%`.

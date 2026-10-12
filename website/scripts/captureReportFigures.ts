@@ -4,14 +4,14 @@ import { fileURLToPath } from 'node:url'
 const BASE_URL = process.argv[2] ?? 'http://localhost:4173'
 const FIGURES_DIRECTORY = fileURLToPath(new URL('../../report/figures/', import.meta.url))
 const DESKTOP_VIEWPORT = { width: 1366, height: 900 }
-const FASTEST_SPEED_SLIDER_POSITION = '300'
-const RACE_TIMEOUT_MILLISECONDS = 60_000
+const RACE_SPEED_SLIDER_POSITION = process.argv[3] ?? '150'
+const RACE_RUNNING_MILLISECONDS = Number(process.argv[4] ?? '2000')
 
 async function captureComparisonRace(page: Page) {
   await page.goto(`${BASE_URL}/compare`)
-  await page.locator('.solver-race .speed-slider__input').fill(FASTEST_SPEED_SLIDER_POSITION)
+  await page.locator('.solver-race .speed-slider__input').fill(RACE_SPEED_SLIDER_POSITION)
   await page.getByRole('button', { name: 'Chạy' }).click()
-  await page.locator('.solver-race__summary').waitFor({ timeout: RACE_TIMEOUT_MILLISECONDS })
+  await page.waitForTimeout(RACE_RUNNING_MILLISECONDS)
   await page.locator('.solver-race').screenshot({ path: `${FIGURES_DIRECTORY}comparison-race.png` })
 }
 
@@ -32,10 +32,11 @@ async function captureIllustrationStep(page: Page, pressCount: number) {
 
 async function main() {
   const browser = await chromium.launch({ channel: 'chrome' })
-  const page = await browser.newPage({ viewport: DESKTOP_VIEWPORT, locale: 'vi-VN', colorScheme: 'light' })
-  await captureComparisonRace(page)
+  const racePage = await browser.newPage({ viewport: DESKTOP_VIEWPORT, locale: 'vi-VN', colorScheme: 'light' })
+  await captureComparisonRace(racePage)
+  const stepPage = await browser.newPage({ viewport: DESKTOP_VIEWPORT, locale: 'vi-VN', colorScheme: 'light', reducedMotion: 'reduce' })
   for (const pressCount of ILLUSTRATION_STEP_BUTTON_PRESSES) {
-    await captureIllustrationStep(page, pressCount)
+    await captureIllustrationStep(stepPage, pressCount)
   }
   await browser.close()
   console.log(`Figures written to ${FIGURES_DIRECTORY}`)

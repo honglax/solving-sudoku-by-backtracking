@@ -3,18 +3,19 @@
 \section{Input}
 
 \begin{itemize}
-  \item \(A\): ma trận \(9 \times 9\). \(A[r][c] \in \{1, \ldots, 9\} \cup \{\texttt{X}\}\) với \(1 \le r, c \le 9\). \(A[r][c]\) là số đề cho ở ô hàng \(r\), cột \(c\); \texttt{X} nghĩa là ô đó trống.
-  \item Website nhận thêm hai cách viết đề: 9 dòng viết liền không dấu cách, và một chuỗi 81 ký tự trong đó dấu chấm là ô trống.
+  \item \(A\): ma trận \(9 \times 9\) ký tự. \(A[r][c] \in \{\texttt{1}, \ldots, \texttt{9}, \texttt{X}\}\) với \(1 \le r, c \le 9\). \(A[r][c]\) là số đề cho ở ô hàng \(r\), cột \(c\); \texttt{X} nghĩa là ô đó trống.
 \end{itemize}
+
+Ngoài cách viết trên, hộp Dán đề của website nhận thêm hai cách: 9 dòng viết liền không dấu cách, và một chuỗi 81 ký tự trong đó dấu chấm là ô trống. Cả ba cách cho cùng ma trận \(A\).
 
 \section{Output}
 
 Một trong ba kết quả:
 
 \begin{itemize}
-  \item \(B\): ma trận \(9 \times 9\), \(B[r][c] \in \{1, \ldots, 9\}\), là lưới đã điền kín và hợp lệ.
-  \item Thông báo đề không hợp lệ, kèm số trùng, nằm ở hàng, cột hay khối nào, và các ô trùng.
-  \item Thông báo đề không có lời giải.
+  \item \(B\): ma trận \(9 \times 9\) số nguyên, \(B[r][c] \in \{1, \ldots, 9\}\), là lưới đã điền kín và hợp lệ.
+  \item \(M_1\): chuỗi ký tự báo đề không hợp lệ, gồm số bị trùng, hàng, cột hay khối chứa số đó, và vị trí các ô trùng.
+  \item \(M_2\): chuỗi ký tự báo đề không có lời giải. Nếu ô trống đầu tiên đã hết số ngay từ đầu, chuỗi nêu ô đó và lý do từng số bị loại; nếu không, chuỗi nêu số lần thử đã dùng.
 \end{itemize}
 
 \section{Điều kiện và ràng buộc}
@@ -25,14 +26,14 @@ Một trong ba kết quả:
   \item \textbf{Đề hợp lệ} khi không có hai ô đã điền nào cùng số mà nằm chung hàng, chung cột hoặc chung khối.
   \item \textbf{Giữ nguyên số đề cho:} \(B[r][c] = A[r][c]\) với mọi ô có \(A[r][c] \ne \texttt{X}\).
   \item \textbf{Lưới hợp lệ:} mỗi hàng \(r\) có \(\{B[r][1], \ldots, B[r][9]\} = \{1, \ldots, 9\}\). Mỗi cột và mỗi khối cũng vậy.
-  \item \textbf{Nhiều lời giải:} chọn lời giải đầu tiên tìm được khi xét ô trống theo thứ tự hàng rồi cột, thử số từ 1 đến 9. Quy ước này làm đầu ra xác định, nên so được với bản cài đặt tham chiếu từng ký tự.
+  \item \textbf{Nhiều lời giải:} chọn lời giải đầu tiên tìm được khi xét ô trống theo thứ tự hàng rồi cột, thử số từ 1 đến 9. Nhờ quy ước này, mỗi đề chỉ có một đầu ra đúng, nên đầu ra của website so được với bản cài đặt tham chiếu đến từng ký tự.
 \end{itemize}
 
 \section{Ví dụ Input và Output}
 
 \subsection*{Ví dụ 1: đề có lời giải duy nhất}
 
-Đề số 13 ở Chương 2. Chương 5 đi qua toàn bộ các bước giải đề này.
+Đề ở mục Ví dụ của Chương 2, tức đề số 13 ``Ngắn, có quay lui'' trong danh sách đề mẫu của website. Chương 5 đi qua toàn bộ các bước giải đề này.
 
 \needspace{16\baselineskip}
 \subsection*{Ví dụ 2: đề nhiều lời giải}

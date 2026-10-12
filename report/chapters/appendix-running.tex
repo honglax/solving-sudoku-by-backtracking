@@ -1,0 +1,37 @@
+\chapter{Chạy mã nguồn}
+
+Mã nguồn gồm bốn thư mục:
+
+\begin{itemize}
+  \item \texttt{website/}: website React và TypeScript, kèm test đơn vị, test trên Chrome và script chụp ảnh cho report.
+  \item \texttt{checks/}: các bản Python tham chiếu và file đáp án JSON.
+  \item \texttt{testcases/}: 6 file đề theo nhóm, file \texttt{manifest.csv} ghi đáp án và số đo của từng đề, script sinh đề và script chạy bộ testcase.
+  \item \texttt{report/}: mã nguồn LaTeX của report, dữ liệu đo, bảng sinh tự động và các script đo.
+\end{itemize}
+
+Cần Node 24, Yarn 4.18.1 (bật bằng Corepack), Python 3.9 trở lên và Chrome. Các lệnh chạy trong thư mục \texttt{website/}:
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+corepack enable
+yarn install
+yarn dev                        mở website ở http://localhost:5173
+yarn test                       test đơn vị
+yarn test:e2e                   test trên Chrome
+yarn testcases                  292 đề nhanh của bộ testcase
+yarn testcases --include-slow   cả 294 đề, khoảng 20 phút
+yarn build                      bản build trong website/dist
+\end{Verbatim}
+
+Sinh lại bộ testcase và đáp án, chạy ở thư mục gốc:
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+python3 testcases/tools/generate_testcases.py
+python3 checks/reference_solver.py
+\end{Verbatim}
+
+Biên dịch report trong thư mục \texttt{report/}:
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+python3 tools/build_report_tables.py
+latexmk -xelatex main.tex
+\end{Verbatim}

@@ -1,13 +1,13 @@
 \chapter{Thiết kế cấu trúc dữ liệu và thuật toán}
 
-Chiến lược giải là \textbf{quay lui} (Backtracking) theo \textbf{mô hình 1} trong slide của cô \cite{slide-backtracking}. Chương này đi theo thứ tự cô hướng dẫn cho câu thiết kế: phân tích đặc trưng để chọn chiến lược, mô hình hóa cấu trúc lời giải, chọn cấu trúc dữ liệu, viết mã giả, rồi tính độ phức tạp.
+Chiến lược giải là \textbf{quay lui} (Backtracking) theo \textbf{mô hình 1} trong slide của cô \cite{slide-backtracking}, cùng ý với mục quay lui trong giáo trình của Levitin \cite{levitin}. Chương này đi theo thứ tự cô hướng dẫn cho câu thiết kế: phân tích đặc trưng để chọn chiến lược, mô hình hóa cấu trúc lời giải, chọn cấu trúc dữ liệu, viết mã giả, rồi tính độ phức tạp.
 
 \section{Phân tích đặc trưng và ý tưởng giải}
 
 Bài toán có đủ hai dấu hiệu của quay lui:
 
 \begin{itemize}
-  \item \textbf{Lời giải gồm nhiều bước.} Mỗi ô trống là một bước. Đề Arto Inkala có 60 ô trống, tức 60 bước.
+  \item \textbf{Lời giải gồm nhiều bước.} Mỗi ô trống là một bước. Đề Arto Inkala, một đề nổi tiếng khó (Chương 7), có 60 ô trống, tức 60 bước.
   \item \textbf{Mỗi bước có nhiều lựa chọn.} Mỗi ô trống có 9 số để chọn, từ 1 đến 9.
 \end{itemize}
 
@@ -25,9 +25,11 @@ Không có tiêu chí ``tốt nhất'' nào cần tối ưu, chỉ cần một c
 
 \subsection*{Ý tưởng}
 
-Thuật toán điền lần lượt từng ô trống. Ở ô trống thứ \(i\), thuật toán thử \(j = 1, 2, \ldots, 9\). Số nào trùng hàng, cột hoặc khối thì bỏ ngay, nên cả nhánh phía sau số đó không bao giờ phải thử. Số nào chấp nhận được thì điền vào rồi sang ô trống thứ \(i + 1\). Ô nào thử hết 9 số mà không số nào đi tiếp được thì xóa số vừa điền và lùi về ô trước, thử số kế tiếp ở đó.
+Thuật toán điền lần lượt từng ô trống. Ở ô trống thứ \(i\), thuật toán thử \(j = 1, 2, \ldots, 9\). Số nào trùng hàng, cột hoặc khối thì bỏ ngay, nên cả nhánh phía sau số đó không bao giờ phải thử. Số nào chấp nhận được thì điền vào rồi sang ô trống thứ \(i + 1\). Nếu ở một ô cả 9 số đều không đi tiếp được, thuật toán lùi về ô trước, xóa số đang điền ở đó và thử số kế tiếp.
 
-Đề số 13 trong Chương 5 cho thấy ý tưởng này trên lưới thật. Ở lần thử 1, ô \((1, 6)\) nhận số 1. Ô kế tiếp \((1, 8)\) thử cả 9 số đều trùng, nên ở lần thử 10 thuật toán lùi về \((1, 6)\), xóa số 1 và thử số 2.
+Các lần thử tạo thành một cây tìm kiếm. Mỗi lời gọi \texttt{try(i)} là một nút, mỗi số \(j\) chấp nhận được mở ra một nhánh con. Lùi về ô trước nghĩa là quay lên nút cha.
+
+Đề số 13 trong Chương 5 cho thấy ý tưởng này trên lưới thật. Thuật toán điền số 1 vào ô \((1, 6)\). Ở ô kế tiếp \((1, 8)\), cả 9 số đều trùng, nên thuật toán lùi về ô \((1, 6)\), xóa số 1 và thử số 2.
 
 \section{Cấu trúc dữ liệu}
 
@@ -48,6 +50,11 @@ Bảng \ref{tab:data-structures} liệt kê các biến của thuật toán, ki�
     \texttt{rowUsed} & Ma trận \(9 \times 9\) giá trị đúng/sai & \texttt{rowUsed[r][d]} đúng khi hàng \(r\) đã có số \(d\) \\
     \texttt{columnUsed} & Ma trận \(9 \times 9\) giá trị đúng/sai & \texttt{columnUsed[c][d]} đúng khi cột \(c\) đã có số \(d\) \\
     \texttt{boxUsed} & Ma trận \(9 \times 9\) giá trị đúng/sai & \texttt{boxUsed[b][d]} đúng khi khối \(b\) đã có số \(d\) \\
+    \(i\) & Số nguyên trong \([1, n]\) & Bước đang xét, tức ô trống thứ \(i\) \\
+    \(j\) & Số nguyên trong \([1, 9]\) & Số đang thử cho ô trống thứ \(i\) \\
+    \((r, c)\) & Cặp số nguyên trong \([1, 9]\) & Hàng và cột của ô trống thứ \(i\), lấy từ \texttt{emptyCells[i]} \\
+    \(b(r, c)\) & Hàm, giá trị trong \([1, 9]\) & Số thứ tự của khối chứa ô \((r, c)\) \\
+    \texttt{found} & Giá trị đúng/sai & Đúng khi đã xuất lời giải, để mọi tầng đệ quy dừng lại \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -56,12 +63,13 @@ Khối chứa ô \((r, c)\), với hàng và cột đánh số từ 1, là
 \[
   b(r, c) = 3 \left\lfloor \frac{r - 1}{3} \right\rfloor + \left\lfloor \frac{c - 1}{3} \right\rfloor + 1 .
 \]
+Các khối đánh số từ 1 đến 9, từ trái sang phải rồi từ trên xuống. Ví dụ ô \((1, 6)\) nằm ở khối \(b = 0 + 1 + 1 = 2\), ô \((1, 8)\) ở khối 3, góc trên bên phải.
 
-Ba mảng đánh dấu là chỗ quyết định tốc độ. Không có chúng, mỗi lần kiểm tra số \(j\) phải đọc lại cả hàng, cả cột và cả khối, tới 27 ô. Có chúng, chỉ cần đọc ba giá trị \texttt{rowUsed[r][j]}, \texttt{columnUsed[c][j]}, \texttt{boxUsed[b][j]}, và mỗi lần điền hay xóa một số chỉ cần sửa ba giá trị. Cái giá là \(3 \times 9 \times 9 = 243\) giá trị đúng/sai, một lượng bộ nhớ cố định không phụ thuộc vào đề.
+Ba mảng đánh dấu làm mỗi lần kiểm tra rẻ đi. Không có chúng, mỗi lần kiểm tra số \(j\) phải đọc lại cả hàng, cả cột và cả khối, tới 27 ô. Có chúng, chỉ cần đọc ba giá trị \texttt{rowUsed[r][j]}, \texttt{columnUsed[c][j]}, \texttt{boxUsed[b][j]}, và mỗi lần điền hay xóa một số chỉ cần sửa ba giá trị. Trên đề Inkala, bộ giải nhờ vậy chạy nhanh gấp khoảng hai lần (Chương 8). Đổi lại, ba mảng tốn \(3 \times 9 \times 9 = 243\) giá trị đúng/sai, một lượng bộ nhớ cố định không phụ thuộc vào đề.
 
 \section{Thuật toán quay lui theo mô hình 1}
 
-Mô hình 1 làm một việc lặp đi lặp lại. Ở bước \(i\), thử lần lượt mọi khả năng \(j\). Khả năng nào chấp nhận được thì ghi nhận rồi đi tiếp sang bước \(i + 1\), quay về thì trả lại trạng thái cũ. Mã giả trong slide của cô:
+Ở mỗi bước \(i\), mô hình 1 thử lần lượt mọi khả năng \(j\). Khả năng nào chấp nhận được thì mô hình ghi nhận rồi đi tiếp sang bước \(i + 1\), quay về thì trả lại trạng thái cũ. Mã giả trong slide của cô:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, codes={\catcode`\_=8}, fontsize=\small]
 try (i) =
@@ -80,11 +88,11 @@ try (i) =
 
 Áp dụng cho Sudoku, thuật toán có ba bước.
 
-\textbf{Bước 1. Chuẩn bị.} Đọc lưới. Với mỗi ô \((r, c)\) có sẵn số \(d\), bật cờ của số \(d\) ở hàng \(r\), cột \(c\) và khối \(b(r, c)\) trong ba mảng đánh dấu. Với mỗi ô trống, thêm \((r, c)\) vào cuối \texttt{emptyCells}. Đặt \(n\) bằng số ô trống.
+\textbf{Bước 1. Chuẩn bị.} Đọc lưới. Với mỗi ô \((r, c)\) có sẵn số \(d\), bật cờ của số \(d\) ở hàng \(r\), cột \(c\) và khối \(b(r, c)\) trong ba mảng đánh dấu. Với mỗi ô trống, thêm \((r, c)\) vào cuối \texttt{emptyCells}. Đặt \(n\) bằng số ô trống và \texttt{found = false}.
 
 \textbf{Bước 2. Kiểm tra đề.} Nếu một số xuất hiện hai lần trong cùng hàng, cột hoặc khối thì báo đề không hợp lệ và dừng. Nếu \(n = 0\) thì lưới đã đầy, không cần giải.
 
-\textbf{Bước 3. Gọi \texttt{try(1)}.} Nếu \texttt{try(1)} chạy xong mà chưa xuất lời giải nào thì đề vô nghiệm.
+\textbf{Bước 3. Gọi \texttt{try(1)}.} Nếu \texttt{try(1)} chạy xong mà \texttt{found} vẫn sai thì đề vô nghiệm.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, codes={\catcode`\_=8}, fontsize=\small]
 try (i) =
@@ -97,7 +105,10 @@ try (i) =
                if (i < n)
                      try (i+1);
                else
-                     Xuất lời giải grid và dừng;
+               \{     Xuất lời giải grid;
+                     found = true;
+               \}
+               if (found) return;
                grid[r][c] = 0;
                rowUsed[r][j] = columnUsed[c][j] = boxUsed[b(r,c)][j] = false;
            \}
@@ -119,20 +130,22 @@ Bảng \ref{tab:model-mapping} đối chiếu từng dòng mô hình 1 với b�
     \texttt{Xác định \(S_i\) theo j} & \texttt{S[i] = j} \\
     \texttt{Ghi nhận trạng thái mới} & Ghi \(j\) vào lưới, bật ba cờ đánh dấu \\
     \texttt{if (i < n) try(i+1)} & Sang ô trống kế tiếp \\
-    \texttt{Xuất lời giải} & Xuất lưới đã điền kín \\
+    \texttt{Xuất lời giải} & Xuất lưới đã điền kín, đặt \texttt{found = true} \\
+    Không có & \texttt{if (found) return;} \\
     \texttt{Trả lại trạng thái cũ} & Xóa \(j\) khỏi lưới, tắt ba cờ đánh dấu \\
     \bottomrule
   \end{tabularx}
 \end{table}
 
-Bản dành cho Sudoku khác mô hình 1 ở một chỗ: bản này dừng ngay sau lời giải đầu tiên. Đề bài chỉ cần một cách điền, nên đi tiếp là thừa. Trang ``Mọi lời giải'' trên website chạy đúng nguyên văn mô hình 1, không dừng, để đếm đề có bao nhiêu lời giải (mục \ref{sec:variants}).
+Bản dành cho Sudoku khác mô hình 1 ở một chỗ. Bản này có thêm biến \texttt{found} và dòng \texttt{if (found) return;}. Khi xuất lời giải đầu tiên, \texttt{found} thành đúng. Mỗi tầng \texttt{try} vừa quay về đều gặp dòng này và thoát ngay, trước dòng trả lại trạng thái cũ, nên lưới vẫn giữ nguyên lời giải. Đề bài chỉ cần một cách điền, nên đi tiếp là thừa. Trên website, hàm \texttt{try} trả về đúng hoặc sai thay cho biến \texttt{found}, cùng một ý. Trang ``Mọi lời giải'' trên website chạy đúng nguyên văn mô hình 1, không dừng, để đếm đề có bao nhiêu lời giải (mục \ref{sec:variants}).
 
 \section{Phân tích độ phức tạp}
 
-Gọi \(T(n)\) là chi phí khi còn \(n\) ô trống. Mỗi lần gọi \texttt{try} thử 9 số. Mỗi lần kiểm tra chỉ đọc ba mảng đánh dấu, mỗi lần ghi nhận hay trả lại chỉ sửa ba giá trị, nên phần việc ngoài các lời gọi đệ quy tốn một hằng số \(c_2\). Mỗi số chấp nhận được mở ra một bài toán con còn \(n - 1\) ô trống. Trường hợp xấu nhất là cả 9 số đều chấp nhận được:
+Gọi \(T(n)\) là chi phí khi còn \(n\) ô trống. Mỗi lần gọi \texttt{try} thử 9 số. Mỗi lần kiểm tra chỉ đọc ba mảng đánh dấu, mỗi lần ghi nhận hay trả lại chỉ sửa ba giá trị, nên phần việc ngoài các lời gọi đệ quy tốn một hằng số \(c_2\). Mỗi số chấp nhận được mở ra một bài toán con còn \(n - 1\) ô trống. Để có cận trên, giả sử ở mọi tầng cả 9 số đều chấp nhận được. Thực tế không như vậy: số vừa điền ở một ô đã chặn số đó ở mọi ô cùng hàng, cùng cột, cùng khối. Nhưng chi phí thật không thể vượt quá chi phí trong giả sử đó:
 \[
   T(n) = 9\,T(n - 1) + c_2, \qquad T(0) = c_1 .
 \]
+\(c_1\) là chi phí khi đã điền hết ô trống: xuất lời giải.
 
 Giải bằng phương pháp truy hồi:
 \begin{align*}
@@ -143,12 +156,14 @@ Giải bằng phương pháp truy hồi:
        &= 9^i\,T(n-i) + c_2 \sum_{t=0}^{i-1} 9^t \qquad (*)
 \end{align*}
 
-Quá trình dừng lại khi \(n - i = 0 \iff i = n\). Ta có \(\sum_{t=0}^{i-1} 9^t = \dfrac{9^i - 1}{9 - 1} = \dfrac{9^i - 1}{8}\). Thay \(i = n\) vào \((*)\):
+Quá trình dừng lại khi \(n - i = 0 \iff i = n\). Ta có công thức tổng cấp số nhân \(\sum_{t=0}^{m} a^t = \dfrac{a^{m+1} - 1}{a - 1}\). Với \(a = 9\), \(m = i - 1\): \(\sum_{t=0}^{i-1} 9^t = \dfrac{9^i - 1}{9 - 1} = \dfrac{9^i - 1}{8}\). Thay \(i = n\) vào \((*)\):
 \[
   T(n) = 9^n\,T(0) + c_2\,\frac{9^n - 1}{8} = \left(c_1 + \frac{c_2}{8}\right) 9^n - \frac{c_2}{8} \in \Oh{9^n} .
 \]
 
-Con số \(9^n\) lớn tới mức nào? Đề Arto Inkala có \(n = 60\), nên cận trên là \(9^{60}\), một số có 58 chữ số. Thuật toán thực tế chỉ cần 445.778 lần thử cho đề này. Khoảng cách đó đến từ việc bỏ sớm: số nào trùng thì thuật toán cắt luôn cả nhánh phía sau. Cận \(\Oh{9^n}\) vẫn có thật. Đề ``chống quay lui'' trong Chương 7 cố ý đặt số đúng ở cuối mỗi lượt thử, nên cần tới 622.577.597 lần thử với chỉ 64 ô trống.
+Con số \(9^n\) lớn tới mức nào? Đề Arto Inkala có \(n = 60\), nên cận trên là \(9^{60}\), một số có 58 chữ số. Thuật toán thực tế chỉ cần 445.778 lần thử cho đề này. Khoảng cách đó đến từ việc bỏ sớm: số nào trùng thì thuật toán cắt luôn cả nhánh phía sau.
+
+Có đề làm số lần thử tăng vọt. Đề ``chống quay lui'' trong bộ testcase (Chương 7) để trống cả hàng 1, mà lời giải của hàng này là 9 8 7 6 5 4 3 2 1. Ở mỗi ô của hàng 1, số đúng là số lớn nhất còn lại, nên thuật toán thử số đó sau cùng. Kết quả: 622.577.597 lần thử với 64 ô trống, gấp khoảng 1.400 lần đề Inkala. Con số đó vẫn còn cách xa cận trên, vì \(9^{64}\) là một số có 62 chữ số.
 
 Về bộ nhớ, ba mảng đánh dấu và lưới có kích thước cố định. Vectơ \(S\), danh sách ô trống và độ sâu đệ quy cùng tỉ lệ với \(n\). Tổng bộ nhớ là \(\Oh{n}\), với \(n \le 81\).
 
@@ -159,33 +174,33 @@ Ngoài bản chính, website có ba biến thể để so sánh. Cả ba vẫn g
 
 \subsection*{Ba cách kiểm tra ``chấp nhận được''}
 
-Thứ tự xét ô giữ nguyên, chỉ đổi cấu trúc dữ liệu dùng để kiểm tra:
+Thứ tự xét ô giữ nguyên, chỉ đổi cấu trúc dữ liệu dùng để kiểm tra. Trên website, ba cách này mang tên ``Nhìn lại lưới'', ``Sổ ghi chép'' và ``Dãy công tắc''.
 
 \begin{itemize}
   \item \textbf{Quét lưới.} Không dùng mảng phụ. Mỗi lần kiểm tra đọc lại hàng, cột và khối, tới 27 ô.
   \item \textbf{Ba mảng đánh dấu.} Cách của bản chính, đọc tối đa 3 giá trị.
-  \item \textbf{Bitmask.} Mỗi hàng, cột, khối gói vào một số nguyên, bit thứ \(d\) bật khi số \(d\) đã có. Kiểm tra bằng một phép OR trên ba số rồi một phép AND với bit thứ \(j\).
+  \item \textbf{Bitmask.} Mỗi hàng, cột, khối gói vào một số nguyên 9 bit, bit thứ \(d\) bật khi số \(d\) đã có. Hàng đã có số 1 và 3 thì số của hàng, viết ở hệ nhị phân, là \texttt{000000101}. Để kiểm tra số \(j\), gộp ba số của hàng, cột, khối bằng hai phép OR, rồi AND với số chỉ bật bit thứ \(j\). Kết quả khác 0 nghĩa là trùng. Với hàng trên, \texttt{000000101} AND \texttt{000000100} khác 0, nên số 3 trùng.
 \end{itemize}
 
-Ba cách cho đúng cùng cây tìm kiếm, nên cùng số lần thử trên mọi đề. Cái khác là hằng số \(c_2\) trong \(T(n) = 9\,T(n - 1) + c_2\). Đo trên đề Arto Inkala, quét lưới mất khoảng 9,5 ms, hai cách còn lại khoảng 4 đến 5 ms (Chương 8).
+Ba cách cho đúng cùng cây tìm kiếm, nên cùng số lần thử trên mọi đề. Cái khác là hằng số \(c_2\) trong \(T(n) = 9\,T(n - 1) + c_2\). Trên đề Arto Inkala, quét lưới mất 9,55 ms, ba mảng đánh dấu 5,17 ms, bitmask 4,67 ms (Chương 8).
 
-\subsection*{Chọn ô ít khả năng nhất trước}
+\subsection*{Chọn ô ít khả năng nhất trước (MRV)}
 
-Thay vì lấy ô trống kế tiếp theo hàng rồi cột, trước mỗi bước thuật toán đếm số giá trị còn chấp nhận được của mọi ô trống chưa điền, rồi chọn ô có ít nhất. Hai ô bằng nhau thì lấy ô đứng trước theo hàng rồi cột. Cách này thường gọi là MRV (minimum remaining values) \cite{norvig-sudoku, wikipedia-sudoku-algorithms}. \(S_i\) lúc này là số điền vào ô được chọn ở bước \(i\), không còn gắn với một ô cố định.
+Thay vì lấy ô trống kế tiếp theo hàng rồi cột, trước mỗi bước thuật toán đếm số giá trị còn chấp nhận được của mọi ô trống chưa điền, rồi chọn ô có ít nhất. Hai ô bằng nhau thì lấy ô đứng trước theo hàng rồi cột. Cách này thường gọi là MRV (minimum remaining values) \cite{norvig-sudoku, wikipedia-sudoku-algorithms}. Trên website, cách này mang tên ``Điền ô dễ nhất trước''. \(S_i\) lúc này là số điền vào ô được chọn ở bước \(i\), không còn gắn với một ô cố định.
 
 \begin{itemize}
   \item \textbf{Cây nhỏ đi.} Đề Arto Inkala giảm từ 445.778 xuống 90.665 lần thử. Đề chống quay lui giảm từ 622.577.597 xuống 407.156.
-  \item \textbf{Mỗi bước đắt hơn.} Việc chọn ô tốn \(\Oh{9n}\) phép kiểm tra thay cho một hằng số. Trên đề Inkala, tổng thời gian vì thế lại dài hơn bản chính.
+  \item \textbf{Mỗi bước đắt hơn.} Mỗi lần chọn ô, thuật toán kiểm tra tối đa 9 số cho mỗi ô trống còn lại, tức \(\Oh{n}\) thay cho \(\Oh{1}\). Trên đề Inkala, tổng thời gian vì thế lại dài hơn bản chính: 23,5 ms so với 5,17 ms.
   \item \textbf{Cận trên không đổi.} Trường hợp xấu nhất vẫn là \(\Oh{9^n}\).
 \end{itemize}
 
 \subsection*{Tìm mọi lời giải}
 
-Biến thể này chạy đúng nguyên văn mô hình 1: sau khi xuất một lời giải, thuật toán trả lại trạng thái cũ và thử tiếp, tới khi hết mọi khả năng. Thuật toán luôn đi hết cây tìm kiếm, nên số lần thử lớn hơn hẳn bản dừng sớm. Với đề Arto Inkala, tìm lời giải đầu tiên cần 445.778 lần thử, còn đi hết để biết chắc chỉ có một lời giải cần 18.619.020 lần. Biến thể này cho biết đề mẫu ``Vừa'' có 4 lời giải và đề ``Nhiều lời giải'' có 18.
+Biến thể này chạy đúng nguyên văn mô hình 1: sau khi xuất một lời giải, thuật toán trả lại trạng thái cũ và thử tiếp, tới khi hết mọi khả năng. Thuật toán luôn đi hết cây tìm kiếm. Với đề có lời giải, số lần thử vì vậy lớn hơn hẳn bản dừng sớm; với đề vô nghiệm, hai bản thử bằng nhau vì bản dừng sớm cũng phải đi hết cây. Với đề Arto Inkala, tìm lời giải đầu tiên cần 445.778 lần thử, còn đi hết để biết chắc chỉ có một lời giải cần 18.619.020 lần. Biến thể này cho biết đề mẫu ``Vừa'' có 4 lời giải và đề ``Nhiều lời giải'' có 18.
 
 \section{Cấu trúc dữ liệu của phần minh họa từng bước}
 
-Phần minh họa cần dừng thuật toán ở bất kỳ bước nào rồi chạy tiếp. Hàm đệ quy bình thường chạy một mạch nên không làm được việc đó. Website viết \texttt{try} thành một \emph{generator}: hàm có thể tạm dừng ở giữa và tiếp tục từ đúng chỗ đó. Ở mỗi dòng của mô hình 1, generator phát ra một sự kiện (Bảng \ref{tab:events}).
+Phần minh họa cần dừng thuật toán ở bất kỳ bước nào rồi chạy tiếp. Hàm đệ quy bình thường chạy một mạch nên không làm được việc đó. Trên website, \texttt{try} viết thành một \emph{generator}: hàm có thể tạm dừng ở giữa và tiếp tục từ đúng chỗ đó. Ở các dòng chính của mô hình 1, generator phát ra một sự kiện, tức trả ra một bản ghi nhỏ cho giao diện rồi tạm dừng (Bảng \ref{tab:events}).
 
 \begin{table}[H]
   \centering
@@ -216,4 +231,4 @@ Ba cấu trúc nữa giữ phần minh họa chạy mượt:
   \item \textbf{Bộ đếm} lần thử, ghi nhận, trả lại, cập nhật theo từng sự kiện.
 \end{itemize}
 
-Generator có cái giá của nó. Trên đề Arto Inkala, bản đệ quy thường chạy hết 3,7 ms, bản generator mất 623 ms. Mỗi sự kiện phải đi ngược qua từng tầng đệ quy, có lúc tới 60 tầng. Phần so sánh tốc độ ở trang So sánh vì thế dùng bản đệ quy thường, để chi phí của generator không che mất khác biệt giữa các cách giải.
+Generator làm bộ giải chậm đi nhiều. Mỗi lời gọi \texttt{try(i + 1)} là một generator lồng trong \texttt{try(i)}. Sự kiện phát ra ở tầng sâu nhất phải được chuyển lên qua từng tầng phía trên (lệnh \texttt{yield*} của JavaScript) mới tới giao diện, có lúc qua 60 tầng. Bản đệ quy thường không phải chuyển gì. Trên đề Arto Inkala, bản generator mất 596 ms, bản đệ quy thường của trang So sánh, đo cùng lần, mất 4,42 ms, chậm hơn khoảng 135 lần (Chương 8). Phần so sánh tốc độ ở trang So sánh vì thế dùng bản đệ quy thường, để chi phí của generator không che mất khác biệt giữa các cách giải.

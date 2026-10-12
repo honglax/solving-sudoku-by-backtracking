@@ -431,7 +431,7 @@ Chương mục bám đúng danh sách mục cô yêu cầu:
 - **Mục lục.**
 - **Ch.1 Giới thiệu bài toán**
   - Mục tiêu: một website giúp người học hiểu quay lui bằng cách nhìn thấy nó chạy, rồi tự so sánh các cách làm.
-  - Lý do thật (cô yêu cầu viết thật): bạn phân vân giữa Dijkstra và Sudoku; Claude khuyên bỏ Dijkstra vì trên lớp chưa học; Sudoku là bài quay lui bạn đã tự giải, và có đủ thử, loại, quay lui để nhìn thấy trên hình. Chỉ nhắc ngắn ở đây, các chương sau không xoay quanh bài tập cũ.
+  - Lý do thật (cô yêu cầu viết thật): bạn phân vân giữa Dijkstra và Sudoku; Claude khuyên bỏ Dijkstra vì trên lớp chưa học; Claude khuyên Sudoku vì bài giải bằng quay lui và có đủ thử, loại, quay lui để nhìn thấy trên hình.
   - Nguồn gốc của Sudoku và ứng dụng (bài toán thỏa mãn ràng buộc, xếp lịch, tô màu đồ thị). Mỗi thông tin đều có trích nguồn.
 - **Ch.2 Mô tả bài toán:** viết theo kiểu cô ra đề (mô tả, Input, Output, ví dụ), cho bài Sudoku tổng quát: số ô trống bất kỳ, có thể sai đề, vô nghiệm hoặc nhiều lời giải.
 - **Ch.3 Mô hình bài toán:** Input / Output theo khuôn cô dạy (tên biến, kiểu, miền giá trị, vai trò); điều kiện ràng buộc; ví dụ Input / Output (đề có lời giải, nhiều lời giải, vô nghiệm, đề sai).
@@ -481,7 +481,7 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 | Bản TypeScript ra số khác bản Python | Test Vitest bắt lỗi trước khi làm giao diện; chưa khớp 7/7 thì chưa sang bước giao diện. |
 | Hoạt ảnh tốc độ cao làm treo tab | Vẽ theo khung hình, không theo sự kiện (5.2). Thử ở 1.000 lần thử/giây trên đề 4 trước khi quay video. |
 | Video vượt giới hạn upload | Nén bằng ffmpeg; nếu vẫn quá thì hỏi trên group lớp có được nộp link Drive không. |
-| Cô coi giao diện đẹp mà thuật toán "của AI" | Report chỉ rõ thuật toán do mình tự cài đặt trước (bản Python đầu tiên), kèm bảng đối chiếu từng dòng 3.2 với mã giả slide. |
+| Cô coi giao diện đẹp mà thuật toán "của AI" | Report ghi đúng ai làm gì, kèm bảng đối chiếu từng dòng 3.2 với mã giả slide. |
 | Netlify lỗi hoặc đổi chính sách gói miễn phí sát hạn | Deploy thử sớm từ 11/10. Dự phòng Cloudflare Pages. |
 | Cô yêu cầu chạy được không cần mạng | Thêm `vite-plugin-singlefile` để build ra 1 file `index.html` (5.1). |
 | Bản thiết kế đẹp nhưng code lại không giống | Chép thông số trực tiếp từ bản thiết kế; so ảnh chụp bản thiết kế với trang thật trước khi quay video. |
@@ -525,5 +525,5 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 | 12.27 | Bộ testcase khoảng 300 đề, 7 nhóm, đáp án từ bản Python tham chiếu, có seed cố định (7.2) | **Đã chốt** hướng làm (6/10); số lượng từng nhóm chỉnh khi làm |
 | 12.28 | Thêm MRV (C) làm cách giải để so sánh, làm sau A, B | **Đã chốt** (6/10) |
 | 12.29 | Đề minh họa cho Ch.5 tự tạo (50-80 lần thử, có quay lui), thêm vào danh sách đề mẫu; script xuất toàn bộ các bước | **Đã chốt** (6/10) |
-| 12.30 | Mọi phần (plan, testcase, report, video) viết như dự án website dạy học về quay lui, không xoay quanh bài tập cũ; Lab01/Wecode chỉ còn trong phần lý do chọn đề của report. `checks/lab01_counts.py` đổi tên thành `checks/reference_solver.py` | **Đã chốt** (6/10) |
+| 12.30 | Mọi phần (plan, testcase, report, video) viết như dự án website dạy học về quay lui, không xoay quanh bài tập cũ. Report không nhắc Lab01/Wecode. `checks/lab01_counts.py` đổi tên thành `checks/reference_solver.py` | **Đã chốt** (6/10) |
 | 12.31 | Bộ testcase gom mỗi nhóm một file `.txt` (6 file + `manifest.csv`) thay vì 2 file mỗi đề | **Đã chốt** (6/10) |

@@ -1,0 +1,5 @@
+puzzleId,tryCount,generatorMilliseconds,generatorRunCount,recursiveMilliseconds,recursiveRunCount,slowdown
+3,1909,1.284,234,0.020,10000,62.9
+4,37652,29.015,11,0.324,925,89.4
+5,445778,596.424,1,4.418,68,135.0
+10,80491,85.527,4,0.820,366,104.2

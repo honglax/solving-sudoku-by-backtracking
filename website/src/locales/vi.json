@@ -140,7 +140,7 @@
       "Các ô khác trên hàng 1 cũng vậy. Số đúng luôn là số lớn nhất còn lại trong hàng, nên luôn tới lượt sau cùng."
     ],
     "antiBacktrackingComparisonCaption": "Chỉ hơn đề Arto Inkala 4 ô trống, mà số lần thử gấp khoảng {slowdownFactor} lần.",
-    "antiBacktrackingConclusion": "O(9ⁿ) ở phần trên không chỉ nằm trên giấy: đề này bắt thuật toán đi gần hết cái cây đó. Muốn nhanh thì phải đổi thứ tự chọn ô. Trên trang So sánh, cách điền ô dễ nhất trước giải đề này với {fewestCandidatesTryCount} lần thử.",
+    "antiBacktrackingConclusion": "Đề này chưa chạm tới cận O(9ⁿ) ở phần trên, vì 9⁶⁴ là một số có 62 chữ số. Nhưng chỉ cần đáp án hàng đầu ngược với thứ tự thử, số lần thử đã lên hơn 600 triệu. Muốn nhanh thì phải đổi thứ tự chọn ô. Trên trang So sánh, cách điền ô dễ nhất trước giải đề này với {fewestCandidatesTryCount} lần thử.",
     "antiBacktrackingTryButton": "Mở đề này trong trình giải",
     "antiBacktrackingTryNote": "Bấm Giải ngay thì máy phải chạy khoảng 15 phút. Bấm Dừng lúc nào cũng được.",
     "wrongFirstCellPercent": "86,7%"
