@@ -4,6 +4,16 @@ Website cho người mới học thuật toán xem máy giải Sudoku bằng qua
 
 Bạn nhập hoặc dán một đề, bấm **Từng bước**, và theo dõi bốn thứ cùng lúc: lưới màu theo trạng thái ô, dòng mã giả đang chạy, vectơ lời giải S, và một câu giải thích bằng lời. Đề Arto Inkala cần 445.778 lần thử. Bấm **Giải ngay** thì xong trong khoảng 0,6 giây trên Chrome.
 
+## Repo này để làm gì
+
+Đây là bài tập lớn môn Phân tích và Thiết kế thuật toán (lớp CS112.F31.LT.TTNT, Trường Đại học Công nghệ Thông tin, ĐHQG TP.HCM), giảng viên Huỳnh Thị Thanh Thương. Đề bài yêu cầu một demo có giao diện cho người dùng nhập đề, theo dõi từng bước của thuật toán và xem kết quả.
+
+Repo giữ trọn bộ sản phẩm nộp: mã nguồn website, bộ testcase, report LaTeX kèm file PDF, và kế hoạch, nhật ký làm việc. Mục đích là minh họa thuật toán quay lui theo mô hình 1 trong slide của cô. Sudoku được chọn làm ví dụ vì cả ba động tác thử số, loại số trùng và lùi về ô trước đều hiện được trên lưới.
+
+## Tác giả
+
+**Lã Xuân Hồng**, MSSV 25410056. GitHub: [honglax](https://github.com/honglax).
+
 ## Website có gì
 
 - **Giải Sudoku:** nhập đề, dán đề, chọn một trong 13 đề mẫu. Các nút Từng bước, Lùi một bước, Tự động, Giải ngay, Tới lần quay lui kế. Bảng lịch sử giữ 100 bước gần nhất, bấm một dòng để xem lại.
@@ -61,4 +71,4 @@ Website là trang tĩnh, build bằng `yarn build` ra `website/dist/`. Trên Ver
 
 ## Ai làm gì
 
-Phần lớn code, test và script do Claude Code viết theo yêu cầu của tác giả. Report kể rõ từng bước làm, prompt đã dùng và cách kiểm chứng ở Chương 6.
+Tác giả đặt yêu cầu, chọn hướng, dùng thử và duyệt kết quả. Phần lớn code, test và script do Claude Code viết theo yêu cầu đó. Report kể rõ từng bước làm, prompt đã dùng và cách kiểm chứng ở Chương 6.

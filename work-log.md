@@ -516,3 +516,4 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Viết `README.md` ở thư mục gốc theo kim tự tháp ngược: link bản chạy thử và số đo đầu trang, các trang của website, cách chạy trên máy kèm bảng lệnh, cấu trúc thư mục, cách đưa lên Vercel, và đoạn "Ai làm gì" khớp với Chương 6 của report.
 - Ghi chú trong README: `yarn test` và `yarn testcases` đọc thêm `checks/` và `testcases/` ở ngoài `website/`, nên cần giữ nguyên cấu trúc thư mục.
 - Chưa chạy lại để kiểm hai câu: `reference_solver.py` mất vài phút, và hai lệnh sinh đề cho ra đúng bộ đề cũ.
+- Bổ sung hai mục vào README theo góp ý của bạn: "Repo này để làm gì" (đề bài, nội dung repo, mục đích) và "Tác giả" (họ tên, MSSV, GitHub). Sửa câu "Ai làm gì" cho rõ vai của tác giả và của Claude Code.
