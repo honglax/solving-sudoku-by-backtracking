@@ -40,8 +40,8 @@
     "homeButton": "Về trang chủ"
   },
   "home": {
-    "heroTitle": "Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa.",
-    "heroLead": "Bạn phải mở một dãy cửa, mỗi cửa thử từng chìa trong chùm. Chìa không vừa thì bỏ, thử chìa kế. Tới một cửa thử hết chìa vẫn kẹt, nghĩa là cửa trước đã mở bằng chìa sai: quay lại đổi chìa ở đó. Quay lui giải Sudoku đúng như vậy, và trang này cho bạn xem từng bước.",
+    "heroTitle": "Thuật toán quay lui giải Sudoku như thế nào?",
+    "heroLead": "Hình dung bạn phải mở một dãy cửa bằng một chùm chìa. Ở mỗi cửa, bạn thử lần lượt từng chìa, chìa nào không vừa thì bỏ. Có điều, chìa đã dùng ở cửa này thì cửa bên cạnh không dùng lại được. Thế nên có lúc tới một cửa, thử hết cả chùm vẫn kẹt. Vậy là ở đâu đó phía trước đã chọn nhầm chìa. Bạn quay lại cửa gần nhất và đổi sang chìa kế tiếp. Máy giải Sudoku làm y như vậy, chỉ khác là thay cửa bằng ô trống và thay chìa bằng 9 con số. Trang này cho bạn xem máy thử số nào ở ô nào, bỏ số nào và lùi về đâu.",
     "openSolverButton": "Mở trình giải",
     "readAlgorithmButton": "Đọc về thuật toán",
     "problemCardTitle": "Bài toán",
@@ -254,7 +254,7 @@
   "allSolutions": {
     "documentTitle": "Mọi lời giải",
     "title": "Tìm mọi lời giải",
-    "intro": "Một đề Sudoku đúng chuẩn chỉ có đúng một lời giải. Muốn biết chắc thì phải tìm hết. Trình giải dừng ngay ở lời giải đầu tiên, còn mã giả quay lui gốc thì không. Xuất xong một lời giải, nó trả lại ô vừa điền rồi thử tiếp, tới khi hết mọi khả năng.",
+    "intro": "Một đề Sudoku đúng chuẩn chỉ có đúng một lời giải. Muốn biết chắc thì phải tìm hết. Trình giải dừng ngay ở lời giải đầu tiên, còn mã giả quay lui gốc thì không. Xuất xong một lời giải, thuật toán trả lại ô vừa điền rồi thử tiếp, tới khi hết mọi khả năng.",
     "puzzleSelectLabel": "Đề",
     "runButton": "Chạy",
     "pauseButton": "Tạm dừng",
@@ -270,7 +270,7 @@
     "status": {
       "notStarted": "Bấm Chạy để xem từng bước, hoặc Tìm hết để đếm ngay.",
       "searching": "Đang tìm… đã thấy {solutionCount} lời giải sau {tryCount} lần thử.",
-      "pausedAtSolution": "Tìm thấy lời giải thứ {solutionNumber} sau {tryCount} lần thử. Thuật toán chưa dừng: nó sẽ trả lại ô vừa điền rồi thử tiếp. Bấm Chạy để tìm tiếp.",
+      "pausedAtSolution": "Tìm thấy lời giải thứ {solutionNumber} sau {tryCount} lần thử. Thuật toán chưa dừng mà sẽ trả lại ô vừa điền rồi thử tiếp. Bấm Chạy để tìm tiếp.",
       "paused": "Đã tạm dừng: đã thấy {solutionCount} lời giải sau {tryCount} lần thử.",
       "finishedNone": "Đã thử hết mọi khả năng sau {tryCount} lần thử: đề này không có lời giải nào.",
       "finishedOne": "Đã thử hết mọi khả năng sau {tryCount} lần thử: đề này có đúng một lời giải, đúng chuẩn của một đề Sudoku.",

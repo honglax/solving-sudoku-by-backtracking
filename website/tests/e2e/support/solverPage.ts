@@ -72,6 +72,6 @@ export async function readPageMetrics(page: Page): Promise<PageMetrics> {
   return page.evaluate(() => ({
     scrollHeight: document.documentElement.scrollHeight,
     viewportHeight: window.innerHeight,
-    horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    horizontalOverflow: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
   }))
 }

@@ -428,3 +428,15 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Viết Ch.6 (quá trình thiết kế và xây dựng): bảng công cụ, cách làm việc, 11 giai đoạn có prompt nguyên văn, bảng phân chia việc giữa mình và Claude. Ghi rõ report do Claude viết nháp từ nhật ký và transcript, mình đọc, sửa và chịu trách nhiệm nội dung.
 - `website/scripts/captureReportFigures.ts` chụp ảnh cho report từ website thật (hiện có ảnh cuộc đua).
 - Compile XeLaTeX không cảnh báo, không còn ký tự `%` trong file `.tex`. Report 24 trang.
+
+**Tiêu đề trang chủ nghe như AI viết**
+> "Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa." Cái câu này đọc không giống người thường một chút nào cả, nghe là biết AI rồi. Bạn thử hỏi mấy con agent khác xem, nghe thấy gớm
+
+- Claude giao cho 3 agent, mỗi agent một vai người đọc (người viết nội dung cho trang dạy code, sinh viên năm hai, biên tập viên tiếng Việt), không cho biết câu nào do AI viết. Chấm 3 tiêu đề:
+  - bản Claude viết: 6-7/10;
+  - bản mình thử viết lại ("Cùng xem thuật toán quay lui giải Sudoku như thế nào nhé!"): 3-4/10, thấp nhất, vì giọng người dẫn chương trình;
+  - bản gốc: 5-7/10.
+- Lỗi cả 3 cùng chỉ ra: chữ "nó" dịch từ "it"; hai câu cụt nhịp khẩu hiệu; "Cùng… nhé!"; đuôi ", từng bước một" dịch từ "step by step". Biên tập viên bắt thêm lỗi trong đoạn dẫn: "mỗi cửa thử từng chìa" sai chủ ngữ, hình ảnh dãy cửa chưa giải thích vì sao phải quay lại, dấu hai chấm kèm câu lệnh cụt.
+- Mình chọn tiêu đề "Thuật toán quay lui giải Sudoku như thế nào?" và dùng nguyên đoạn dẫn biên tập viên sửa. Bỏ thêm 2 chữ "nó" chỉ thuật toán ở trang Mọi lời giải.
+- Các lỗi này thành mục "Dấu hiệu văn máy hay gặp" trong skill `vietnamese-writing`. Report Ch.6 kể lại lần sửa này, bảng ví dụ dùng tiêu đề mới.
+- Khi chạy test, 11 test end-to-end hỏng cùng kiểu "Expected 0, Received -15". Lý do: macOS đang để thanh cuộn "Automatic", có chuột rời nên hiện thanh cuộn cố định 15 px. Test đòi độ tràn ngang đúng bằng 0, mà khi có thanh cuộn thì số này âm (tức là không tràn). Sửa test kiểm đúng điều cần kiểm: độ tràn không lớn hơn 0, đo bằng `clientWidth` thay cho `innerWidth`. Test điện thoại hẹp (320 px) giả lập đúng điện thoại (thanh cuộn nổi). Kết quả: 723 test đơn vị, 60 test end-to-end đạt.

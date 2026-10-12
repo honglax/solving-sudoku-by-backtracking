@@ -112,7 +112,7 @@ test('the playback row fits its column at 1366 px with the ◀ button added', as
 })
 
 test.describe('on a narrow phone', () => {
-  test.use({ viewport: { width: 320, height: 640 } })
+  test.use({ viewport: { width: 320, height: 640 }, isMobile: true, hasTouch: true })
 
   test('the bottom bar labels are not cut off', async ({ page }) => {
     await openSolver(page)

@@ -325,18 +325,26 @@ Claude viết lại khoảng 50 câu trên website. Bảng \ref{tab:rewrite} có
 
 \begin{table}[H]
   \centering
-  \caption{Ba câu trước và sau khi viết lại}
+  \caption{Ba câu trước và sau khi viết lại (tiêu đề trang chủ là bản sau lần sửa ngày 12/10)}
   \label{tab:rewrite}
   \begin{tabularx}{\linewidth}{@{}LL@{}}
     \toprule
     \textbf{Trước} & \textbf{Sau} \\
     \midrule
-    Xem thuật toán quay lui giải Sudoku, từng bước một. & Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa. \\
+    Xem thuật toán quay lui giải Sudoku, từng bước một. & Thuật toán quay lui giải Sudoku như thế nào? \\
     Ô (4, 7) - thử số 2: bị loại vì 2 đã có ở hàng 4. & Ô (4, 7) - thử số 2: hàng 4 đã có số 2, bỏ. \\
     Nói cách khác, O($9^n$) ở phần trên không chỉ là chuyện lý thuyết. & O($9^n$) ở phần trên không chỉ nằm trên giấy: đề này bắt thuật toán đi gần hết cái cây đó. \\
     \bottomrule
   \end{tabularx}
 \end{table}
+
+Tiêu đề trang chủ phải sửa thêm một lần. Bản Claude viết lúc đầu là ``Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa.'' Đọc lại, em thấy câu này không giống người thật viết:
+
+\begin{promptbox}{12/10}
+“Máy giải Sudoku cũng đoán sai. Xem nó lùi lại và sửa.” Cái câu này đọc không giống người thường một chút nào cả, nghe là biết AI rồi. Bạn thử hỏi mấy con agent khác xem, nghe thấy gớm
+\end{promptbox}
+
+Claude giao cho ba agent riêng, mỗi agent đóng một vai người đọc: người viết nội dung cho trang dạy code, sinh viên năm hai, biên tập viên tiếng Việt. Ba agent chấm ba tiêu đề: bản của Claude, bản em tự viết lại (``Cùng xem thuật toán quay lui giải Sudoku như thế nào nhé!'') và bản gốc. Cả ba chấm bản của em thấp nhất, 3 đến 4 trên 10, vì ``Cùng\ldots nhé!'' là giọng người dẫn chương trình. Bản của Claude được 6 đến 7, nhưng cả ba cùng chỉ ra hai lỗi: chữ ``nó'' dịch từ ``it'' của tiếng Anh, và nhịp hai câu cụt kiểu khẩu hiệu. Biên tập viên còn bắt thêm lỗi trong đoạn dẫn: ``mỗi cửa thử từng chìa'' sai chủ ngữ, và hình ảnh dãy cửa chưa giải thích vì sao phải quay lại. Em chọn tiêu đề ``Thuật toán quay lui giải Sudoku như thế nào?'' và dùng nguyên đoạn dẫn biên tập viên sửa. Các lỗi này thành luật mới trong bộ quy tắc văn phong.
 
 Lần viết lại này để lọt một lỗi. Ba câu mới có chỗ chờ điền số, nhưng code chưa truyền số vào, nên trang hiện nguyên dấu ngoặc nhọn. Không test nào bắt được. Claude tự phát hiện ngay sau khi commit, sửa, rồi thêm một test mở từng trang và khẳng định không còn chỗ chờ điền nào hiện ra. Lần đầu chính test này vẫn đạt trên bản lỗi, vì nó đọc chữ khi trang còn đang tải. Claude đổi sang chờ trang tải xong, và test báo lỗi đúng ở trang Thuật toán.
 

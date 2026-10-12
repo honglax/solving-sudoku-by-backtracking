@@ -54,7 +54,10 @@ for (const width of [900, 1366]) {
       .getByRole('link')
       .evaluateAll(links => links.map(link => Math.round(link.getBoundingClientRect().height)))
     expect(new Set(linkHeights).size).toBe(1)
-    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBe(0)
+    const horizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    )
+    expect(horizontalOverflow).toBeLessThanOrEqual(0)
   })
 }
 
