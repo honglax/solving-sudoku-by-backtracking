@@ -509,3 +509,10 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Bạn push repo lên GitHub (`honglax/solving-sudoku-by-backtracking`, Private, nhánh `main`, qua SSH) và tạo project Vercel với Root Directory `website`. Trước đó `git push` qua HTTPS báo "Repository not found" vì Keychain trên máy lưu tài khoản `hongla-tw` chứ không phải `honglax`.
 - Claude kiểm bản trên mạng bằng Chrome: cả 6 trang trả về 200, mở trực tiếp và bấm F5 đều không ra 404, tiêu đề đúng, không còn chỗ chờ điền nào hiện ra, không có lỗi trong console, và bản đã có câu sửa ở trang Thuật toán. Giải ngay đề Inkala mất 0,6 giây, đúng 445.778 lần thử.
 - Phụ lục report thêm link website và link GitHub. Report 57 trang, không cảnh báo, không ký tự `%`.
+
+**README**
+> README trước nhé
+
+- Viết `README.md` ở thư mục gốc theo kim tự tháp ngược: link bản chạy thử và số đo đầu trang, các trang của website, cách chạy trên máy kèm bảng lệnh, cấu trúc thư mục, cách đưa lên Vercel, và đoạn "Ai làm gì" khớp với Chương 6 của report.
+- Ghi chú trong README: `yarn test` và `yarn testcases` đọc thêm `checks/` và `testcases/` ở ngoài `website/`, nên cần giữ nguyên cấu trúc thư mục.
+- Chưa chạy lại để kiểm hai câu: `reference_solver.py` mất vài phút, và hai lệnh sinh đề cho ra đúng bộ đề cũ.
