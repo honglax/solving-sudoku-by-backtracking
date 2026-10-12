@@ -2,6 +2,8 @@
 
 Website cho người mới học thuật toán xem máy giải Sudoku bằng quay lui, từng ô một. Bản chạy thử: https://solving-sudoku-by-backtracking.vercel.app/
 
+Video demo (Google Drive): https://drive.google.com/file/d/17Cao0DqJvkIfxP0bS9HgYQK4s9jReNdF/view?usp=sharing
+
 Bạn nhập hoặc dán một đề, bấm **Từng bước**, và theo dõi bốn thứ cùng lúc: lưới màu theo trạng thái ô, dòng mã giả đang chạy, vectơ lời giải S, và một câu giải thích bằng lời. Đề Arto Inkala cần 445.778 lần thử. Bấm **Giải ngay** thì xong trong khoảng 0,6 giây trên Chrome.
 
 ## Repo này để làm gì

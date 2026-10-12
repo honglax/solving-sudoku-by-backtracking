@@ -5,6 +5,7 @@ import { messages } from '../i18n/messages.ts'
 import '../styles/pages/AboutPage.css'
 
 const ABOUT = messages.about
+const VIDEO_URL = 'https://drive.google.com/file/d/17Cao0DqJvkIfxP0bS9HgYQK4s9jReNdF/view?usp=sharing'
 const SOURCE_CODE_URL = 'https://github.com/honglax/solving-sudoku-by-backtracking'
 
 type ExternalLink = {
@@ -14,7 +15,7 @@ type ExternalLink = {
 }
 
 const EXTERNAL_LINKS: ExternalLink[] = [
-  { label: ABOUT.videoLink, url: null, icon: Video },
+  { label: ABOUT.videoLink, url: VIDEO_URL, icon: Video },
   { label: ABOUT.sourceCodeLink, url: SOURCE_CODE_URL, icon: Code },
 ]
 

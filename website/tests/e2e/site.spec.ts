@@ -127,8 +127,9 @@ test('the footer links to the algorithm page and About opens with who the site i
   await expect(page).toHaveURL('/algorithm')
 })
 
-test('About links to the source code repository', async ({ page }) => {
+test('About links to the demo video and the source code repository', async ({ page }) => {
   await page.goto('/about')
+  await expect(page.getByRole('link', { name: 'Video demo' })).toHaveAttribute('href', 'https://drive.google.com/file/d/17Cao0DqJvkIfxP0bS9HgYQK4s9jReNdF/view?usp=sharing')
   const sourceCodeLink = page.getByRole('link', { name: 'Mã nguồn' })
   await expect(sourceCodeLink).toHaveAttribute('href', 'https://github.com/honglax/solving-sudoku-by-backtracking')
 })
