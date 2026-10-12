@@ -502,3 +502,10 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - `package.json` ghim Node 24 (`engines`), cùng bản Node đã chạy test trên máy.
 - `plan.md` đổi các chỗ Netlify thành Vercel. Các prompt cũ nhắc Netlify trong nhật ký và report giữ nguyên vì là nguyên văn.
 - Kiểm lại: `yarn install --immutable` và `yarn build` đều chạy.
+
+**Deploy lên Vercel**
+> Here it is: https://solving-sudoku-by-backtracking.vercel.app/
+
+- Bạn push repo lên GitHub (`honglax/solving-sudoku-by-backtracking`, Private, nhánh `main`, qua SSH) và tạo project Vercel với Root Directory `website`. Trước đó `git push` qua HTTPS báo "Repository not found" vì Keychain trên máy lưu tài khoản `hongla-tw` chứ không phải `honglax`.
+- Claude kiểm bản trên mạng bằng Chrome: cả 6 trang trả về 200, mở trực tiếp và bấm F5 đều không ra 404, tiêu đề đúng, không còn chỗ chờ điền nào hiện ra, không có lỗi trong console, và bản đã có câu sửa ở trang Thuật toán. Giải ngay đề Inkala mất 0,6 giây, đúng 445.778 lần thử.
+- Phụ lục report thêm link website và link GitHub. Report 57 trang, không cảnh báo, không ký tự `%`.
