@@ -1,0 +1,63 @@
+# Kịch bản thu âm
+
+Mỗi dòng ghi mốc thời gian trong video, rồi câu cần đọc. Số và ký hiệu đã viết thành chữ để đọc cho đúng.
+Thu thành một file âm thanh duy nhất, đủ độ dài video, rồi ghép bằng tùy chọn `--voice=`.
+
+- **00:00** Thuật toán quay lui giải Sudoku như thế nào? Video demo bài tập lớn của Lã Xuân Hồng.
+- **00:04** Trang chủ trả lời câu hỏi chính: thuật toán quay lui giải Sudoku như thế nào? Ba thẻ bên dưới tóm tắt bài toán, cách giải và tốc độ.
+- **00:15** Trang Thuật toán có mã giả, cách tính độ phức tạp và số lần thử của từng đề mẫu.
+- **00:22** Cuối trang là đề chống quay lui: sáu mươi bốn ô trống, sáu trăm hai mươi hai triệu năm trăm bảy mươi bảy nghìn năm trăm chín mươi bảy lần thử.
+- **00:28** Trang Giới thiệu nói trang này để làm gì, ai làm và dùng công cụ nào.
+- **00:34** Trang Giải Sudoku. Đề mặc định là đề Vừa, bốn mươi ô trống.
+- **00:38** Lưới chín nhân chín. Mỗi ô có màu riêng theo trạng thái.
+- **00:40** Chú thích màu: đề cho, đang thử, bị loại, đã ghi nhận, vừa trả lại, đã giải. Rê chuột lên một ô để xem nghĩa màu.
+- **00:47** Mã giả quay lui theo mô hình một của cô. Dòng đang chạy được tô sáng.
+- **00:50** Bấm Từng bước vài lần để các bảng bên dưới có số liệu.
+- **01:00** Bảng ét ghi số đã điền ở từng ô trống, từ ét một đến ét n.
+- **01:03** Tab Lịch sử giữ một trăm bước gần nhất. Bấm vào một dòng để xem lại bước đó.
+- **01:09** Ba bộ đếm: lần thử, ghi nhận, trả lại.
+- **01:12** Câu thông báo nói bằng lời việc thuật toán vừa làm.
+- **01:15** Các nút Từng bước, Tự động, Giải ngay và Đặt lại.
+- **01:18** Thanh tốc độ chỉnh từ một đến một nghìn lần thử mỗi giây.
+- **01:21** Nút Sáng và Tối đổi giao diện.
+- **01:28** Cách một: chọn một trong mười ba đề mẫu.
+- **01:33** Cách hai: gõ số vào lưới. Đây là lưới trống, thử điền ba ô.
+- **01:42** Bấm Kiểm tra đề để máy soát số trùng trước khi giải.
+- **01:46** Cách ba: dán đề. Trang nhận chín dòng hoặc một chuỗi tám mươi mốt ký tự, dấu chấm là ô trống.
+- **01:52** Đề vừa dán khớp đề mẫu số mười ba, nên trang tự chọn đề đó.
+- **01:59** Đề số mười ba có mười sáu ô trống. Bấm Từng bước để xem thuật toán chạy.
+- **02:03** Ô hàng một, cột sáu thử số một. Hàng, cột và khối đều chưa có số một, nên thuật toán chấp nhận và ghi nhận.
+- **02:07** Rồi sang ô trống kế tiếp, ô hàng một, cột tám.
+- **02:09** Ô hàng một, cột tám thử số một: hàng một đã có số một ở ô hàng một, cột sáu, nên bỏ.
+- **02:12** Các số hai đến chín cũng lần lượt bị loại: cả chín số ở ô hàng một, cột tám đều trùng.
+- **02:18** Ô hàng một, cột tám hết số, nên thuật toán trả lại ô hàng một, cột sáu: xóa số một và thử số hai. Đây là một lần quay lui.
+- **02:23** Nút Lùi một bước đi ngược lại từng sự kiện.
+- **02:28** Tới lần quay lui kế đưa thẳng tới lần trả lại tiếp theo.
+- **02:30** Ô hàng một, cột chín hết số, nên thuật toán trả lại ô hàng một, cột tám.
+- **02:34** Ô hàng một, cột tám cũng hết số, nên thuật toán lùi tiếp về ô hàng một, cột sáu. Quay lui dây chuyền qua hai ô.
+- **02:39** Bấm một dòng trong Lịch sử để xem lại đúng trạng thái lúc đó.
+- **02:50** Giải xong: bảy mươi chín lần thử, mười chín ghi nhận, ba trả lại. Khớp bảng tám mươi ba bước trong report.
+- **02:57** Đề Vừa chạy Tự động. Thuật toán tự thử, loại và ghi nhận theo tốc độ đã chọn.
+- **03:01** Gặp lần quay lui đầu tiên, trang dừng lại và hỏi bạn đoán bước tiếp theo.
+- **03:06** Tới lần quay lui kế nhảy tiếp tới lần quay lui sau.
+- **03:12** Đề Arto Inkala có sáu mươi ô trống.
+- **03:16** Giải ngay: máy chạy một mạch, không vẽ từng bước.
+- **03:18** Xong sau bốn trăm bốn mươi lăm nghìn bảy trăm bảy mươi tám lần thử, chưa tới một giây. Thử mọi cách điền là chín mũ sáu mươi trường hợp, một số dài năm mươi tám chữ số.
+- **03:28** Đề có hai số năm cùng nằm trên hàng một: trang báo đề không hợp lệ, kèm vị trí số trùng.
+- **03:40** Đề vô nghiệm ngay ô đầu: ô hàng một, cột một không nhận được số nào.
+- **03:48** Đề này trông hợp lệ nhưng vô nghiệm. Máy phải thử chín trăm tám mươi mốt lần mới chắc chắn.
+- **03:56** Lưới đã đầy và đúng thì không cần giải.
+- **04:08** Trang Mọi lời giải đi hết cây tìm kiếm, đúng như mã giả quay lui gốc.
+- **04:13** Đề Nhiều lời giải: bấm Tìm hết để đếm.
+- **04:17** Mỗi lời giải hiện thành một lưới nhỏ. Ô có nền màu là ô khác lời giải đầu tiên.
+- **04:22** Trang So sánh cho hai cách chọn ô đua nhau trên cùng một đề.
+- **04:27** Lưới trái điền lần lượt, lưới phải điền ô dễ nhất trước. Số nhỏ ở góc ô là số khả năng còn lại.
+- **04:40** Điền ô dễ nhất trước chỉ cần hai trăm hai mươi sáu lần thử, còn điền lần lượt cần một nghìn chín trăm linh chín lần: ít hơn khoảng tám lần.
+- **04:46** Bấm Đo để máy đo thời gian của sáu cách giải ngay trên máy này.
+- **04:53** Ba cách kiểm tra cho cùng số lần thử, chỉ khác thời gian mỗi lần giải.
+- **04:59** Trên điện thoại, giao diện chuyển sang bố cục một cột.
+- **05:03** Menu gom sáu trang.
+- **05:07** Mã giả và bảng S thu gọn thành các khối bấm để mở.
+- **05:11** Chạy bộ testcase bằng lệnh yarn testcases. Dưới đây là kết quả thật của lần chạy ngày mười hai/mười/hai nghìn không trăm hai mươi sáu.
+- **05:26** hai trăm chín mươi hai trên hai trăm chín mươi hai đề đạt, mọi nhóm đều khớp đáp án.
+- **05:32** Cảm ơn bạn đã xem.

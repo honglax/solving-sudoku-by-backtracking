@@ -5,6 +5,7 @@ import { DEFAULT_TRIES_PER_SECOND } from '../solverView/speed.ts'
 import { PlaybackEngine, type HistoryView, type PlaybackMode } from '../playback/playbackEngine.ts'
 
 export function useSolverPlayback(puzzle: Grid) {
+  const [loadedPuzzle, setLoadedPuzzle] = useState<Grid>(puzzle)
   const [progress, setProgress] = useState<SolverProgress | null>(null)
   const [mode, setMode] = useState<PlaybackMode>('notStarted')
   const [isLongInstantSolve, setIsLongInstantSolve] = useState(false)
@@ -22,12 +23,15 @@ export function useSolverPlayback(puzzle: Grid) {
         onModeChange: setMode,
         onLongInstantSolveChange: setIsLongInstantSolve,
         onHistoryChange: setHistoryView,
+        onPuzzleLoaded: setLoadedPuzzle,
       }),
   )
 
   useEffect(() => {
     engine.loadPuzzle(puzzle)
   }, [engine, puzzle])
+
+  const isCurrentPuzzleLoaded = loadedPuzzle === puzzle
 
   useEffect(() => () => engine.dispose(), [engine])
 
@@ -45,9 +49,9 @@ export function useSolverPlayback(puzzle: Grid) {
   }
 
   return {
-    progress,
-    mode,
-    isLongInstantSolve,
+    progress: isCurrentPuzzleLoaded ? progress : null,
+    mode: isCurrentPuzzleLoaded ? mode : ('notStarted' as PlaybackMode),
+    isLongInstantSolve: isCurrentPuzzleLoaded && isLongInstantSolve,
     triesPerSecond,
     changeSpeed,
     step: () => engine.step(),
@@ -55,12 +59,12 @@ export function useSolverPlayback(puzzle: Grid) {
     solveInstantly: () => engine.solveInstantly(),
     jumpToNextBacktrack: () => engine.jumpToNextBacktrack(),
     stepBack: () => engine.stepBack(),
-    canStepBack: historyView.reviewEventsBack < historyView.storedEventCount,
+    canStepBack: isCurrentPuzzleLoaded && historyView.reviewEventsBack < historyView.storedEventCount,
     stopInstantSolve: () => engine.stopInstantSolve(),
     reset: () => engine.reset(),
-    historySteps: historyView.steps,
-    reviewEventsBack: historyView.reviewEventsBack,
-    isReviewing: historyView.reviewEventsBack > 0,
+    historySteps: isCurrentPuzzleLoaded ? historyView.steps : [],
+    reviewEventsBack: isCurrentPuzzleLoaded ? historyView.reviewEventsBack : 0,
+    isReviewing: isCurrentPuzzleLoaded && historyView.reviewEventsBack > 0,
     reviewSequence: (sequence: number) => engine.reviewSequence(sequence),
     reviewOlderStep: () => engine.reviewOlderStep(),
     reviewNewerStep: () => engine.reviewNewerStep(),

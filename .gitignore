@@ -24,3 +24,8 @@ website/.pnp.*
 .idea/
 website/test-results/
 website/playwright-report/
+video/segments/
+video/*.webm
+video/frames/
+video/work/
+video/audio/

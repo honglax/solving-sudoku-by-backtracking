@@ -1,0 +1,66 @@
+{
+  "home": "Trang chủ trả lời câu hỏi chính: thuật toán quay lui giải Sudoku như thế nào? Ba thẻ bên dưới tóm tắt bài toán, cách giải và tốc độ.",
+  "algorithm": "Trang Thuật toán có mã giả, cách tính độ phức tạp và số lần thử của từng đề mẫu.",
+  "algorithmAnti": "Cuối trang là đề chống quay lui: 64 ô trống, 622.577.597 lần thử.",
+  "about": "Trang Giới thiệu nói trang này để làm gì, ai làm và dùng công cụ nào.",
+
+  "solverOpen": "Trang Giải Sudoku. Đề mặc định là đề Vừa, 40 ô trống.",
+  "solverGrid": "Lưới 9×9. Mỗi ô có màu riêng theo trạng thái.",
+  "solverLegend": "Chú thích màu: đề cho, đang thử, bị loại, đã ghi nhận, vừa trả lại, đã giải. Rê chuột lên một ô để xem nghĩa màu.",
+  "solverPseudocode": "Mã giả quay lui theo mô hình 1 của cô. Dòng đang chạy được tô sáng.",
+  "solverStepSome": "Bấm Từng bước vài lần để các bảng bên dưới có số liệu.",
+  "solverVector": "Bảng S ghi số đã điền ở từng ô trống, từ S₁ đến Sₙ.",
+  "solverHistory": "Tab Lịch sử giữ 100 bước gần nhất. Bấm vào một dòng để xem lại bước đó.",
+  "solverCounters": "Ba bộ đếm: lần thử, ghi nhận, trả lại.",
+  "solverStatus": "Câu thông báo nói bằng lời việc thuật toán vừa làm.",
+  "solverControls": "Các nút Từng bước, Tự động, Giải ngay và Đặt lại.",
+  "solverSpeed": "Thanh tốc độ chỉnh từ 1 đến 1.000 lần thử mỗi giây.",
+  "solverTheme": "Nút Sáng và Tối đổi giao diện.",
+
+  "inputSelect": "Cách 1: chọn một trong 13 đề mẫu.",
+  "inputType": "Cách 2: gõ số vào lưới. Đây là lưới trống, thử điền ba ô.",
+  "inputCheck": "Bấm Kiểm tra đề để máy soát số trùng trước khi giải.",
+  "inputPaste": "Cách 3: dán đề. Trang nhận 9 dòng hoặc một chuỗi 81 ký tự, dấu chấm là ô trống.",
+  "inputPasted": "Đề vừa dán khớp đề mẫu số 13, nên trang tự chọn đề đó.",
+
+  "stepIntro": "Đề số 13 có 16 ô trống. Bấm Từng bước để xem thuật toán chạy.",
+  "stepAccept": "Ô (1, 6) thử số 1. Hàng, cột và khối đều chưa có số 1, nên thuật toán chấp nhận và ghi nhận.",
+  "stepDescend": "Rồi sang ô trống kế tiếp, ô (1, 8).",
+  "stepReject": "Ô (1, 8) thử số 1: hàng 1 đã có số 1 ở ô (1, 6), nên bỏ.",
+  "stepExhaust": "Các số 2 đến 9 cũng lần lượt bị loại: cả 9 số ở ô (1, 8) đều trùng.",
+  "stepRestore": "Ô (1, 8) hết số, nên thuật toán trả lại ô (1, 6): xóa số 1 và thử số 2. Đây là một lần quay lui.",
+  "stepBack": "Nút Lùi một bước đi ngược lại từng sự kiện.",
+  "stepJump": "Tới lần quay lui kế đưa thẳng tới lần trả lại tiếp theo.",
+  "stepFirstChain": "Ô (1, 9) hết số, nên thuật toán trả lại ô (1, 8).",
+  "stepSecondChain": "Ô (1, 8) cũng hết số, nên thuật toán lùi tiếp về ô (1, 6). Quay lui dây chuyền qua hai ô.",
+  "stepHistory": "Bấm một dòng trong Lịch sử để xem lại đúng trạng thái lúc đó.",
+  "stepSolved": "Giải xong: 79 lần thử, 19 ghi nhận, 3 trả lại. Khớp bảng 83 bước trong report.",
+
+  "autoStart": "Đề Vừa chạy Tự động. Thuật toán tự thử, loại và ghi nhận theo tốc độ đã chọn.",
+  "autoPause": "Gặp lần quay lui đầu tiên, trang dừng lại và hỏi bạn đoán bước tiếp theo.",
+  "autoJump": "Tới lần quay lui kế nhảy tiếp tới lần quay lui sau.",
+
+  "instantSelect": "Đề Arto Inkala có 60 ô trống.",
+  "instantSolve": "Giải ngay: máy chạy một mạch, không vẽ từng bước.",
+  "instantResult": "Xong sau 445.778 lần thử, chưa tới một giây. Thử mọi cách điền là 9⁶⁰ trường hợp, một số dài 58 chữ số.",
+
+  "invalid": "Đề có hai số 5 cùng nằm trên hàng 1: trang báo đề không hợp lệ, kèm vị trí số trùng.",
+  "noSolutionFirst": "Đề vô nghiệm ngay ô đầu: ô (1, 1) không nhận được số nào.",
+  "noSolutionSearch": "Đề này trông hợp lệ nhưng vô nghiệm. Máy phải thử 981 lần mới chắc chắn.",
+  "complete": "Lưới đã đầy và đúng thì không cần giải.",
+
+  "allSolutionsOpen": "Trang Mọi lời giải đi hết cây tìm kiếm, đúng như mã giả quay lui gốc.",
+  "allSolutionsRun": "Đề Nhiều lời giải: bấm Tìm hết để đếm.",
+  "allSolutionsGallery": "Mỗi lời giải hiện thành một lưới nhỏ. Ô có nền màu là ô khác lời giải đầu tiên.",
+  "compareOpen": "Trang So sánh cho hai cách chọn ô đua nhau trên cùng một đề.",
+  "compareRace": "Lưới trái điền lần lượt, lưới phải điền ô dễ nhất trước. Số nhỏ ở góc ô là số khả năng còn lại.",
+  "compareMeasure": "Bấm Đo để máy đo thời gian của 6 cách giải ngay trên máy này.",
+  "compareMeasured": "Ba cách kiểm tra cho cùng số lần thử, chỉ khác thời gian mỗi lần giải.",
+
+  "phoneOpen": "Trên điện thoại, giao diện chuyển sang bố cục một cột.",
+  "phoneMenu": "Menu gom sáu trang.",
+  "phonePanels": "Mã giả và bảng S thu gọn thành các khối bấm để mở.",
+
+  "terminalTitle": "Chạy bộ testcase bằng lệnh yarn testcases. Dưới đây là kết quả thật của lần chạy ngày {date}.",
+  "terminalDone": "{passed} trên {total} đề đạt, mọi nhóm đều khớp đáp án."
+}

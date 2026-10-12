@@ -32,6 +32,7 @@ export type PlaybackListener = {
   onModeChange: (mode: PlaybackMode) => void
   onLongInstantSolveChange: (isLongInstantSolve: boolean) => void
   onHistoryChange: (historyView: HistoryView) => void
+  onPuzzleLoaded: (puzzle: Grid) => void
 }
 
 const EMPTY_HISTORY_VIEW: HistoryView = { steps: [], reviewEventsBack: 0, newestSequence: 0, storedEventCount: 0 }
@@ -51,6 +52,7 @@ const EVENTS_BETWEEN_CLOCK_CHECKS = 1000
 export class PlaybackEngine {
   private readonly listener: PlaybackListener
   private puzzle: Grid = []
+  private loadedPuzzle: Grid = []
   private session: PlaybackSession | null = null
   private animationFrameId: number | null = null
   private triesPerSecond = DEFAULT_TRIES_PER_SECOND
@@ -71,7 +73,9 @@ export class PlaybackEngine {
 
   loadPuzzle(puzzle: Grid) {
     this.cancelAnimation()
+    this.loadedPuzzle = puzzle
     this.puzzle = [...puzzle]
+    this.listener.onPuzzleLoaded(puzzle)
     this.session = null
     this.history.clear()
     this.reviewEventsBack = 0
@@ -84,7 +88,7 @@ export class PlaybackEngine {
   }
 
   reset() {
-    this.loadPuzzle(this.puzzle)
+    this.loadPuzzle(this.loadedPuzzle)
   }
 
   setSpeed(triesPerSecond: number) {

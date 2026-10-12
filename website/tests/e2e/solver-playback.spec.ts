@@ -92,3 +92,36 @@ test('Tự động pauses at the first backtrack and asks the visitor to guess',
   await page.getByRole('button', { name: 'Tự động' }).click()
   await expect.poll(async () => parseCount(await counterValue(page, 'Trả lại').textContent())).toBeGreaterThan(1)
 })
+
+test('switching puzzles right after a finished no-solution search keeps the page working', async ({ page }) => {
+  const pageErrors: string[] = []
+  page.on('pageerror', error => pageErrors.push(error.message))
+  page.on('console', message => {
+    if (message.type() === 'error') {
+      pageErrors.push(message.text())
+    }
+  })
+  await openSolver(page)
+  await selectSamplePuzzle(page, 7)
+  await page.getByRole('button', { name: 'Giải ngay' }).click()
+  await expect(statusMessage(page)).toContainText('Đề này không có lời giải')
+
+  await selectSamplePuzzle(page, 9)
+
+  await expect(page.getByText('Đã xảy ra lỗi')).toHaveCount(0)
+  await expect(page.locator('#sample-puzzle')).toHaveValue('9')
+  await expect(statusMessage(page)).toContainText('Đề hợp lệ')
+  expect(pageErrors).toEqual([])
+})
+
+test('Đặt lại clears the counters and the next step starts from the first try again', async ({ page }) => {
+  await openSolver(page)
+  await selectSamplePuzzle(page, 13)
+  await page.getByRole('button', { name: 'Từng bước' }).click()
+  await page.getByRole('button', { name: 'Từng bước' }).click()
+  await page.getByRole('button', { name: 'Đặt lại' }).click()
+  expect(await readCounters(page)).toEqual(['0', '0', '0'])
+
+  await page.getByRole('button', { name: 'Từng bước' }).click()
+  await expect(counterValue(page, 'Lần thử')).toHaveText('1')
+})

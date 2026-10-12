@@ -39,7 +39,7 @@ Mở http://localhost:5173. Các lệnh khác, đều chạy trong `website/`:
 |---|---|
 | `yarn build` | Build ra `website/dist/` |
 | `yarn test` | 723 test đơn vị (Vitest) |
-| `yarn test:e2e` | 60 test trên Chrome thật (Playwright) |
+| `yarn test:e2e` | 62 test trên Chrome thật (Playwright) |
 | `yarn lint` | Soát code bằng oxlint |
 | `yarn testcases` | Chạy 292 đề nhanh của bộ testcase, khoảng 9 giây |
 | `yarn testcases --include-slow` | Chạy cả 294 đề, khoảng 19 phút vì có 2 đề cần hàng trăm triệu lần thử |

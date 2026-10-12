@@ -462,6 +462,23 @@ Các ý được giữ cho thấy bản nháp có những chỗ sai thật:
 
 Em chọn sửa hết các ý đã kiểm là đúng. Claude sửa report, sửa câu trên website, chạy lại test và các phép đo, rồi ghi vào nhật ký.
 
+\section{Video demo bằng Playwright (12/10)}
+\label{sec:demo-video}
+
+Cô cho phép video không lời, chỉ cần chữ giải thích. Claude đề xuất hai cách quay: em tự quay màn hình bằng QuickTime, hoặc Claude dựng một script điều khiển Chrome. Em chọn script, vì video lặp lại được và không phụ thuộc giọng đọc:
+
+\begin{promptbox}{12/10}
+Đồng ý với Playwright option. Bên cạnh đó tôi muốn xây dựng một video bằng Claude kết hợp cùng Higgsfield
+\end{promptbox}
+
+Claude viết bộ script trong \texttt{website/scripts/demoVideo/}. Một trang chủ chứa website trong khung \(1366 \times 680\), đúng cỡ màn hình laptop mà thiết kế giao diện chọn, kèm một dải chữ giải thích bên dưới. Script bấm từng nút, vẽ khung sáng quanh thành phần đang giới thiệu và chạy con trỏ giả tới chỗ cần bấm, rồi Playwright thu thành video. \texttt{ffmpeg} ghép 10 đoạn thành một video. Nội dung 10 đoạn bám theo kịch bản trong kế hoạch: các trang chính, từng thành phần giao diện, ba cách nhập đề, chạy từng bước, chạy tự động, giải ngay, các đề đặc biệt, hai trang mở rộng, giao diện điện thoại và chạy bộ testcase. Đoạn cuối chạy thật lệnh \texttt{yarn testcases} rồi hiện lại kết quả, không gõ tay.
+
+Em muốn video có độ phân giải 4K. Lần quay đầu với tỉ lệ điểm ảnh cao ra file đúng kích thước 3840 \(\times\) 2160, nhưng nội dung chỉ chiếm góc trên trái, phần còn lại xám: Playwright không phóng khung hình. Bài thử ngắn đầu tiên không phát hiện vì chỉ cắt đúng vùng góc đó. Claude đổi cách làm: mở cửa sổ 3840 \(\times\) 2160 thật, phóng toàn bộ trang chủ bằng CSS \texttt{zoom} 2,8125 để trình duyệt vẽ lại chữ ở độ phân giải gốc, và bấm nút bằng \texttt{element.click()} vì Playwright không bấm chuột được trong khung bị phóng. Em kiểm bằng ảnh cắt 1:1 một khung hình: chữ sắc nét.
+
+Em cũng muốn có hai đoạn mở đầu và kết bằng hoạt ảnh. Claude soạn hai prompt cho Higgsfield, một công cụ tạo video bằng AI, kể chuyện chùm chìa thử dãy ổ khóa. Việc tạo clip qua dòng lệnh bị Higgsfield từ chối vì tài khoản đang ở chế độ dùng thử, chỉ cho tạo trên website. Claude không đi vòng qua giới hạn đó. Em tạo thử trên website, xem kết quả và thấy clip xấu, không phù hợp, nên bỏ. Thay vào đó Claude dựng hoạt ảnh bằng CSS trong Claude Design: một chùm chìa thử chín ổ khóa, ổ thứ năm kẹt nên chìa quay lại ổ thứ tư để đổi, rồi các ổ mở dần. Em mở trong ứng dụng Claude để xuất video. Nhạc nền do Claude viết code sinh ra, gồm vài hợp âm nhẹ và nốt rải, không dùng bản nhạc có sẵn nên không vướng bản quyền. Giọng thuyết minh em tự thu, không dùng giọng máy. Claude sinh sẵn kịch bản đọc có mốc thời gian, đã viết số và ký hiệu thành chữ.
+
+Cách quay này làm lộ ra một lỗi thật mà 723 test đơn vị và 60 test trên Chrome đều bỏ sót. Khi giải xong đề vô nghiệm rồi đổi sang một đề khác, trang Giải Sudoku báo ``Đã xảy ra lỗi''. Claude tái hiện riêng và đọc thông báo trong console: ``Digit 7 was rejected at (1, 5) but no unit holds it''. Nguyên nhân nằm ở thứ tự cập nhật. Khi đề đổi, trang vẽ lại ngay với đề mới nhưng tiến trình cũ vẫn còn một lượt, nên câu thông báo ``không có lời giải'' của đề cũ đem đối chiếu với lưới của đề mới. Claude viết test trước, thấy test hỏng đúng như vậy, rồi sửa: bộ phát lại báo đề nào vừa được nạp, và trang bỏ qua tiến trình không thuộc đề đang hiện. Hai trang So sánh và Mọi lời giải được thử cùng kiểu, không bị lỗi này. Sau khi sửa có 723 test đơn vị và 62 test trên Chrome, đều đạt.
+
 \section{Phần việc của em và phần việc của AI}
 
 Bảng \ref{tab:roles} tách phần em làm và phần Claude làm.
