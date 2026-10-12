@@ -494,3 +494,11 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Chụp lại ảnh: ảnh các bước của đề 13 chụp khi tắt hiệu ứng (ô hồng nhạt trước đây là màu "bị loại" đang mờ dần); ảnh cuộc đua chụp lúc đang chạy để thấy số khả năng ở góc ô.
 - Sửa nhật ký: dòng tiêu đề trang chủ ngày 6/10 ghi nhầm câu sửa sau này; dòng nói phiên Claude riêng "không sửa file nào".
 - Kết quả: 723 test đơn vị, 60 test end-to-end, lint và kiểm kiểu đạt. Report 56 trang, không cảnh báo, không ký tự `%`.
+
+**Đổi nơi deploy sang Vercel**
+> Deploy lên Vercel chứ k phải Netlify, tôi sẽ push commit lên git cá nhân trước
+
+- Bỏ `website/netlify.toml`, thêm `website/vercel.json`: cài bằng `yarn install --immutable`, build bằng `yarn build`, xuất `dist/`, và chuyển mọi đường dẫn không phải file về `index.html` để bấm F5 ở `/solver` không ra 404.
+- `package.json` ghim Node 24 (`engines`), cùng bản Node đã chạy test trên máy.
+- `plan.md` đổi các chỗ Netlify thành Vercel. Các prompt cũ nhắc Netlify trong nhật ký và report giữ nguyên vì là nguyên văn.
+- Kiểm lại: `yarn install --immutable` và `yarn build` đều chạy.

@@ -1,6 +1,6 @@
 # Kế hoạch bài tập lớn CS112 - Demo giải Sudoku bằng quay lui
 
-Mình dựng một **website dạy và chia sẻ kiến thức về thuật toán quay lui**, lấy Sudoku làm ví dụ xuyên suốt, đưa lên mạng bằng Netlify, ai có link là mở được. Người học nhập đề Sudoku, xem thuật toán điền từng ô, thử từng số, gặp mâu thuẫn thì xóa và lùi lại; rồi so sánh các cách tổ chức dữ liệu và các chiến lược chọn ô để hiểu vì sao thuật toán nhanh hay chậm. Thuật toán chính theo đúng mô hình 1 (mô hình chung của quay lui trên slide). Mọi phần (website, testcase, video, report) viết với góc nhìn đó: một dự án dạy học, không phải lời giải một bài tập cụ thể.
+Mình dựng một **website dạy và chia sẻ kiến thức về thuật toán quay lui**, lấy Sudoku làm ví dụ xuyên suốt, đưa lên mạng bằng Vercel, ai có link là mở được. Người học nhập đề Sudoku, xem thuật toán điền từng ô, thử từng số, gặp mâu thuẫn thì xóa và lùi lại; rồi so sánh các cách tổ chức dữ liệu và các chiến lược chọn ô để hiểu vì sao thuật toán nhanh hay chậm. Thuật toán chính theo đúng mô hình 1 (mô hình chung của quay lui trên slide). Mọi phần (website, testcase, video, report) viết với góc nhìn đó: một dự án dạy học, không phải lời giải một bài tập cụ thể.
 
 Hạn nộp: **23:59 Chủ nhật 18/10/2026**. Cô ghi rõ không nhận trễ, không gia hạn. Lập ngày 3/10; cập nhật 6/10 theo yêu cầu chính thức của cô (còn 12 ngày).
 
@@ -111,7 +111,7 @@ Lưới trống (đề 6) giải nhanh hơn đề Wikipedia dù nhiều ô trố
 
 Kể theo một lần dùng thật:
 
-1. Mở link Netlify (ví dụ `https://sudoku-quay-lui.netlify.app`, tên thật chốt lúc deploy). Vào trang **Giải Sudoku**.
+1. Mở link Vercel (tên thật chốt lúc deploy). Vào trang **Giải Sudoku**.
 2. Chọn "Đề 3 - vừa (40 ô)" trong danh sách đề mẫu. Hoặc tự gõ vào lưới. Hoặc dán đề dạng 9 dòng (số cách nhau dấu cách, `X` là ô trống) hay chuỗi 81 ký tự (dấu chấm là ô trống), định dạng phổ biến trên các trang Sudoku. Hoặc mở một file trong bộ testcase.
 3. Bấm **Kiểm tra đề**. Nếu hàng 4 có hai số 7 thì báo đúng hai ô đó và tô đỏ, không cho chạy.
 4. Bấm **Từng bước**. Mỗi lần bấm, thuật toán đi một bước. Ví dụ ô (1,2), thử số 1:
@@ -193,15 +193,15 @@ Thứ tự làm: **A → B → C → D**. Trễ lịch thì cắt từ D trở l
   - React: header và menu viết một lần trong `SiteHeader`, dùng cho cả 4 trang. Trang Giải Sudoku có nhiều thứ đổi cùng lúc (lưới, bảng S, bộ đếm, dòng mã giả đang chạy). Với React, màn hình được tính ra từ một chỗ giữ trạng thái, không phải tự sửa tay từng phần.
   - TypeScript: kiểu dữ liệu nằm ngay trong code, đọc là hiểu. Ví dụ `type SolverEvent = { kind: 'rejectCandidate'; cell: number; digit: number; reason: RejectReason }` tự nói sự kiện đó chứa gì, không cần comment.
   - Vite: chạy thử bằng `yarn dev`, build bằng `yarn build` ra thư mục `website/dist/`.
-- **Quản lý gói: Yarn 4** (chốt 4/10), ghim trong dự án qua `website/.yarnrc.yml` (`yarnPath`), nên máy bạn và Netlify chạy cùng một phiên bản. Dùng `nodeLinker: node-modules` thay cho chế độ Plug'n'Play mặc định, để VS Code, TypeScript, oxlint và Vitest chạy không cần cấu hình thêm. Yarn 4 không cài phiên bản gói mới phát hành chưa đủ 24 giờ (`npmMinimalAgeGate`), mình giữ nguyên lớp bảo vệ này.
-- **Chuyển trang bằng React Router.** Trên Netlify cần thêm file `public/_redirects` một dòng `/*  /index.html  200`. Thiếu dòng này thì bấm F5 ở `/solver` sẽ ra lỗi 404.
+- **Quản lý gói: Yarn 4** (chốt 4/10), ghim trong dự án qua `website/.yarnrc.yml` (`yarnPath`), nên máy bạn và Vercel chạy cùng một phiên bản. Dùng `nodeLinker: node-modules` thay cho chế độ Plug'n'Play mặc định, để VS Code, TypeScript, oxlint và Vitest chạy không cần cấu hình thêm. Yarn 4 không cài phiên bản gói mới phát hành chưa đủ 24 giờ (`npmMinimalAgeGate`), mình giữ nguyên lớp bảo vệ này.
+- **Chuyển trang bằng React Router.** Trên Vercel, `website/vercel.json` chuyển mọi đường dẫn không phải file về `index.html`. Thiếu dòng này thì bấm F5 ở `/solver` sẽ ra lỗi 404.
 - **Thuật toán không biết React tồn tại.** Mọi file trong `src/solver/` là TypeScript thuần, không import React. Nhờ vậy Node chạy thẳng được các file này để đối chiếu với Python. Node 24 chạy được file `.ts` trực tiếp, với điều kiện chỉ dùng cú pháp TypeScript "xóa được" (không `enum`, không `namespace`). Đằng nào mình cũng dùng union kiểu chuỗi thay `enum`.
-- **Deploy: Netlify, gói miễn phí.**
-  - Cách làm: `yarn dlx netlify-cli deploy --build --prod` trong thư mục `website/`. Netlify tự chạy `yarn build` và đưa `dist/` lên.
-  - Bạn phải tự đăng nhập Netlify bằng tài khoản của bạn (mình không tạo tài khoản thay được). Mỗi lần đưa bản mới lên mạng, mình hỏi bạn trước.
-  - Dự phòng nếu Netlify trục trặc: Cloudflare Pages. Cũng miễn phí, cũng build được dự án Vite.
+- **Deploy: Vercel, gói miễn phí** (đổi từ Netlify ngày 12/10, theo lựa chọn của bạn).
+  - Cách làm: bạn đẩy repo lên GitHub cá nhân, rồi tạo project trên Vercel từ repo đó, Root Directory là `website`. Vercel đọc `website/vercel.json`: cài bằng `yarn install --immutable`, build bằng `yarn build`, đưa `dist/` lên. Node 24 ghim trong `package.json` (`engines`).
+  - Bạn tự đăng nhập Vercel bằng tài khoản của bạn (mình không tạo tài khoản thay được). Mỗi lần push lên nhánh `main`, Vercel tự build lại.
+  - Dự phòng nếu Vercel trục trặc: Cloudflare Pages. Cũng miễn phí, cũng build được dự án Vite.
 - **Font: Be Vietnam Pro** (hiển thị tiếng Việt có dấu đẹp, giấy phép mở OFL), cài qua gói `@fontsource/be-vietnam-pro`. Font được đóng gói cùng website, không phụ thuộc Google Fonts.
-- **Chưa lo chạy offline.** Bản nộp là link Netlify + mã nguồn. Nếu cô cập nhật yêu cầu phải chạy được không cần mạng, thêm `vite-plugin-singlefile` lúc đó (khoảng nửa buổi).
+- **Chưa lo chạy offline.** Bản nộp là link Vercel + mã nguồn. Nếu cô cập nhật yêu cầu phải chạy được không cần mạng, thêm `vite-plugin-singlefile` lúc đó (khoảng nửa buổi).
 
 ### 5.2 Làm hoạt ảnh mà vẫn giữ thuật toán đệ quy
 - Vấn đề: hàm đệ quy chạy một mạch, giao diện không kịp vẽ.
@@ -245,7 +245,7 @@ final-project/
     reference_solver.py          bản Python tham chiếu (độc lập với bản TypeScript), có bộ đếm, ghi ra expected_counts.json
     expected_counts.json         12 đề + 4 thời điểm giữa chừng, làm đáp án cho test
   website/
-    netlify.toml  index.html  package.json  .yarnrc.yml
+    vercel.json  index.html  package.json  .yarnrc.yml
     vitest.config.ts             test đơn vị: tests/unit
     playwright.config.ts         test end-to-end: tests/e2e, chạy bằng Chrome có sẵn trên máy
     src/
@@ -355,7 +355,7 @@ Prompt gửi Claude Design nằm ở `design/claude-design-prompt.md`. Trong đ�
 
 **Kiểm tra sau khi deploy:**
 - Mở trang Giải Sudoku trên một máy Windows (thanh cuộn thật chiếm chỗ, khác Mac): panel phải vẫn nằm cạnh lưới, không có thanh cuộn ngang.
-- Mở link Netlify trên Chrome, Safari, và một điện thoại thật.
+- Mở link Vercel trên Chrome, Safari, và một điện thoại thật.
 - Chạy lại đề 3 và đề 5, so bộ đếm với bảng 3.4.
 - Chuyển qua lại giữa 4 trang, rồi bấm F5 ở từng trang: không có trang lỗi 404.
 
@@ -404,7 +404,7 @@ Cô yêu cầu video có: chạy thử hệ thống, nhập dữ liệu và gi�
 
 | Đoạn | Nội dung |
 |---|---|
-| 1 | Mở link Netlify, đi qua Trang chủ, Thuật toán, Giới thiệu |
+| 1 | Mở link Vercel, đi qua Trang chủ, Thuật toán, Giới thiệu |
 | 2 | Trình giải: giới thiệu từng thành phần: lưới và chú thích màu (rê chuột lên ô), mã giả, bảng S, tab Lịch sử, bộ đếm, câu thông báo, thanh tốc độ, nút Sáng / Tối |
 | 3 | Nhập dữ liệu 4 cách: chọn đề mẫu, gõ vào lưới, dán đề, mở một đề từ file testcase; Kiểm tra đề |
 | 4 | Đề minh họa chạy **Từng bước** và **Lùi một bước**: bị loại kèm lý do, ghi nhận, quay lui; khớp bảng trong report |
@@ -465,7 +465,7 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 | T3 6/10 | Cập nhật plan theo yêu cầu mới; commit đầu tiên (khi bạn đồng ý) | Plan khớp `requirements.md` |
 | T4 7/10 - T5 8/10 | Bộ testcase (7.2): sinh đề, đáp án Python, script chạy, test Vitest; đề minh họa | Cả bộ chạy đạt, mọi nhánh đều có đề chạm tới |
 | T6 9/10 - T7 10/10 | Phần mở rộng A (trang So sánh), B (Tìm mọi lời giải), C (MRV); nút mở file testcase | Test khớp 3 cách; khớp bản Python đếm lời giải và bản Python MRV |
-| CN 11/10 | **Deploy bản thử lên Netlify**; đo trước D | Link chạy được trên laptop và điện thoại |
+| CN 11/10 | **Deploy bản thử lên Vercel**; đo trước D | Link chạy được trên laptop và điện thoại |
 | T2 12/10 - T3 13/10 | Phần mở rộng D (4×4, 16×16), cắt nếu trễ; chạy bảng kiểm tra mục 7, sửa lỗi | Mọi tình huống đúng trên bản đã deploy |
 | T4 14/10 - T5 15/10 | Report: Ch.6 trước, rồi Ch.1-5, Ch.7-8 | PDF compile không cảnh báo |
 | T6 16/10 | Quay video, chụp ảnh cho report | Video đủ 10 đoạn ở mục 8 |
@@ -482,7 +482,7 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 | Hoạt ảnh tốc độ cao làm treo tab | Vẽ theo khung hình, không theo sự kiện (5.2). Thử ở 1.000 lần thử/giây trên đề 4 trước khi quay video. |
 | Video vượt giới hạn upload | Nén bằng ffmpeg; nếu vẫn quá thì hỏi trên group lớp có được nộp link Drive không. |
 | Cô coi giao diện đẹp mà thuật toán "của AI" | Report ghi đúng ai làm gì, kèm bảng đối chiếu từng dòng 3.2 với mã giả slide. |
-| Netlify lỗi hoặc đổi chính sách gói miễn phí sát hạn | Deploy thử sớm từ 11/10. Dự phòng Cloudflare Pages. |
+| Vercel lỗi hoặc đổi chính sách gói miễn phí sát hạn | Deploy thử sớm từ 11/10. Dự phòng Cloudflare Pages. |
 | Cô yêu cầu chạy được không cần mạng | Thêm `vite-plugin-singlefile` để build ra 1 file `index.html` (5.1). |
 | Bản thiết kế đẹp nhưng code lại không giống | Chép thông số trực tiếp từ bản thiết kế; so ảnh chụp bản thiết kế với trang thật trước khi quay video. |
 | Phần mở rộng ăn hết thời gian viết report | Report là phần nặng điểm nhất. Trễ lịch thì cắt D, rồi cắt giao diện của A (giữ bảng số đo trong report). Ch.6 viết từ 14/10 dù code chưa xong hẳn. |
@@ -501,10 +501,10 @@ Lịch cũ (3/10) đã xong tới phần website. Lịch mới từ 6/10, ngày 
 | 12.3 | Video tự nói tiếng Việt | **Đã chốt** (3/10) |
 | 12.4 | Dùng `git` trong `final-project/`, mình chỉ commit khi bạn đồng ý | **Đã chốt** (3/10) |
 | 12.5 | Cách nộp (zip hay link) và tên file nộp | Chốt sau khi hoàn tất mọi thứ (6/10). Yêu cầu của cô không quy định tên |
-| 12.6 | Website hoàn chỉnh nhiều trang, deploy Netlify | **Đã chốt** (3/10) |
+| 12.6 | Website hoàn chỉnh nhiều trang, deploy Vercel | **Đã chốt** (3/10, đổi từ Netlify sang Vercel ngày 12/10) |
 | 12.7 | Giao diện thiết kế bằng Claude Design trước khi code | **Đã chốt** (3/10) |
 | 12.8 | Có hiện **họ tên** trên website công khai không | **Đã chốt** (4/10): có, ở trang Giới thiệu (dòng "Tác giả"), không ghi MSSV. Thẻ "Mã nguồn" ẩn cho tới khi bạn quyết có công khai code không |
-| 12.9 | Tên miền con trên Netlify | Bạn quyết lúc deploy. Đề xuất: `sudoku-quay-lui.netlify.app` (nếu còn trống) |
+| 12.9 | Tên miền con trên Vercel | Bạn quyết lúc deploy. |
 | 12.10 | React + Vite + TypeScript; mọi tên trong code (kể cả tên file) bằng tiếng Anh | **Đã chốt** (3/10) |
 | 12.11 | Chưa làm bản chạy offline | **Đã chốt** (3/10) |
 | 12.12 | "Giải ngay" dùng chung generator, chạy theo lát thời gian; không có bản đệ quy riêng, không Web Worker | **Đã chốt** (4/10), thay ý cũ ngày 3/10 |
