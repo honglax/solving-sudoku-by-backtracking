@@ -449,3 +449,13 @@ Ghi lại từng buổi làm: làm gì, dùng công cụ nào, prompt thật, ai
 - Lỗi tìm ra khi chụp màn hình: sau 32 lần bấm Từng bước, trang mới ở lần thử 24, không khớp "bước 32" của bảng. Lý do: mỗi lần bấm đi một sự kiện, kể cả "ghi nhận" và "sang ô kế". Đổi cột đầu của bảng thành số lần bấm Từng bước; ảnh chụp ở lần bấm 13, 29, 38, 120 khớp bộ đếm của dữ liệu từng con số (10/1/1, 21/3/2, 29/3/3, 79/19/3).
 - Ch.1 (lý do chọn, nguồn gốc Sudoku, ứng dụng: xếp lịch, thời khóa biểu, tô màu đồ thị 81 đỉnh 810 cạnh), Ch.2 (đề bài kiểu cô ra đề), Ch.3 (Input, Output, ràng buộc, 4 ví dụ).
 - Rà theo skill: bỏ 4 chữ "nó" chỉ thuật toán/ô và 3 câu bị động. Report 42 trang, không cảnh báo.
+
+**Report: Ch.7 và Ch.8**
+> Sound good, let's go with Ch.7 and Ch.8
+
+- `report/tools/measureComparison.ts` đo lại 6 cách giải trên 6 đề (Vừa, Wikipedia, Inkala, AI Escargot, Easter Monster, chống quay lui) bằng đúng hàm đo của trang So sánh, lưu `report/data/comparison-measurements.csv`. Máy đo: Apple M2 Pro, 16 GB, macOS 26.7, Node 24.13, Chrome 154.
+- Bảng nhóm testcase và hai bảng so sánh sinh tự động từ dữ liệu.
+- Ch.7: cách tạo 294 đề (5 cách), 6 nhóm, 20 nhánh độ phủ, 4 lỗi cố ý, đáp án từ 2 chương trình Python độc lập, ghi rõ đề ngẫu nhiên nghiêng về phía dễ vì bỏ đề cần hơn 1 triệu lần thử.
+- Ch.8: 294/294 đề đạt; thời gian; so sánh (cấu trúc dữ liệu chỉ đổi hằng số; thứ tự chọn ô giảm số lần thử 5 tới 1.529 lần; đề Vừa và Inkala thử ít hơn mà chậm hơn); kiểm thử tự động; giao diện; ghi thẳng là chưa thử với người dùng thật; hạn chế và hướng phát triển.
+- Lỗi tự soát ra trước khi commit: Ch.8 bản nháp ghép nhầm 4,9 ms (bản đo có đếm) với 623 ms của generator thành "chậm hơn 130 lần"; số đúng là 3,7 ms so với 623 ms, khoảng 170 lần, khớp Ch.4 và Ch.6.
+- Report 48 trang, không cảnh báo, không ký tự `%`.

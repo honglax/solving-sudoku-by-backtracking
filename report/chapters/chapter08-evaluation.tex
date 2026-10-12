@@ -1,13 +1,99 @@
 \chapter{Đánh giá}
 
+Hệ thống trả về kết quả đúng trên cả 294 đề của bộ testcase. Toàn bộ 723 test đơn vị và 60 test trên Chrome cũng đạt. Các số đo trong chương chạy trên máy Apple M2 Pro, RAM 16 GB, macOS 26.7, Node 24.13 và Chrome 154. Số đo thời gian phụ thuộc máy, còn số lần thử thì không.
+
 \section{Kết quả trên bộ testcase}
+
+Lần chạy ngày 10/10/2026 cho 292 trên 292 đề đạt (Bảng \ref{tab:testcase-groups}). Mỗi đề phải khớp đáp án ở bốn chỗ: loại kết quả, nội dung đầu ra, ba bộ đếm, và ba số lần bị loại theo hàng, cột, khối. Cả bộ đi qua đủ 20 nhánh xử lý. Hai đề chậm chạy riêng ngày 6/10 và cũng đạt, nên tổng cộng 294 trên 294 đề đạt.
+
+Kết quả từng đề lưu trong \texttt{testcases/results/results.csv}. Lệnh \texttt{yarn testcases} chạy lại cả bộ trong khoảng 4 giây.
 
 \section{Thời gian thực hiện}
 
+\begin{itemize}
+  \item \textbf{Đề nhỏ và đề thông thường} chạy dưới 30 ms mỗi đề trên bộ giải của website.
+  \item \textbf{Đề chậm nhất trong nhóm chạy mặc định} là Easter Monster: 2.357.880 lần thử, 3,07 giây.
+  \item \textbf{Hai đề chậm:} đề chống quay lui mất 13 phút 54 giây, đề 17 số mất 4 phút 42 giây.
+\end{itemize}
+
+Phần lớn thời gian đó là cái giá của việc minh họa từng bước. Bộ giải của website là một generator phát sự kiện ở mỗi bước, và mỗi sự kiện đi ngược qua tới 64 tầng đệ quy. Trên đề Arto Inkala, bản đệ quy thường chạy hết 3,7 ms, bản generator mất 623 ms, chậm hơn khoảng 170 lần (đo ngày 3/10). Nút Giải ngay trên trình duyệt chạy khoảng 660 nghìn lần thử mỗi giây, nên đề Inkala xong trong chưa tới 1 giây, còn đề chống quay lui mất khoảng 15 phút. Người xem bấm Dừng được bất cứ lúc nào, trang không treo.
+
 \section{So sánh các cách giải}
+
+Trang So sánh đo 6 cách: 2 thứ tự chọn ô nhân với 3 cách kiểm tra. Bảng \ref{tab:comparison-tries} và Bảng \ref{tab:comparison-times} là kết quả chạy bằng script \texttt{report/tools/measureComparison.ts}. Script dùng đúng hàm đo của trang So sánh: mỗi cách chạy lặp lại tới khi đủ 0,3 giây rồi lấy trung bình.
+
+\begin{table}[H]
+  \centering
+  \caption{Số lần thử theo thứ tự chọn ô (ba cách kiểm tra cho cùng một số)}
+  \label{tab:comparison-tries}
+  \small
+  \input{generated/comparison-tries}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Thời gian mỗi lần giải, tính bằng mili giây. Lưới: quét lại lưới; Sổ: ba mảng đánh dấu; Công tắc: bitmask}
+  \label{tab:comparison-times}
+  \small
+  \input{generated/comparison-times}
+\end{table}
+
+Bốn điều rút ra từ hai bảng:
+
+\begin{itemize}
+  \item \textbf{Cấu trúc dữ liệu chỉ đổi hằng số.} Ba cách kiểm tra cho đúng cùng số lần thử trên mọi đề. Quét lưới chậm khoảng gấp đôi ba mảng đánh dấu: 9,36 ms so với 4,93 ms trên đề Inkala. Bitmask nhanh hơn ba mảng đánh dấu chút ít ở hầu hết các đề, nhưng chậm hơn ở đề chống quay lui (8.887 ms so với 8.565 ms). Đúng như phân tích ở Chương 4: cách kiểm tra chỉ đổi \(c_2\) trong \(T(n) = 9\,T(n-1) + c_2\).
+  \item \textbf{Thứ tự chọn ô đổi cả cây tìm kiếm.} Điền ô dễ nhất trước giảm số lần thử từ 5 lần (đề Inkala) tới 1.529 lần (đề chống quay lui).
+  \item \textbf{Ít lần thử hơn chưa chắc nhanh hơn.} Đề Vừa và đề Inkala đều thử ít hơn khi điền ô dễ nhất trước, mà lại chạy chậm hơn: đề Inkala 23,1 ms so với 4,93 ms. Trước mỗi bước, cách này phải đếm lại khả năng của mọi ô trống còn lại.
+  \item \textbf{Khi cây đủ lớn, cách chọn ô thắng hẳn.} Đề chống quay lui giảm từ 8,6 giây xuống 0,17 giây, đề Easter Monster từ 27,4 ms xuống 10,4 ms.
+\end{itemize}
 
 \section{Kiểm thử tự động}
 
+\begin{itemize}
+  \item \textbf{723 test đơn vị} (Vitest): bộ giải khớp bản Python từng con số trên các đề mẫu, khớp các thời điểm giữa chừng mà bản thiết kế vẽ lại, ba cách kiểm tra và thứ tự điền ô dễ nhất trước khớp bản Python riêng của chúng, chế độ tìm hết khớp số lời giải, lịch sử xem lại đúng trạng thái khi lùi 1 đến 300 sự kiện, câu thông báo đúng từng ký tự, và toàn bộ 292 đề của bộ testcase.
+  \item \textbf{60 test trên Chrome thật} (Playwright): mọi trạng thái trong bản thiết kế, các nút Từng bước, Tự động, Giải ngay, Dừng, lịch sử, cuộc đua và phép đo ở trang So sánh, trang Mọi lời giải, bố cục ở nhiều cỡ màn hình từ 320 đến 2560 px, và không trang nào hiện chỗ chờ điền chưa thay số.
+  \item \textbf{Soát code:} TypeScript ở chế độ nghiêm ngặt, oxlint, không còn chữ tiếng Việt nào trong code ngoài file ngôn ngữ.
+\end{itemize}
+
+Em kiểm lại chính bộ test bằng các lỗi cố ý (Bảng \ref{tab:mutations}). Hai lần cách này lộ ra lỗ hổng thật, và cả hai lỗ hổng đã vá.
+
 \section{Tính trực quan của giao diện}
 
+Phần minh họa cho người xem thấy cùng lúc bốn thứ: lưới với màu riêng cho từng trạng thái ô, dòng mã giả đang chạy kèm nhãn đúng hoặc sai, vectơ \(S\), và một câu giải thích bằng lời, ví dụ ``Ô (4, 7) - thử số 2: hàng 4 đã có số 2, bỏ.''. Các chức năng hỗ trợ người học:
+
+\begin{itemize}
+  \item Từng bước, lùi một bước, tự động với tốc độ từ 1 đến 1.000 lần thử mỗi giây, tới lần quay lui kế tiếp, giải ngay.
+  \item Chạy tự động thì dừng ở lần quay lui đầu tiên và hỏi người xem đoán bước tiếp theo.
+  \item Bảng lịch sử 100 bước gần nhất, bấm vào một dòng để xem lại đúng trạng thái lúc đó.
+  \item Cuộc đua hai lưới ở trang So sánh, mỗi ô trống hiện số khả năng còn lại.
+  \item Bộ sưu tập lời giải ở trang Mọi lời giải, tô các ô khác lời giải đầu tiên.
+\end{itemize}
+
+Về khả năng tiếp cận, các cặp màu chữ và nền đạt độ tương phản WCAG AA. Mỗi trạng thái ô có thêm dấu hiệu ngoài màu, ví dụ gạch ngang cho số bị loại và viền nét đứt cho ô vừa trả lại. Lưới đi được bằng phím mũi tên. Trang có chế độ tối, có bố cục riêng cho điện thoại, và hoạt ảnh ở trang chủ đứng yên khi máy bật giảm chuyển động.
+
+Em chưa kiểm thử với người dùng thật. Các góp ý về giao diện và câu chữ đến từ các phiên Claude đóng vai người dùng phổ thông, sinh viên và biên tập viên (Chương 6), cộng với việc em tự dùng thử. Đây là hạn chế lớn nhất của phần đánh giá giao diện.
+
 \section{Hạn chế và hướng phát triển}
+
+\subsection*{Hạn chế}
+
+\begin{itemize}
+  \item \textbf{Generator chậm.} Để minh họa từng bước, bộ giải trên website chậm hơn bản đệ quy thường khoảng 170 lần. Đề chống quay lui mất khoảng 15 phút khi bấm Giải ngay.
+  \item \textbf{Chưa có người dùng thật thử.}
+  \item \textbf{Thứ tự điền ô dễ nhất trước} mới có ở trang So sánh, chưa chạy từng bước được ở trang Giải Sudoku.
+  \item \textbf{Chưa có lưới cỡ khác} như \(4 \times 4\) hay \(16 \times 16\). Em đã lên kế hoạch nhưng dừng lại để dành thời gian cho report.
+  \item \textbf{Đề ngẫu nhiên trong bộ testcase nghiêng về phía dễ}, vì script bỏ các đề cần hơn 1 triệu lần thử.
+  \item \textbf{Lịch sử chỉ giữ 100 bước gần nhất.} Muốn xem lại bước cũ hơn thì phải chạy lại từ đầu.
+  \item \textbf{Website chỉ có tiếng Việt}, dù toàn bộ chữ đã tách sẵn ra một file để dịch.
+\end{itemize}
+
+\subsection*{Hướng phát triển}
+
+\begin{itemize}
+  \item Cho trang Giải Sudoku chọn thứ tự điền ô dễ nhất trước và chạy từng bước.
+  \item Chạy Giải ngay bằng bản đệ quy thường trong một luồng riêng của trình duyệt (Web Worker), chỉ dùng generator khi cần xem từng bước.
+  \item Thêm lưới \(4 \times 4\) và \(16 \times 16\) để thấy \(\Oh{k^n}\) thay đổi theo \(k\).
+  \item Dùng lại phần minh họa cho các bài quay lui khác trong slide: 8 quân hậu, tổng tập con, tô màu đồ thị.
+  \item Thử với một nhóm người học thật, ghi lại chỗ họ không hiểu.
+  \item Thêm bản tiếng Anh.
+\end{itemize}

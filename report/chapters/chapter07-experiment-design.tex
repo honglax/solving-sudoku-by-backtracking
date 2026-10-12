@@ -1,9 +1,88 @@
 \chapter{Thiết kế thực nghiệm}
 
+Bộ testcase có 294 đề, chia 6 nhóm. Số ô trống trải từ 0 đến 81, số lần thử từ 0 đến 622.577.597. Đáp án của mọi đề lấy từ hai chương trình Python viết riêng, không lấy từ chính bộ giải đang được kiểm thử. Bảng \ref{tab:testcase-groups} tóm tắt các nhóm.
+
+\begin{table}[H]
+  \centering
+  \caption{Các nhóm testcase và kết quả lần chạy ngày 10/10/2026}
+  \label{tab:testcase-groups}
+  \small
+  \input{generated/testcase-groups}
+  \par\smallskip\footnotesize Nhóm Lớn, khó có 2 đề chậm không chạy mặc định (mục \ref{sec:slow-cases}), nên cột Đạt ghi 43/43.
+\end{table}
+
 \section{Cách tạo bộ testcase}
+
+Script \texttt{testcases/tools/generate\_testcases.py} sinh toàn bộ 294 đề với seed cố định 20261006. Chạy lại script ra đúng bộ đề cũ, từng ký tự. Script dùng năm cách tạo đề:
+
+\begin{itemize}
+  \item \textbf{Lưới đầy ngẫu nhiên.} Quay lui trên lưới trống với thứ tự số xáo trộn. Mỗi lần chạy ra một lưới đầy hợp lệ khác hẳn nhau. Bản đầu của script lấy một lưới mẫu rồi hoán vị hàng, cột và đổi tên số; cách đó chỉ ra một họ lưới nên em bỏ (Chương 6).
+  \item \textbf{Đề có lời giải duy nhất.} Từ một lưới đầy, xóa lần lượt từng ô theo thứ tự ngẫu nhiên. Lần xóa nào làm đề có từ hai lời giải trở lên thì trả số lại. Dừng khi đủ số ô trống cần có.
+  \item \textbf{Đề nhiều lời giải.} Xóa ngẫu nhiên nhiều ô, không kiểm tra lời giải duy nhất.
+  \item \textbf{Đề dựng có chủ đích.} Đề đúng 2 lời giải: xóa 4 ô tạo thành hình chữ nhật mà hai số ở hai góc đối nhau đổi chỗ được. Đề vô nghiệm: lấy một đề có lời giải duy nhất, đổi một số cho sẵn thành số khác mà không tạo số trùng, rồi kiểm tra đề mới không còn lời giải nào. Đề không hợp lệ: thêm số trùng, ký tự lạ, bớt hoặc thêm dòng, ô.
+  \item \textbf{Đề nổi tiếng.} Đề minh họa trên Wikipedia, Arto Inkala, AI Escargot, Easter Monster, đề 17 số đầu tiên trong danh sách của Gordon Royle, và đề chống quay lui.
+\end{itemize}
+
+Đề sinh ngẫu nhiên nào cần hơn 1 triệu lần thử thì script bỏ và sinh đề khác, để bộ test chạy nhanh. Lựa chọn này làm các đề ngẫu nhiên nghiêng về phía dễ. Các đề khó thật sự nằm ở nhóm đề nổi tiếng.
+
+\subsection*{Định dạng}
+
+Mỗi nhóm là một file văn bản. Mỗi đề trong file là một khối gồm dòng mô tả, phần \texttt{input} và phần \texttt{expected}. Phần input giữ nguyên từng ký tự, kể cả dòng trống, tab và ký tự xuống dòng kiểu Windows, dùng đúng các định dạng mà hộp Dán đề của website nhận. Phần expected là lưới lời giải, hoặc \texttt{NO SOLUTION}, hoặc \texttt{INVALID} kèm lý do. File \texttt{manifest.csv} ghi thêm cho mỗi đề: nhóm, định dạng, số ô trống, kết quả mong đợi, số lời giải, số lần thử, ghi nhận, trả lại, và số lần bị loại vì hàng, cột, khối.
 
 \section{Các nhóm testcase}
 
+\begin{itemize}
+  \item \textbf{Nhỏ (40 đề):} 1 đến 5 ô trống, người đọc tự kiểm bằng tay được. Gồm hai đề mẫu ``Dễ nhất'' và ``Dễ''.
+  \item \textbf{Thông thường (150 đề):} 149 đề sinh ngẫu nhiên có lời giải duy nhất, 20 đến 50 ô trống, mỗi mức ô trống khoảng 5 đề. Cộng đề mẫu ``Vừa'' có 4 lời giải.
+  \item \textbf{Lớn, khó (45 đề):} 25 đề có lời giải duy nhất với 51 đến 56 ô trống, 14 đề nhiều lời giải với 58 đến 70 ô trống, và 6 đề nổi tiếng.
+  \item \textbf{Biên (13 đề):} lưới đã đầy (0 ô trống), lưới trống (81 ô), chỉ một số cho sẵn (80 ô), một ô trống ở ô đầu và ở ô cuối, trống trọn một hàng, một cột, một khối, đường chéo, ba hàng đầu, và ô trống duy nhất có đáp án là 1 hoặc là 9.
+  \item \textbf{Đặc biệt (21 đề):} nhiều lời giải, đúng 2 lời giải, vô nghiệm ngay ô đầu, vô nghiệm phải tìm mới biết; cùng một đề viết theo ba định dạng; dòng trống xen giữa, xuống dòng kiểu Windows, nhiều dấu cách và tab.
+  \item \textbf{Không hợp lệ (25 đề):} trùng ở hàng, cột, khối, nhiều chỗ cùng lúc; số 0, chữ cái, số 10, dấu chấm, dấu gạch; thiếu hoặc thừa dòng, ô; chuỗi 80 hoặc 82 ký tự; file rỗng.
+\end{itemize}
+
+\subsection*{Hai đề chậm}
+\label{sec:slow-cases}
+
+Đề chống quay lui cần 622.577.597 lần thử, đề 17 số cần 239.312.393 lần. Trên bộ giải của website, hai đề chạy hết 18 phút 45 giây. Script đánh dấu chúng là đề chậm, không chạy mặc định. Lệnh \texttt{yarn testcases --include-slow} chạy cả hai.
+
 \section{Cách bảo đảm độ phủ}
 
+Mỗi đề khi chạy ghi lại những nhánh xử lý của chương trình mà đề đó đi qua. Cả bộ phải đi qua đủ 20 nhánh, thiếu nhánh nào thì script báo lỗi:
+
+\begin{itemize}
+  \item 3 định dạng đề: 9 dòng có dấu cách, 9 dòng viết liền, chuỗi 81 ký tự.
+  \item 5 loại lỗi định dạng: sai số dòng, sai số ô trong một dòng, ký tự lạ trong dòng, chuỗi sai độ dài, ký tự lạ trong chuỗi.
+  \item 3 loại số trùng: ở hàng, ở cột, ở khối.
+  \item 5 kết quả: lưới đã đầy, giải được, giải được nhưng có nhiều lời giải, vô nghiệm ngay (chưa ghi nhận lần nào), vô nghiệm sau khi tìm.
+  \item 3 lý do bị loại: vì hàng, vì cột, vì khối.
+  \item Quay lui sau khi đã thử tới số 9.
+\end{itemize}
+
+Độ phủ theo nhánh chưa đủ để tin bộ test. Em kiểm thêm bằng cách cố tình làm sai bộ giải của website ở bốn chỗ, rồi chạy lại cả bộ (Bảng \ref{tab:mutations}). Lần đầu, bộ test chỉ bắt được hai trong bốn lỗi. Sau khi thêm ba cột số lần bị loại theo hàng, cột, khối, và đặt giới hạn số lần thử cho từng đề, bộ test bắt được cả bốn.
+
+\begin{table}[H]
+  \centering
+  \caption{Bốn lỗi cố ý và số đề báo sai}
+  \label{tab:mutations}
+  \begin{tabularx}{\linewidth}{@{}L>{\raggedright\arraybackslash}p{6.2cm}@{}}
+    \toprule
+    \textbf{Lỗi cố ý} & \textbf{Bộ test phát hiện} \\
+    \midrule
+    Chỉ thử số 1 đến 8, bỏ số 9 & 229 đề sai, báo thiếu nhánh quay lui sau số 9 \\
+    Kiểm tra đề bỏ qua khối \(3 \times 3\) & 5 đề trùng khối báo sai, báo thiếu nhánh trùng ở khối \\
+    Nhận số 0 là ô trống & 1 đề sai, đúng đề có số 0 \\
+    Kiểm tra cột trước hàng & 262 đề sai vì số lần bị loại theo hàng, cột lệch \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
 \section{Đáp án lấy từ đâu}
+
+Đáp án do hai chương trình Python độc lập với website tạo ra:
+
+\begin{enumerate}
+  \item \textbf{Bản tham chiếu mô hình 1} (\texttt{checks/reference\_solver.py}). Bản này cài đặt quay lui riêng, cùng thứ tự xét ô và thử số với website. Từ đây có lời giải đầu tiên, số lần thử, ghi nhận, trả lại và số lần bị loại theo hàng, cột, khối.
+  \item \textbf{Bộ đếm lời giải} trong script sinh đề. Bộ đếm dùng cách khác hẳn: chọn ô ít khả năng nhất trước và đánh dấu bằng bitmask. Bộ đếm cho biết đề có bao nhiêu lời giải, tối đa tới 1000.
+\end{enumerate}
+
+Script dừng ngay nếu hai chương trình không khớp nhau, hoặc nếu lời giải không đúng luật: 27 hàng, cột, khối phải là hoán vị của 1 đến 9, và các số đề cho phải giữ nguyên. Một kiểm tra chéo nữa đến từ trang Mọi lời giải. Chế độ tìm hết của website đếm lại số lời giải của 251 đề. 239 đề tìm hết trong giới hạn 300 nghìn lần thử, và cả 239 đề khớp bộ đếm độc lập.
